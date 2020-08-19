@@ -23,12 +23,13 @@
 <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
 <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
-<script src="https://cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
+<script src="//cdn.rawgit.com/donmccurdy/aframe-physics-system/v4.0.1/dist/aframe-physics-system.min.js"></script>
 <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
 <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
 <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
-<script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
-<script src="anvro.js"></script>      
+<script src="js/anvro.js"></script>
+<script src="js/aframe-teleport-controls.min.js"></script>
+
 </head>
 
 <body>
@@ -149,7 +150,7 @@
         <a-entity position="-12.5 0 -13.5" class="burial-zone"> <!-- Grave Model -->
         <a-entity mixin="button" class="clickable"  position="0 0 -1.7" id="burialbuttpos" gltf-model="#buttonupmodel"></a-entity>
         <a-entity mixin="button" class="clickable"  position="0 0 1.7" id="burialbuttinfo" gltf-model="#buttonmodel"></a-entity>
-        <a-entity position="0 0.001 0" static-body  gltf-model="jamestown-floor.glb" ></a-entity>
+        <a-entity position="0 0.001 0" static-body  gltf-model="models/jamestown-floor.glb" ></a-entity>
         <a-entity class="burialgrave" position="0 0.8 0"><a-entity static-body  gltf-model="models/jamestown.glb" ></a-entity>
         
         <a-entity mixin="scale-box" id="james-tit" position="0 0 0">
