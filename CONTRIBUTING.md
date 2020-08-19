@@ -1,2 +1,2 @@
-# Contributing to anVRopomotron
+# Contributing to AnVRopomotron
 Thank you for your interest in AnVRopomotron! Think of this as my garage project: I'd like it to reflect my level of skill. Therefore I welcome bug fixes, tips, and leads, but not huge changes to code like new complete new features or rewrites of existing features. Thank you for your understanding. 
