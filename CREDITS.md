@@ -8,7 +8,7 @@
 
 * Contact me: drkeithcchan@gmail.com
 * GitHub: https://github.com/chekeichan/anVRopomotron
-* Development Blog: http://www.keithcchan.com/tag/anvropomotron;"></a-entity>
+* Development Blog: http://www.keithcchan.com/tag/anvropomotron
 
 ## -Model Sources-
 All models are used under Creative Commons or similar licenses. Models from outside sources have been converted to low poly for VR presentation.
