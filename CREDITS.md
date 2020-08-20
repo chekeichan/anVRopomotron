@@ -1,4 +1,4 @@
-#AnVRopomotron Credits and Info
+# AnVRopomotron Credits and Info
 
 * Environment, primate models, and text by Dr. Keith Chan. 
 * The code is licensed under the GNU General Public License version 3. You can redistribute it and/or modify it under its terms. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. See https://www.gnu.org/licenses/ for details. 
@@ -10,10 +10,10 @@
 * GitHub: https://github.com/chekeichan/anVRopomotron
 * Development Blog: http://www.keithcchan.com/tag/anvropomotron;"></a-entity>
 
-##-Model Sources-
+## -Model Sources-
 All models are used under Creative Commons or similar licenses. Models from outside sources have been converted to low poly for VR presentation.
 
-###-Scale Model Hall-
+### -Scale Model Hall-
 Centerpiece, gibbon, gorilla and mouse lemur, rhesus monkey, orangutan, Notharctus, howler monkey, Megaladapis, tarsier, Proconsul, table, button, floor
 Keith Chan (CC BY-NC-SA 4.0) 
 
@@ -21,7 +21,7 @@ Crystal structure of monoclonal human anti-rhesus D Fc and IgG1 t125(yb2/0) in t
 NIH 3D Print Exchange (Public Domain)
 https://3dprint.nih.gov/discover/3dpx-007943
 
-###-VR Grab Lab-  List sorted by table
+### -VR Grab Lab-  List sorted by table
 -=Early Primate Fossils=-
 Atapuerca 5
 Geoffrey Marchal (CC-Attribution-NonCommercial)
@@ -35,7 +35,7 @@ Australopithecus platyops
 Geoffrey Marchal (CC-Attribution-NonCommercial)
 https://sketchfab.com/3d-models/kenyanthropus-platyops-8b7d057abe2c4d50bc90ad5e3d7146fb
 
-####-= Homo Fossils=-
+#### -= Homo Fossils=-
 Homo habilis
 African Fossils (CC-Attribution-NonCommercial-ShareAlike 3.0)
 https://africanfossils.org/hominids/knmer-1470
@@ -60,7 +60,7 @@ vLCA1
 Mounier, A., & Mirazón Lahr, M. (2019). Deciphering African late middle Pleistocene hominin diversity and the origin of our species. Nat Commun, 10(1), 3406. Retrieved from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6736881/
 (CC-Attribution 4)
 
-####-=Modern Primates=-
+#### -=Modern Primates=-
 Chimpanzee
 Natural History Museum Imaging (CC-Attribution-NonCommercial)
 https://sketchfab.com/3d-models/chimpanzee-skull-10a834c9f4cf4839b67f630db1ec0e0b
@@ -98,7 +98,7 @@ Male Mandible: https://3d.si.edu/object/3d/gorilla-gorilla-gorilla-mandible:e164
 Female Cranium: https://3d.si.edu/object/3d/gorilla-gorilla-gorilla-cranium:b3934519-90c3-4efd-8d3b-f57f91bfbf37
 Female Mandible: https://3d.si.edu/object/3d/gorilla-gorilla-gorilla-mandible:6dd351cb-98f2-4c4e-81d1-40a4fdf1d0a9
 
-####-=Artifacts=-
+#### -=Artifacts=-
 Acheulian Handaxe
 RLA Archaeology (CC-Attribution-NonCommercial-ShareAlike 3.0)
 https://sketchfab.com/3d-models/acheulean-hand-axe-518a2-06309df47b73468a8cd2500b236e80ee
@@ -139,14 +139,14 @@ Woman of Willendorf
 Raúl Balsera Moraño (CC-BY-NC-SA)
 https://sketchfab.com/3d-models/venus-de-willendorf-ab2fb84f3e3947ef975d5feb09e1c639
 
-###-Burial Chamber-
+### -Burial Chamber-
 Captain Gabriel Archer burial
 Smithsonian 3D, National Museum of Natural History Anthropology Department, and Jamestown Rediscovery (Preservation Virginia) (Educational use)
 Model has been reduced in polygons and placed in a display box.
 https://3d.si.edu/object/3d/captain-gabriel-archer-burial:f550015a-7e43-435b-90dc-e7c1367bc5fb
 
-##-Image Sources-
-###-Scale Model Hall-
+## -Image Sources-
+### -Scale Model Hall-
 Bornean Orangutan: &quot;Male Bornean Orangutan - Big Cheeks&quot; by Eric Kilby (CC BY-SA 2.0)
 https://upload.wikimedia.org/wikipedia/commons/9/9d/Male_Bornean_Orangutan_-_Big_Cheeks.jpg
 
@@ -168,7 +168,7 @@ https://commons.wikimedia.org/wiki/File:Macaque_India_3.jpg
 Tarsier: photo by Pierre Fidenci (CC BY-SA 2.5)
 https://commons.wikimedia.org/wiki/File:Tarsius_syrichta04.jpg
 
-###-VR Grab Lab-
+### -VR Grab Lab-
 Acheulian Handaxe: &quot;Palaeolithic Handaxe&quot; by The Portable Antiquities Scheme/ The Trustees of the British Museum (CC BY 2.0)
 https://commons.wikimedia.org/wiki/File:Palaeolithic_handaxe_(FindID_437041-356797).tif
 
@@ -221,7 +221,7 @@ Male: https://www.si.edu/object/lowland-gorilla:nzp_NZP-20090616-393MM
 Woman of Willendorf: &quot;Vénus de Lespugue Gravettien Musée de l'Homme&quot; by Vassil. (CC0 1.0)
 https://commons.wikimedia.org/wiki/File:Vénus_de_Lespugue_Gravettien_Musée_de_l%27Homme_04022018_2.jpg
 
-###-Burial Chamber-
+### -Burial Chamber-
 Map of Virigina: Described by Captain John Smith and engraved by William Hole (PD-US).
 https://commons.wikimedia.org/wiki/File:Virginia_map_1606.jpg
 
