@@ -232,45 +232,45 @@ document.getElementById(grabitem).addEventListener("grab-start", function(evt) {
 
 
 // Toggle Early Primate Skulls
-grabtrig("proconsul-grab","proconsul-tit",".bone-text", "holobone", "holoboneproj", "proconsulskull.glb", undefined, undefined, "0 1.2 0");
-grabtrig("archicebus-grab","archicebus-tit",".bone-text", "holobone", "holoboneproj", "archicebus.glb", undefined, undefined, "0 1.2 0");
-grabtrig("sahelanthropus-grab","sahel-tit",".bone-text", "holobone", "holoboneproj", "sahel.glb", undefined, undefined, "0 1.2 0");
-grabtrig("platyops-grab","platyops-tit",".bone-text", "holobone", "holoboneproj", "platyops.glb", undefined, undefined, "0 1.2 0");
-grabtrig("aethiopicus-grab","aethiopicus-tit",".bone-text", "holobone", "holoboneproj", "aethiopicus.glb", undefined, undefined, "0 1.2 0");
+grabtrig("proconsul-grab","proconsul-tit",".bone-text", "holobone", "holoboneproj", "models/proconsulskull.glb", undefined, undefined, "0 1.2 0");
+grabtrig("archicebus-grab","archicebus-tit",".bone-text", "holobone", "holoboneproj", "models/archicebus.glb", undefined, undefined, "0 1.2 0");
+grabtrig("sahelanthropus-grab","sahel-tit",".bone-text", "holobone", "holoboneproj", "models/sahel.glb", undefined, undefined, "0 1.2 0");
+grabtrig("platyops-grab","platyops-tit",".bone-text", "holobone", "holoboneproj", "models/platyops.glb", undefined, undefined, "0 1.2 0");
+grabtrig("aethiopicus-grab","aethiopicus-tit",".bone-text", "holobone", "holoboneproj", "models/aethiopicus.glb", undefined, undefined, "0 1.2 0");
 
 // Toggle Homo Skulls
-grabtrig("habilis-grab","habilis-tit",".bone-text", "holobone", "holoboneproj", "habilis.glb", undefined, undefined, "0 1.2 0");
-grabtrig("turkana-grab","turkana-tit",".bone-text", "holobone", "holoboneproj", "turkana.glb", undefined, undefined, "0 1.2 0");
-grabtrig("atapuerca-grab","atapuerca-tit",".bone-text", "holobone", "holoboneproj", "atapuerca.glb", undefined, undefined, undefined);
-grabtrig("nean-grab","nean-tit",".bone-text", "holobone", "holoboneproj", "nean.glb", undefined, undefined, "0 1.2 0");
-grabtrig("vlca1-grab","vlca1-tit",".bone-text", "holobone", "holoboneproj", "vLCA1.glb", undefined, undefined, "0 1.2 0");
+grabtrig("habilis-grab","habilis-tit",".bone-text", "holobone", "holoboneproj", "models/habilis.glb", undefined, undefined, "0 1.2 0");
+grabtrig("turkana-grab","turkana-tit",".bone-text", "holobone", "holoboneproj", "models/turkana.glb", undefined, undefined, "0 1.2 0");
+grabtrig("atapuerca-grab","atapuerca-tit",".bone-text", "holobone", "holoboneproj", "models/atapuerca.glb", undefined, undefined, undefined);
+grabtrig("nean-grab","nean-tit",".bone-text", "holobone", "holoboneproj", "models/nean.glb", undefined, undefined, "0 1.2 0");
+grabtrig("vlca1-grab","vlca1-tit",".bone-text", "holobone", "holoboneproj", "models/vLCA1.glb", undefined, undefined, "0 1.2 0");
 
 // Toggle Modern Prosimian Skulls
-grabtrig("potto-grab","potto-tit",".bone-text-2", "holobone2", "holoboneproj2", "potto.glb", undefined, "10 10 10", undefined);
-grabtrig("indri-grab","indri-tit",".bone-text-2", "holobone2", "holoboneproj2", "indri.glb", undefined, "8 8 8", undefined);
-grabtrig("howler-grab","howler-tit",".bone-text-2", "holobone2", "holoboneproj2", "howlerskull.glb", undefined, "7 7 7", undefined);
-grabtrig("baboon-grab","baboon-tit",".bone-text-2", "holobone2", "holoboneproj2", "baboonskull.glb", undefined, undefined, "0 1.2 0");
-grabtrig("mandrill-grab","mandrill-tit",".bone-text-2", "holobone2", "holoboneproj2", "mandrillskull.glb", undefined, undefined, "0 1.2 0");
-grabtrig("snub-grab","snub-tit",".bone-text-2", "holobone2", "holoboneproj2", "snub.glb", undefined, "7 7 7", "0 1.2 0");
+grabtrig("potto-grab","potto-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/potto.glb", undefined, "10 10 10", undefined);
+grabtrig("indri-grab","indri-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/indri.glb", undefined, "8 8 8", undefined);
+grabtrig("howler-grab","howler-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/howlerskull.glb", undefined, "7 7 7", undefined);
+grabtrig("baboon-grab","baboon-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/baboonskull.glb", undefined, undefined, "0 1.2 0");
+grabtrig("mandrill-grab","mandrill-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/mandrillskull.glb", undefined, undefined, "0 1.2 0");
+grabtrig("snub-grab","snub-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/snub.glb", undefined, "7 7 7", "0 1.2 0");
 
 // Toggle Modern Hominoid Skulls
-grabtrig("gibbon-grab","gibbon-tit",".bone-text-2", "holobone2", "holoboneproj2", "gibbonskull.glb", undefined, "7 7 7", "0 1.2 0");
-grabtrig("gorilla-m-grab","gorilla-m-tit",".bone-text-2", "holobone2", "holoboneproj2", "gorillaskull-m.glb", undefined, "4 4 4", undefined);
-grabtrig("gorilla-f-grab","gorilla-f-tit",".bone-text-2", "holobone2", "holoboneproj2", "gorillaskull-f.glb", undefined, "4 4 4", undefined);
-grabtrig("chimp-grab","chimp-tit",".bone-text-2", "holobone2", "holoboneproj2", "chimp.glb", undefined, undefined, undefined);
-grabtrig("mhs-grab","mhs-tit",".bone-text-2", "holobone2", "holoboneproj2", "mhs.glb", undefined, undefined, undefined);
+grabtrig("gibbon-grab","gibbon-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/gibbonskull.glb", undefined, "7 7 7", "0 1.2 0");
+grabtrig("gorilla-m-grab","gorilla-m-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/gorillaskull-m.glb", undefined, "4 4 4", undefined);
+grabtrig("gorilla-f-grab","gorilla-f-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/gorillaskull-f.glb", undefined, "4 4 4", undefined);
+grabtrig("chimp-grab","chimp-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/chimp.glb", undefined, undefined, undefined);
+grabtrig("mhs-grab","mhs-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/mhs.glb", undefined, undefined, undefined);
 
 // Toggle Artifacts 1
-grabtrig("acheul-grab","acheul-tit",".art-text","holoartifact", "holoartproj","acheul.glb", "0 0 90", "7 7 7", "0.18 1.3 0");
-grabtrig("mousterian-grab","mousterian-tit",".art-text","holoartifact", "holoartproj","mousterian.glb", "0 0 90", "9 9 9", "0 1.5 0");
-grabtrig("clovis-grab","clovis-tit",".art-text","holoartifact", "holoartproj","clovis.glb", "0 0 90", "12 12 12", "0 1.4 0");
-grabtrig("harpoon-grab","harpoon-tit",".art-text","holoartifact", "holoartproj","harpoon.glb", "0 0 90", "7 7 7", "0 1.4 0");
-grabtrig("moundville-grab","moundville-tit",".art-text","holoartifact", "holoartproj","moundville.glb", undefined, "6 6 6", undefined);
-grabtrig("dagger-grab","dagger-tit",".art-text","holoartifact", "holoartproj","dagger.glb", "0 0 90", undefined, "0 1.5 0");
-grabtrig("venus-grab","venus-tit",".art-text","holoartifact", "holoartproj","venus.glb", undefined, "8 8 8", "0 0.9 0");
-grabtrig("nasca-grab","nasca-tit",".art-text","holoartifact", "holoartproj","nasca.glb", undefined, "6 6 6", "0 0.9 0");
-grabtrig("canopic-grab","canopic-tit",".art-text","holoartifact", "holoartproj","canopic.glb", undefined, "6 6 6", "0 1 0");
-grabtrig("baboon-blue-grab","baboon-blue-tit",".art-text","holoartifact", "holoartproj","baboon-blue.glb", undefined, "7 7 7", "0 0.9 -0.1");
+grabtrig("acheul-grab","acheul-tit",".art-text","holoartifact", "holoartproj", "models/acheul.glb", "0 0 90", "7 7 7", "0.18 1.3 0");
+grabtrig("mousterian-grab","mousterian-tit",".art-text","holoartifact", "holoartproj", "models/mousterian.glb", "0 0 90", "9 9 9", "0 1.5 0");
+grabtrig("clovis-grab","clovis-tit",".art-text","holoartifact", "holoartproj", "models/clovis.glb", "0 0 90", "12 12 12", "0 1.4 0");
+grabtrig("harpoon-grab","harpoon-tit",".art-text","holoartifact", "holoartproj", "models/harpoon.glb", "0 0 90", "7 7 7", "0 1.4 0");
+grabtrig("moundville-grab","moundville-tit",".art-text","holoartifact", "holoartproj", "models/moundville.glb", undefined, "6 6 6", undefined);
+grabtrig("dagger-grab","dagger-tit",".art-text","holoartifact", "holoartproj", "models/dagger.glb", "0 0 90", undefined, "0 1.5 0");
+grabtrig("venus-grab","venus-tit",".art-text","holoartifact", "holoartproj", "models/venus.glb", undefined, "8 8 8", "0 0.9 0");
+grabtrig("nasca-grab","nasca-tit",".art-text","holoartifact", "holoartproj", "models/nasca.glb", undefined, "6 6 6", "0 0.9 0");
+grabtrig("canopic-grab","canopic-tit",".art-text","holoartifact", "holoartproj", "models/canopic.glb", undefined, "6 6 6", "0 1 0");
+grabtrig("baboon-blue-grab","baboon-blue-tit",".art-text","holoartifact", "holoartproj", "models/baboon-blue.glb", undefined, "7 7 7", "0 0.9 -0.1");
     }
 })
 
