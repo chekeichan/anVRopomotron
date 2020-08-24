@@ -28,7 +28,7 @@ AFRAME.registerComponent('device-set', {
                 document.querySelector('#SMH-PC').setAttribute("visible", "true");
                 rig.setAttribute("movement-controls", "speed", 0.15);
                 for (let each of tablestand) {
-                    each.setAttribute('animation', {property: 'position.y', to: 0.3, dur: 5000, delay: 50});
+                    each.setAttribute('animation', {property: 'position.y', to: 0.25, dur: 5000, delay: 50});
                 }
                 for (let each of standup) {
                     each.removeAttribute('dynamic-body');
