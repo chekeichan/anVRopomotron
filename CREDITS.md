@@ -228,6 +228,9 @@ https://commons.wikimedia.org/wiki/File:Virginia_map_1606.jpg
 1608 and Memorial Churches: Photo by Ken Lund (CC BY-SA 2.0). Photo has been cropped and color adjusted.
 https://commons.wikimedia.org/wiki/File:Jamestown_Church,_Historic_Jamestowne,_Colonial_National_Historical_Park,_Jamestown,_Virginia_(14239034848).jpg
 
+1608 Church: Photo by Darren and Brad (CC BY-NC 2.0). Photo has been cropped.
+https://www.flickr.com/photos/brad-darren/27268338961
+
 ##VR Sources
 Diego Marcos, Don McCurdy, and Kevin Ngo
 A-Frame
