@@ -11,6 +11,7 @@
 -   The New Guinea human femur dagger I promised a while ago is now in the Grab Lab. It was a quick conversion from the original model using just normal maps. Thanks to Dartmouth College and Morphosource for making it available.
 -   The Grab Lab tables now have a border of "interaction orange" for UI consistency.
 -   Jamestown church picture replaced with another that showed the grave site better.
+-   Re-render of the rooms to include Proconsul shadows. I also learned how to de-noise the baked texture in Blender so the shadows and highlights are a little more crisp with a little pixelation at the edges.
 -   Woops, the first credits page, the one with my name and stuff, was invisible because the text wrapping was accidentally set to zero. It's back with new info on the Creative Commons and open source nature of the models and code.
 
 ## 1.1 (07/06/2020)
