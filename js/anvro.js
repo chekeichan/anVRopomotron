@@ -195,13 +195,32 @@ AFRAME.registerComponent("togg-cred", {
                         each.setAttribute("visible", false);     
                 }
                 counter++;
-                if (counter > 7) { // Value is total panels minus one
+                if (counter > 8) { // Value is total panels minus one
                     counter = 0;
                  }
 				creditslist[counter].setAttribute("visible", true);
             })
         }}
     )
+
+// Burial Flipper
+AFRAME.registerComponent("togg-burial", {
+    init: function() {
+        var el = this.el;
+      var counter = 0;  
+        var creditslist = document.getElementsByClassName("credits");
+        el.addEventListener("grab-start", function(evt) {
+        for (let each of creditslist) {
+                    each.setAttribute("visible", false);     
+            }
+            counter++;
+            if (counter > 7) { // Value is total panels minus one
+                counter = 0;
+             }
+            creditslist[counter].setAttribute("visible", true);
+        })
+    }}
+)
 
 // VR Grab Lab Grabbing Function
 AFRAME.registerComponent("item-grab", {

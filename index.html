@@ -76,7 +76,7 @@
                 <a-asset-item id="turkanamodel" response-type="arraybuffer" src="models/turkana.glb"></a-asset-item>
 
                 <a-mixin id="obj" hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" class="grabbable" scale="1 1 1" rotation="0 0 0" animation="property: object3D.position.y; to: 1.45; startEvents: standtrigger; dur: 5000" shadow></a-mixin>
-                <a-mixin id="button" static-body hoverable clickable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup"  scale="1 1 1" shadow></a-mixin>
+                <a-mixin id="button" static-body hoverable clickable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" shadow></a-mixin>
                 <a-mixin id="holoprojector" color="#ff6a00" position="0 0.3 0" rotation="180 0 0" height="0.05" geometry="primitive: cone; segmentsRadial: 3; openEnded: true; radiusBottom: 0.5; segmentsHeight: 1" material="emissive: #ff6a00; wireframe: true" animation="property: rotation; to: 180 360 0; loop: true; easing: linear; dur: 10000"></a-mixin>
                 <a-mixin id="hand" physics-collider static-body="shape: box" collision-filter="collisionForces: false;" 
 				 super-hands="colliderEvent: collisions;
@@ -147,8 +147,8 @@
      <a-text position="-14 1.6 -9.5" value="Burial Chamber"  color="black" width="4" line-height="50" text="wrapCount: 15"></a-text>
      <a-text position="-13.9 1.3 -9.5" value="Warning: Simulated human burials inside"  color="black" width="3" line-height="50" text="wrapCount: 35"></a-text>
      <a-entity class="burial-zone">
-	 
         <a-entity position="-12.5 0 -13.5" class="burial-zone" visible="false"> <!-- Grave Model -->
+        <a-entity togg-burial mixin="button" class="clickable"  position="1 0 -7.2" id="burialbutt" gltf-model="#buttonmodel"></a-entity>
         <a-entity mixin="button" class="clickable"  position="0 0 -1.7" id="burialbuttpos" gltf-model="#buttonupmodel"></a-entity>
         <a-entity mixin="button" class="clickable"  position="0 0 1.7" id="burialbuttinfo" gltf-model="#buttonmodel"></a-entity>
         <a-entity position="0 0.001 0" static-body  gltf-model="jamestown-floor.glb" ></a-entity>
@@ -199,7 +199,7 @@
           
 <!-- Centerpiece --> 
    <a-entity class="center-zone" position="0.12 0.009 -4.01"> <a-entity static-body rotation="0 -90 0" gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
-   <a-entity static-body clickable class="clickable"  position="0.1 0 2.7" id="centerbutt" gltf-model="#buttonmodel" shadow ></a-entity>   
+   <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" gltf-model="#buttonmodel" shadow></a-entity> 
        <a-entity mixin="scale-box" id="centerpiece-tit" ><a-entity mixin="scale-label-border" position="-1.5 0.88 1.69" rotation="0 0 0"></a-entity><a-entity mixin="scale-label" position="-1.5 0.88 1.7" rotation="0 0 0" text="value: Lucy\nScientific Name: Australopithecus afarensis\nLocation: Ethiopia\nTime: 3.4 million years ago\n\nNotes: Female australopithecine discovered by Donald Johanson and team in 1974.; color: black; lineHeight: 75; wrap-count: 35"></a-entity>
        <a-entity mixin="scale-label-border" position="1.4 2 1.69" rotation="0 0 0" ></a-entity><a-entity mixin="scale-label" position="1.4 2 1.7" rotation="0 0 0" text="value: Gigantopithecus\nScientific Name: Gigantopithecus blacki\nLocation: China, Vietnam, and Indonesia\nTime: 9 to 0.1 million years ago\n\nNotes: The largest primate that has ever lived. Estimates reach 3 meters (9.8 feet) tall and 1300 pounds. Only teeth and mandible fossils have been found.; color: black; lineHeight: 75; wrap-count: 35" geometry="primitive: plane; buffer: false"></a-entity>
        <a-entity mixin="scale-label-border" position="-1.2 2.5 1.69" rotation="0 0 0" ></a-entity><a-entity mixin="scale-label" position="-1.2 2.5 1.7" rotation="0 0 0" text="value: Archicebus\nScientific Name: Archicebus achilles\nLocation: China\nTime: 55 million years ago\n\nNotes: Possibly the smallest primate ever.; color: black; lineHeight: 75; wrap-count: 35" ></a-entity>
@@ -417,8 +417,8 @@
          
 <!-- Credits -->
 <a-text position="-0.7 3.9 -7.499" value="Credits and Info" color="black" width="2"></a-text>
+<a-entity static-body togg-cred mixin="button" class="clickable"  position="1.5 0.93 -8.33" id="credbutt" gltf-model="#buttonmodel" rotation="90 0 0" shadow ></a-entity>  
 
-<a-entity togg-cred mixin="button" class="clickable"  position="1.4 0 -7.2" id="credbutt" gltf-model="#buttonmodel"></a-entity>
 <a-entity mixin="credit-text" class="credits" id="credits-1" position="-0.7 2 -7.499" text="value:  Environment, primate models, and text by Dr. Keith Chan. 
 
 This program is presented with the CC-Attribution-NonCommercial-ShareAlike 3.0 license. You may display this app and modify its code for your non-commericial use. Development partially funded by MiraCosta College, Oceanside, California.
@@ -426,6 +426,7 @@ This program is presented with the CC-Attribution-NonCommercial-ShareAlike 3.0 l
 The information presented is one common view of the scientific evidence, but not necessarily the only one.
 
 Contact me: drkeithcchan@gmail.com
+Github: https://github.com/chekeichan/anVRopomotron
 Stay up to date: http://www.keithcchan.com/tag/anvropomotron;"></a-entity>
 
 <a-entity mixin="credit-text" class="credits" id="credits-2" visible="false" position="-0.7 2 -7.499" text="value: -Model Sources-
@@ -670,7 +671,10 @@ A-Frame Physics Extras
 Super-Hands
 
 Fernando Serrano
-A-Frame Teleport Component;"></a-entity>
+A-Frame Teleport Component
+
+Ben Erwin
+Special Fixes;"></a-entity>
 </a-scene>
 </body>
 </html>
