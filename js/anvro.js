@@ -208,16 +208,32 @@ AFRAME.registerComponent("togg-burial", {
     init: function() {
         var el = this.el;
       var counter = 0;  
-        var creditslist = document.getElementsByClassName("credits");
-        el.addEventListener("grab-start", function(evt) {
-        for (let each of creditslist) {
-                    each.setAttribute("visible", false);     
+        var burialslist = document.getElementsByClassName("burial");
+		var jamestownlist = document.getElementsByClassName("jamestown");
+		var jameshide = document.getElementsByClassName("jameshide");
+		var calatravalist = document.getElementsByClassName("calatrava");
+        el.addEventListener("grab-start", function(evt) { // The following is run if button is clicked
+        for (let each of burialslist) {
+                    each.setAttribute("visible", false); // Hide everything
             }
             counter++;
-            if (counter > 7) { // Value is total panels minus one
+            if (counter == 1) { // Jamestown On
+                for (let each of jamestownlist) {
+                    each.setAttribute("visible", true);     
+				}
+				for (let each of jameshide) {
+                    each.object3D.position.y += 2;    
+				}
+             } else if (counter == 2) { // Calatrava On
+                for (let each of calatravalist) {
+                    each.setAttribute("visible", true);     
+				}
+				for (let each of jameshide) {
+                    each.object3D.position.y -= 2;    
+				}
+			 } else if (counter > 2) { // Set back to zero past Calatrava. Everything is off already lol
                 counter = 0;
              }
-            creditslist[counter].setAttribute("visible", true);
         })
     }}
 )
