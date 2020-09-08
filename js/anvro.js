@@ -180,7 +180,8 @@ grabpanel("howlerbutt","#stand6-tit");
 grabpanel("megaladapisbutt","#stand7-tit");
 grabpanel("tarsierbutt","#stand8-tit");
 grabpanel("proconsulbutt","#stand9-tit");
-grabpanel("burialbuttinfo","#james-tit");
+grabpanel("jamesbuttinfo","#james-tit");
+grabpanel("calatravabuttinfo","#calatrava-tit");
     }
 })
 
@@ -210,29 +211,49 @@ AFRAME.registerComponent("togg-burial", {
       var counter = 0;  
         var burialslist = document.getElementsByClassName("burial");
 		var jamestownlist = document.getElementsByClassName("jamestown");
-		var jameshide = document.getElementsByClassName("jameshide");
+		var jameshidelist = document.getElementsByClassName("jameshide");
 		var calatravalist = document.getElementsByClassName("calatrava");
+		var calatravahidelist = document.getElementsByClassName("calatravahide");
+		var generichidelist = document.getElementsByClassName("generichide");
         el.addEventListener("grab-start", function(evt) { // The following is run if button is clicked
         for (let each of burialslist) {
                     each.setAttribute("visible", false); // Hide everything
             }
             counter++;
             if (counter == 1) { // Jamestown On
-                for (let each of jamestownlist) {
+                for (let each of generichidelist) {
                     each.setAttribute("visible", true);     
 				}
-				for (let each of jameshide) {
+				for (let each of jamestownlist) {
+                    each.setAttribute("visible", true);     
+				}
+				for (let each of jameshidelist) {
                     each.object3D.position.y += 2;    
 				}
              } else if (counter == 2) { // Calatrava On
-                for (let each of calatravalist) {
-                    each.setAttribute("visible", true);     
+                for (let each of jamestownlist) {
+                    each.setAttribute("visible", false);     
 				}
-				for (let each of jameshide) {
+				for (let each of jameshidelist) {
                     each.object3D.position.y -= 2;    
 				}
-			 } else if (counter > 2) { // Set back to zero past Calatrava. Everything is off already lol
+				for (let each of calatravalist) {
+                    each.setAttribute("visible", true);     
+				}
+				for (let each of calatravahidelist) {
+                    each.object3D.position.y += 2;    
+				}
+			 } else if (counter > 2) { // Set back to zero past Calatrava
                 counter = 0;
+				for (let each of generichidelist) {
+                    each.setAttribute("visible", false);     
+				}
+				for (let each of calatravalist) {
+                    each.setAttribute("visible", false);     
+				}
+				for (let each of calatravahidelist) {
+                    each.object3D.position.y -= 2;    
+				}
              }
         })
     }}
@@ -313,14 +334,20 @@ grabtrig("baboon-blue-grab","baboon-blue-tit",".art-text","holoartifact", "holoa
 AFRAME.registerComponent("burial-grab", {
 	init: function() {
 		var state = "down";
-		document.getElementById("burialbuttpos").addEventListener("grab-start", function(evt) {
+		var heightswitch = function(grave) {
 			if (state == "down") { // Toggle height
-				document.querySelector(".burialgrave").setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
+				document.querySelector(grave).setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
 				state = "up";
 			} else {
-				document.querySelector(".burialgrave").setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
+				document.querySelector(grave).setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
 				state = "down";
 			}
+}
+		document.getElementById("jamesbuttpos").addEventListener("grab-start", function(evt) {
+			heightswitch(".jamesgrave");
+		})
+		document.getElementById("calatravabuttpos").addEventListener("grab-start", function(evt) {
+			heightswitch(".calatravagrave");
 		})
 	}
 })

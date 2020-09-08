@@ -147,14 +147,14 @@
      <a-text position="-14 1.6 -9.5" value="Burial Chamber" color="black" width="4" line-height="50" text="wrapCount: 15"></a-text>
      <a-text position="-13.9 1.3 -9.5" value="Warning: Simulated human burials inside" color="black" width="3" line-height="50" text="wrapCount: 35"></a-text>
      <a-entity class="burial-zone">
-        <a-entity position="-12.5 0 -13.5" class="burial-zone" visible="false"> <!-- Grave Model Zone -->
+        <a-entity position="-12.5 0 -13.5" class="burial-zone" visible="false"> <!-- Grave Model Zone for relative positioning-->
         <a-entity togg-burial mixin="button" class="clickable"  position="0 0.93 -4.9" rotation="90 0 0" id="burialbutt" gltf-model="#buttonmodel"></a-entity> <!-- Switches Burials -->
 		
 		<a-entity class="burial jamestown jameshide" visible="false" position="0 -2 0"> <!-- Jamestown Burial Zone -->
-        <a-entity mixin="button" class="clickable"  position="0 0 -1.7" id="burialbuttpos" gltf-model="#buttonupmodel"></a-entity>
-        <a-entity mixin="button" class="clickable"  position="0 0 1.7" id="burialbuttinfo" gltf-model="#buttonmodel"></a-entity>
+        <a-entity mixin="button" class="clickable"  position="0 0 -1.7" id="jamesbuttpos" gltf-model="#buttonupmodel"></a-entity>
+        <a-entity mixin="button" class="clickable"  position="0 0 1.7" id="jamesbuttinfo" gltf-model="#buttonmodel"></a-entity>
         <a-entity position="0 0.001 0" static-body class="jamestown jameshide" gltf-model="jamestown-floor.glb" ></a-entity>
-        <a-entity class="burialgrave jamestown jameshide" position="0 0.8 0" visible="false"><a-entity static-body  gltf-model="models/jamestown.glb" ></a-entity>
+        <a-entity class="jamesgrave jamestown" position="0 0.8 0" visible="false"><a-entity static-body  gltf-model="models/jamestown.glb" ></a-entity>
         
         <a-entity mixin="scale-box" id="james-tit" position="0 0 0">
         <a-entity position="-0.112 0.83 -1.31" rotation="0 90 0"><a-plane mixin="scale-label" width="1.05" height="0.8" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.75" text="value: Silver Reliquary Location\n\nThe small silver box with the letter M engraved in one side was found here. Archaeologists left the pedastal of soil to show the depth of the artifact in the grave.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.59 -0.08 0" material="shader: flat" geometry="vertexC: -0.16 -0.7 0; vertexA: 0.5 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
@@ -171,7 +171,16 @@
         </a-entity>
         </a-entity></a-entity>
 		
-		<!-- End Jamestown Burial Zone-->
+		<a-entity class="burial calatrava calatravahide" visible="false" position="0 -2 0"> <!-- Calatrava Burial Zone -->
+        <a-entity mixin="button" class="clickable"  position="0 0 -1.7" id="calatravabuttpos" gltf-model="#buttonupmodel"></a-entity>
+        <a-entity mixin="button" class="clickable"  position="0 0 1.7" id="calatravabuttinfo" gltf-model="#buttonmodel"></a-entity>
+        <a-entity class="calatravagrave calatrava" position="0 0.8 0" visible="false"><a-entity static-body gltf-model="models/calatrava.glb" ></a-entity>
+        
+        <a-entity mixin="scale-box" id="james-tit" position="0 0 0">
+        <!-- Calatrava annotations go here -->
+        </a-entity>
+        </a-entity></a-entity>
+		<!-- End Burial Zones-->
 		</a-entity>
         
 	    <a-entity id="burialscreenright" class="burial-zone" visible="true" position="-8.51 2 -15.7">
@@ -184,7 +193,7 @@
         </a-entity>
 
       <a-entity id="burialscreenleft" class="burial-zone" visible="true" position="-16.45 1.9 -10">
-        <a-text id="Generic-Site" visible="true" position="-0.01 1.7 -0.97" rotation="0 90 0" value="The Site" color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
+        <a-text id="Generic-Site" class="generichide" visible="false" position="-0.01 1.7 -0.97" rotation="0 90 0" value="The Site" color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
         <a-text id="james2-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" rotation="0 90 0" text="value: Jamestown was the first English colony in the Americas, founded in 1607. Multiple setbacks, such as attacks from the Powhatan whose land the colony occupied, famine, disease, and political unrest led to a disastrous winter in 1609 and 1610. It was in this time that Captain Gabriel Archer died along with over a hundred others. Archer's grave was located in the chancel of the 1608 church.\n\nAfter the winter, new settlers and supplies bolstered the colony. Abducted Africans were forced into servitude in 1619, leading to institutionalized slavery in 1662. By 1689 Jamestown had dissolved as a settlement.\n\nThe area is now an active interpretation center and archaeological site maintained by Preservation Virginia and the National Park Service.">
         <a-entity position="4.2 -0.06 0" rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Darren and Brad, used under CC BY-NC 2.0;" position="1.5 1.1 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Reconstruction of the remains of the 1608 church where Captain Archer's remains were found. His grave is marked by the third cross from the left.;" position="1.5 -1.25 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		<a-text id="calatrava2-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" rotation="0 90 0" text="value: The Sacred Convent and Castle of Calatrava la Nueva was the headquarters of the Order of Calatrava, a society of religious warriors. It was occupied from 1217 to 1804, before the Order moved to another location. The fortress occupied a strategic view of the Aldea del Rey region from the peak of the Cerro del Alancrenejo mountain. Within sight was the rival Almohad-occupied Salvatierra Castle, their last stronghold in the region.\n\nThe grounds covered 46,000 square meters and was a self-sufficient community. Today the site is a tourist attraction with restored structures in some areas though the chapter house has been sealed.">
@@ -192,7 +201,7 @@
         </a-entity> 
         
        <a-entity id="burialscreenback" class="burial-zone" visible="true" position="-10.3 2 -8.7">
-        <a-text id="Generic-Artifacts" visible="true" position="-0.01 1.0 -0.97" rotation="0 180 0" value="Artifacts"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
+        <a-text id="Generic-Artifacts" class="generichide" visible="false" position="-0.01 1.0 -0.97" rotation="0 180 0" value="Artifacts"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
         <a-text id="james3-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" rotation="0 180 0" text="wrapCount: 60; width:4; value: Captain Archer was buried in a wooden coffin, which has since rotted but left the nails in place. Outside the coffin in the grave were a piece of a ceremonial staff and a small silver reliquary container. Micro CT analysis of the box revealed that it contained human bone fragments and a lead ampulla (flask with fluid of religious significance).">
 <!--         <a-entity position="4.2 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2.25"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Ken Lund, used under CC BY-SA 2.0;" position="1.5 1.26 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: The rope barrier shows the border of the 1608 church where Captain Archer's remains were found. His grave is marked by the third cross from the left. The Memorial Church is in the background.;" position="1.5 -1.64 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		<a-text id="calatrava3-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" rotation="0 180 0" text="wrapCount: 60; width:4; value: The knight was buried in a wooden box placed in the grave as evidenced by nails and the wood remnants. The decomposed remains of leather shoes were found at the feet. These were better preserved in some of the other burials.\n\nPaintings decorated the walls of the chapter house, including one of a knight and Almohad warrior fighting on horseback. ">
