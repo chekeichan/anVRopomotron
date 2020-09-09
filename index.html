@@ -27,7 +27,6 @@
 <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
 <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
 <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
-<script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
 <script src="js/anvro.js"></script>
 <script src="js/aframe-teleport-controls.min.js"></script>
 </head>
@@ -109,7 +108,7 @@
  </a-entity>
  
 <a-light type="ambient" color="white" intensity="0.025"></a-light> 
-<a-light type="directional" color="white" intensity="1" position="-1 8 4"></a-light> <!-- Spawn light cbf1ff -->
+<a-light class="mainlight" color="white" position="-1 8 4" light="type: point; intensity: 1.5; decay: 0.5; distance: 20"></a-light> <!-- Shadow Light for Everything But Burial Hall -->
 
 <!-- Occlusion Zones -->
 <a-entity class="zone" id="just-grab" gltf-model="models/grabzone.glb" visible="false"></a-entity> 
@@ -153,7 +152,7 @@
 		<a-entity class="burial jamestown jameshide" visible="false" position="0 -2 0"> <!-- Jamestown Burial Zone -->
         <a-entity mixin="button" class="clickable"  position="0 0 -1.7" id="jamesbuttpos" gltf-model="#buttonupmodel"></a-entity>
         <a-entity mixin="button" class="clickable"  position="0 0 1.7" id="jamesbuttinfo" gltf-model="#buttonmodel"></a-entity>
-        <a-entity position="0 0.001 0" static-body class="jamestown jameshide" gltf-model="jamestown-floor.glb" ></a-entity>
+        <a-entity position="0 0.001 0" static-body class="jamestown jameshide" gltf-model="models/jamestown-floor.glb" ></a-entity>
         <a-entity class="jamesgrave jamestown" position="0 0.8 0" visible="false"><a-entity static-body  gltf-model="models/jamestown.glb" ></a-entity>
         
         <a-entity mixin="scale-box" id="james-tit" position="0 0 0">
@@ -171,15 +170,21 @@
         </a-entity>
         </a-entity></a-entity>
 		
-		<a-entity class="burial calatrava calatravahide" visible="false" position="0 -2 0"> <!-- Calatrava Burial Zone -->
+		<a-entity class="burial calatrava calatravahide" visible="false" position="1 -2 0"> <!-- Calatrava Burial Zone -->
         <a-entity mixin="button" class="clickable"  position="0 0 -1.7" id="calatravabuttpos" gltf-model="#buttonupmodel"></a-entity>
         <a-entity mixin="button" class="clickable"  position="0 0 1.7" id="calatravabuttinfo" gltf-model="#buttonmodel"></a-entity>
-        <a-entity class="calatravagrave calatrava" position="0 0.8 0" visible="false"><a-entity static-body gltf-model="models/calatrava.glb" ></a-entity>
+        <a-entity class="calatravagrave calatrava" position="0 0.8 0" visible="false"><a-entity static-body gltf-model="models/calatrava-knight.glb" ></a-entity></a-entity>
+		<a-entity position="-2.5 0 0">
+			<a-cylinder color="gray" rotation="0 30 0" segments-radial="8" segments-height="1" height="0.15" geometry="radius: 0.1" ></a-cylinder>
+			<a-entity id="holoburialproj">
+			<a-entity mixin="holoprojector" animation=""></a-entity>
+			<a-entity id="holocalatrava" rotation="0 0 0" static-body position="0 1 0" gltf-model="models/calatrava-castle.glb"></a-entity></a-entity>
+		</a-entity>
         
-        <a-entity mixin="scale-box" id="james-tit" position="0 0 0">
+        <a-entity mixin="scale-box" id="calatrava-tit" position="0 0 0">
         <!-- Calatrava annotations go here -->
         </a-entity>
-        </a-entity></a-entity>
+        </a-entity>
 		<!-- End Burial Zones-->
 		</a-entity>
         

@@ -50,6 +50,7 @@ var scale2 = sceneEl.querySelectorAll(".scale-zone-2");
 var czone = sceneEl.querySelectorAll(".center-zone");
 var gzone = sceneEl.querySelectorAll(".grab-zone");
 var bzone = sceneEl.querySelectorAll(".burial-zone");
+var lzone = sceneEl.querySelectorAll(".mainlight");
 var gzoneobjs = sceneEl.querySelectorAll(".grab-obj-zone");
 var czoneobjs = sceneEl.querySelectorAll(".center-obj-zone");
 var grabcheck = 0;
@@ -84,7 +85,7 @@ for (let each of list) {
     }
     if (each.id == "just-scale") { // Turn off parts of Grab Lab when user is inside Scale Model Hall area
        console.log("just-scale entered");
-       scalecheck++;
+       scalecheck1++;
     }
 	if (each.id == "just-burial") { // Turn off parts of Burial Chamber when user is inside Scale Model Hall area
        console.log("just-burial entered");
@@ -94,6 +95,7 @@ for (let each of list) {
 	if (grabcheck == 1) {
 		console.log("grab on");
 		visiswitch(gzone, true);
+		visiswitch(lzone, true);
 		visiswitch(gzoneobjs, true);
 		grabcheck = 0;
 	} else {
@@ -104,6 +106,7 @@ for (let each of list) {
 	if (centercheck == 1) {
 		console.log("center on");
 		visiswitch(czone, true);
+		visiswitch(lzone, true);
 		visiswitch(czoneobjs, true);
 		centercheck = 0;
 	} else {
@@ -114,6 +117,7 @@ for (let each of list) {
 	if (scalecheck == 1) {
 		console.log("scale on");
 		visiswitch(scale1, true);
+		visiswitch(lzone, true);
 		scalecheck = 0;
 	} else {
 	console.log("scale off");
@@ -122,6 +126,7 @@ for (let each of list) {
 	if (burialcheck == 1) {
 		console.log("burial on");
 		visiswitch(bzone, true);
+		visiswitch(lzone, false);
 		burialcheck = 0;
 	} else {
 	console.log("burial off");
