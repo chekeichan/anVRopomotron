@@ -50,7 +50,8 @@ var scale2 = sceneEl.querySelectorAll(".scale-zone-2");
 var czone = sceneEl.querySelectorAll(".center-zone");
 var gzone = sceneEl.querySelectorAll(".grab-zone");
 var bzone = sceneEl.querySelectorAll(".burial-zone");
-var lzone = sceneEl.querySelectorAll(".mainlight");
+var mlightzone = sceneEl.querySelectorAll(".mainlight");
+var blightzone = sceneEl.querySelectorAll(".buriallight");
 var gzoneobjs = sceneEl.querySelectorAll(".grab-obj-zone");
 var czoneobjs = sceneEl.querySelectorAll(".center-obj-zone");
 var grabcheck = 0;
@@ -85,7 +86,7 @@ for (let each of list) {
     }
     if (each.id == "just-scale") { // Turn off parts of Grab Lab when user is inside Scale Model Hall area
        console.log("just-scale entered");
-       scalecheck1++;
+       scalecheck++;
     }
 	if (each.id == "just-burial") { // Turn off parts of Burial Chamber when user is inside Scale Model Hall area
        console.log("just-burial entered");
@@ -95,7 +96,6 @@ for (let each of list) {
 	if (grabcheck == 1) {
 		console.log("grab on");
 		visiswitch(gzone, true);
-		visiswitch(lzone, true);
 		visiswitch(gzoneobjs, true);
 		grabcheck = 0;
 	} else {
@@ -126,11 +126,20 @@ for (let each of list) {
 	if (burialcheck == 1) {
 		console.log("burial on");
 		visiswitch(bzone, true);
-		visiswitch(lzone, false);
 		burialcheck = 0;
 	} else {
 	console.log("burial off");
 		visiswitch(bzone, false);
+		visiswitch(blightzone, false);
+}
+	if (grabcheck == 1 || centercheck == 1 || scalecheck == 1) { // Light switch
+		console.log("main lights on");
+		visiswitch(mlightzone, true);
+		visiswitch(blightzone, false);
+	} else {
+	console.log("burial lights on");
+		visiswitch(mlightzone, false);
+		visiswitch(blightzone, true);
 }
 }
 
@@ -186,7 +195,8 @@ grabpanel("megaladapisbutt","#stand7-tit");
 grabpanel("tarsierbutt","#stand8-tit");
 grabpanel("proconsulbutt","#stand9-tit");
 grabpanel("jamesbuttinfo","#james-tit");
-grabpanel("calatravabuttinfo","#calatrava-tit");
+grabpanel("calatrava-knightbuttinfo","#calatrava-knight-tit");
+grabpanel("calatrava-castlebuttinfo","#calatrava-castle-tit");
     }
 })
 
@@ -213,7 +223,7 @@ AFRAME.registerComponent("togg-cred", {
 AFRAME.registerComponent("togg-burial", {
     init: function() {
         var el = this.el;
-      var counter = 0;  
+		var counter = 0;  
         var burialslist = document.getElementsByClassName("burial");
 		var jamestownlist = document.getElementsByClassName("jamestown");
 		var jameshidelist = document.getElementsByClassName("jameshide");
