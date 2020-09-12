@@ -71,6 +71,17 @@ var visidistanceswitch = function(zone, toggle) {
                  }
         } 
 }
+var lightswitch = function() { // Light switch logic to light the right area
+		if (grabcheck == 1 || centercheck == 1 || scalecheck == 1) { 
+		console.log("main lights on");
+		visiswitch(mlightzone, true);
+		visiswitch(blightzone, false);
+	} else {
+	console.log("burial lights on");
+		visiswitch(mlightzone, false);
+		visiswitch(blightzone, true);
+}
+}
 
 var zonechecker = function () {
 var list = el.components['aabb-collider'].intersectedEls;
@@ -97,6 +108,8 @@ for (let each of list) {
 		console.log("grab on");
 		visiswitch(gzone, true);
 		visiswitch(gzoneobjs, true);
+		visiswitch(scale2, false);
+		lightswitch();
 		grabcheck = 0;
 	} else {
 	console.log("grab off");
@@ -106,8 +119,8 @@ for (let each of list) {
 	if (centercheck == 1) {
 		console.log("center on");
 		visiswitch(czone, true);
-		visiswitch(lzone, true);
 		visiswitch(czoneobjs, true);
+		lightswitch();
 		centercheck = 0;
 	} else {
 	console.log("center off");
@@ -117,7 +130,8 @@ for (let each of list) {
 	if (scalecheck == 1) {
 		console.log("scale on");
 		visiswitch(scale1, true);
-		visiswitch(lzone, true);
+		visiswitch(scale2, true);
+		lightswitch();
 		scalecheck = 0;
 	} else {
 	console.log("scale off");
@@ -126,20 +140,12 @@ for (let each of list) {
 	if (burialcheck == 1) {
 		console.log("burial on");
 		visiswitch(bzone, true);
+		visiswitch(scale2, false);
+		lightswitch();
 		burialcheck = 0;
 	} else {
 	console.log("burial off");
 		visiswitch(bzone, false);
-		visiswitch(blightzone, false);
-}
-	if (grabcheck == 1 || centercheck == 1 || scalecheck == 1) { // Light switch
-		console.log("main lights on");
-		visiswitch(mlightzone, true);
-		visiswitch(blightzone, false);
-	} else {
-	console.log("burial lights on");
-		visiswitch(mlightzone, false);
-		visiswitch(blightzone, true);
 }
 }
 
@@ -195,8 +201,7 @@ grabpanel("megaladapisbutt","#stand7-tit");
 grabpanel("tarsierbutt","#stand8-tit");
 grabpanel("proconsulbutt","#stand9-tit");
 grabpanel("jamesbuttinfo","#james-tit");
-grabpanel("calatrava-knightbuttinfo","#calatrava-knight-tit");
-grabpanel("calatrava-castlebuttinfo","#calatrava-castle-tit");
+grabpanel("calatravabuttinfo","#calatrava-tit");
     }
 })
 
@@ -243,20 +248,20 @@ AFRAME.registerComponent("togg-burial", {
                     each.setAttribute("visible", true);     
 				}
 				for (let each of jameshidelist) {
-                    each.object3D.position.y += 2;    
+                    each.object3D.position.y += 3;    
 				}
              } else if (counter == 2) { // Calatrava On
                 for (let each of jamestownlist) {
                     each.setAttribute("visible", false);     
 				}
 				for (let each of jameshidelist) {
-                    each.object3D.position.y -= 2;    
+                    each.object3D.position.y -= 3;    
 				}
 				for (let each of calatravalist) {
                     each.setAttribute("visible", true);     
 				}
 				for (let each of calatravahidelist) {
-                    each.object3D.position.y += 2;    
+                    each.object3D.position.y += 3;    
 				}
 			 } else if (counter > 2) { // Set back to zero past Calatrava
                 counter = 0;
@@ -267,7 +272,7 @@ AFRAME.registerComponent("togg-burial", {
                     each.setAttribute("visible", false);     
 				}
 				for (let each of calatravahidelist) {
-                    each.object3D.position.y -= 2;    
+                    each.object3D.position.y -= 3;    
 				}
              }
         })
@@ -349,20 +354,26 @@ grabtrig("baboon-blue-grab","baboon-blue-tit",".art-text","holoartifact", "holoa
 AFRAME.registerComponent("burial-grab", {
 	init: function() {
 		var state = "down";
+		var burialbuttonlist = document.querySelectorAll(".burialbutton");
+		console.log(burialbuttonlist);
+		var burialliftlist = document.querySelectorAll(".buriallift");
+		console.log(burialliftlist);
 		var heightswitch = function(grave) {
 			if (state == "down") { // Toggle height
-				document.querySelector(grave).setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
+				for (let each of grave) {
+					each.setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
+				}
 				state = "up";
 			} else {
-				document.querySelector(grave).setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
+				for (let each of grave) {
+					each.setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
+				}
 				state = "down";
 			}
 }
-		document.getElementById("jamesbuttpos").addEventListener("grab-start", function(evt) {
-			heightswitch(".jamesgrave");
-		})
-		document.getElementById("calatravabuttpos").addEventListener("grab-start", function(evt) {
-			heightswitch(".calatravagrave");
-		})
+		for (let each of burialbuttonlist) {
+			each.addEventListener("grab-start", function(evt) {
+			heightswitch(burialliftlist);
+			})
 	}
-})
+}})
