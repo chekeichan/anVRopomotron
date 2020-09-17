@@ -250,6 +250,7 @@ AFRAME.registerComponent("togg-burial", {
 				for (let each of jameshidelist) {
                     each.object3D.position.y += 3;    
 				}
+				document.getElementById("burialname").setAttribute("text", "value", "Jamestown Colony, Virginia, USA (1600s)");
              } else if (counter == 2) { // Calatrava On
                 for (let each of jamestownlist) {
                     each.setAttribute("visible", false);     
@@ -263,6 +264,7 @@ AFRAME.registerComponent("togg-burial", {
 				for (let each of calatravahidelist) {
                     each.object3D.position.y += 3;    
 				}
+				document.getElementById("burialname").setAttribute("text", "value", "Calatrava la Nueva, Aldea del Rey, Spain (1200s)");
 			 } else if (counter > 2) { // Set back to zero past Calatrava
                 counter = 0;
 				for (let each of generichidelist) {
@@ -274,6 +276,7 @@ AFRAME.registerComponent("togg-burial", {
 				for (let each of calatravahidelist) {
                     each.object3D.position.y -= 3;    
 				}
+				document.getElementById("burialname").setAttribute("text", "value", " ");
              }
         })
     }}
@@ -356,21 +359,26 @@ grabtrig("baboon-blue-grab","baboon-blue-tit",".art-text","holoartifact", "holoa
 AFRAME.registerComponent("burial-grab", {
     init: function() {
 var state = "down";
-var heightswitch = function(button, target, down, up) {
+var burialliftlist = document.querySelectorAll(".buriallift");
+var heightswitch = function(button) {
 document.getElementById(button).addEventListener("grab-start", function(evt) {
 if (state == "down") {
-    document.getElementById(target).setAttribute('animation', {property: 'position.y', to: up, dur: 3000});
+    document.getElementById("jamesburialset").setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
+	document.getElementById("holocalatrava").setAttribute('animation', {property: 'position.y', to: 0.5, dur: 3000});
+	document.getElementById("calatravaburialset").setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
     state = "up";
 } else {
-    document.getElementById(target).setAttribute('animation', {property: 'position.y', to: down, dur: 3000});
+    document.getElementById("jamesburialset").setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
+	document.getElementById("holocalatrava").setAttribute('animation', {property: 'position.y', to: 1, dur: 3000});
+	document.getElementById("calatravaburialset").setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
     state = "down";
          }
      }) 
 }
 
 // Set Button Behaviors
-heightswitch("jamesbuttpos", "jamesburialset", 0.7, 1.2);
-heightswitch("calatravabuttpos", "holocalatrava", 0.7, 1.2);
-heightswitch("calatravabuttpos", "calatravaburialset", 0.8, 1.3);
+heightswitch("jamesbuttpos");
+heightswitch("calatravabuttpos");
+heightswitch("calatravabuttpos");
 }
 })
