@@ -350,30 +350,27 @@ grabtrig("baboon-blue-grab","baboon-blue-tit",".art-text","holoartifact", "holoa
     }
 })
 
-// Raise and Lower Burial
+
+
+// Raise and Lower Function
 AFRAME.registerComponent("burial-grab", {
-	init: function() {
-		var state = "down";
-		var burialbuttonlist = document.querySelectorAll(".burialbutton");
-		console.log(burialbuttonlist);
-		var burialliftlist = document.querySelectorAll(".buriallift");
-		console.log(burialliftlist);
-		var heightswitch = function(grave) {
-			if (state == "down") { // Toggle height
-				for (let each of grave) {
-					each.setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
-				}
-				state = "up";
-			} else {
-				for (let each of grave) {
-					each.setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
-				}
-				state = "down";
-			}
+    init: function() {
+var state = "down";
+var heightswitch = function(button, target, down, up) {
+document.getElementById(button).addEventListener("grab-start", function(evt) {
+if (state == "down") {
+    document.getElementById(target).setAttribute('animation', {property: 'position.y', to: up, dur: 3000});
+    state = "up";
+} else {
+    document.getElementById(target).setAttribute('animation', {property: 'position.y', to: down, dur: 3000});
+    state = "down";
+         }
+     }) 
 }
-		for (let each of burialbuttonlist) {
-			each.addEventListener("grab-start", function(evt) {
-			heightswitch(burialliftlist);
-			})
-	}
-}})
+
+// Set Button Behaviors
+heightswitch("jamesbuttpos", "jamesburialset", 0.7, 1.2);
+heightswitch("calatravabuttpos", "holocalatrava", 0.7, 1.2);
+heightswitch("calatravabuttpos", "calatravaburialset", 0.8, 1.3);
+}
+})
