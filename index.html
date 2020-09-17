@@ -154,7 +154,7 @@
         <a-entity mixin="button" class="clickable burialbutton"  position="0 0 -1.7" id="jamesbuttpos" gltf-model="#buttonupmodel"></a-entity>
         <a-entity mixin="button" class="clickable"  position="0 0 1.7" id="jamesbuttinfo" gltf-model="#buttonmodel"></a-entity>
         <a-entity position="0 -2.998 0" static-body class="jamestown jameshide" gltf-model="models/jamestown-floor.glb" ></a-entity>
-        <a-entity class="buriallift jamestown" position="0 0.8 0" visible="false"><a-entity static-body  gltf-model="models/jamestown.glb" ></a-entity>
+        <a-entity class="buriallift jamestown" id="jamesburialset" position="0 0.8 0" visible="false"><a-entity static-body  gltf-model="models/jamestown.glb" ></a-entity>
         
         <a-entity mixin="scale-box" id="james-tit" position="0 0 0">
 			<a-entity position="-0.112 0.83 -1.31" rotation="0 90 0"><a-plane mixin="scale-label" width="1.05" height="0.8" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.75" text="value: Silver Reliquary Location\n\nThe small silver box with the letter M engraved in one side was found here. Archaeologists left the pedastal of soil to show the depth of the artifact in the grave.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.59 -0.08 0" material="shader: flat" geometry="vertexC: -0.16 -0.7 0; vertexA: 0.5 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
@@ -179,10 +179,10 @@
 			<a-cylinder color="gray" rotation="0 30 0" segments-radial="8" segments-height="1" height="0.15" geometry="radius: 0.1" ></a-cylinder>
 			<a-entity id="holoburialproj">
 			<a-entity mixin="holoprojector" animation="enabled: false;"></a-entity>
-			<a-entity id="holocalatrava" class="buriallift" rotation="0 150 0" static-body position="0 1 0" gltf-model="models/calatrava-castle.glb">
+			<a-entity id="holocalatrava" class="buriallift" rotation="0 150 0" static-body position="0 0.7 0" gltf-model="models/calatrava-castle.glb">
 		</a-entity></a-entity>
 		</a-entity>
-        <a-entity class="buriallift calatrava" position="0 0.8 0" visible="false"><a-entity static-body gltf-model="models/calatrava-knight.glb" ></a-entity>
+        <a-entity class="buriallift calatrava" id="calatravaburialset" position="0 0.8 0" visible="false"><a-entity static-body gltf-model="models/calatrava-knight.glb" ></a-entity>
         <a-entity mixin="scale-box" id="calatrava-tit" position="0 0 0">
 			<a-entity position="-0.112 0.83 -0.87" rotation="0 -90 0"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.55" text="value: Shoe Remains\n\nThe discolored soil is from the decomposed leather shoes that the knight was wearing. ; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.38 -0.08 0" material="shader: flat" geometry="vertexC: 0.47 -0.7 0; vertexA: 0.5 0 0; vertexB: 0.3 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			<a-entity rotation="0 -90 0" position="0 1.07 0.83"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.55" text="value: Preservation\n\nThis is a modern display case with a transparent cover that protects the grave in situ (the original place) at the chapter house.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.28 -0.2 0" material="shader: flat" geometry="vertexC: 0.22 -0.6 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
@@ -223,8 +223,8 @@
 		<a-entity id="burialscreenfront" class="burial-zone" visible="true" position="-15.5 2 -16.5">
         <a-text id="Generic-Selector" visible="true" position="3 1.0 -1" rotation="0 0 0" value="Choose Burial"  color="black" width="5" line-height="50" text="wrapCount: 30; align:center;"></a-text>
        
-		<a-text id="calatrava3-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" rotation="0 180 0" text="value: The knight was buried in a wooden box placed in the grave as evidenced by nails and the wood remnants. The decomposed remains of leather shoes were found at the feet. These were better preserved in some of the other burials.\n\nPaintings decorated the walls of the chapter house, including one of a knight and Almohad warrior fighting on horseback. ">
-        <a-entity position="3.3 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravashoes-p.jpg" position="0 0 0.01" width="2.25" height="1.725"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Ken Lund, used under CC BY-SA 2.0;" position="1.15 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Shoes of a style similar to the degraded remains found in the grave.;" position="1.15 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+		<a-entity id="burial-map" class="" mixin="burial-label" rotation="0 0 0">
+        <a-entity position="3 -0.3 -1"  rotation="0 0 0"><a-image mixin="scale-label" src="images/worldmap.png" position="0 0 0.01" width="2" height="1"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Ken Lund, used under CC BY-SA 2.0;" position="1.15 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 1.5; value: Image by Ktrinko, used under CC0;" position="1.15 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity>
         </a-entity>
         </a-entity>
         </a-entity></a-entity>
