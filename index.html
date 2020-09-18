@@ -93,6 +93,7 @@
                  <a-mixin id="scale-label" geometry="primitive: plane; height: 1; width: 1; buffer: false" material="color: #f5f5f5; shader: flat;"></a-mixin>
                  <a-mixin id="scale-text" text="color: black; width: 2; wrapCount: 45"></a-mixin>
                  <a-mixin id="credit-text" text="anchor: align; color: black; width: 2; wrapCount: 70; lineHeight: 55"</a-mixin>
+				 <a-mixin id="mapcircle" material="color: #ffaa00; flatShading: true; shader: flat" geometry="radius: 0.025"</a-mixin>
  </a-assets>
  
 <a-entity position="0 0 0" gltf-model="models/nav.glb" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
@@ -147,7 +148,7 @@
      <a-text position="-14 1.6 -9.5" value="Burial Chamber" color="black" width="4" line-height="50" text="wrapCount: 15"></a-text>
      <a-text position="-13.9 1.3 -9.5" value="Warning: Simulated human burials inside" color="black" width="3" line-height="50" text="wrapCount: 35"></a-text>
      <a-entity class="burial-zone">
-        <a-entity togg-burial mixin="button" class="clickable"  position="-12.5 0.93 -17.9" rotation="90 0 0" id="burialbutt" gltf-model="#buttonmodel"></a-entity>
+        <a-entity togg-burial mixin="button" class="clickable"  position="-12.5 1 -17.9" rotation="90 0 0" id="burialbutt" gltf-model="#buttonmodel"></a-entity>
 		<a-entity position="-12.5 0 -13.5" class="burial-zone" visible="false"> <!-- Grave Model Zone for relative positioning-->
 		
 		<a-entity class="burial jamestown jameshide" visible="false" position="0 -3 0"> <!-- Jamestown Burial Zone -->
@@ -187,7 +188,7 @@
 			<a-entity position="-0.112 0.83 -0.87" rotation="0 -90 0"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.55" text="value: Shoe Remains\n\nThe discolored soil is from the decomposed leather shoes that the knight was wearing. ; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.38 -0.08 0" material="shader: flat" geometry="vertexC: 0.47 -0.7 0; vertexA: 0.5 0 0; vertexB: 0.3 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			<a-entity rotation="0 -90 0" position="0 1.07 0.83"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.55" text="value: Preservation\n\nThis is a modern display case with a transparent cover that protects the grave in situ (the original place) at the chapter house.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.28 -0.2 0" material="shader: flat" geometry="vertexC: 0.22 -0.6 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			
-			<a-entity position="-2.94 0.9 0.86" rotation="0 90 0"><a-plane mixin="scale-label" width="0.75" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.55" text="value: The Church\n\nConstructed from volcanic rock and built in the Cistercian style.; color: black; lineHeight: 75; wrap-count: 35;></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 1.2 -0.14 0; vertexA: 0.55 0.2 0; vertexB: 0.55 0.1 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+			<a-entity position="-2.94 0.9 0.86" rotation="0 90 0"><a-plane mixin="scale-label" width="0.75" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.55" text="value: The Church\n\nConstructed from volcanic rock and built in the Cistercian style.; color: black; lineHeight: 75; wrap-count: 35;"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 1.2 -0.14 0; vertexA: 0.55 0.2 0; vertexB: 0.55 0.1 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			<a-entity position="-3.25 0.5 -0.8" rotation="0 90 0"><a-plane mixin="scale-label" width="0.75" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.55" text="value: Calatrava la Nueva Central Fortress\n\nScale: 1:150\nNorth; color: black; lineHeight: 75; wrap-count: 20; align: right; xOffset: -0.02"></a-plane><a-triangle color="#375719" position="-0.36 -0.22 0.01" material="shader: flat" geometry="vertexC: 0.5 -0.05 0; vertexA: 0.5 0.05 0; vertexB: 0.35 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			<a-entity rotation="0 90 0" position="-2.93 1.15 -0.02"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.55" text="value: Chapter House\n\nThe burials were found here in the chapter house (sala capitular), or meeting hall.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 0.2 -0.54 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 		<!-- Calatrava annotations go here -->
@@ -197,11 +198,11 @@
 		</a-entity>
         
 	    <a-entity id="burialscreenright" class="burial-zone" visible="true" position="-8.51 2 -15.7">
-	        <a-text id="Jamestown-Title" class="burial jamestown" visible="false" position="-0.01 1.4 -1.04" rotation="0 -90 0" value="Captain Gabriel Archer"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>        
-	        <a-text id="james1-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" position="0 -0.2 -1" rotation="0 -90 0"  text="value: Born: 1575 in Mountnessing, Essex, England\nDied: 1609 or 1610, Jamestown, Virginia, United States\nAge: 34 to 35\n\nBiography: Captain Archer attended Cambridge and studied law before traveling to North America. In 1602 he documented an expedition led by Captain Bartholomew Gosnold to locations such as Cape Cod and Martha's Vineyard.\n\nArcher was among the founders of the Jamestown colony and became involved in the politics of the settlement, notably becoming a rival of leader John Smith.\n\nCaptain Archer died during the &quot;starving time&quot; in the winter of 1609 to 1610.">
-            <a-entity position="4 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/jamestownmap-p.jpg" position="0 0 0.01" width="3" height="2.3"></a-image><a-text mixin="table-caption" text="width: 2.75; value: Engraving by William Hole, image by The Library of Congress, used under U.S. public domain;" position="1.4 1.3 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.75; value: Map of the Virigina from 1606. The colony is located at around (308.5, 37.5).;" position="1.4 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
-			<a-text id="Calatrava-Title" class="burial calatrava" visible="false" position="-0.01 1.4 -1.04" rotation="0 -90 0" value="Knight of the Order of Calatrava"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>        
-	        <a-text id="calatrava-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" position="0 -0.2 -1" rotation="0 -90 0"  text="value: Date: Early 1200s \nAge: Adult\n\nContext: Excavations from 2001 to 2004 led by Ana Maria Segovia Fernandez uncovered a series of burials in the chapter house of the convent. The burials were arranged along the north-south axis with their heads pointed west. This burial was noted as Enterramiento (burial) 6, located furthest to the south, but was the fifth buried in the chapter house of the convent. They are believed to be knights of the Order of Calatrava, a Spanish military and religious organization.">
+	        <a-text id="Jamestown-Title" class="burial jamestown" visible="false" position="-0.01 1.6 -1.04" rotation="0 -90 0" value="Captain Gabriel Archer"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>        
+	        <a-text id="james1-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" position="0 -0.15 -1" rotation="0 -90 0"  text="width: 2.25; wrapCount: 40; value: Born: 1575 in Mountnessing, Essex, England\nDied: 1609 or 1610, Jamestown, Virginia, United States\nAge: 34 to 35\nModel Source: Smithsonian 3D, National Museum of Natural History Anthropology Department, and Jamestown Rediscovery (Preservation Virginia)\n\nBiography: Captain Archer attended Cambridge and studied law before traveling to North America. In 1602 he documented an expedition led by Captain Bartholomew Gosnold to locations such as Cape Cod and Martha's Vineyard.\n\nArcher was among the founders of the Jamestown colony and became involved in the politics of the settlement, notably becoming a rival of leader John Smith.\n\nCaptain Archer died during the &quot;starving time&quot; in the winter of 1609 to 1610.">
+            <a-entity position="4 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/jamestownmap-p.jpg" position="0 0 0.01" width="3" height="2.3"></a-image><a-text mixin="table-caption" text="width: 2.75; value: Engraving by William Hole, image by The Library of Congress, used under U.S. public domain;" position="1.4 1.3 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.75; value: Map of the Virigina colony from 1606. The colony is located at around (308.5, 37.5).;" position="1.4 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+			<a-text id="Calatrava-Title" class="burial calatrava" visible="false" position="-0.01 1.4 -1.04" rotation="0 -90 0" value="Knight of Calatrava"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>        
+	        <a-text id="calatrava-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" position="0 -0.2 -1" rotation="0 -90 0"  text="value: Date: Early 1200s \nAge: Adult\nModels Source: Global Digital Heritage\n\nContext: Excavations from 2001 to 2004 led by Ana Maria Segovia Fernandez uncovered a series of burials in the chapter house of the convent. The burials were arranged along the north-south axis with their heads pointed west. This burial was noted as Enterramiento (burial) 6, located furthest to the south, but was the fifth buried in the chapter house of the convent. They are believed to be knights of the Order of Calatrava, a Spanish military and religious organization.">
             <a-entity position="4 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravaknight-p.jpg" position="-0.85 -0.14 0.01" width="1.36" height="2.4"></a-image><a-text mixin="table-caption" text="width: 1.3; wrapCount: 35; value: Image by The Metropolitan Museum of Art, used under CC0 1.0 Universal;" position="-0.19 1.19 0.01" ></a-text><a-text mixin="table-caption" text="width: 1.3; wrapCount: 35; value: &quot;Sculpture of a Kneeling Knight or King&quot;, from Northern Spain from 1175 to 1225.;" position="-0.19 -1.46 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         </a-entity>
 
@@ -216,16 +217,20 @@
        <a-entity id="burialscreenback" class="burial-zone" visible="true" position="-10.3 2 -8.7">
         <a-text id="Generic-Artifacts" class="generichide" visible="false" position="-0.01 1.0 -0.97" rotation="0 180 0" value="Artifacts"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
         <a-text id="james3-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" rotation="0 180 0" text="wrapCount: 60; width:4; value: Captain Archer was buried in a wooden coffin, which has since rotted but left the nails in place. Outside the coffin in the grave were a piece of a ceremonial staff and a small silver reliquary container. Micro CT analysis of the box revealed that it contained human bone fragments and a lead ampulla (flask with fluid of religious significance).">
-<!--         <a-entity position="4.2 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2.25"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Ken Lund, used under CC BY-SA 2.0;" position="1.5 1.26 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: The rope barrier shows the border of the 1608 church where Captain Archer's remains were found. His grave is marked by the third cross from the left. The Memorial Church is in the background.;" position="1.5 -1.64 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+<!--         <a-entity position="4.2 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2.25"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Caption;" position="1.5 1.26 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Caption.;" position="1.5 -1.64 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		<a-text id="calatrava3-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" rotation="0 180 0" text="value: The knight was buried in a wooden box placed in the grave as evidenced by nails and the wood remnants. The decomposed remains of leather shoes were found at the feet. These were better preserved in some of the other burials.\n\nPaintings decorated the walls of the chapter house, including one of a knight and Almohad warrior fighting on horseback. ">
         <a-entity position="3.3 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravashoes-p.jpg" position="0 0 0.01" width="2.25" height="1.725"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Curious Expeditions, used under CCC BY-NC-SA 2.0;" position="1.15 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Shoes of a style similar to the degraded remains found in the grave.;" position="1.15 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         </a-entity>
 		
 		<a-entity id="burialscreenfront" class="burial-zone" visible="true" position="-15.5 2 -16.5">
-        <a-text id="Generic-Selector" visible="true" position="3 0.7 -1" rotation="0 0 0" value="Choose Burial"  color="black" width="5" line-height="50" text="wrapCount: 30; align:center;"></a-text>
-       
+        <a-text id="Generic-Selector" visible="true" position="3 1 -1" rotation="0 0 0" value="Choose Burial"  color="black" width="5" line-height="50" text="wrapCount: 30; align:center;"></a-text>
 		<a-entity id="burial-map" class="" mixin="burial-label" rotation="0 0 0">
-        <a-entity position="3 -0.3 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/worldmap.png" position="0 0 0.01" width="2" height="1"></a-image><a-text id="burialname" mixin="table-caption" text="align: center; width: 2; value: "";" position="0 0.6 0.01" ></a-text><a-text mixin="table-caption" text="align: center; width: 1.5; value: Image by Ktrinko, used under CC0;" position="0 -0.46 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity>
+        <a-entity position="3 -0.3 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/worldmap.png" position="0 0 0.02" width="2" height="1"></a-image>
+		<a-text id="burialname" mixin="table-caption" text="align: center; width: 2; letterSpacing: 3; wrapCount: 35; value: "";" position="0 0.8 0.03" ></a-text>
+		<a-text mixin="table-caption" text="align: center; width: 1.5; value: Image by Ktrinko, used under CC0;" position="0 -0.46 0.03" ></a-text>
+		<a-circle id="jamescircle" mixin="mapcircle" position="-0.45 0.28 0.03"></a-circle>
+		<a-circle id="calatravacircle" mixin="mapcircle" position="-0.07 0.29 0.03"></a-circle>
+		</a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity>
         </a-entity>
         </a-entity>
         </a-entity></a-entity>
@@ -451,7 +456,7 @@
          
 <!-- Credits -->
 <a-text position="-0.7 3.9 -7.499" value="Credits and Info" color="black" width="2"></a-text>
-<a-entity static-body togg-cred mixin="button" class="clickable"  position="1.5 0.93 -8" id="credbutt" gltf-model="#buttonmodel" rotation="90 0 0" shadow ></a-entity>  
+<a-entity static-body togg-cred mixin="button" class="clickable"  position="1.5 1 -8" id="credbutt" gltf-model="#buttonmodel" rotation="90 0 0" shadow ></a-entity>  
 
 <a-entity mixin="credit-text" class="credits" id="credits-1" position="-0.7 2 -7.499" text="value:  Environment, primate models, and text by Dr. Keith Chan. 
 
@@ -599,7 +604,13 @@ Captain Gabriel Archer burial
 Smithsonian 3D, National Museum of Natural History Anthropology Department, and Jamestown Rediscovery (Preservation Virginia) (Educational use)
 https://3d.si.edu/object/3d/captain-gabriel-archer-burial:f550015a-7e43-435b-90dc-e7c1367bc5fb
 
-Calatrava Knight Burial
+Medieval Burial, Calatrava La Nueva (Spain)
+Global Digital Heritage (CC BY 4.0)
+https://skfb.ly/6RLHB
+
+Calatrava la Nueva
+Global Digital Heritage (CC BY-NC 4.0)
+https://skfb.ly/6TZrN
 ;"></a-entity>
 
 <a-entity mixin="credit-text" class="credits" id="credits-7" visible="false" position="-0.7 2 -7.499" text="value: Image Sources
@@ -680,7 +691,10 @@ Woman of Willendorf: &quot;Vénus de Lespugue Gravettien Musée de l'Homme&quot;
 https://commons.wikimedia.org/wiki/File:Vénus_de_Lespugue_Gravettien_Musée_de_l%27Homme_04022018_2.jpg
 
 Burial Chamber
-Map of Virigina: Described by Captain John Smith and engraved by William Hole (PD-US).
+World Map: Image by Ktrinko (CC0)
+https://commons.wikimedia.org/wiki/File:Eckert4.jpg
+
+Map of Virigina: Described by Captain John Smith and engraved by William Hole (PD-US)
 https://commons.wikimedia.org/wiki/File:Virginia_map_1606.jpg
 
 1608 and Memorial Churches: Photo by Ken Lund (CC BY-SA 2.0). Photo has been cropped and color adjusted.

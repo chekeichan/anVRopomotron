@@ -250,7 +250,7 @@ AFRAME.registerComponent("togg-burial", {
 				for (let each of jameshidelist) {
                     each.object3D.position.y += 3;    
 				}
-				document.getElementById("burialname").setAttribute("text", "value", "Jamestown Colony, Virginia, USA (1600s)");
+				document.getElementById("burialname").setAttribute("text", "value", "Captain Gabriel Archer\nJamestown Colony\nVirginia, USA (1600s)");
              } else if (counter == 2) { // Calatrava On
                 for (let each of jamestownlist) {
                     each.setAttribute("visible", false);     
@@ -264,7 +264,7 @@ AFRAME.registerComponent("togg-burial", {
 				for (let each of calatravahidelist) {
                     each.object3D.position.y += 3;    
 				}
-				document.getElementById("burialname").setAttribute("text", "value", "Calatrava la Nueva, Aldea del Rey, Spain (1200s)");
+				document.getElementById("burialname").setAttribute("text", "value", "Knight of Calatrava\nCalatrava la Nueva\nAldea del Rey, Spain (1200s)");
 			 } else if (counter > 2) { // Set back to zero past Calatrava
                 counter = 0;
 				for (let each of generichidelist) {
@@ -355,7 +355,7 @@ grabtrig("baboon-blue-grab","baboon-blue-tit",".art-text","holoartifact", "holoa
 
 
 
-// Raise and Lower Function
+// Raise and Lower Burial
 AFRAME.registerComponent("burial-grab", {
     init: function() {
 var state = "down";
