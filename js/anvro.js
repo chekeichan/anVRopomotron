@@ -140,7 +140,6 @@ for (let each of list) {
 	if (burialcheck == 1) {
 		console.log("burial on");
 		visiswitch(bzone, true);
-		visiswitch(scale2, false);
 		lightswitch();
 		burialcheck = 0;
 	} else {
