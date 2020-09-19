@@ -7,8 +7,8 @@ AFRAME.registerComponent('device-set', {
             if (AFRAME.utils.device.isMobile() === true) { // Smartphone Mode
                 sceneEl.setAttribute("vr-mode-ui", "enabled", "false");
                 rig.setAttribute("movement-controls", "speed", 0.15);
-                document.querySelector('#GL-SP').setAttribute("visible", "true");
-                document.querySelector('#SMH-SP').setAttribute("visible", "true");
+                document.querySelector('#GL-SP').object3D.visible = true;
+                document.querySelector('#SMH-SP').object3D.visible = true;
                 for (let each of tablestand) {
                     each.setAttribute('animation', {property: 'position.y', to: 0.3, dur: 5000});
                 }
@@ -20,12 +20,12 @@ AFRAME.registerComponent('device-set', {
                     each.dispatchEvent(new CustomEvent("standtrigger"));
                 }
             } else if (AFRAME.utils.device.checkHeadsetConnected() === true) { // VR Mode
-                document.querySelector('#GL-VR').setAttribute("visible", "true");
-                document.querySelector('#SMH-VR').setAttribute("visible", "true");
+                document.querySelector('#GL-VR').object3D.visible = true;
+                document.querySelector('#SMH-VR').object3D.visible = true;
                 rig.setAttribute("movement-controls", "speed", 0.10);
             } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
-                document.querySelector('#GL-PC').setAttribute("visible", "true");
-                document.querySelector('#SMH-PC').setAttribute("visible", "true");
+                document.querySelector('#GL-PC').object3D.visible = true;
+                document.querySelector('#SMH-PC').object3D.visible = true;
                 rig.setAttribute("movement-controls", "speed", 0.15);
                 for (let each of tablestand) {
                     each.setAttribute('animation', {property: 'position.y', to: 0.25, dur: 5000, delay: 50});
@@ -187,7 +187,7 @@ AFRAME.registerComponent("grab-panels", {
 var grabpanel = function(grabbutt, grabset) {
 document.getElementById(grabbutt).addEventListener("grab-start", function(evt) {
       var cent = document.querySelector(grabset);
-      cent.setAttribute("visible", !cent.getAttribute("visible"));
+      cent.object3D.visible = !cent.getAttribute("visible");
        })  
        }
 grabpanel("centerbutt","#centerpiece-tit");
@@ -237,15 +237,15 @@ AFRAME.registerComponent("togg-burial", {
 		var generichidelist = document.getElementsByClassName("generichide");
         el.addEventListener("grab-start", function(evt) { // The following is run if button is clicked
         for (let each of burialslist) {
-                    each.setAttribute("visible", false); // Hide everything
+                    each.object3D.visible = false; // Hide everything
             }
             counter++;
             if (counter == 1) { // Jamestown On
                 for (let each of generichidelist) {
-                    each.setAttribute("visible", true);     
+                    each.object3D.visible = true;     
 				}
 				for (let each of jamestownlist) {
-                    each.setAttribute("visible", true);     
+                    each.object3D.visible = true;    
 				}
 				for (let each of jameshidelist) {
                     each.object3D.position.y += 3;    
@@ -253,13 +253,13 @@ AFRAME.registerComponent("togg-burial", {
 				document.getElementById("burialname").setAttribute("text", "value", "Captain Gabriel Archer\nJamestown Colony\nVirginia, USA (1600s)");
              } else if (counter == 2) { // Calatrava On
                 for (let each of jamestownlist) {
-                    each.setAttribute("visible", false);     
+                    each.object3D.visible = false;    
 				}
 				for (let each of jameshidelist) {
                     each.object3D.position.y -= 3;    
 				}
 				for (let each of calatravalist) {
-                    each.setAttribute("visible", true);     
+                    each.object3D.visible = true;    
 				}
 				for (let each of calatravahidelist) {
                     each.object3D.position.y += 3;    
@@ -268,10 +268,10 @@ AFRAME.registerComponent("togg-burial", {
 			 } else if (counter > 2) { // Set back to zero past Calatrava
                 counter = 0;
 				for (let each of generichidelist) {
-                    each.setAttribute("visible", false);     
+                    each.object3D.visible = false;    
 				}
 				for (let each of calatravalist) {
-                    each.setAttribute("visible", false);     
+                    each.object3D.visible = false;     
 				}
 				for (let each of calatravahidelist) {
                     each.object3D.position.y -= 3;    
@@ -290,17 +290,17 @@ var grabtrig = function(grabitem, grabinfo, grabtable, grabholo, grabproj, grabm
 document.getElementById(grabitem).addEventListener("grab-start", function(evt) {
       if (document.getElementById(grabinfo).getAttribute('visible') == true) {
                     for (let each of sceneEl.querySelectorAll(grabtable)) { // Turn off everything
-                        each.setAttribute("visible", false);
+                        each.object3D.visible = false; 
                     }
-                    document.getElementById(grabproj).setAttribute("visible", false);
-                    document.getElementById(grabholo).setAttribute("visible", false);
+                    document.getElementById(grabproj).object3D.visible = false; 
+                    document.getElementById(grabholo).object3D.visible = false; 
                 } else {
                     for (let each of sceneEl.querySelectorAll(grabtable)) {
-                        each.setAttribute("visible", false);
+                        each.object3D.visible = false; 
                     }
-                    document.getElementById(grabproj).setAttribute("visible", true);
-                    document.getElementById(grabinfo).setAttribute("visible", true);
-                    document.getElementById(grabholo).setAttribute("visible", true);
+                    document.getElementById(grabproj).object3D.visible = true;   
+                    document.getElementById(grabinfo).object3D.visible = true;   
+                    document.getElementById(grabholo).object3D.visible = true;   
                     document.getElementById(grabholo).setAttribute("gltf-model", grabmodel);
 					document.getElementById(grabholo).setAttribute("rotation", grabrotate);
 					document.getElementById(grabholo).setAttribute("scale", grabscale);
@@ -359,26 +359,28 @@ grabtrig("baboon-blue-grab","baboon-blue-tit",".art-text","holoartifact", "holoa
 AFRAME.registerComponent("burial-grab", {
     init: function() {
 var state = "down";
-var burialliftlist = document.querySelectorAll(".buriallift");
 var heightswitch = function(button) {
 document.getElementById(button).addEventListener("grab-start", function(evt) {
-if (state == "down") {
-    document.getElementById("jamesburialset").setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
+if (state == "up") {
+    console.log("up detected");
+	document.getElementById("jamesburialset").setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
 	document.getElementById("holocalatrava").setAttribute('animation', {property: 'position.y', to: 0.5, dur: 3000});
 	document.getElementById("calatravaburialset").setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
-    state = "up";
+    state = "down";
+	console.log(state);
 } else {
-    document.getElementById("jamesburialset").setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
+    console.log("down detected");
+	document.getElementById("jamesburialset").setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
 	document.getElementById("holocalatrava").setAttribute('animation', {property: 'position.y', to: 1, dur: 3000});
 	document.getElementById("calatravaburialset").setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
-    state = "down";
+    state = "up";
+	console.log(state);
          }
      }) 
 }
 
 // Set Button Behaviors
 heightswitch("jamesbuttpos");
-heightswitch("calatravabuttpos");
 heightswitch("calatravabuttpos");
 }
 })
