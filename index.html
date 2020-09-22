@@ -32,7 +32,7 @@
 </head>
 
 <body>
-<a-scene gltf-model="dracoDecoderPath: draco/;" grab-panels burial-grab item-grab device-set device-orientation-permission-ui physics="iterations: 30; debug: true;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA">
+<a-scene gltf-model="dracoDecoderPath: draco/;" grab-panels burial-grab item-grab device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA">
        
 <a-assets timeout="80000"> <!-- Loads models -->
                 <a-asset-item id="tablemodel" id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
@@ -108,9 +108,11 @@
         <a-entity mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #ffcccc"></a-entity>
  </a-entity>
  
-<a-light type="ambient" color="white" intensity="0.025"></a-light> 
+<a-light type="ambient" color="white" intensity="0.05"></a-light> 
 <a-light class="mainlight" color="white" position="-1 8 4" light="type: point; intensity: 1.5; decay: 0.5; distance: 20"></a-light> <!-- Shadow Light for Everything But Burial Hall -->
-<a-light class="buriallight" color="white" position="-12.5 4.75 -16" light="type: point; intensity: 1.5; decay: 0.5; distance: 10"></a-light> <!-- Shadow Light for Burial Hall -->
+<a-light id="jamestownlight" class="jamestown" color="white" position="-12.5 4.75 -14" light="type: point; intensity: 1; decay: 0.5; distance: 10" visible="false"></a-light>
+<a-light id="calatravalight1" class="calatrava" color="white" position="-11 4.75 -13.5" light="type: point; intensity: 0.7; decay: 0.5; distance: 10" visible="false"></a-light>
+<a-light id="calatravalight2" class="calatrava" color="white" position="-13.8 4.75 -13.5" light="type: point; intensity: 0.7; decay: 0.5; distance: 10" visible="false"></a-light><!-- Shadow Light for Burial Hall -->
 
 <!-- Occlusion Zones -->
 <a-entity class="zone" id="just-grab" gltf-model="models/grabzone.glb" visible="false"></a-entity> 
