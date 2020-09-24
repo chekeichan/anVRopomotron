@@ -93,7 +93,7 @@
                  <a-mixin id="scale-label" geometry="primitive: plane; height: 1; width: 1; buffer: false" material="color: #f5f5f5; shader: flat;"></a-mixin>
                  <a-mixin id="scale-text" text="color: black; width: 2; wrapCount: 45"></a-mixin>
                  <a-mixin id="credit-text" text="anchor: align; color: black; width: 2; wrapCount: 70; lineHeight: 55"</a-mixin>
-				 <a-mixin id="mapcircle" material="color: #ffaa00; flatShading: true; shader: flat" geometry="radius: 0.025"</a-mixin>
+				 <a-mixin id="mapmarker" scale ="0.17 0.17 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.2; radiusTop: 0.01; segmentsRadial: 6" material="color: #ffaa00"</a-mixin>
  </a-assets>
  
 <a-entity position="0 0 0" gltf-model="models/nav.glb" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
@@ -161,7 +161,7 @@
         <a-entity mixin="scale-box" id="james-tit" position="0 0 0">
 			<a-entity position="-0.112 0.83 -1.31" rotation="0 90 0"><a-plane mixin="scale-label" width="1.05" height="0.8" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.75" text="value: Silver Reliquary Location\n\nThe small silver box with the letter M engraved in one side was found here. Archaeologists left the pedastal of soil to show the depth of the artifact in the grave.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.59 -0.08 0" material="shader: flat" geometry="vertexC: -0.16 -0.7 0; vertexA: 0.5 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
         
-			<a-entity rotation="0 90 0" position="-0.24 0.95 0.6"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.55" text="value: Coffin Remnants\n\nNails from the decayed coffin remain in the grave. Researchers can reconstruct the shape of the coffin based on the location of the nails.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="0.02 -0.07 0" material="shader: flat" geometry="vertexC: 0.5 -0.8 0; vertexA: 0.5 0 0; vertexB: 0.3 0 0"></a-triangle><!-- Annotation --></a-entity>
+			<a-entity rotation="0 90 0" position="-0.24 0.95 0.6"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.55" text="value: Coffin Remnants\n\nNails from the decayed coffin remain in the grave. Researchers can reconstruct the shape of the coffin based on the location of the nails.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="0.023 -0.07 0" material="shader: flat" geometry="vertexC: 0.5 -0.8 0; vertexA: 0.5 0 0; vertexB: 0.3 0 0"></a-triangle><!-- Annotation --></a-entity>
         
 			<a-entity rotation="0 90 0" position="-0.19 1.12 -0.49"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.55" text="value: Photogrammetry\n\nCalibrated scale bars assist in the 3D digitization of the grave.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 0.2 -0.88 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
         
@@ -227,11 +227,10 @@
         <a-text id="Generic-Selector" visible="true" position="3 1 -1" rotation="0 0 0" value="Choose Burial"  color="black" width="5" line-height="50" text="wrapCount: 30; align:center;"></a-text>
 		<a-entity id="burial-map" class="" mixin="burial-label" rotation="0 0 0">
         <a-entity position="3 -0.3 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/worldmap.png" position="0 0 0.01" width="2" height="1"></a-image>
-		<a-text id="burialname" mixin="table-caption" text="align: center; width: 2; letterSpacing: 3; wrapCount: 35; value: "";" position="0 0.8 0.02" ></a-text>
-		<a-text mixin="table-caption" text="align: center; width: 1.5; value: Image by Strebe, used under CC BY-SA 3.0;" position="0 -0.46 0.02" ></a-text>
-		<a-circle id="jamescircle" class="jamestown" visible="false" mixin="mapcircle" position="-0.4 0.28 0.02"></a-circle>
-		<a-sphere class="calatrava" position="-0.066 0.284 0.12" visible="false" color="#ffaa00" radius="0.025"></a-sphere>
-		<a-entity class="calatrava" position="0 0.284 -0.03" visible="false" scale ="0.17 0.17 0.17" rotation="90 -22 0" gltf-model="#buttonmodel"></a-entity>
+		<a-text id="burialname" mixin="table-caption" text="align: center; width: 2; letterSpacing: 3; wrapCount: 35; value: Photo by Curious Expeditions, used under CCC BY-NC-;" position="0 0.8 0.02" ></a-text>
+		<a-text mixin="table-caption" text="align: center; width: 1.5; value:  ;" position="0 -0.46 0.02" ></a-text>
+		<a-entity mixin="mapmarker" class="jamestown" position="-0.388 0.273 0.09" visible="false"></a-entity>
+		<a-entity mixin="mapmarker" class="calatrava" position="-0.02 0.285 0.09" visible="false"></a-entity>
 		</a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity>
         </a-entity>
         </a-entity>
