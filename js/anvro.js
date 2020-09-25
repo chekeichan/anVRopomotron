@@ -72,16 +72,21 @@ var visidistanceswitch = function(zone, toggle) {
         } 
 }
 var lightswitch = function() { // Light switch logic to light the right area
-		if (grabcheck == 1 || centercheck == 1 || scalecheck == 1) { 
+	if (grabcheck == 1 || centercheck == 1 || (scalecheck == 1 && burialcheck == 0)) {
 		console.log("main lights on");
 		visiswitch(mlightzone, true);
 		visiswitch(blightzone, false);
+	} else if (scalecheck == 1 && burialcheck == 1) {
+		console.log("both lights on");
+		visiswitch(mlightzone, true);
+		visiswitch(blightzone, true);
 	} else {
-	console.log("burial lights on");
+		console.log("burial lights on");
 		visiswitch(mlightzone, false);
 		visiswitch(blightzone, true);
 }
 }
+
 
 var zonechecker = function () {
 var list = el.components['aabb-collider'].intersectedEls;
@@ -110,7 +115,7 @@ for (let each of list) {
 		visiswitch(gzoneobjs, true);
 		visiswitch(scale2, false);
 		lightswitch();
-		grabcheck = 0;
+		
 	} else {
 	console.log("grab off");
 		visiswitch(gzone, false);
@@ -120,8 +125,9 @@ for (let each of list) {
 		console.log("center on");
 		visiswitch(czone, true);
 		visiswitch(czoneobjs, true);
+		visiswitch(scale2, true);
 		lightswitch();
-		centercheck = 0;
+		
 	} else {
 	console.log("center off");
 		visiswitch(czone, false);
@@ -132,7 +138,7 @@ for (let each of list) {
 		visiswitch(scale1, true);
 		visiswitch(scale2, true);
 		lightswitch();
-		scalecheck = 0;
+
 	} else {
 	console.log("scale off");
 		visiswitch(scale1, false);
@@ -141,11 +147,15 @@ for (let each of list) {
 		console.log("burial on");
 		visiswitch(bzone, true);
 		lightswitch();
-		burialcheck = 0;
 	} else {
 	console.log("burial off");
 		visiswitch(bzone, false);
 }
+centercheck = 0;
+grabcheck = 0;
+scalecheck = 0;
+burialcheck = 0;
+
 }
 
 
@@ -238,7 +248,7 @@ AFRAME.registerComponent("togg-burial", {
         for (let each of burialslist) {
                     each.object3D.visible = false; // Hide everything
             }
-            counter++;
+            counter++; // Move the counter up and set the result
             if (counter == 1) { // Jamestown On
                 for (let each of generichidelist) {
                     each.object3D.visible = true;     
@@ -249,7 +259,7 @@ AFRAME.registerComponent("togg-burial", {
 				for (let each of jameshidelist) {
                     each.object3D.position.y += 3;    
 				}
-				document.getElementById("burialname").setAttribute("text", "value", "Captain Gabriel Archer\nJamestown Colony\nVirginia, USA (1600s)");
+				document.getElementById("burialname").setAttribute("value", "Captain Gabriel Archer\nJamestown Colony\nVirginia, USA (1600s)");
              } else if (counter == 2) { // Calatrava On
                 for (let each of jamestownlist) {
                     each.object3D.visible = false;    
@@ -263,7 +273,7 @@ AFRAME.registerComponent("togg-burial", {
 				for (let each of calatravahidelist) {
                     each.object3D.position.y += 3;    
 				}
-				document.getElementById("burialname").setAttribute("text", "value", "Knight of Calatrava\nCalatrava la Nueva\nAldea del Rey, Spain (1200s)");
+				document.getElementById("burialname").setAttribute("value", "Knight of Calatrava\nCalatrava la Nueva\nAldea del Rey, Spain (1200s)");
 			 } else if (counter > 2) { // Set back to zero past Calatrava
                 counter = 0;
 				for (let each of generichidelist) {
@@ -275,7 +285,7 @@ AFRAME.registerComponent("togg-burial", {
 				for (let each of calatravahidelist) {
                     each.object3D.position.y -= 3;    
 				}
-				document.getElementById("burialname").setAttribute("text", "value", " ");
+				document.getElementById("burialname").setAttribute("value", "Choose Burial");
              }
         })
     }}

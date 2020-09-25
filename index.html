@@ -110,7 +110,7 @@
  
 <a-light type="ambient" color="white" intensity="0.05"></a-light> 
 <a-light class="mainlight" color="white" position="-1 8 4" light="type: point; intensity: 1.5; decay: 0.5; distance: 20"></a-light> <!-- Shadow Light for Everything But Burial Hall -->
-<a-light class="buriallight" color="white" position="-12.5 4.75 -14" light="type: point; intensity: 1; decay: 0.5; distance: 10" visible="false"></a-light>
+<a-light class="buriallight" color="white" position="-12.5 4.75 -14" light="type: point; intensity: 1; decay: 0.5; distance: 7" visible="false"></a-light>
 <!-- Shadow Light for Burial Hall -->
 
 <!-- Occlusion Zones -->
@@ -187,10 +187,12 @@
         <a-entity class="buriallift calatrava" id="calatravaburialset" position="0 0.8 0" visible="false"><a-entity gltf-model="models/calatrava-knight.glb"></a-entity>
         <a-entity mixin="scale-box" id="calatrava-tit" position="0 0 0">
 			<a-entity position="-0.112 0.83 -0.87" rotation="0 -90 0"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.55" text="value: Shoe Remains\n\nThe discolored soil is from the decomposed leather shoes that the knight was wearing. ; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.38 -0.08 0" material="shader: flat" geometry="vertexC: 0.47 -0.7 0; vertexA: 0.5 0 0; vertexB: 0.3 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
-			<a-entity rotation="0 -90 0" position="0 1.07 0.83"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.55" text="value: Preservation\n\nThis is a modern display case with a transparent cover that protects the grave in situ (the original place) at the chapter house.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.28 -0.2 0" material="shader: flat" geometry="vertexC: 0.22 -0.6 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+			<a-entity rotation="0 -90 0" position="0 1.07 0.83"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.55" text="value: Preservation\n\nThis is a modern display case with a transparent cover that protects the grave in situ (the original place) at the chapter house.; color: black; lineHeight: 75; wrap-count: 30"></a-plane><a-triangle color="#375719" position="-0.28 -0.2 0" material="shader: flat" geometry="vertexC: 0.22 -0.6 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			
-			<a-entity position="-2.73 0.65 1.3" rotation="0 90 0"><a-plane mixin="scale-label" width="0.75" height="0.45" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.4" text="value: The Church\n\nConstructed from volcanic rock and built in the Cistercian style.; color: black; lineHeight: 75; wrap-count: 35;"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 1.2 -0.14 0; vertexA: 0.55 0.2 0; vertexB: 0.55 0.1 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+			<a-entity position="-2.73 0.65 1.3" rotation="0 90 0"><a-plane mixin="scale-label" width="0.75" height="0.45" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.4" text="value: The Church\n\nConstructed from volcanic rock and built in the Cistercian style.; color: black; lineHeight: 75; wrap-count: 25;"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 1.2 -0.14 0; vertexA: 0.55 0.2 0; vertexB: 0.55 0.1 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+			
 			<a-entity position="-3.25 0.5 -0.8" rotation="0 90 0"><a-plane mixin="scale-label" width="0.75" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.55" text="value: Calatrava la Nueva Central Fortress\n\nScale: 1:150\nNorth; color: black; lineHeight: 75; wrap-count: 20; align: right; xOffset: -0.02"></a-plane><a-triangle color="#375719" position="-0.36 -0.22 0.01" material="shader: flat" geometry="vertexC: 0.5 -0.04 0; vertexA: 0.5 0.04 0; vertexB: 0.35 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+			
 			<a-entity rotation="0 90 0" position="-2.93 1 -0.02"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.55" text="value: Chapter House\n\nThe burials were found here in the chapter house (sala capitular), or meeting hall.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 0.2 -0.54 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 		<!-- Calatrava annotations go here -->
         </a-entity>
@@ -224,11 +226,11 @@
         </a-entity>
 		
 		<a-entity id="burialscreenfront" class="burial-zone" visible="true" position="-15.5 2 -16.5">
-        <a-text id="Generic-Selector" visible="true" position="3 1 -1" rotation="0 0 0" value="Choose Burial"  color="black" width="5" line-height="50" text="wrapCount: 30; align:center;"></a-text>
+        <!-- <a-text id="Generic-Selector" visible="true" position="3 1 -1" rotation="0 0 0" value="Choose Burial"  color="black" width="5" line-height="50" text="wrapCount: 30; align:center;"></a-text> -->
 		<a-entity id="burial-map" class="" mixin="burial-label" rotation="0 0 0">
         <a-entity position="3 -0.3 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/worldmap.png" position="0 0 0.01" width="2" height="1"></a-image>
-		<a-text id="burialname" mixin="table-caption" text="align: center; width: 2; letterSpacing: 3; wrapCount: 35; value: " position="0 0.8 0.02" ></a-text>
-		<a-text mixin="table-caption" text="align: center; width: 1.5; value:  ;" position="0 -0.46 0.02" ></a-text>
+		<a-text id="burialname" mixin="table-caption" text="align: center; width: 2; letterSpacing: 3; wrapCount: 35;" value="Choose Burial" position="0 0.8 0.02" ></a-text>
+		<a-text mixin="table-caption" text="align: center; width: 1.5; value: Image by Strebe, used under CC BY-SA 3.0;" position="0 -0.46 0.02" ></a-text>
 		<a-entity mixin="mapmarker" class="jamestown" position="-0.388 0.273 0.09" visible="false"></a-entity>
 		<a-entity mixin="mapmarker" class="calatrava" position="-0.02 0.285 0.09" visible="false"></a-entity>
 		</a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity>
@@ -430,7 +432,7 @@
          
          <a-entity mixin="scale-box" id="stand5-tit"><a-entity mixin="scale-label-border" position="0.43 -0.8 -0.49" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.429 -0.8 -0.49" rotation="0 -90 0" text="value: Notharctus\nScientific Name: Notharctus tenebrosus\nLocation: Wyoming, USA\nTime: 46 million years ago\n\nNotes: This early primate resembles a lemur, with core primate traits such as grasping limbs.; color: black; lineHeight: 75; wrap-count: 35"></a-entity></a-entity></a-entity>
 
-          <a-entity class="scale-zone" position="-15 1.4 -6.57">
+          <a-entity class="scale-zone-2" position="-15 1.4 -6.57">
          <a-entity gltf-model="models/howler.glb"   rotation="0 90 0" scale="1 1 1" shadow="cast: false; receive: false"> 
          <a-entity mixin="button" class="clickable"  position="-0.3 -1.4 0.91" id="howlerbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
          <a-entity mixin="scale-box" id="stand6-tit"><a-entity mixin="scale-label-border" position="-1.262 0.5 0.4" rotation="0 90 0"></a-entity><a-entity mixin="scale-label" position="-1.26 0.5 0.4" rotation="0 90 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
