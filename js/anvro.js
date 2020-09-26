@@ -47,6 +47,7 @@ sceneEl = document.querySelector('a-scene');
 var el = this.el;
 var scale1 = sceneEl.querySelectorAll(".scale-zone");
 var scale2 = sceneEl.querySelectorAll(".scale-zone-2");
+var scale3 = sceneEl.querySelectorAll(".scale-zone-3");
 var czone = sceneEl.querySelectorAll(".center-zone");
 var gzone = sceneEl.querySelectorAll(".grab-zone");
 var bzone = sceneEl.querySelectorAll(".burial-zone");
@@ -65,8 +66,8 @@ var visiswitch = function(zone, toggle) {
 }
 var visidistanceswitch = function(zone, toggle) {
     for (let each of zone) {
-            let poss = each.getAttribute('position.x');
-             if (poss <= 2) {
+            let poss = each.getAttribute('position');
+             if (poss.x <= 2) {
                  each.object3D.visible = toggle; 
                  }
         } 
@@ -114,6 +115,7 @@ for (let each of list) {
 		visiswitch(gzone, true);
 		visiswitch(gzoneobjs, true);
 		visiswitch(scale2, false);
+		visiswitch(scale3, false);
 		lightswitch();
 		
 	} else {
@@ -126,6 +128,7 @@ for (let each of list) {
 		visiswitch(czone, true);
 		visiswitch(czoneobjs, true);
 		visiswitch(scale2, true);
+		visiswitch(scale3, true);
 		lightswitch();
 		
 	} else {
@@ -137,15 +140,18 @@ for (let each of list) {
 		console.log("scale on");
 		visiswitch(scale1, true);
 		visiswitch(scale2, true);
+		visiswitch(scale3, true);
 		lightswitch();
 
 	} else {
 	console.log("scale off");
 		visiswitch(scale1, false);
+		visiswitch(scale2, false);
 }
 	if (burialcheck == 1) {
 		console.log("burial on");
 		visiswitch(bzone, true);
+		visiswitch(scale3, false);
 		lightswitch();
 	} else {
 	console.log("burial off");
