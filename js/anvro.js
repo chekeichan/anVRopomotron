@@ -69,8 +69,9 @@ var visidistanceswitch = function(zone, toggle) {
             let poss = each.getAttribute('position');
              if (poss.x <= 2) {
                  each.object3D.visible = toggle; 
-                 }
-        } 
+             } else {
+				each.object3D.visible = !toggle; 
+	}}
 }
 var lightswitch = function() { // Light switch logic to light the right area
 	if (grabcheck == 1 || centercheck == 1 || (scalecheck == 1 && burialcheck == 0)) {
