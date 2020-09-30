@@ -400,3 +400,26 @@ heightswitch("jamesbuttpos");
 heightswitch("calatravabuttpos");
 }
 })
+
+// Anti-Drop Protection
+AFRAME.registerComponent("anti-drop", {
+	init: function() {
+sceneEl = document.querySelector('a-scene');
+this.grabbablelist = sceneEl.getElementsByClassName("center-obj-zone");
+this.tick = AFRAME.utils.throttleTick(this.tick, 3000, this);
+},
+dropcheck: function() {
+for (let each of this.grabbablelist) {
+            let poss = each.getAttribute('position');
+             if (poss.y <= 0.1) {
+                 console.log(each.object3D.position);
+				 each.object3D.position.set(0, 1.4, 0);
+				 each.components['dynamic-body'].syncToPhysics(); // This makes the position official
+				 console.log(each.object3D.position);
+             }}
+},
+tick: function (t, dt) {
+	this.dropcheck();
+},
+
+})

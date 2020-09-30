@@ -32,7 +32,7 @@
 </head>
 
 <body>
-<a-scene gltf-model="dracoDecoderPath: draco/;" grab-panels burial-grab item-grab device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA">
+<a-scene gltf-model="dracoDecoderPath: draco/;" anti-drop grab-panels burial-grab item-grab device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA">
        
 <a-assets timeout="80000"> <!-- Loads models -->
                 <a-asset-item id="tablemodel" id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
@@ -78,7 +78,7 @@
                 <a-mixin id="button" static-body hoverable clickable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" shadow></a-mixin>
                 <a-mixin id="holoprojector" color="#ff6a00" position="0 0.3 0" rotation="180 0 0" height="0.05" geometry="primitive: cone; segmentsRadial: 3; openEnded: true; radiusBottom: 0.5; segmentsHeight: 1" material="emissive: #ff6a00; wireframe: true" animation="property: rotation; to: 180 360 0; loop: true; easing: linear; dur: 10000"></a-mixin>
                 <a-mixin id="hand" physics-collider static-body="shape: box" collision-filter="collisionForces: false;" 
-				 super-hands="colliderEvent: collisions;
+				 super-hands="colliderEvent: collisions; 
                               colliderEventProperty: els;
                               colliderEndEvent: collisions;
                               colliderEndEventProperty: clearedEls;
@@ -96,7 +96,7 @@
 				 <a-mixin id="mapmarker" scale ="0.17 0.17 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.2; radiusTop: 0.01; segmentsRadial: 6" material="color: #ffaa00"</a-mixin>
  </a-assets>
  
-<a-entity position="0 0 0" static-bodygltf-model="models/nav.glb" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
+<a-entity position="0 0 0" static-body gltf-model="models/nav.glb" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
 <a-entity position="0 0 0" gltf-model="models/floorplan.glb"></a-entity> <!-- Building -->
 <a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0.01 1"> <!-- Player Character -->
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
@@ -450,7 +450,7 @@
          <a-entity mixin="scale-label-border" position="0.323 2 4.75" rotation="0 -120 0" geometry="height: 0.55"></a-entity><a-entity mixin="scale-label" position="0.314 2 4.75" rotation="0 -120 0" geometry="height: 0.5" text="value: The distance from branch to branch, 16 feet (4.9 m), can be leaped by a tarsier!.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
          <a-entity position="0.65 2 3" rotation="0 -90 0"><a-plane mixin="scale-label" width="2.1" height="3.2" position="0 -0.05 0" color="#375719"></a-plane><a-image mixin="scale-label" src="images/tarsier-p.jpg" position="0 0 0.01" width="2" height="3"></a-image><a-text text="width: 3; value: Photo by Pierre Fidenci, used under CC BY-SA 2.5; align: right; color: #d7d7d7; wrapCount: 70" position="0.94 -1.57 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
-         <a-entity class="scale-zone-2" position="-9.1 0 -3.3">
+         <a-entity class="scale-zone-3" position="-9.1 0 -3.3">
          <a-entity gltf-model="models/proconsul.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> 
          <a-entity mixin="button" class="clickable" position="1 0 -0.54" id="proconsulbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
          
