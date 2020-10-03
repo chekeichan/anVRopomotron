@@ -67,10 +67,13 @@ var visiswitch = function(zone, toggle) {
 var visidistanceswitch = function(zone, toggle) {
     for (let each of zone) {
             let poss = each.getAttribute('position');
-             if (poss.x <= 2) {
+			let area = poss.x * poss.z;
+			let absarea = Math.abs(area)
+			console.log(absarea);
+             if (absarea <= 2) {
                  each.object3D.visible = toggle; 
              } else {
-				each.object3D.visible = !toggle; 
+				each.object3D.visible = true; 
 	}}
 }
 var lightswitch = function() { // Light switch logic to light the right area
@@ -93,7 +96,6 @@ var lightswitch = function() { // Light switch logic to light the right area
 var zonechecker = function () {
 var list = el.components['aabb-collider'].intersectedEls;
 for (let each of list) {
-    console.log(list);
     if (each.id == "just-grab") { // Turn off Scale Model Hall and Centerpiece or not when user is inside Grab Lab
        console.log("just-grab entered");
        grabcheck++;
@@ -405,7 +407,7 @@ heightswitch("calatravabuttpos");
 AFRAME.registerComponent("anti-drop", {
 	init: function() {
 sceneEl = document.querySelector('a-scene');
-this.grabbablelist = sceneEl.getElementsByClassName("center-obj-zone");
+this.grabbablelist = sceneEl.getElementsByClassName("grabbable");
 this.tick = AFRAME.utils.throttleTick(this.tick, 3000, this);
 },
 dropcheck: function() {
