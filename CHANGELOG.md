@@ -12,7 +12,7 @@
 -    Occulsion logic improved. One change is to lighting when entering and exiting the burial chamber. This is very subtle now but may be important for future expansions. The other change is to keep grabbed objects visible in VR if the user takes it away from the Grab Lab. It was supposed to do this already but something broke or it never worked in the first place.
 -    Removed normal maps for burial models and changed shader to be flat (unaffected by light sources). This beat endlessly tweaking the lights to get the desired result per burial.
 -    Grabbable objects phased through the floor if you dropped them. The navmesh that the user abides by is now also a static object for objects to land on. Also:
--    Anti-Drop Protection for grabbable objects. The site will check every few seconds using a tick function if any object has moved below a certain height. If so, it resets the position back to the center of its respective table. 
+-    Anti-Drop Protection for grabbable objects. The site will check every few seconds using a tick function if any object has moved below a certain height. If so, it resets the position back to the center of its respective table. If the object has been moved a few meters away, the object is left on the ground since it'd be more convenient to just manually pick it up instead of walking back to the table to get it again.
 
 ## 1.1.1 (08/31/2020)
 

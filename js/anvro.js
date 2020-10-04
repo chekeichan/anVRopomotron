@@ -67,13 +67,12 @@ var visiswitch = function(zone, toggle) {
 var visidistanceswitch = function(zone, toggle) {
     for (let each of zone) {
             let poss = each.getAttribute('position');
-			let area = poss.x * poss.z;
+			let area = (poss.x + 1) * (poss.z + 1);
 			let absarea = Math.abs(area)
-			console.log(absarea);
-             if (absarea <= 2) {
-                 each.object3D.visible = toggle; 
+             if (absarea <= 2) { // See if object has moved under 2 meters in coordinates
+                 each.object3D.visible = toggle; // Hide object if close to table
              } else {
-				each.object3D.visible = true; 
+				each.object3D.visible = true; // Keep object visible if it has been carried
 	}}
 }
 var lightswitch = function() { // Light switch logic to light the right area
@@ -396,9 +395,7 @@ if (state == "up") {
          }
      }) 
 }
-
-// Set Button Behaviors
-heightswitch("jamesbuttpos");
+heightswitch("jamesbuttpos"); // Set Button Behaviors
 heightswitch("calatravabuttpos");
 }
 })
@@ -413,14 +410,15 @@ this.tick = AFRAME.utils.throttleTick(this.tick, 3000, this);
 dropcheck: function() {
 for (let each of this.grabbablelist) {
             let poss = each.getAttribute('position');
-             if (poss.y <= 0.1) {
+			let area = (poss.x + 1) * (poss.z + 1);
+			let absarea = Math.abs(area)
+			if (poss.y <= 0.1 && absarea <= 5) {
                  console.log(each.object3D.position);
 				 each.object3D.position.set(0, 1.4, 0);
 				 each.components['dynamic-body'].syncToPhysics(); // This makes the position official
-				 console.log(each.object3D.position);
              }}
 },
-tick: function (t, dt) {
+tick: function (t, dt) { // Tick function magic
 	this.dropcheck();
 },
 
