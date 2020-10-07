@@ -96,7 +96,7 @@
 				 <a-mixin id="mapmarker" scale ="0.17 0.17 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.2; radiusTop: 0.01; segmentsRadial: 6" material="color: #ffaa00"</a-mixin>
  </a-assets>
  
-<a-entity position="0 0 0" static-body gltf-model="models/nav.glb" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
+<a-entity position="0 0.05 0" static-body gltf-model="models/nav.glb" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
 <a-entity position="0 0 0" gltf-model="models/floorplan.glb"></a-entity> <!-- Building -->
 <a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0.01 1"> <!-- Player Character -->
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
