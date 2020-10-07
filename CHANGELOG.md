@@ -1,11 +1,21 @@
 # AnVRopomotron Changelog
 
-## 1.1.2 (next next)
+## 1.1.3 (next next)
+-   Working on a new lifesize model, a female eastern lowland gorilla to join the male and mouse lemur display.
+-   A rhesus macaque cranium was uploaded to Sketchfab that looks promising for the Grab Lab.
 
--   Investigate drop-protection: dropped objects in VR could teleport back to its table.
--   A new burial for the Burial Chamber.
+## 1.1.2 (next)
+-   Something changed with A-Frame from 0.9x to 1.0.4 where now if I rotate a model, its collision box will now move along with it. This allows me to rotate the credits button behind the Centerpiece and make it just be an orb sticking out of the wall instead of the full i-shape. 
+-   A new burial for the Burial Chamber. Thanks to Global Digital Heritage I can present a burial found in a Spanish castle. Unlike Gabriel Archer, the exact biographical details are sparse but there are a lot of cool features with the grave and the site. They also scanned the castle so that is also in the room as a small model.
+-   Burial Chamber fixtures updated to accommodate the new burial. Now the room will start out bare and you can cycle through the burials with a button at the back of the room. Javascript flipper based on the credits and the panels that show up on touch were repurposed here to selectively show and hide different parts of the room. Fun A-Frame fact: if you set an entity to be invisible, its hit box is still there and can be interacted with. This is useful in a lot of cases but not here as there would be invisible buttons from the unselected burial. My solution is to move the unselected burial and buttons three meters underground and out of the way. When a burial is selected it is both made visible and moved up into the room. Why make it invisible too? To reduce rendering time! The burial lifting and lowering function was also rewritten to accomodate different buttons having the same ability. Touching any lift button now moves both the visible and hidden burials. The rewriting also allows for different elevations for different models. 
+-    The previously Burial Chamber blank wall now has a map that shows the location of the burial and a changing text box with the name and site. 
+-    Occulsion logic improved. One change is to lighting when entering and exiting the Burial Chamber. This is very subtle now but may be important for future expansions. The other change is to keep grabbed objects visible in VR if the user takes it away from the Grab Lab. It was supposed to do this already but something broke or it never worked in the first place.
+-    Removed normal maps for burial models and changed shader to be flat (unaffected by light sources). This beat endlessly tweaking the lights to get the desired result per burial.
+-    Grabbable objects phased through the floor if you dropped them. The navmesh that the user abides by is now also a static object for objects to land on. Also:
+-    Anti-Drop Protection for grabbable objects. The site will check every few seconds using a tick function if any object has moved below a certain height. If so, it resets the position back to the center of its respective table. If the object has been moved a few meters away, the object is left on the ground since it'd be more convenient to just manually pick it up instead of walking back to the table to get it again.
+-    Your VR hands are now a blue that is complimentary to interaction orange.
 
-## 1.1.1 (next)
+## 1.1.1 (08/31/2020)
 
 -   Proconsul walks on a big branch into the scene! I took the rhesus monkey and conformed it to Proconsul proportions. It was probably a bit easier than making it from scratch. Challenges: the rhesus polygons were rough with some ugly shapes around. They especially held back re-posing since the polygons were connected to each other awkwardly. Improvements: ear and eye details enhanced from the earlier appearance. Proconsul-specific challenges: There are a lot of opinions on how to classify proconsulids, including changing names for fossil specimens up to the genus level. I went with a larger Proconsul, *P. nyanzae*, and kept the Proconsul name due to my taxonomic lumping tendencies. Another challenge is that Proconsul is kind of plain? It is a notable prehistoric primate so that's why it's here. It is always presented walking on four legs on a tree branch because that's what its traits are adapted for. A later change to the model was to add a little interest by giving the model a slightly twisted mid-step pose. I used other quadrupeds, especially baboons and mandrills for the pose reference.
 -   The New Guinea human femur dagger I promised a while ago is now in the Grab Lab. It was a quick conversion from the original model using just normal maps. Thanks to Dartmouth College and Morphosource for making it available.

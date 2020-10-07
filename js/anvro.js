@@ -7,8 +7,8 @@ AFRAME.registerComponent('device-set', {
             if (AFRAME.utils.device.isMobile() === true) { // Smartphone Mode
                 sceneEl.setAttribute("vr-mode-ui", "enabled", "false");
                 rig.setAttribute("movement-controls", "speed", 0.15);
-                document.querySelector('#GL-SP').setAttribute("visible", "true");
-                document.querySelector('#SMH-SP').setAttribute("visible", "true");
+                document.querySelector('#GL-SP').object3D.visible = true;
+                document.querySelector('#SMH-SP').object3D.visible = true;
                 for (let each of tablestand) {
                     each.setAttribute('animation', {property: 'position.y', to: 0.3, dur: 5000});
                 }
@@ -20,12 +20,12 @@ AFRAME.registerComponent('device-set', {
                     each.dispatchEvent(new CustomEvent("standtrigger"));
                 }
             } else if (AFRAME.utils.device.checkHeadsetConnected() === true) { // VR Mode
-                document.querySelector('#GL-VR').setAttribute("visible", "true");
-                document.querySelector('#SMH-VR').setAttribute("visible", "true");
+                document.querySelector('#GL-VR').object3D.visible = true;
+                document.querySelector('#SMH-VR').object3D.visible = true;
                 rig.setAttribute("movement-controls", "speed", 0.10);
             } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
-                document.querySelector('#GL-PC').setAttribute("visible", "true");
-                document.querySelector('#SMH-PC').setAttribute("visible", "true");
+                document.querySelector('#GL-PC').object3D.visible = true;
+                document.querySelector('#SMH-PC').object3D.visible = true;
                 rig.setAttribute("movement-controls", "speed", 0.15);
                 for (let each of tablestand) {
                     each.setAttribute('animation', {property: 'position.y', to: 0.25, dur: 5000, delay: 50});
@@ -47,9 +47,12 @@ sceneEl = document.querySelector('a-scene');
 var el = this.el;
 var scale1 = sceneEl.querySelectorAll(".scale-zone");
 var scale2 = sceneEl.querySelectorAll(".scale-zone-2");
+var scale3 = sceneEl.querySelectorAll(".scale-zone-3");
 var czone = sceneEl.querySelectorAll(".center-zone");
 var gzone = sceneEl.querySelectorAll(".grab-zone");
 var bzone = sceneEl.querySelectorAll(".burial-zone");
+var mlightzone = sceneEl.querySelectorAll(".mainlight");
+var blightzone = sceneEl.querySelectorAll(".buriallight");
 var gzoneobjs = sceneEl.querySelectorAll(".grab-obj-zone");
 var czoneobjs = sceneEl.querySelectorAll(".center-obj-zone");
 var grabcheck = 0;
@@ -63,17 +66,35 @@ var visiswitch = function(zone, toggle) {
 }
 var visidistanceswitch = function(zone, toggle) {
     for (let each of zone) {
-            let poss = each.getAttribute('position.x');
-             if (poss <= 2) {
-                 each.object3D.visible = toggle; 
-                 }
-        } 
+            let poss = each.getAttribute('position');
+			let area = (poss.x + 1) * (poss.z + 1);
+			let absarea = Math.abs(area)
+             if (absarea <= 2) { // See if object has moved under 2 meters in coordinates
+                 each.object3D.visible = toggle; // Hide object if close to table
+             } else {
+				each.object3D.visible = true; // Keep object visible if it has been carried
+	}}
 }
+var lightswitch = function() { // Light switch logic to light the right area
+	if (grabcheck == 1 || centercheck == 1 || (scalecheck == 1 && burialcheck == 0)) {
+		console.log("main lights on");
+		visiswitch(mlightzone, true);
+		visiswitch(blightzone, false);
+	} else if (scalecheck == 1 && burialcheck == 1) {
+		console.log("both lights on");
+		visiswitch(mlightzone, true);
+		visiswitch(blightzone, true);
+	} else {
+		console.log("burial lights on");
+		visiswitch(mlightzone, false);
+		visiswitch(blightzone, true);
+}
+}
+
 
 var zonechecker = function () {
 var list = el.components['aabb-collider'].intersectedEls;
 for (let each of list) {
-    console.log(list);
     if (each.id == "just-grab") { // Turn off Scale Model Hall and Centerpiece or not when user is inside Grab Lab
        console.log("just-grab entered");
        grabcheck++;
@@ -95,7 +116,10 @@ for (let each of list) {
 		console.log("grab on");
 		visiswitch(gzone, true);
 		visiswitch(gzoneobjs, true);
-		grabcheck = 0;
+		visiswitch(scale2, false);
+		visiswitch(scale3, false);
+		lightswitch();
+		
 	} else {
 	console.log("grab off");
 		visiswitch(gzone, false);
@@ -105,7 +129,10 @@ for (let each of list) {
 		console.log("center on");
 		visiswitch(czone, true);
 		visiswitch(czoneobjs, true);
-		centercheck = 0;
+		visiswitch(scale2, true);
+		visiswitch(scale3, true);
+		lightswitch();
+		
 	} else {
 	console.log("center off");
 		visiswitch(czone, false);
@@ -114,19 +141,29 @@ for (let each of list) {
 	if (scalecheck == 1) {
 		console.log("scale on");
 		visiswitch(scale1, true);
-		scalecheck = 0;
+		visiswitch(scale2, true);
+		visiswitch(scale3, true);
+		lightswitch();
+
 	} else {
 	console.log("scale off");
 		visiswitch(scale1, false);
+		visiswitch(scale2, false);
 }
 	if (burialcheck == 1) {
 		console.log("burial on");
 		visiswitch(bzone, true);
-		burialcheck = 0;
+		visiswitch(scale3, false);
+		lightswitch();
 	} else {
 	console.log("burial off");
 		visiswitch(bzone, false);
 }
+centercheck = 0;
+grabcheck = 0;
+scalecheck = 0;
+burialcheck = 0;
+
 }
 
 
@@ -167,7 +204,7 @@ AFRAME.registerComponent("grab-panels", {
 var grabpanel = function(grabbutt, grabset) {
 document.getElementById(grabbutt).addEventListener("grab-start", function(evt) {
       var cent = document.querySelector(grabset);
-      cent.setAttribute("visible", !cent.getAttribute("visible"));
+      cent.object3D.visible = !cent.getAttribute("visible");
        })  
        }
 grabpanel("centerbutt","#centerpiece-tit");
@@ -180,7 +217,8 @@ grabpanel("howlerbutt","#stand6-tit");
 grabpanel("megaladapisbutt","#stand7-tit");
 grabpanel("tarsierbutt","#stand8-tit");
 grabpanel("proconsulbutt","#stand9-tit");
-grabpanel("burialbuttinfo","#james-tit");
+grabpanel("jamesbuttinfo","#james-tit");
+grabpanel("calatravabuttinfo","#calatrava-tit");
     }
 })
 
@@ -195,13 +233,71 @@ AFRAME.registerComponent("togg-cred", {
                         each.setAttribute("visible", false);     
                 }
                 counter++;
-                if (counter > 7) { // Value is total panels minus one
+                if (counter > 8) { // Value is total panels minus one
                     counter = 0;
                  }
 				creditslist[counter].setAttribute("visible", true);
             })
         }}
     )
+
+// Burial Flipper
+AFRAME.registerComponent("togg-burial", {
+    init: function() {
+        var el = this.el;
+		var counter = 0;  
+        var burialslist = document.getElementsByClassName("burial");
+		var jamestownlist = document.getElementsByClassName("jamestown");
+		var jameshidelist = document.getElementsByClassName("jameshide");
+		var calatravalist = document.getElementsByClassName("calatrava");
+		var calatravahidelist = document.getElementsByClassName("calatravahide");
+		var generichidelist = document.getElementsByClassName("generichide");
+        el.addEventListener("grab-start", function(evt) { // The following is run if button is clicked
+        for (let each of burialslist) {
+                    each.object3D.visible = false; // Hide everything
+            }
+            counter++; // Move the counter up and set the result
+            if (counter == 1) { // Jamestown On
+                for (let each of generichidelist) {
+                    each.object3D.visible = true;     
+				}
+				for (let each of jamestownlist) {
+                    each.object3D.visible = true;    
+				}
+				for (let each of jameshidelist) {
+                    each.object3D.position.y += 3;    
+				}
+				document.getElementById("burialname").setAttribute("value", "Captain Gabriel Archer\nJamestown Colony\nVirginia, USA (1600s)");
+             } else if (counter == 2) { // Calatrava On
+                for (let each of jamestownlist) {
+                    each.object3D.visible = false;    
+				}
+				for (let each of jameshidelist) {
+                    each.object3D.position.y -= 3;    
+				}
+				for (let each of calatravalist) {
+                    each.object3D.visible = true;    
+				}
+				for (let each of calatravahidelist) {
+                    each.object3D.position.y += 3;    
+				}
+				document.getElementById("burialname").setAttribute("value", "Knight of Calatrava\nCalatrava la Nueva\nAldea del Rey, Spain (1200s)");
+			 } else if (counter > 2) { // Set back to zero past Calatrava
+                counter = 0;
+				for (let each of generichidelist) {
+                    each.object3D.visible = false;    
+				}
+				for (let each of calatravalist) {
+                    each.object3D.visible = false;     
+				}
+				for (let each of calatravahidelist) {
+                    each.object3D.position.y -= 3;    
+				}
+				document.getElementById("burialname").setAttribute("value", "Choose Burial");
+             }
+        })
+    }}
+)
 
 // VR Grab Lab Grabbing Function
 AFRAME.registerComponent("item-grab", {
@@ -211,17 +307,17 @@ var grabtrig = function(grabitem, grabinfo, grabtable, grabholo, grabproj, grabm
 document.getElementById(grabitem).addEventListener("grab-start", function(evt) {
       if (document.getElementById(grabinfo).getAttribute('visible') == true) {
                     for (let each of sceneEl.querySelectorAll(grabtable)) { // Turn off everything
-                        each.setAttribute("visible", false);
+                        each.object3D.visible = false; 
                     }
-                    document.getElementById(grabproj).setAttribute("visible", false);
-                    document.getElementById(grabholo).setAttribute("visible", false);
+                    document.getElementById(grabproj).object3D.visible = false; 
+                    document.getElementById(grabholo).object3D.visible = false; 
                 } else {
                     for (let each of sceneEl.querySelectorAll(grabtable)) {
-                        each.setAttribute("visible", false);
+                        each.object3D.visible = false; 
                     }
-                    document.getElementById(grabproj).setAttribute("visible", true);
-                    document.getElementById(grabinfo).setAttribute("visible", true);
-                    document.getElementById(grabholo).setAttribute("visible", true);
+                    document.getElementById(grabproj).object3D.visible = true;   
+                    document.getElementById(grabinfo).object3D.visible = true;   
+                    document.getElementById(grabholo).object3D.visible = true;   
                     document.getElementById(grabholo).setAttribute("gltf-model", grabmodel);
 					document.getElementById(grabholo).setAttribute("rotation", grabrotate);
 					document.getElementById(grabholo).setAttribute("scale", grabscale);
@@ -274,18 +370,56 @@ grabtrig("baboon-blue-grab","baboon-blue-tit",".art-text","holoartifact", "holoa
     }
 })
 
+
+
 // Raise and Lower Burial
 AFRAME.registerComponent("burial-grab", {
+    init: function() {
+var state = "down";
+var heightswitch = function(button) {
+document.getElementById(button).addEventListener("grab-start", function(evt) {
+if (state == "up") {
+    console.log("up detected");
+	document.getElementById("jamesburialset").setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
+	document.getElementById("holocalatrava").setAttribute('animation', {property: 'position.y', to: 0.5, dur: 3000});
+	document.getElementById("calatravaburialset").setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
+    state = "down";
+	console.log(state);
+} else {
+    console.log("down detected");
+	document.getElementById("jamesburialset").setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
+	document.getElementById("holocalatrava").setAttribute('animation', {property: 'position.y', to: 1, dur: 3000});
+	document.getElementById("calatravaburialset").setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
+    state = "up";
+	console.log(state);
+         }
+     }) 
+}
+heightswitch("jamesbuttpos"); // Set Button Behaviors
+heightswitch("calatravabuttpos");
+}
+})
+
+// Anti-Drop Protection
+AFRAME.registerComponent("anti-drop", {
 	init: function() {
-		var state = "down";
-		document.getElementById("burialbuttpos").addEventListener("grab-start", function(evt) {
-			if (state == "down") { // Toggle height
-				document.querySelector(".burialgrave").setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
-				state = "up";
-			} else {
-				document.querySelector(".burialgrave").setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
-				state = "down";
-			}
-		})
-	}
+sceneEl = document.querySelector('a-scene');
+this.grabbablelist = sceneEl.getElementsByClassName("grabbable");
+this.tick = AFRAME.utils.throttleTick(this.tick, 3000, this);
+},
+dropcheck: function() {
+for (let each of this.grabbablelist) {
+            let poss = each.getAttribute('position');
+			let area = (poss.x + 1) * (poss.z + 1);
+			let absarea = Math.abs(area)
+			if (poss.y <= 0.1 && absarea <= 5) {
+                 console.log(each.object3D.position);
+				 each.object3D.position.set(0, 1.4, 0);
+				 each.components['dynamic-body'].syncToPhysics(); // This makes the position official
+             }}
+},
+tick: function (t, dt) { // Tick function magic
+	this.dropcheck();
+},
+
 })
