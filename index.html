@@ -73,7 +73,7 @@
                 <a-asset-item id="mhsmodel" response-type="arraybuffer" src="models/mhs.glb"></a-asset-item>
                 <a-asset-item id="archicebusmodel" response-type="arraybuffer" src="models/archicebus.glb"></a-asset-item>
                 <a-asset-item id="turkanamodel" response-type="arraybuffer" src="models/turkana.glb"></a-asset-item>
-                <a-asset-item id="rhesusskullmodel" response-type="arraybuffer" src="models/rhesus-skull.glb"></a-asset-item>
+                <a-asset-item id="rhesusskullmodel" response-type="arraybuffer" src="models/rhesusskull.glb"></a-asset-item>
                 <a-asset-item id="squirrelmonkeyskullmodel" response-type="arraybuffer" src="models/squirrelmonkeyskull.glb"></a-asset-item>
 
                 <a-mixin id="obj" hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" scale="1 1 1" rotation="0 0 0" animation="property: object3D.position.y; to: 1.45; startEvents: standtrigger; dur: 5000" shadow></a-mixin>
@@ -279,9 +279,9 @@
          <a-entity id="potto-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.6" mixin="obj" gltf-model="models/potto.glb"></a-entity> 
          <a-entity id="indri-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.4" mixin="obj" gltf-model="models/indri.glb"></a-entity> 
          <a-entity id="howler-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.2" mixin="obj" gltf-model="models/howlerskull.glb"></a-entity> 
-		 <a-entity id="squirrelmonkey-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 0" mixin="obj" gltf-model="models/squirrelmonkeyskull.glb"></a-entity> 
-        <a-entity  id="baboon-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.2" mixin="obj" gltf-model="models/baboonskull.glb"></a-entity>
-		<a-entity  id="rhesus-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.3" mixin="obj" gltf-model="models/rhesusskull.glb"></a-entity>
+		 <a-entity id="squirrelmonkey-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.1" mixin="obj" gltf-model="models/squirrelmonkeyskull.glb"></a-entity> 
+        <a-entity  id="baboon-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.1" mixin="obj" gltf-model="models/baboonskull.glb"></a-entity>
+		<a-entity  id="rhesus-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.25" mixin="obj" gltf-model="models/rhesusskull.glb"></a-entity>
 		<a-entity  id="mandrill-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.4" mixin="obj" gltf-model="models/mandrillskull.glb"></a-entity>
         <a-entity id="snub-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.6" mixin="obj" gltf-model="models/snub.glb"></a-entity> 
 </a-entity>
@@ -332,13 +332,13 @@
         
         <a-text id="howler-tit" class="bone-text-2" mixin="table-label" text="value: Coiba Island Howler Monkey, male\nScientific Name: Alouatta palliata\nLocation: Coiba Island, Panama\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Howler monkeys have enlarged vocal organs for making loud calls through their dense forest environment."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/howlerskull-p.jpg" position="0 0 0.01" width="3" height="1.7"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Alex Proimos, used under CC BY 2.0;" position="1.5 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Coiba Island, Panama. The island separated from the isthmus from 18,000 to 12,000 years ago.;" position="1.5 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		
-		<a-text id="squirrelmonkey-tit" class="bone-text-2" mixin="table-label" text="value: Squirrel Monkey\nScientific Genus: Saimiri\nLocation: Central and South America\nItem: Skull\nSource: Scan by RISD Nature Lab\nNotes: Squirrel monkeys are platyrrhines (New World monkeys) with bodies around a foot (30 cm) long. They can be found in groups of up to 500 individuals and are active in the daytime."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/squirrelmonkeyskull-p.jpg" position="0 0 0.01" width="3" height="1.7"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by SOURCE, used under CC BY 2.0;" position="1.5 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: CAPTION;" position="1.5 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+		<a-text id="squirrelmonkey-tit" class="bone-text-2" mixin="table-label" text="value: Squirrel Monkey\nScientific Genus: Saimiri\nLocation: Central and South America\nItem: Skull\nSource: Scan by RISD Nature Lab\nNotes: Squirrel monkeys are platyrrhines (New World monkeys) with bodies around a foot (30 cm) long. They can be found in groups of up to 500 individuals and are active in the daytime."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/squirrelmonkeyskull-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Tambako The Jaguar, used under CC BY-ND 2.0;" position="1.5 1.07 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Squirrel monkey at the Zurich Zoo, Switzerland;" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
         <a-text id="snub-tit" class="bone-text-2" mixin="table-label" text="value: Golden Snub-Nosed Monkey\nScientific Genus: Rhinopithecus \nLocation: Central Chinese mountainous forests\nItem: Cranium\nSource: Scan by Morphosourcus\nNotes: This species is known for their distinctive long golden fur and pale blue faces. This cranium is probably female."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/snub-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Jack Hynes, used under CC BY-SA 2.0; lineHeight: 50 wrapCount: 45" position="1.5 1.07 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Two snub-nosed monkeys near Xi&#39;an, China.; lineHeight: 50; wrapCount: 45" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
         <a-text id="baboon-tit" class="bone-text-2" mixin="table-label" text="value: Hamadryas Baboon\nScientific Name: Papio hamadryas hamadryas\nLocation: The Horn of Africa and southwestern Arabian Peninsula\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Baboons are Old World monkeys that form troops of a few adult males, many adult females, and their offspring. Troops can form larger groups of up to 400 individuals.The snout of baboons have evolved to allow for forward-facing vision while providing structural support for the large canine teeth."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/baboonskull-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.5; value: By UrLunkwill, used under CC BY-SA 3.0 DE;" position="1.5 1.1 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Hamadryas baboon troop with one adult male and numerous females.;" position="1.5 -1.2 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		
-		<a-text id="rhesus-tit" class="bone-text-2" mixin="table-label" text="value: Rhesus Macaque\nScientific Name: Macaca mulatta\nLocation: Central Asia, India, Southeast Asia, and China\nItem: Skull\nSource: Scan by RISD Nature Lab\nNotes: The wide range of rhesus macaques attest to their adaptability to different environments. Some live within human farmland and cities. Also, several colonies of released monkeys live in United States territory."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/rhesusskull-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo SOURCE, used under CC BY-SA 2.0; lineHeight: 50 wrapCount: 45" position="1.5 1.07 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: CAPTION.; lineHeight: 50; wrapCount: 45" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+		<a-text id="rhesus-tit" class="bone-text-2" mixin="table-label" text="value: Rhesus Macaque\nScientific Name: Macaca mulatta\nLocation: Central Asia, India, Southeast Asia, and China\nItem: Skull\nSource: Scan by RISD Nature Lab\nNotes: The wide range of rhesus macaques attest to their adaptability to different environments. Some live within human farmland and cities. Also, several colonies of released monkeys live in United States territory."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/rhesusskull-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Allan Hopkins, used under CC BY-NC-ND 2.0; lineHeight: 50 wrapCount: 45" position="1.5 1.07 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Rhesus monkey in Keoladeo National Park, India.; lineHeight: 50; wrapCount: 45" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
 		<a-text id="mandrill-tit" class="bone-text-2" mixin="table-label" text="value: Hamadryas Baboon\nScientific Name: Papio hamadryas hamadryas\nLocation: The Horn of Africa and southwestern Arabian Peninsula\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Baboons are Old World monkeys that form troops of a few adult males, many adult females, and their offspring. Troops can form larger groups of up to 400 individuals.The snout of baboons have evolved to allow for forward-facing vision while providing structural support for the large canine teeth."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/mandrill-p.jpg" position="0 0 0.01" width="2.2" height="3"></a-image><a-text mixin="table-caption" text="width: 2.2; value: Photo by William Warby, used under CC BY 2.0; lineHeight: 45; wrapCount: 40" position="1.11 1.58 0.01" ></a-text><a-text mixin="table-caption" text="width: 2; value: Male mandrill. The red and blue hues are from light scattering through an array of collagen fibers in the skin.; lineHeight: 45; wrapCount: 40" position="1.11 -1.68 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		
@@ -555,9 +555,17 @@ Potto
 Lapworth Museum of Geology (CC-Attribution-NonCommercial)
 https://sketchfab.com/3d-models/potto-skull-birug-18612-dbb114c765b648aab6d4cc436fe96b8c
 
+Rhesus Monkey
+RISD Nature Lab (CC BY 4.0)
+https://skfb.ly/6UoqC
+
 Snub-Nosed Monkey
 Morphosourcus (CC-BY-NC-SA)
 https://wiiboox.myminifactory.com/object/3d-print-rhinopithecus-roxellana-36244
+
+Squirrel Monkey
+RISD Nature Lab (CC BY 4.0)
+https://skfb.ly/6VG7H
 ;"></a-entity>
 
 <a-entity mixin="credit-text" class="credits" id="credits-4" position="-0.7 2 -7.499" visible="false" text="value: -More Modern Primates-
@@ -692,8 +700,14 @@ https://commons.wikimedia.org/wiki/File:Peru,_South_Coast,_Nasca_style_-_Mask_-_
 Potto: Drawing by St. George Jackson Mivart, image by The Internet Archive. (Public Domain)
 https://www.flickr.com/photos/internetarchivebookimages/18158318792
 
+Rhesus Monkey: Photo by Allan Hopkins. (CC BY-NC-ND 2.0)
+https://flic.kr/p/cuxbdW
+
 Snub-Nosed Monkey: Photo by Jack Hynes. (CC BY-SA 2.0)
 https://commons.wikimedia.org/wiki/File:Golden_Snub-nosed_Monkeys.jpg
+
+Squirrel Monkey: Photo by Tambako The Jaguar. (CC BY-ND 2.0)
+https://flic.kr/p/p8aUtr
 
 Western Lowland Gorilla: Photo by Mehgan Murphy, Smithsonian's National Zoo. (CC0)
 Female: https://www.si.edu/object/lowland-gorilla:nzp_NZP-20090514-081MM

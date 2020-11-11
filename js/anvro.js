@@ -345,7 +345,9 @@ grabtrig("vlca1-grab","vlca1-tit",".bone-text", "holobone", "holoboneproj", "mod
 grabtrig("potto-grab","potto-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/potto.glb", undefined, "10 10 10", undefined);
 grabtrig("indri-grab","indri-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/indri.glb", undefined, "8 8 8", undefined);
 grabtrig("howler-grab","howler-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/howlerskull.glb", undefined, "7 7 7", undefined);
+grabtrig("squirrelmonkey-grab","squirrelmonkey-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/squirrelmonkeyskull.glb", undefined, "10 10 10", "0 1.2 0");
 grabtrig("baboon-grab","baboon-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/baboonskull.glb", undefined, undefined, "0 1.2 0");
+grabtrig("rhesus-grab","rhesus-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/rhesusskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("mandrill-grab","mandrill-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/mandrillskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("snub-grab","snub-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/snub.glb", undefined, "7 7 7", "0 1.2 0");
 
