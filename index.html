@@ -74,6 +74,7 @@
                 <a-asset-item id="archicebusmodel" response-type="arraybuffer" src="models/archicebus.glb"></a-asset-item>
                 <a-asset-item id="turkanamodel" response-type="arraybuffer" src="models/turkana.glb"></a-asset-item>
                 <a-asset-item id="rhesusskullmodel" response-type="arraybuffer" src="models/rhesus-skull.glb"></a-asset-item>
+                <a-asset-item id="squirrelmonkeyskullmodel" response-type="arraybuffer" src="models/squirrelmonkeyskull.glb"></a-asset-item>
 
                 <a-mixin id="obj" hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" scale="1 1 1" rotation="0 0 0" animation="property: object3D.position.y; to: 1.45; startEvents: standtrigger; dur: 5000" shadow></a-mixin>
                 <a-mixin id="button" static-body hoverable clickable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" shadow></a-mixin>
@@ -238,7 +239,8 @@
         </a-entity>
         </a-entity>
         </a-entity></a-entity>
-       <a-entity gltf-model="#rhesusskullmodel"   static-body position="0 1.25 -0.5" mixin="obj"></a-entity> <!-- Demo Place -->
+       <a-entity gltf-model="#rhesusskullmodel"   static-body position="0 1.6 -0.5" mixin="obj"></a-entity> <!-- Demo Place -->
+       <a-entity gltf-model="#squirrelmonkeyskullmodel"   static-body position="0.5 1.6 -0.5" mixin="obj"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
    <a-entity class="center-zone" position="0.12 0.009 -4.01"> <a-entity rotation="0 -90 0" gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
