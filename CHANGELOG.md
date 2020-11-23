@@ -7,7 +7,8 @@
 ## 1.1.3 (next)
 -   A female eastern lowland gorilla joins the male and mouse lemur display. The male was the first model I made and the difference is stark. I took the polygons of the female and manually adjusted it to the male's proportions. Male was also reposed to a slight walk.
 -   Mouse lemur model got slight polygon cleaning to be up to current standards.
--   New Grab Lab skulls: rhesus macaque and squirrel monkey skulls.
+-   New Grab Lab skulls: rhesus macaque and squirrel monkey.
+-   New Grab Lab artifact: Lomekwian hammerstone, one of the oldest known stone tools. I've been looking for a Creative Commons model of this for a while! Thanks, University of Central Florida.
 
 ## 1.1.2 (10/7/2020)
 -   Something changed with A-Frame from 0.9x to 1.0.4 where now if I rotate a model, its collision box will now move along with it. This allows me to rotate the credits button behind the Centerpiece and make it just be an orb sticking out of the wall instead of the full i-shape. 
