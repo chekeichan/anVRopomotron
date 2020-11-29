@@ -69,7 +69,7 @@ var visidistanceswitch = function(zone, toggle) {
             let poss = each.getAttribute('position');
 			let area = (poss.x + 1) * (poss.z + 1);
 			let absarea = Math.abs(area)
-             if (absarea <= 2) { // See if object has moved under 2 meters in coordinates
+             if (each.is('grabbed') == false && absarea <= 2) { // See if object has moved under 2 meters in coordinates
                  each.object3D.visible = toggle; // Hide object if close to table
              } else {
 				each.object3D.visible = true; // Keep object visible if it has been carried
