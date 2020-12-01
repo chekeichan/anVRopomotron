@@ -1,8 +1,16 @@
 # AnVRopomotron Changelog
 
-## 1.1.3 (next)
--   Working on a new lifesize model, a female eastern lowland gorilla to join the male and mouse lemur display.
--   A rhesus macaque cranium was uploaded to Sketchfab that looks promising for the Grab Lab.
+
+## 1.1.X (next next)
+-   What if there were strategically placed mini maps to telport the user to different exhibits?
+-   An amazing new possible addition to the Burial Chamber has appeared on Sketchfab. Location: Paris, France.
+
+## 1.1.3 (12/1/2020)
+-   A female eastern lowland gorilla joins the male and mouse lemur display. The male was the first model I made and the difference is stark. I took the polygons of the female and manually adjusted it to the male's proportions. Male was also reposed to a slight walk.
+-   Mouse lemur model got slight polygon cleaning to be up to current standards.
+-   New Grab Lab skulls: rhesus macaque and squirrel monkey.
+-   New Grab Lab artifact: Lomekwian hammerstone, one of the oldest known stone tools. I've been looking for a Creative Commons model of this for a while! Thanks, University of Central Florida.
+-   Slight tweak to code involving carrying objects out of Grab Lab.
 
 ## 1.1.2 (10/7/2020)
 -   Something changed with A-Frame from 0.9x to 1.0.4 where now if I rotate a model, its collision box will now move along with it. This allows me to rotate the credits button behind the Centerpiece and make it just be an orb sticking out of the wall instead of the full i-shape. 

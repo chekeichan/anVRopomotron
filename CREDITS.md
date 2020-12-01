@@ -145,6 +145,14 @@ Smithsonian 3D, National Museum of Natural History Anthropology Department, and 
 Model has been reduced in polygons and placed in a display box.
 https://3d.si.edu/object/3d/captain-gabriel-archer-burial:f550015a-7e43-435b-90dc-e7c1367bc5fb
 
+Medieval Burial, Calatrava La Nueva (Spain)
+Global Digital Heritage (CC BY 4.0)
+https://skfb.ly/6RLHB
+
+Calatrava la Nueva
+Global Digital Heritage (CC BY-NC 4.0)
+https://skfb.ly/6TZrN
+
 ## -Image Sources-
 ### -Scale Model Hall-
 Bornean Orangutan: &quot;Male Bornean Orangutan - Big Cheeks&quot; by Eric Kilby (CC BY-SA 2.0)
@@ -230,6 +238,15 @@ https://commons.wikimedia.org/wiki/File:Jamestown_Church,_Historic_Jamestowne,_C
 
 1608 Church: Photo by Darren and Brad (CC BY-NC 2.0). Photo has been cropped.
 https://www.flickr.com/photos/brad-darren/27268338961
+
+&quot;Sculpture of a Kneeling Knight or King&quot;: Photo by The Met.(CC BY-NC-ND 2.0)
+https://www.metmuseum.org/art/collection/search/34022
+
+&quot;CE CALATRAVA LA NUEVA 05 10 2019 (23)&quot;: Photo by Centre Europeu de Barcelona.(CC BY-NC-ND 2.0)
+https://www.flickr.com/photos/centreeuropeubarcelona/48881518216
+
+&quot;Medieval Shoes from the cobbler's guild&quot;: Photo by Curious Expeditions. (CC BY-NC-SA 2.0).
+https://www.flickr.com/photos/7955505@N05/2197617740
 
 ##VR Sources
 Diego Marcos, Don McCurdy, and Kevin Ngo

@@ -73,6 +73,9 @@
                 <a-asset-item id="mhsmodel" response-type="arraybuffer" src="models/mhs.glb"></a-asset-item>
                 <a-asset-item id="archicebusmodel" response-type="arraybuffer" src="models/archicebus.glb"></a-asset-item>
                 <a-asset-item id="turkanamodel" response-type="arraybuffer" src="models/turkana.glb"></a-asset-item>
+                <a-asset-item id="rhesusskullmodel" response-type="arraybuffer" src="models/rhesusskull.glb"></a-asset-item>
+                <a-asset-item id="squirrelmonkeyskullmodel" response-type="arraybuffer" src="models/squirrelmonkeyskull.glb"></a-asset-item>
+				<a-asset-item id="lomekmodel" response-type="arraybuffer" src="models/lomekwian.glb"></a-asset-item>
 
                 <a-mixin id="obj" hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" scale="1 1 1" rotation="0 0 0" animation="property: object3D.position.y; to: 1.45; startEvents: standtrigger; dur: 5000" shadow></a-mixin>
                 <a-mixin id="button" static-body hoverable clickable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" shadow></a-mixin>
@@ -100,7 +103,7 @@
 <a-entity position="0 0 0" gltf-model="models/floorplan.glb"></a-entity> <!-- Building -->
 <a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0.01 1"> <!-- Player Character -->
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
-        <a-entity id="camera" camera look-controls capture-mouse cursor="rayOrigin:mouse" raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection;
+        <a-entity id="camera" camera look-controls cursor="rayOrigin:mouse" raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection;
                              colliderEventProperty: els;
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;" position="0 1.6 0"></a-entity>
@@ -136,7 +139,7 @@
       </a-entity>
       
       <!-- Behind wall -->
-       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="0 0 0.01" value="AnVRopomotron" align="center" color="black" width="35"></a-text><a-text position="5.5 -0.89 0.01" value="1.1.2" align="center" color="black" width="5"></a-text></a-entity> 
+       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="0 0 0.01" value="AnVRopomotron" align="center" color="black" width="35"></a-text><a-text position="5.5 -0.89 0.01" value="1.1.3" align="center" color="black" width="5"></a-text></a-entity> 
        <!-- Left display wall -->
         <a-entity visible="true" static-body position="-5.08 2 -0.5" rotation="0 90 0" depth="0.1" width="8" height="4.5" color="#dfe0e2" material="shader: flat">
         <a-image position="0 -0.48 0.10" src="#height" material.transparent="true" shader="flat" geometry="height: 3.048; width: 7.3152"></a-image><!-- Correct by -2.0 -->
@@ -187,7 +190,7 @@
         <a-entity class="buriallift calatrava" id="calatravaburialset" position="0 0.8 0" visible="false"><a-entity gltf-model="models/calatrava-knight.glb"></a-entity>
         <a-entity mixin="scale-box" id="calatrava-tit" position="0 0 0">
 			<a-entity position="-0.112 0.83 -0.87" rotation="0 -90 0"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.55" text="value: Shoe Remains\n\nThe discolored soil is from the decomposed leather shoes that the knight was wearing. ; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.38 -0.08 0" material="shader: flat" geometry="vertexC: 0.47 -0.7 0; vertexA: 0.5 0 0; vertexB: 0.3 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
-			<a-entity rotation="0 -90 0" position="0 1.07 0.83"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.55" text="value: Preservation\n\nThis is a modern display case with a transparent cover that protects the grave in situ (the original place) at the chapter house.; color: black; lineHeight: 75; wrap-count: 30"></a-plane><a-triangle color="#375719" position="-0.28 -0.2 0" material="shader: flat" geometry="vertexC: 0.22 -0.6 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+			<a-entity rotation="0 -90 0" position="0 1.07 0.83"><a-plane mixin="scale-label" width="1.05" height="0.7" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.65" text="value: Preservation\n\nThis is a modern display case with a transparent cover that protects the grave in situ (the original place) at the chapter house.; color: black; lineHeight: 75; wrap-count: 30"></a-plane><a-triangle color="#375719" position="-0.28 -0.2 0" material="shader: flat" geometry="vertexC: 0.22 -0.6 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			
 			<a-entity position="-2.73 0.65 1.3" rotation="0 90 0"><a-plane mixin="scale-label" width="0.75" height="0.45" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.4" text="value: The Church\n\nConstructed from volcanic rock and built in the Cistercian style.; color: black; lineHeight: 75; wrap-count: 25;"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 1.2 -0.14 0; vertexA: 0.55 0.2 0; vertexB: 0.55 0.1 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			
@@ -237,10 +240,10 @@
         </a-entity>
         </a-entity>
         </a-entity></a-entity>
-       <a-entity gltf-model=""   static-body position="0 1.25 -0.5" mixin="obj"></a-entity> <!-- Demo Place -->
+       <a-entity gltf-model=""   static-body position="0 1.6 -0.5" mixin="obj"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
-   <a-entity class="center-zone" position="0.12 0.009 -4.01"> <a-entity rotation="0 -90 0" gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
+   <a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
    <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" gltf-model="#buttonmodel" shadow></a-entity> 
        <a-entity mixin="scale-box" id="centerpiece-tit" ><a-entity mixin="scale-label-border" position="-1.5 0.88 1.69" rotation="0 0 0"></a-entity><a-entity mixin="scale-label" position="-1.5 0.88 1.7" rotation="0 0 0" text="value: Lucy\nScientific Name: Australopithecus afarensis\nLocation: Ethiopia\nTime: 3.4 million years ago\n\nNotes: Female australopithecine discovered by Donald Johanson and team in 1974.; color: black; lineHeight: 75; wrap-count: 35"></a-entity>
        <a-entity mixin="scale-label-border" position="1.4 2 1.69" rotation="0 0 0" ></a-entity><a-entity mixin="scale-label" position="1.4 2 1.7" rotation="0 0 0" text="value: Gigantopithecus\nScientific Name: Gigantopithecus blacki\nLocation: China, Vietnam, and Indonesia\nTime: 9 to 0.1 million years ago\n\nNotes: The largest primate that has ever lived. Estimates reach 3 meters (9.8 feet) tall and 1300 pounds. Only teeth and mandible fossils have been found.; color: black; lineHeight: 75; wrap-count: 35" geometry="primitive: plane; buffer: false"></a-entity>
@@ -269,15 +272,17 @@
          <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone"  gltf-model="models/vLCA1.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.5" mixin="obj"></a-entity>
 </a-entity>
      
-    <!-- Prosimian Skull table -->
+    <!-- Modern Non-Hominoid Skull table -->
      <a-entity id="ptable" position="10.5 0 1"> <!-- This sets the relative state of the table --> 
          <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table3" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
          <a-entity rotation="0 270 0" position="-0.201 0.84 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Prosimian and Monkey Skulls; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
          <a-entity id="potto-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.6" mixin="obj" gltf-model="models/potto.glb"></a-entity> 
          <a-entity id="indri-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.4" mixin="obj" gltf-model="models/indri.glb"></a-entity> 
-         <a-entity id="howler-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 0" mixin="obj" gltf-model="models/howlerskull.glb"></a-entity> 
-        <a-entity  id="baboon-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.2" mixin="obj" gltf-model="models/baboonskull.glb"></a-entity>
-		<a-entity  id="mandrill-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.4" mixin="obj" gltf-model="models/#mandrillskullmodel"></a-entity>
+         <a-entity id="howler-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.2" mixin="obj" gltf-model="models/howlerskull.glb"></a-entity> 
+		 <a-entity id="squirrelmonkey-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.1" mixin="obj" gltf-model="models/squirrelmonkeyskull.glb"></a-entity> 
+        <a-entity  id="baboon-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.1" mixin="obj" gltf-model="models/baboonskull.glb"></a-entity>
+		<a-entity  id="rhesus-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.25" mixin="obj" gltf-model="models/rhesusskull.glb"></a-entity>
+		<a-entity  id="mandrill-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.4" mixin="obj" gltf-model="models/mandrillskull.glb"></a-entity>
         <a-entity id="snub-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.6" mixin="obj" gltf-model="models/snub.glb"></a-entity> 
 </a-entity>
     
@@ -323,17 +328,21 @@
 	            
 	    <a-text id="potto-tit" class="bone-text-2" mixin="table-label" text="value: Potto\nScientific Name: Perodicticus potto\nLocation: West and Central African tropical forests\nItem: Cranium\nSource: Scan by Lapworth Museum of Geology\nNotes: Pottos are slow-climbing prosimians that live in African tropical forests. They are active at night and eat fruits and insects.Their maximum size is from 30 to 39 cm (1 foot to 1 foot 3 inches)."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/potto-p.jpg" position="0 0 0.01" width="2.8" height="3"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Drawing by St. George Jackson Mivart, image by The Internet Archive;" position="1.4 1.62 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Drawing of a potto from 1894.;" position="1.4 -1.64 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 	    
-        <a-text id="indri-tit" class="bone-text-2" mixin="table-label" text="value: Indri\nScientific Name: Indri indri\nLocation: East coast of Madagascar\nItem: Skull\nSource: Micro CT Scan by D'Arcy Thompson Zoology Museum and Scan the World\nNotes: Indris are one of the largest living lemurs, with a body length of up to 72 cm (2 feet 4.3 inches).They form monogamous pairs or live in female-led polygynandrous groups (multiple males and females)."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/indri-p.jpg" position="0 0 0.01" width="2.5" height="3"></a-image><a-text mixin="table-caption" text="width: 2; value: By Christophe Germain;" position="1.3 1.62 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Indri in Andasibe-Mantadia National Park.;" position="1.3 -1.64 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+        <a-text id="indri-tit" class="bone-text-2" mixin="table-label" text="value: Indri\nScientific Name: Indri indri\nLocation: East coast of Madagascar\nItem: Skull\nSource: Micro CT Scan by D'Arcy Thompson Zoology Museum and Scan the World\nNotes: Indris are one of the largest living lemurs, with a body length of up to 72 cm (2 feet 4.3 inches).They form monogamous pairs or live in female-led polygynandrous groups (multiple males and females)."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/indri-p.jpg" position="0 0 0.01" width="2.5" height="3"></a-image><a-text mixin="table-caption" text="width: 3; value: By Christophe Germain;" position="1.3 1.62 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Indri in Andasibe-Mantadia National Park.;" position="1.3 -1.64 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
         <a-text id="howler-tit" class="bone-text-2" mixin="table-label" text="value: Coiba Island Howler Monkey, male\nScientific Name: Alouatta palliata\nLocation: Coiba Island, Panama\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Howler monkeys have enlarged vocal organs for making loud calls through their dense forest environment."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/howlerskull-p.jpg" position="0 0 0.01" width="3" height="1.7"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Alex Proimos, used under CC BY 2.0;" position="1.5 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Coiba Island, Panama. The island separated from the isthmus from 18,000 to 12,000 years ago.;" position="1.5 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+		
+		<a-text id="squirrelmonkey-tit" class="bone-text-2" mixin="table-label" text="value: Squirrel Monkey\nScientific Genus: Saimiri\nLocation: Central and South America\nItem: Skull\nSource: Scan by RISD Nature Lab\nNotes: Squirrel monkeys are platyrrhines (New World monkeys) with bodies around a foot (30 cm) long. They can be found in groups of up to 500 individuals and are active in the daytime."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/squirrelmonkeyskull-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Tambako The Jaguar, used under CC BY-ND 2.0;" position="1.5 1.07 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Squirrel monkey at the Zurich Zoo, Switzerland;" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
-        <a-text id="snub-tit" class="bone-text-2" mixin="table-label" text="value: Golden Snub-Nosed Monkey\nScientific Name: Rhinopithecus \nLocation:Central Chinese mountainous forests\nItem: Cranium\nSource: Scan by Morphosourcus\nNotes: This species is known for their distinctive long golden fur and pale blue faces. This cranium is probably female."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/snub-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Jack Hynes, used under CC BY-SA 2.0; lineHeight: 50 wrapCount: 45" position="1.5 1.07 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Two snub-nosed monkeys near Xi&#39;an, China.; lineHeight: 50; wrapCount: 45" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+        <a-text id="snub-tit" class="bone-text-2" mixin="table-label" text="value: Golden Snub-Nosed Monkey\nScientific Genus: Rhinopithecus \nLocation: Central Chinese mountainous forests\nItem: Cranium\nSource: Scan by Morphosourcus\nNotes: This species is known for their distinctive long golden fur and pale blue faces. This cranium is probably female."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/snub-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Jack Hynes, used under CC BY-SA 2.0; lineHeight: 50 wrapCount: 45" position="1.5 1.07 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Two snub-nosed monkeys near Xi&#39;an, China.; lineHeight: 50; wrapCount: 45" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
         <a-text id="baboon-tit" class="bone-text-2" mixin="table-label" text="value: Hamadryas Baboon\nScientific Name: Papio hamadryas hamadryas\nLocation: The Horn of Africa and southwestern Arabian Peninsula\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Baboons are Old World monkeys that form troops of a few adult males, many adult females, and their offspring. Troops can form larger groups of up to 400 individuals.The snout of baboons have evolved to allow for forward-facing vision while providing structural support for the large canine teeth."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/baboonskull-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.5; value: By UrLunkwill, used under CC BY-SA 3.0 DE;" position="1.5 1.1 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Hamadryas baboon troop with one adult male and numerous females.;" position="1.5 -1.2 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+		
+		<a-text id="rhesus-tit" class="bone-text-2" mixin="table-label" text="value: Rhesus Macaque\nScientific Name: Macaca mulatta\nLocation: Central Asia, India, Southeast Asia, and China\nItem: Skull\nSource: Scan by RISD Nature Lab\nNotes: The wide range of rhesus macaques attest to their adaptability to different environments. Some live within human farmland and cities. Also, several colonies of released monkeys live in United States territory."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/rhesusskull-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Allan Hopkins, used under CC BY-NC-ND 2.0; lineHeight: 50 wrapCount: 45" position="1.5 1.07 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Rhesus monkey in Keoladeo National Park, India.; lineHeight: 50; wrapCount: 45" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
 		<a-text id="mandrill-tit" class="bone-text-2" mixin="table-label" text="value: Hamadryas Baboon\nScientific Name: Papio hamadryas hamadryas\nLocation: The Horn of Africa and southwestern Arabian Peninsula\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Baboons are Old World monkeys that form troops of a few adult males, many adult females, and their offspring. Troops can form larger groups of up to 400 individuals.The snout of baboons have evolved to allow for forward-facing vision while providing structural support for the large canine teeth."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/mandrill-p.jpg" position="0 0 0.01" width="2.2" height="3"></a-image><a-text mixin="table-caption" text="width: 2.2; value: Photo by William Warby, used under CC BY 2.0; lineHeight: 45; wrapCount: 40" position="1.11 1.58 0.01" ></a-text><a-text mixin="table-caption" text="width: 2; value: Male mandrill. The red and blue hues are from light scattering through an array of collagen fibers in the skin.; lineHeight: 45; wrapCount: 40" position="1.11 -1.68 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		
-        <a-text id="gibbon-tit" class="bone-text-2" mixin="table-label" text="value: Lar Gibbon\nScientific Name: Hylobates lar carpenteri\nLocation: Southeast Asia\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: The specimen was found in Phak Khinak Mountain, Thailand. The sex is unknown.The left mandible has an extra tooth, an impacted fourth molar"><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/gibbonskull-p.gif" position="0 0 0.01" width="3" height="2.7"></a-image><a-text mixin="table-caption" text="width: 3; value: Image by The National Museum of Natural History, used under CC0;" position="1.5 1.45 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: X-ray image of the specimen cranium.;" position="1.5 -1.45 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+        <a-text id="gibbon-tit" class="bone-text-2" mixin="table-label" text="value: Lar Gibbon\nScientific Name: Hylobates lar carpenteri\nLocation: Southeast Asia\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: The specimen was found in Phak Khinak Mountain, Thailand. The sex is unknown.The left mandible has an extra tooth, an impacted fourth molar"><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/gibbonskull-p.gif" position="0 0 0.01" width="3" height="2.7"></a-image><a-text mixin="table-caption" text="width: 3; value: Image by The National Museum of Natural History, used under CC0;" position="1.5 1.55 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: X-ray image of the specimen cranium.;" position="1.5 -1.45 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
         <a-text id="gorilla-m-tit" class="bone-text-2" mixin="table-label" text="value: Western Lowland Gorilla, male\nScientific Name: Gorilla gorilla gorilla\nLocation: Central Africa\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Western lowland gorillas are the most common type found in captivity. This male's skull has a large sagittal crest down the top of the cranium that acts as attachment sites for jaw muscles. The specimen was found in South Kamerun, Cameroon, Africa."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/gorillaskull-m-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: By Mehgan Murphy, Smithsonian's National Zoo, used under CC0;" position="1.5 1.2 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Male western lowland gorilla.;" position="1.5 -1.1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
@@ -348,7 +357,8 @@
      <a-entity class="center-zone" id="atable" position="4.94 0 -2.1"> <!-- This sets the relative state of the table --> 
         <a-entity class="table" static-body="shape: box;" scale="1 1 1" id="table4" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
         <a-entity rotation="0 270 0" position="-0.201 0.84 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Artifacts; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-  		<a-entity id="acheul-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.5" mixin="obj" gltf-model="#acheulmodel"></a-entity>
+  		<a-entity id="lomek-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.6" mixin="obj" gltf-model="#lomekmodel"></a-entity>
+		<a-entity id="acheul-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.45" mixin="obj" gltf-model="#acheulmodel"></a-entity>
         <a-entity id="mousterian-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.3" mixin="obj" gltf-model="#mousterianmodel"></a-entity>
         <a-entity id="clovis-grab" class="clickable grabbable center-obj-zone standup"dynamic-body="shape: box; mass: 1" position="0 1.01 -0.2" mixin="obj" gltf-model="#clovismodel"></a-entity>
         <a-entity id="harpoon-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 0" mixin="obj" gltf-model="#harpoonmodel"></a-entity>
@@ -373,7 +383,9 @@
 	<a-entity mixin="holoprojector"></a-entity>
 	<a-entity id="holoartifact" scale="7 7 7" rotation="0 0 0" class="center-obj-zone" static-body position="0 1.25 0" gltf-model="" animation="property: object3D.rotation.y; to: 360; easing: linear; dur: 12000; loop: true;" visible="false"></a-entity></a-entity></a-entity>
 	
-        <a-text id="acheul-tit" class="art-text" mixin="table-label" text="value: Acheulian Handaxe\nLocation: Abbeville, France\nTime: Unknown\nSource: Scan by Kathleen Brock of Research Laboratories of Archaeology, University of North Carolina at Chapel Hill\n\nNotes: Handaxes were a technology widespread in time and geography, from 1.8 million to 130,000 years ago in Africa, Europe, and Asia. The chipped stone tools are asscoiated with Homo erectus and continued to be used with archaic Homo sapiens."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/acheulean-p.jpg" position="0 0 0.01" width="2" height="2.3"></a-image><a-text mixin="table-caption" text="width: 2; value: &quot;Palaeolithic Handaxe&quot; by The Portable Antiquities Scheme/The Trustees of the British Museum, used under CC BY 2.0;" position="0.96 1.3 0.01" ></a-text><a-text mixin="table-caption" text="width: 2; value: Sub-triangle handaxe from Suffolk, England;" position="0.96 -1.23 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+        <a-text id="lomek-tit" class="art-text" mixin="table-label" text="value: Lomekwian Hammerstone\nLocation: Lake Turkana, Kenya\nTime: 3.3 million years ago\nSource: Scan by the UCFanthropology\n\nNotes: The Lomekwian is the currently oldest known stone tool style. The hominids of this time and location were members of  Australopithecus and Kenyanthropus, though they have not been directly associated with the tools. Types of worked stone include hammerstones, anvils, cores, and flakes.\n\nThis hammerstone, labeled LOM3-2012 surf 54, has impact points and an area that resembles a flaked rock."></a-text>
+		
+		<a-text id="acheul-tit" class="art-text" mixin="table-label" text="value: Acheulian Handaxe\nLocation: Abbeville, France\nTime: Unknown\nSource: Scan by Kathleen Brock of Research Laboratories of Archaeology, University of North Carolina at Chapel Hill\n\nNotes: Handaxes were a technology widespread in time and geography, from 1.8 million to 130,000 years ago in Africa, Europe, and Asia. The chipped stone tools are asscoiated with Homo erectus and continued to be used with archaic Homo sapiens."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/acheulean-p.jpg" position="0 0 0.01" width="2" height="2.3"></a-image><a-text mixin="table-caption" text="width: 2; value: &quot;Palaeolithic Handaxe&quot; by The Portable Antiquities Scheme/The Trustees of the British Museum, used under CC BY 2.0;" position="0.96 1.3 0.01" ></a-text><a-text mixin="table-caption" text="width: 2; value: Sub-triangle handaxe from Suffolk, England;" position="0.96 -1.23 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
         <a-text id="mousterian-tit" class="art-text" mixin="table-label" text="value: Mousterian Scraper\nLocation: Chambes, France\nTime: Unknown\nSource: Scan by Abigail Gancz of Research Laboratories of Archaeology, University of North Carolina at Chapel Hill\n\nNotes: Mousterian tools were made with more efficiency and for more functions than the earlier Acheulian style. European Mousterian tools, dated between 160,000 and 40,000 years ago, are associaed with Neanderthals. Scrapers could have been used to producing leather from animal hides."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/mousterian-p.jpg" position="0 0 0.01" width="1.92" height="3"></a-image><a-text mixin="table-caption" text="width: 2; value: &quot;Mousterian Points and Scrapers&quot; by Wellcome Images, used under CC BY 4.0;" position="0.96 1.6 0.01" ></a-text><a-text mixin="table-caption" text="width: 2; value: Illustration of Mousterian scrapers from 1903.; wrapCount: 45;" position="0.96 -1.58 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
@@ -395,13 +407,14 @@
 </a-entity></a-entity>
 	
 <!-- Scale Models -->
-        <a-entity class="scale-zone-2" position="-14.9 0 2.2">
+        <a-entity class="scale-zone-2" position="-14.9 0 2.6">
         <a-entity gltf-model="models/gorilla-mouselemur.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> <!-- Model File -->
         <a-entity mixin="button" class="clickable" position="1.5 0 -0.4" id="gorillabutt" gltf-model="#buttonmodel"></a-entity></a-entity> <!-- Info Button -->
        
-        <a-entity mixin="scale-box" id="stand1-tit"><a-entity mixin="scale-label-border" position="-0.01 2 -0.1" rotation="0 90 0"></a-entity><a-entity mixin="scale-label" position="0 2 -0.1" rotation="0 90 0" text="value: Eastern Lowland Gorilla\nScientific Name: Gorilla beringei graueri \nLocation: Democratic Republic of Congo\nTime: Present\n\nNotes: The largest living primate, though critically endangered.; color: black; lineHeight: 75; wrap-count: 35"></a-entity> <!-- Info Panels -->
-        <a-entity position="-1.563 1.6 1.7" rotation="0 90 0"><a-plane mixin="scale-label" width="3.8" height="2.65" position="0 -0.05 0" color="#375719"></a-plane><a-image mixin="scale-label" src="images/gorilla-p.jpg" position="0 0 0.01" width="3.75" height="2.5"></a-image><a-text text="width: 2; value: &quot;Imposing&quot; by Joe McKenna, used under CC BY 2.0 ; align: right; color: #d7d7d7" position="1.85 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
-        <a-plane mixin="scale-label-border" position="-0.01 1.88 -1.5" rotation="0 90 0"></a-plane><a-entity mixin="scale-label" position="0 1.88 -1.5" rotation="0 90 0" text="value: Madame Berthe's Mouse Lemur\nScientific Name: Microcebus berthae \nLocation: Madagascar\nTime: Present\n\nNotes: The smallest living primate, with a weight of 1.1 ounces.; color: black; lineHeight: 75; wrap-count: 35"></a-entity></a-entity></a-entity>
+        <a-entity mixin="scale-box" id="stand1-tit"><a-entity mixin="scale-label-border" position="-0.01 2 -0.78" rotation="0 90 0" geometry="height: 0.95"></a-entity><a-entity mixin="scale-label" position="0 2 -0.78" rotation="0 90 0" geometry="height: 0.9" text="value: Eastern Lowland Gorilla\nScientific Name: Gorilla beringei graueri \nLocation: Democratic Republic of Congo\nTime: Present\n\nNotes: The largest living primate, though critically endangered.\n\nMale                                                        Female; color: black; lineHeight: 75; wrap-count: 35"><a-triangle color="#375719" position="0 -0.08 -0.01" material="shader: flat" geometry="vertexC: -0.6 -0.48 0; vertexA: -0.29 -0.35 0; vertexB: -0.5 -0.21 0" rotation="0 0 0"></a-triangle>
+		<a-triangle color="#375719" position="0 -0.08 -0.01" material="shader: flat" geometry="vertexC: 0.62 -0.67 0; vertexA: 0.52 -0.34 0; vertexB: 0.34 -0.34 0" rotation="0 0 0"></a-triangle></a-entity> <!-- Info Panels -->
+        <a-entity position="-1.563 1.6 1.6" rotation="0 90 0"><a-plane mixin="scale-label" width="3.15" height="2.3" position="0 -0.05 0" color="#375719"></a-plane><a-image mixin="scale-label" src="images/gorilla-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text text="width: 2; value: &quot;Imposing&quot; by Joe McKenna, used under CC BY 2.0 ; align: right; color: #d7d7d7" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
+        <a-plane mixin="scale-label-border" position="0.86 0.65 -0.7" rotation="-15 90 0" geometry="height: 0.75"></a-plane><a-entity mixin="scale-label" position="0.87 0.65 -0.7" rotation="-15 90 0" geometry="height: 0.7" text="value: Madame Berthe's Mouse Lemur\nScientific Name: Microcebus berthae \nLocation: Madagascar\nTime: Present\n\nNotes: The smallest living primate, with a weight of 1.1 ounces.; color: black; lineHeight: 75; wrap-count: 35"><a-triangle color="#375719" position="0 -0.08 -0.01" material="shader: flat" geometry="vertexC: -0.4 0.01 0; vertexA: -0.1 0.01 0; vertexB: -0.07 0.86 0" rotation="0 0 0"></a-triangle></a-entity></a-entity></a-entity>
       
          <a-entity class="scale-zone" position="-8.7 0 4.9" rotation="0 90 0">
          <a-entity gltf-model="models/rhesus-rh.glb"   rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false">
@@ -546,9 +559,17 @@ Potto
 Lapworth Museum of Geology (CC-Attribution-NonCommercial)
 https://sketchfab.com/3d-models/potto-skull-birug-18612-dbb114c765b648aab6d4cc436fe96b8c
 
+Rhesus Monkey
+RISD Nature Lab (CC BY 4.0)
+https://skfb.ly/6UoqC
+
 Snub-Nosed Monkey
 Morphosourcus (CC-BY-NC-SA)
 https://wiiboox.myminifactory.com/object/3d-print-rhinopithecus-roxellana-36244
+
+Squirrel Monkey
+RISD Nature Lab (CC BY 4.0)
+https://skfb.ly/6VG7H
 ;"></a-entity>
 
 <a-entity mixin="credit-text" class="credits" id="credits-4" position="-0.7 2 -7.499" visible="false" text="value: -More Modern Primates-
@@ -584,6 +605,10 @@ https://www.morphosource.org/Detail/SpecimenDetail/show/specimen_id/7671
 Hippo Ivory Harpoon
 African Fossils (CC-Attribution-NonCommercial-ShareAlike 3.0)
 https://africanfossils.org/tools/hippo%20tusk%20harpoon?o=1
+
+Lomekwian Hammerstone
+UCFanthropology (CC Attribution 4.0 International)
+https://skfb.ly/6SLO8
 
 Moundville Vessel
 RLA Archaeology (CC-Attribution-NonCommercial-ShareAlike 3.0)
@@ -683,8 +708,14 @@ https://commons.wikimedia.org/wiki/File:Peru,_South_Coast,_Nasca_style_-_Mask_-_
 Potto: Drawing by St. George Jackson Mivart, image by The Internet Archive. (Public Domain)
 https://www.flickr.com/photos/internetarchivebookimages/18158318792
 
+Rhesus Monkey: Photo by Allan Hopkins. (CC BY-NC-ND 2.0)
+https://flic.kr/p/cuxbdW
+
 Snub-Nosed Monkey: Photo by Jack Hynes. (CC BY-SA 2.0)
 https://commons.wikimedia.org/wiki/File:Golden_Snub-nosed_Monkeys.jpg
+
+Squirrel Monkey: Photo by Tambako The Jaguar. (CC BY-ND 2.0)
+https://flic.kr/p/p8aUtr
 
 Western Lowland Gorilla: Photo by Mehgan Murphy, Smithsonian's National Zoo. (CC0)
 Female: https://www.si.edu/object/lowland-gorilla:nzp_NZP-20090514-081MM

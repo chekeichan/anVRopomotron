@@ -69,7 +69,7 @@ var visidistanceswitch = function(zone, toggle) {
             let poss = each.getAttribute('position');
 			let area = (poss.x + 1) * (poss.z + 1);
 			let absarea = Math.abs(area)
-             if (absarea <= 2) { // See if object has moved under 2 meters in coordinates
+             if (each.is('grabbed') == false && absarea <= 2) { // See if object has moved under 2 meters in coordinates
                  each.object3D.visible = toggle; // Hide object if close to table
              } else {
 				each.object3D.visible = true; // Keep object visible if it has been carried
@@ -345,7 +345,9 @@ grabtrig("vlca1-grab","vlca1-tit",".bone-text", "holobone", "holoboneproj", "mod
 grabtrig("potto-grab","potto-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/potto.glb", undefined, "10 10 10", undefined);
 grabtrig("indri-grab","indri-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/indri.glb", undefined, "8 8 8", undefined);
 grabtrig("howler-grab","howler-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/howlerskull.glb", undefined, "7 7 7", undefined);
+grabtrig("squirrelmonkey-grab","squirrelmonkey-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/squirrelmonkeyskull.glb", undefined, "10 10 10", "0 1.2 0");
 grabtrig("baboon-grab","baboon-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/baboonskull.glb", undefined, undefined, "0 1.2 0");
+grabtrig("rhesus-grab","rhesus-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/rhesusskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("mandrill-grab","mandrill-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/mandrillskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("snub-grab","snub-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/snub.glb", undefined, "7 7 7", "0 1.2 0");
 
@@ -356,7 +358,8 @@ grabtrig("gorilla-f-grab","gorilla-f-tit",".bone-text-2", "holobone2", "holobone
 grabtrig("chimp-grab","chimp-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/chimp.glb", undefined, undefined, undefined);
 grabtrig("mhs-grab","mhs-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/mhs.glb", undefined, undefined, undefined);
 
-// Toggle Artifacts 1
+// Toggle Artifacts
+grabtrig("lomek-grab","lomek-tit",".art-text","holoartifact", "holoartproj", "models/lomekwian.glb", "0 0 90", "7 7 7", "0.18 1.3 0");
 grabtrig("acheul-grab","acheul-tit",".art-text","holoartifact", "holoartproj", "models/acheul.glb", "0 0 90", "7 7 7", "0.18 1.3 0");
 grabtrig("mousterian-grab","mousterian-tit",".art-text","holoartifact", "holoartproj", "models/mousterian.glb", "0 0 90", "9 9 9", "0 1.5 0");
 grabtrig("clovis-grab","clovis-tit",".art-text","holoartifact", "holoartproj", "models/clovis.glb", "0 0 90", "12 12 12", "0 1.4 0");
