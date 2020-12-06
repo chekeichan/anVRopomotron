@@ -3,6 +3,10 @@
 
 ## 1.1.X (next next)
 -   What if there were strategically placed mini maps to telport the user to different exhibits?
+-   Chimpanzees for next scale model?
+
+## 1.1.4 (next)
+-   Upgraded to A-Frame 1.1.0
 -   An amazing new possible addition to the Burial Chamber has appeared on Sketchfab. Location: Paris, France.
 
 ## 1.1.3 (12/1/2020)
