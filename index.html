@@ -99,7 +99,7 @@
 				 <a-mixin id="mapmarker" scale ="0.17 0.17 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.2; radiusTop: 0.01; segmentsRadial: 6" material="color: #ffaa00"</a-mixin>
  </a-assets>
  
-<a-entity position="0 0.05 0" static-body gltf-model="models/nav.glb" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
+<a-entity position="0 0.001 0" static-body gltf-model="models/nav.glb" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
 <a-entity position="0 0 0" gltf-model="models/floorplan.glb"></a-entity> <!-- Building -->
 <a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0.01 1"> <!-- Player Character -->
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
@@ -197,9 +197,20 @@
 			<a-entity position="-3.25 0.5 -0.8" rotation="0 90 0"><a-plane mixin="scale-label" width="0.75" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.55" text="value: Calatrava la Nueva Central Fortress\n\nScale: 1:150\nNorth; color: black; lineHeight: 75; wrap-count: 20; align: right; xOffset: -0.02"></a-plane><a-triangle color="#375719" position="-0.36 -0.22 0.01" material="shader: flat" geometry="vertexC: 0.5 -0.04 0; vertexA: 0.5 0.04 0; vertexB: 0.35 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			
 			<a-entity rotation="0 90 0" position="-2.93 1 -0.02"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.55" text="value: Chapter House\n\nThe burials were found here in the chapter house (sala capitular), or meeting hall.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 0.2 -0.54 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
-		<!-- Calatrava annotations go here -->
         </a-entity>
         </a-entity></a-entity>
+
+        <a-entity class="burial paris parishide" visible="false" position="1.4 -3 0"> <!-- Paris Burial Zone -->
+            <a-entity mixin="button" class="clickable burialbutton"  position="-1.25 0 -1.7" id="parisbuttpos" gltf-model="#buttonupmodel"></a-entity>
+            <a-entity mixin="button" class="clickable"  position="-1.25 0 1.7" id="parisbuttinfo" gltf-model="#buttonmodel"></a-entity>
+            
+            <a-entity class="buriallift paris" id="parisburial" position="0 0.8 0" visible="false"><a-entity gltf-model="models/paris.glb"></a-entity>
+            <a-entity mixin="scale-box" id="paris-tit" position="0 0 0">
+                <a-entity position="-0.112 0.83 -0.87" rotation="0 -90 0"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.55" text="value: Femurs\n\nTEXT ; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.38 -0.08 0" material="shader: flat" geometry="vertexC: 0.47 -0.7 0; vertexA: 0.5 0 0; vertexB: 0.3 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+                <a-entity rotation="0 -90 0" position="0 1.07 0.83"><a-plane mixin="scale-label" width="1.05" height="0.7" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.65" text="value: Translation\n\nTEXT; color: black; lineHeight: 75; wrap-count: 30"></a-plane><a-triangle color="#375719" position="-0.28 -0.2 0" material="shader: flat" geometry="vertexC: 0.22 -0.6 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+
+            </a-entity>
+            </a-entity></a-entity>
 		<!-- End Burial Zones-->
 		</a-entity>
         
@@ -210,6 +221,10 @@
 			<a-text id="Calatrava-Title" class="burial calatrava" visible="false" position="-0.01 1.4 -1.04" rotation="0 -90 0" value="Knight of Calatrava"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>        
 	        <a-text id="calatrava-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" position="0 -0.2 -1" rotation="0 -90 0"  text="value: Date: Early 1200s \nAge: Adult\nModels Source: Global Digital Heritage\n\nContext: Excavations from 2001 to 2004 led by Ana Maria Segovia Fernandez uncovered a series of burials in the chapter house of the convent. The burials were arranged along the north-south axis with their heads pointed west. This burial was noted as Enterramiento (burial) 6, located furthest to the south, but was the fifth buried in the chapter house of the convent. They are believed to be knights of the Order of Calatrava, a Spanish military and religious organization.">
             <a-entity position="4 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravaknight-p.jpg" position="-0.85 -0.14 0.01" width="1.36" height="2.4"></a-image><a-text mixin="table-caption" text="width: 1.3; wrapCount: 35; value: Image by The Metropolitan Museum of Art, used under CC0 1.0 Universal;" position="-0.19 1.19 0.01" ></a-text><a-text mixin="table-caption" text="width: 1.3; wrapCount: 35; value: &quot;Sculpture of a Kneeling Knight or King&quot;, from Northern Spain from 1175 to 1225.;" position="-0.19 -1.46 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+
+            <a-text id="Paris-Title" class="burial paris" visible="false" position="-0.01 1.4 -1.04" rotation="0 -90 0" value="Parisians"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>        
+	        <a-text id="paris-tit" class="burial burial-text-1 paris" mixin="burial-label" visible="false" position="0 -0.2 -1" rotation="0 -90 0"  text="value: Date: Early 1200s \nAge: Adult\nModels Source: Global Digital Heritage\n\nContext: Excavations from 2001 to 2004 led by Ana Maria Segovia Fernandez uncovered a series of burials in the chapter house of the convent. The burials were arranged along the north-south axis with their heads pointed west. This burial was noted as Enterramiento (burial) 6, located furthest to the south, but was the fifth buried in the chapter house of the convent. They are believed to be knights of the Order of Calatrava, a Spanish military and religious organization.">
+            <a-entity position="4 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravaknight-p.jpg" position="-0.85 -0.14 0.01" width="1.36" height="2.4"></a-image><a-text mixin="table-caption" text="width: 1.3; wrapCount: 35; value: Image by The Metropolitan Museum of Art, used under CC0 1.0 Universal;" position="-0.19 1.19 0.01" ></a-text><a-text mixin="table-caption" text="width: 1.3; wrapCount: 35; value: &quot;Sculpture of a Kneeling Knight or King&quot;, from Northern Spain from 1175 to 1225.;" position="-0.19 -1.46 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         </a-entity>
 
       <a-entity id="burialscreenleft" class="burial-zone" visible="true" position="-16.45 1.9 -10">
@@ -218,6 +233,9 @@
         <a-entity position="4.2 -0.06 0" rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Darren and Brad, used under CC BY-NC 2.0;" position="1.5 1.1 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Reconstruction of the remains of the 1608 church where Captain Archer's remains were found. His grave is marked by the third cross from the left.;" position="1.5 -1.25 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		<a-text id="calatrava2-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" rotation="0 90 0" text="value: The Sacred Convent and Castle of Calatrava la Nueva was the headquarters of the Order of Calatrava, a society of religious warriors. It was occupied from 1217 to 1804, before the Order moved to another location. The fortress occupied a strategic view of the Aldea del Rey region from the peak of the Cerro del Alancrenejo mountain. Within sight was the rival Almohad-occupied Salvatierra Castle, their last stronghold in the region.\n\nThe grounds covered 46,000 square meters and was a self-sufficient community. Today the site is a tourist attraction with restored structures in some areas though the chapter house has been sealed.">
         <a-entity position="4.2 -0.06 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravacastle-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Centre Europeu de Barcelona, used under CC BY-NC-ND 2.0;" position="1.5 1.2 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: View of the church within the fortress.;" position="1.5 -1.1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+       
+        <a-text id="paris2-tit" class="burial burial-text-1 paris" mixin="burial-label" visible="false" rotation="0 90 0" text="value: The Sacred Convent and Castle of Calatrava la Nueva was the headquarters of the Order of Calatrava, a society of religious warriors. It was occupied from 1217 to 1804, before the Order moved to another location. The fortress occupied a strategic view of the Aldea del Rey region from the peak of the Cerro del Alancrenejo mountain. Within sight was the rival Almohad-occupied Salvatierra Castle, their last stronghold in the region.\n\nThe grounds covered 46,000 square meters and was a self-sufficient community. Today the site is a tourist attraction with restored structures in some areas though the chapter house has been sealed.">
+        <a-entity position="4.2 -0.06 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravacastle-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Centre Europeu de Barcelona, used under CC BY-NC-ND 2.0;" position="1.5 1.2 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: View of the church within the fortress.;" position="1.5 -1.1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         </a-entity> 
         
        <a-entity id="burialscreenback" class="burial-zone" visible="true" position="-10.3 2 -8.7">
@@ -225,6 +243,9 @@
         <a-text id="james3-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" rotation="0 180 0" text="wrapCount: 60; width:4; value: Captain Archer was buried in a wooden coffin, which has since rotted but left the nails in place. Outside the coffin in the grave were a piece of a ceremonial staff and a small silver reliquary container. Micro CT analysis of the box revealed that it contained human bone fragments and a lead ampulla (flask with fluid of religious significance).">
 <!--         <a-entity position="4.2 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2.25"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Caption;" position="1.5 1.26 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Caption.;" position="1.5 -1.64 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		<a-text id="calatrava3-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" rotation="0 180 0" text="value: The knight was buried in a wooden box placed in the grave as evidenced by nails and the wood remnants. The decomposed remains of leather shoes were found at the feet. These were better preserved in some of the other burials.\n\nPaintings decorated the walls of the chapter house, including one of a knight and Almohad warrior fighting on horseback. ">
+        <a-entity position="3.3 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravashoes-p.jpg" position="0 0 0.01" width="2.25" height="1.725"></a-image><a-text mixin="table-caption" text="width: 2; value: Photo by Curious Expeditions, used under CCC BY-NC-SA 2.0;" position="1.15 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Shoes of a style similar to the degraded remains found in the grave.;" position="1.15 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+
+        <a-text id="paris3-tit" class="burial burial-text-1 paris" mixin="burial-label" visible="false" rotation="0 180 0" text="value: The knight was buried in a wooden box placed in the grave as evidenced by nails and the wood remnants. The decomposed remains of leather shoes were found at the feet. These were better preserved in some of the other burials.\n\nPaintings decorated the walls of the chapter house, including one of a knight and Almohad warrior fighting on horseback. ">
         <a-entity position="3.3 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravashoes-p.jpg" position="0 0 0.01" width="2.25" height="1.725"></a-image><a-text mixin="table-caption" text="width: 2; value: Photo by Curious Expeditions, used under CCC BY-NC-SA 2.0;" position="1.15 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Shoes of a style similar to the degraded remains found in the grave.;" position="1.15 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         </a-entity>
 		
@@ -235,16 +256,21 @@
 		<a-text id="burialname" mixin="table-caption" text="align: center; width: 2; letterSpacing: 3; wrapCount: 35;" value="Choose Burial" position="0 0.8 0.02" ></a-text>
 		<a-text mixin="table-caption" text="align: center; width: 1.5; value: Image by Strebe, used under CC BY-SA 3.0;" position="0 -0.46 0.02" ></a-text>
 		<a-entity mixin="mapmarker" class="jamestown" position="-0.388 0.273 0.09" visible="false"></a-entity>
-		<a-entity mixin="mapmarker" class="calatrava" position="-0.02 0.285 0.09" visible="false"></a-entity>
-		</a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity>
+        <a-entity mixin="mapmarker" class="calatrava" position="-0.02 0.285 0.09" visible="false"></a-entity>
+        <a-entity mixin="mapmarker" class="paris" position="-0.02 0.1 0.09" visible="false"></a-entity>
+		</a-entity></a-entity>
         </a-entity>
+
         </a-entity>
-        </a-entity></a-entity>
-       <a-entity gltf-model="models/paris.glb"   static-body position="0 0.05 -0.5" rotation="0 180 0" mixin="obj"></a-entity> <!-- Demo Place -->
+
+        <a-entity gltf-model="models/paris.glb"   static-body position="0 0.05 -0.5" rotation="0 180 0" mixin="obj"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
-   <a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
-   <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" gltf-model="#buttonmodel" shadow></a-entity> 
+<a-entity static-body warp mixin="button" class="clickable center-zone" position="0.1 0 2.7" id="burialwarpbutt" gltf-model="#buttonmodel" shadow></a-entity> 
+
+<a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
+   <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" gltf-model="#buttonmodel" shadow></a-entity>
+    
        <a-entity mixin="scale-box" id="centerpiece-tit" ><a-entity mixin="scale-label-border" position="-1.5 0.88 1.69" rotation="0 0 0"></a-entity><a-entity mixin="scale-label" position="-1.5 0.88 1.7" rotation="0 0 0" text="value: Lucy\nScientific Name: Australopithecus afarensis\nLocation: Ethiopia\nTime: 3.4 million years ago\n\nNotes: Female australopithecine discovered by Donald Johanson and team in 1974.; color: black; lineHeight: 75; wrap-count: 35"></a-entity>
        <a-entity mixin="scale-label-border" position="1.4 2 1.69" rotation="0 0 0" ></a-entity><a-entity mixin="scale-label" position="1.4 2 1.7" rotation="0 0 0" text="value: Gigantopithecus\nScientific Name: Gigantopithecus blacki\nLocation: China, Vietnam, and Indonesia\nTime: 9 to 0.1 million years ago\n\nNotes: The largest primate that has ever lived. Estimates reach 3 meters (9.8 feet) tall and 1300 pounds. Only teeth and mandible fossils have been found.; color: black; lineHeight: 75; wrap-count: 35" geometry="primitive: plane; buffer: false"></a-entity>
        <a-entity mixin="scale-label-border" position="-1.2 2.5 1.69" rotation="0 0 0" ></a-entity><a-entity mixin="scale-label" position="-1.2 2.5 1.7" rotation="0 0 0" text="value: Archicebus\nScientific Name: Archicebus achilles\nLocation: China\nTime: 55 million years ago\n\nNotes: Possibly the smallest primate ever.; color: black; lineHeight: 75; wrap-count: 35" ></a-entity>

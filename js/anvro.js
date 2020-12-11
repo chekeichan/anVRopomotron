@@ -426,3 +426,12 @@ tick: function (t, dt) { // Tick function magic
 },
 
 })
+
+// Warp
+AFRAME.registerComponent("warp", {
+	init: function() {
+sceneEl = document.querySelector('a-scene');
+this.el.addEventListener("grab-start", function(evt) {
+    document.querySelector("#rig").object3D.position.set(-12.5, 0, -15.5); }) 
+
+}})
