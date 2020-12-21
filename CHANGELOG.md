@@ -2,13 +2,14 @@
 
 
 ## 1.1.X (next next)
--   What if there were strategically placed mini maps to telport the user to different exhibits? I have a button that takes me from the start to the Burial Chamber. Great for developing!
+-   What if there were strategically placed mini maps to telport the user to different exhibits? I now have a button that takes me from the start to the Burial Chamber. Great for developing!
 -   Chimpanzees for next scale model?
 
 ## 1.1.4 (next)
 -   Upgraded to A-Frame 1.1.0
--   Room model height was set to 5cm. It is now 0.5cm for better scaling.
+-   Room model height was set to 5cm. It is now 0.5cm for more accurate scaling.
 -   An amazing new addition to the Burial Chamber has appeared on Sketchfab. Location: Paris, France. Conversion worked!
+-   Using gltfpack to compress models and textures. Savings are around 75%. Improved download and load times.
 
 ## 1.1.3 (12/1/2020)
 -   A female eastern lowland gorilla joins the male and mouse lemur display. The male was the first model I made and the difference is stark. I took the polygons of the female and manually adjusted it to the male's proportions. Male was also reposed to a slight walk.
