@@ -250,8 +250,11 @@ AFRAME.registerComponent("togg-burial", {
 		var jamestownlist = document.getElementsByClassName("jamestown");
 		var jameshidelist = document.getElementsByClassName("jameshide");
 		var calatravalist = document.getElementsByClassName("calatrava");
-		var calatravahidelist = document.getElementsByClassName("calatravahide");
-		var generichidelist = document.getElementsByClassName("generichide");
+        var calatravahidelist = document.getElementsByClassName("calatravahide");
+        var parislist = document.getElementsByClassName("paris");
+		var parishidelist = document.getElementsByClassName("parishide");
+        var generichidelist = document.getElementsByClassName("generichide");
+        var sitetitle = document.getElementById("Generic-Site");
         el.addEventListener("grab-start", function(evt) { // The following is run if button is clicked
         for (let each of burialslist) {
                     each.object3D.visible = false; // Hide everything
@@ -280,19 +283,35 @@ AFRAME.registerComponent("togg-burial", {
 				}
 				for (let each of calatravahidelist) {
                     each.object3D.position.y += 3;    
-				}
-				document.getElementById("burialname").setAttribute("value", "Knight of Calatrava\nCalatrava la Nueva\nAldea del Rey, Spain (1200s)");
-			 } else if (counter > 2) { // Set back to zero past Calatrava
-                counter = 0;
-				for (let each of generichidelist) {
+                }
+                document.getElementById("burialname").setAttribute("value", "Knight of Calatrava\nCalatrava la Nueva\nAldea del Rey, Spain (1200s)");
+            } else if (counter == 3) { // Paris On
+                for (let each of calatravalist) {
                     each.object3D.visible = false;    
-				}
-				for (let each of calatravalist) {
-                    each.object3D.visible = false;     
 				}
 				for (let each of calatravahidelist) {
                     each.object3D.position.y -= 3;    
 				}
+				for (let each of parislist) {
+                    each.object3D.visible = true;    
+				}
+				for (let each of parishidelist) {
+                    each.object3D.position.y += 3;    
+                }
+                sitetitle.object3D.position.z -= 4;    
+				document.getElementById("burialname").setAttribute("value", "18th Century Parisians\nCatacombs\nParis, France (1800s)");
+			 } else if (counter > 3) { // Set back to zero past Paris
+                counter = 0;
+				for (let each of generichidelist) {
+                    each.object3D.visible = false;    
+				}
+				for (let each of parislist) {
+                    each.object3D.visible = false;     
+				}
+				for (let each of parishidelist) {
+                    each.object3D.position.y -= 3;    
+                }
+                sitetitle.object3D.position.z += 4;   
 				document.getElementById("burialname").setAttribute("value", "Choose Burial");
              }
         })
