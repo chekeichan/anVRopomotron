@@ -72,7 +72,7 @@
                 <a-asset-item id="gorillaskullfmodel" response-type="arraybuffer" src="models/gorillaskull-f.glb"></a-asset-item>
                 <a-asset-item id="mhsmodel" response-type="arraybuffer" src="models/mhs.glb"></a-asset-item>
                 <a-asset-item id="archicebusmodel" response-type="arraybuffer" src="models/archicebus.glb"></a-asset-item>
-                <a-asset-item id="turkanamodel" response-type="arraybuffer" src="models/turkana.glb"></a-asset-item>
+                <a-asset-item id="turkanamodel" response-type="arraybuffer" src="models/turkana-skull.glb"></a-asset-item>
                 <a-asset-item id="rhesusskullmodel" response-type="arraybuffer" src="models/rhesusskull.glb"></a-asset-item>
                 <a-asset-item id="squirrelmonkeyskullmodel" response-type="arraybuffer" src="models/squirrelmonkeyskull.glb"></a-asset-item>
 				<a-asset-item id="lomekmodel" response-type="arraybuffer" src="models/lomekwian.glb"></a-asset-item>
@@ -260,7 +260,8 @@
 
         </a-entity>
 
-        <a-entity gltf-model="models/paris.glb"   static-body position="0 0.05 -0.5" rotation="0 180 0" mixin="obj"></a-entity> <!-- Demo Place -->
+        <a-entity gltf-model="models/paris.glb"   static-body position="0 0.05 -0.5" rotation="0 180 0" mixin="obj"></a-entity>
+        <a-entity gltf-model="models/turkana.glb"   static-body position="0 0 2" rotation="0 180 0" mixin="obj"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
 <a-entity static-body warp mixin="button" class="clickable center-zone" position="0.1 0 2.7" id="burialwarpbutt" gltf-model="#buttonmodel" shadow></a-entity> 
