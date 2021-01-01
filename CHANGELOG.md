@@ -10,6 +10,7 @@
 -   Room model height was set to 5cm. It is now 0.5cm for more accurate scaling.
 -   An amazing new addition to the Burial Chamber has appeared on Sketchfab. Location: Paris, France. Conversion worked!
 -   Using gltfpack to compress models and textures. Savings are around 75%. Improved download and load times.
+-   Woops, mandrill info in Grab Lab was a copy/paste of the baboons'. Mandrill has its own fascinating information now. 
 
 ## 1.1.3 (12/1/2020)
 -   A female eastern lowland gorilla joins the male and mouse lemur display. The male was the first model I made and the difference is stark. I took the polygons of the female and manually adjusted it to the male's proportions. Male was also reposed to a slight walk.
