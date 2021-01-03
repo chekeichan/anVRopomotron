@@ -74,7 +74,7 @@
                 <a-asset-item id="gorillaskullfmodel" response-type="arraybuffer" src="models/gorillaskull-f.glb"></a-asset-item>
                 <a-asset-item id="mhsmodel" response-type="arraybuffer" src="models/mhs.glb"></a-asset-item>
                 <a-asset-item id="archicebusmodel" response-type="arraybuffer" src="models/archicebus.glb"></a-asset-item>
-                <a-asset-item id="turkanamodel" response-type="arraybuffer" src="models/turkana-skull.glb"></a-asset-item>
+                <a-asset-item id="turkanaskullmodel" response-type="arraybuffer" src="models/turkanaskull.glb"></a-asset-item>
                 <a-asset-item id="rhesusskullmodel" response-type="arraybuffer" src="models/rhesusskull.glb"></a-asset-item>
                 <a-asset-item id="squirrelmonkeyskullmodel" response-type="arraybuffer" src="models/squirrelmonkeyskull.glb"></a-asset-item>
 				<a-asset-item id="lomekmodel" response-type="arraybuffer" src="models/lomekwian.glb"></a-asset-item>
@@ -256,7 +256,7 @@
 		<a-text mixin="table-caption" text="align: center; width: 1.5; value: Image by Strebe, used under CC BY-SA 3.0;" position="0 -0.46 0.02" ></a-text>
 		<a-entity mixin="mapmarker" class="jamestown" position="-0.388 0.273 0.09" visible="false"></a-entity>
         <a-entity mixin="mapmarker" class="calatrava" position="-0.02 0.285 0.09" visible="false"></a-entity>
-        <a-entity mixin="mapmarker" class="paris" position="-0.02 0.1 0.09" visible="false"></a-entity>
+        <a-entity mixin="mapmarker" class="paris" position="0.01 0.347 0.09" visible="false"></a-entity>
 		</a-entity></a-entity>
         </a-entity>
 
@@ -292,7 +292,7 @@
          <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table2" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
          <a-entity rotation="0 270 0" position="-0.201 0.84 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Prehistoric Homo Skulls; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
          <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/habilis.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.5" mixin="obj"></a-entity>
-         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/turkana.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.3" mixin="obj"></a-entity>
+         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/turkanaskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.3" mixin="obj"></a-entity>
          <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/atapuerca.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0" mixin="obj"></a-entity>
          <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/nean.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.3" mixin="obj"></a-entity>
          <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/vLCA1.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.5" mixin="obj"></a-entity>
