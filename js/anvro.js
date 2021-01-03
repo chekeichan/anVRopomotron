@@ -337,7 +337,7 @@ document.getElementById(grabitem).addEventListener("grab-start", function(evt) {
                     document.getElementById(grabproj).object3D.visible = true;   
                     document.getElementById(grabinfo).object3D.visible = true;   
                     document.getElementById(grabholo).object3D.visible = true;   
-                    document.getElementById(grabholo).setAttribute("gltf-model", grabmodel);
+                    document.getElementById(grabholo).setAttribute("full-gltf-model", grabmodel);
 					document.getElementById(grabholo).setAttribute("rotation", grabrotate);
 					document.getElementById(grabholo).setAttribute("scale", grabscale);
 					document.getElementById(grabholo).setAttribute("position", grabposition);
