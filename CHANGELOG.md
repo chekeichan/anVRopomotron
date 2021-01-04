@@ -9,7 +9,7 @@
 -   Upgraded to A-Frame 1.1.0
 -   Room model height was set to 5cm. It is now 0.5cm for more accurate scaling.
 -   An amazing new addition to the Burial Chamber has appeared on Sketchfab. Location: Paris, France. Conversion worked!
--   Using gltfpack to compress models and textures. Savings are around 75%. Improved download and load times.
+-   Using gltfpack to compress models and textures. Burial Chamber got the full compression and Basis Universal treatment. Everything else just got compressed to keep the smooth textures. Models folder went from 79MB to 57MB.
 -   Woops, mandrill info in Grab Lab was a copy/paste of the baboons'. Mandrill has its own fascinating information now. 
 
 ## 1.1.3 (12/1/2020)
