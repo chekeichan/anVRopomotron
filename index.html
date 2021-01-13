@@ -21,16 +21,16 @@
   <meta http-equiv="pragma" content="no-cache" />
 <meta name="description" content="VR Anthropology Viewer">
 <script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
-<script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+<script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
 <script src="js/aframe-physics-system.min.js"></script>
 <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
-<script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+<script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
 <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
-<script src="js/msc_basis_transcoder.js"></script> <!-- Important -->
+<script src="js/msc_basis_transcoder.js"></script>
 <script src="js/full-gltf-model.js"></script>
 <script src="js/anvro.js"></script>
-<script src="js/aframe-teleport-controls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
 </head>
 
 <body>
@@ -88,8 +88,7 @@
                               colliderEndEvent: collisions;
                               colliderEndEventProperty: clearedEls;
                               grabStartButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; 
-                              grabEndButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" 
-                teleport-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; startEvents: teleportstart; endEvents: teleportend; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 48; curveShootingSpeed: 12" buttons></a-mixin>
+                              grabEndButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" </a-mixin>                 
                  <a-mixin id="table-label" position="0 0 -1" rotation="0 -90 0" visible="false"  text="width: 2; color: black; lineHeight: 60; wrap-count: 35"></a-mixin>
                  <a-mixin id="burial-label" position="0 0 -1" text="width: 2; color: black; lineHeight: 60; wrap-count: 35"></a-mixin>
                  <a-mixin id="table-caption" text="align: right; color: black; lineHeight: 55; wrap-count: 50"></a-mixin>
@@ -110,7 +109,7 @@
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;" position="0 1.6 0"></a-entity>
         <a-entity mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff"></a-entity>
-        <a-entity mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff"></a-entity>
+        <a-entity mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8"></a-entity>
  </a-entity>
  
 <a-light type="ambient" color="white" intensity="0.05"></a-light> 
@@ -135,7 +134,7 @@
 
      <!-- Scale Model Hall Title -->
       <a-text position="-6.74 0.7 0.01" value="Scale Model Hall" color="black" width="13.5"></a-text>
-      <a-text id="SMH-VR" visible="false" position="-6.65 -0.57 0.01" value="Move: Thumbstick for walking or ABXY buttons to teleport.\nLook: Turn body\nInfo: Trigger orbs"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-VR" visible="false" position="-6.65 -0.57 0.01" value="Move: Walk with left thumbstick or forward on right thumbstick to teleport.\nTurn: Left or right on right thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
       <a-text id="SMH-PC" visible="false" position="-6.65 -0.75 0.01" value="Move: WASD keys\n\nLook: Drag mouse\n\nInfo: Click orbs\n\n"  color="black" width="5" line-height="40" text="wrapCount: 30"></a-text>
       <a-text id="SMH-SP" visible="false" position="-6.65 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
