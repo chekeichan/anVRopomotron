@@ -12,6 +12,8 @@
 -   Room model height was set to 5cm. It is now 0.5cm for more accurate scaling.
 -   An amazing new addition to the Burial Chamber has appeared on Sketchfab. Location: Paris, France. Welcome to a deadend in the famous Catacombs! See bones upon bones stacked in walls as arranged by workers in the 1800s. 
 -   Using gltfpack to compress models and textures. Burial Chamber got the full compression and Basis Universal treatment. Everything else just got compressed to keep the smooth textures. Models folder went from 79MB to 57MB.
+-   I had expert help to get compressed models working. But what about the large images, like the maps in the Burial Chamber? While I'm not skilled enough to change how images work, it was within my abilities to turn the images into textured glb files and then compress that. 50% savings!
+-   Grab Lab table labels are now aligned with table surface and will move up in PC mode too.
 -   Woops, mandrill info in Grab Lab was a copy/paste of the baboons'. Mandrill has its own fascinating information now. 
 
 ## 1.1.3 (12/1/2020)
