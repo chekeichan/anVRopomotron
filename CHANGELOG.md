@@ -7,8 +7,10 @@
 
 ## 1.1.4 (next)
 -   Upgraded to A-Frame 1.1.0
+-   Upgraded A-Frame Extras. The motion controls are now confidently on the left hand. Before, they were on whichever hand loaded first. My instructions on VR movement had to be vague to account for that! Now left thumbstick is the one for walking.
+-   Switched from aframe-teleport-controls to aframe-blink-controls by Jure Triglav. Now the right stick is used for teleportation, with two added bonuses. One is that pushing forward then swiveling the stick to the side rotates the orientation upon landing. The other bonus is that left and right movements on the stick now rotate the view by 45 degrees. Chair VR is now a whole lot better with this alternate way to turn.
 -   Room model height was set to 5cm. It is now 0.5cm for more accurate scaling.
--   An amazing new addition to the Burial Chamber has appeared on Sketchfab. Location: Paris, France. Conversion worked!
+-   An amazing new addition to the Burial Chamber has appeared on Sketchfab. Location: Paris, France. Welcome to a deadend in the famous Catacombs! See bones upon bones stacked in walls as arranged by workers in the 1800s. 
 -   Using gltfpack to compress models and textures. Burial Chamber got the full compression and Basis Universal treatment. Everything else just got compressed to keep the smooth textures. Models folder went from 79MB to 57MB.
 -   Woops, mandrill info in Grab Lab was a copy/paste of the baboons'. Mandrill has its own fascinating information now. 
 
