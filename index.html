@@ -252,7 +252,8 @@
 		<a-entity id="burialscreenfront" class="burial-zone" visible="true" position="-15.5 2 -16.5">
         <!-- <a-text id="Generic-Selector" visible="true" position="3 1 -1" rotation="0 0 0" value="Choose Burial"  color="black" width="5" line-height="50" text="wrapCount: 30; align:center;"></a-text> -->
 		<a-entity id="burial-map" class="" mixin="burial-label" rotation="0 0 0">
-        <a-entity position="3 -0.3 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/worldmap.png" position="0 0 0.01" width="2" height="1"></a-image>
+        <a-entity position="3 -0.3 0"  rotation="0 0 0">
+            <a-entity full-gltf-model="models/worldmap-p.glb"   static-body position="0 0 0.01" rotation="0 0 0" mixin="obj"></a-entity>
 		<a-text id="burialname" mixin="table-caption" text="align: center; width: 2; letterSpacing: 3; wrapCount: 35;" value="Choose Burial" position="0 0.8 0.02" ></a-text>
 		<a-text mixin="table-caption" text="align: center; width: 1.5; value: Image by Strebe, used under CC BY-SA 3.0;" position="0 -0.46 0.02" ></a-text>
 		<a-entity mixin="mapmarker" class="jamestown" position="-0.388 0.273 0.09" visible="false"></a-entity>
@@ -263,7 +264,7 @@
 
         </a-entity>
 
-        <a-entity full-gltf-model="models/paris.glb"   static-body position="0 0.05 -0.5" rotation="0 180 0" mixin="obj"></a-entity>
+        <a-entity full-gltf-model="models/worldmap-p.glb"   static-body position="0 1 0" rotation="0 0 0" mixin="obj"></a-entity>
         <a-entity full-gltf-model="models/turkana.glb"   static-body position="0 0 2" rotation="0 180 0" mixin="obj"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
