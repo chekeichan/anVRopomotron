@@ -94,7 +94,7 @@
                  <a-mixin id="table-caption" text="align: right; color: black; lineHeight: 55; wrap-count: 50"></a-mixin>
                  <a-mixin id="scale-box" visible="false"></a-mixin>
                  <a-mixin id="scale-label-border" geometry="primitive: plane; height: 1.05; width: 1.05; buffer: false" material="color: #375719; shader: flat;"></a-mixin>
-                 <a-mixin id="scale-label" geometry="primitive: plane; height: 1; width: 1; buffer: false" material="color: #f5f5f5; shader: flat;"></a-mixin>
+                 <a-mixin id="scale-label" geometry="primitive: plane; height: 1; width: 1; buffer: false" material="color: #dadada; shader: flat;"></a-mixin>
                  <a-mixin id="scale-text" text="color: black; width: 2; wrapCount: 45"></a-mixin>
                  <a-mixin id="credit-text" text="anchor: align; color: black; width: 2; wrapCount: 70; lineHeight: 55"</a-mixin>
 				 <a-mixin id="mapmarker" scale ="0.17 0.17 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.2; radiusTop: 0.01; segmentsRadial: 6" material="color: #ffaa00"</a-mixin>
@@ -204,11 +204,11 @@
 
         <a-entity class="burial paris parishide" visible="false" position="0 -3 1.6"> <!-- Paris Burial Zone -->
             <a-entity mixin="button" class="clickable"  position="-1.6 0 -2.2" id="parisbuttinfo" full-gltf-model="#buttonmodel"></a-entity>
-            <a-text id="paris-eegg" class="burial burial-text-1 paris" mixin="burial-label" visible="false" position="0 3 2" rotation="0 180 0" text="color: #f5f5f5; align: center; value: You're too tall! You'll have to duck."></a-text>
+            <a-text id="paris-eegg" class="burial burial-text-1 paris" mixin="burial-label" visible="false" position="0 3 2" rotation="0 180 0" text="color: #dadada; align: center; value: You're too tall! You'll have to duck."></a-text>
             <a-entity class="buriallift paris" id="parisburial" position="0 0 0" visible="false"><a-entity full-gltf-model="models/paris.glb"></a-entity>
             <a-entity mixin="scale-box" id="paris-tit" position="0 0 0">
-                <a-entity position="1.08 1 -0.87" rotation="0 -90 0"><a-plane mixin="scale-label" width="1.05" height="0.7" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.65" text="value: Decoration\n\nMost bones stacked seen here were femora with the distal knee joint end facing out. Tibiae were also visible. Skulls were embedded as embellishments. Other bones were placed behind this exterior wall.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><!-- Annotation --></a-entity>
-                <a-entity rotation="0 180 0" position="-0.05 0.6 0.83"><a-plane mixin="scale-label" width="1.5" height="0.8" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1.45" height="0.75" text="value: Translation\n\nThe plaque states &quot;Bones from the former Magdeleine cemetery (La Ville Leveque Street numbers 1 and 2). Deposited in 1844 in the western ossuary and transferred to the catacombs in September 1859&quot;; color: black; lineHeight: 75; wrap-count: 30"></a-plane><!-- Annotation --></a-entity>
+                <a-entity position="1.06 1 -0.87" rotation="0 -90 0"><a-plane mixin="scale-label" width="1.05" height="0.7" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.65" text="value: Decoration\n\nMost bones stacked seen here were femora with the distal knee joint end facing out. Tibiae were also visible. Skulls were embedded as embellishments. Other bones were placed behind this exterior wall.; color: black; lineHeight: 75; wrap-count: 40"></a-plane><!-- Annotation --></a-entity>
+                <a-entity rotation="0 180 0" position="-0.05 0.6 0.83"><a-plane mixin="scale-label" width="1.5" height="0.8" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1.45" height="0.75" text="value: Translation\n\nThe plaque states &quot;Bones from the former Magdeleine cemetery (La Ville Leveque Street numbers 1 and 2). Deposited in 1844 in the western ossuary and transferred to the catacombs in September 1859&quot;; color: black; lineHeight: 65; wrap-count: 40"></a-plane><!-- Annotation --></a-entity>
 
             </a-entity>
             </a-entity></a-entity>
@@ -278,7 +278,7 @@
 <!-- Pre-Homo Fossil Skull table -->
    <a-entity  id="phtable" position="10.5 0 -4.5"> <!-- This sets the relative state of the table --> 
         <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table1" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-        <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Early Primate Fossils; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+        <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Early Primate Fossils; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
         <a-entity id="archicebus-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/archicebus.glb"   dynamic-body="shape: box; mass: 2"  position="0 1.03 -0.5" mixin="obj"></a-entity>
         <a-entity id="proconsul-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/proconsulskull.glb"   dynamic-body="shape: box; mass: 2" position="0 1.01 -0.4" mixin="obj"></a-entity>
         <a-entity id="sahelanthropus-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/sahel.glb"   dynamic-body="shape: box; mass: 3" position="0 1.01 -0.2" mixin="obj"></a-entity>
@@ -289,7 +289,7 @@
 <!-- Hominin Fossil Skull table -->
    <a-entity id="stable" position="10.5 0 -2"> <!-- This sets the relative state of the table --> 
          <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table2" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Prehistoric Homo Skulls; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Prehistoric Homo Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
          <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/habilis.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.5" mixin="obj"></a-entity>
          <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/turkanaskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.3" mixin="obj"></a-entity>
          <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/atapuerca.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0" mixin="obj"></a-entity>
@@ -300,7 +300,7 @@
     <!-- Modern Non-Hominoid Skull table -->
      <a-entity id="ptable" position="10.5 0 1"> <!-- This sets the relative state of the table --> 
          <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table3" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Prosimian and Monkey Skulls; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Prosimian and Monkey Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
          <a-entity id="potto-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.6" mixin="obj" full-gltf-model="models/potto.glb"></a-entity> 
          <a-entity id="indri-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.4" mixin="obj" full-gltf-model="models/indri.glb"></a-entity> 
          <a-entity id="howler-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.2" mixin="obj" full-gltf-model="models/howlerskull.glb"></a-entity> 
@@ -314,7 +314,7 @@
         <!-- Hominoid Skull table -->
      <a-entity id="ptable2" position="10.5 0 3.5"> <!-- This sets the relative state of the table --> 
          <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table5" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-         <a-entity rotation="0 270 0" position="-0.201 1.085 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Hominoid Skulls; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+         <a-entity rotation="0 270 0" position="-0.201 1.085 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Hominoid Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
         <a-entity id="gibbon-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 5" position="0 1.01 -0.3" mixin="obj" full-gltf-model="models/gibbonskull.glb"></a-entity> 
         <a-entity id="gorilla-m-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 5" position="0 1.01 -0.1" mixin="obj" full-gltf-model="models/gorillaskull-m.glb"></a-entity> 
         <a-entity id="gorilla-f-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 5" position="0 1.01 0.2" mixin="obj" full-gltf-model="models/gorillaskull-f.glb"></a-entity> 
@@ -381,7 +381,7 @@
      <!-- Artifact table -->
      <a-entity class="center-zone" id="atable" position="4.94 0 -2.1"> <!-- This sets the relative state of the table --> 
         <a-entity class="table" static-body="shape: box;" scale="1 1 1" id="table4" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-        <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Artifacts; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+        <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Artifacts; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
   		<a-entity id="lomek-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.6" mixin="obj" full-gltf-model="#lomekmodel"></a-entity>
 		<a-entity id="acheul-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.45" mixin="obj" full-gltf-model="#acheulmodel"></a-entity>
         <a-entity id="mousterian-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.3" mixin="obj" full-gltf-model="#mousterianmodel"></a-entity>
@@ -394,7 +394,7 @@
      <!-- Artifact table 2-->
      <a-entity class="center-zone" id="atable2" position="4.94 0 1"> <!-- This sets the relative state of the table --> 
         <a-entity class="table" static-body="shape: box;" scale="1 1 1" id="table6" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-        <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Primate Figures; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+        <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Primate Figures; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
         <a-entity id="venus-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.5" mixin="obj" full-gltf-model="#venusmodel"></a-entity>
         <a-entity id="nasca-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.3" mixin="obj" full-gltf-model="#nascamodel"></a-entity>
         <a-entity id="canopic-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 -0.2" mixin="obj" full-gltf-model="#canopicmodel"></a-entity>
