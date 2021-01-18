@@ -2,17 +2,17 @@
 
 
 ## 1.1.X (next next)
--   What if there were strategically placed mini maps to telport the user to different exhibits? I now have a button that takes me from the start to the Burial Chamber. Great for developing!
+-   What if there were strategically placed mini maps to telport the user to different exhibits? I now have a button that takes me from the start to the Burial Chamber. Great for developing! It's invisible in the official release. Click the tip of the p in AnVRopomotron.
 -   Chimpanzees for next scale model?
 
 ## 1.1.4 (next)
 -   Upgraded to A-Frame 1.1.0
--   Upgraded A-Frame Extras. The motion controls are now confidently on the left hand. Before, they were on whichever hand loaded first. My instructions on VR movement had to be vague to account for that! Now left thumbstick is the one for walking.
+-   Upgraded A-Frame Extras. The motion controls are now confidently on the left hand. Before, they were on whichever hand loaded first. My instructions on VR movement had to be vague to account for that! Now left thumbstick is the one for walking. Instructions on the wall updated.
 -   Switched from aframe-teleport-controls to aframe-blink-controls by Jure Triglav. Now the right stick is used for teleportation, with two added bonuses. One is that pushing forward then swiveling the stick to the side rotates the orientation upon landing. The other bonus is that left and right movements on the stick now rotate the view by 45 degrees. Chair VR is now a whole lot better with this alternate way to turn.
 -   Room model height was set to 5cm. It is now 0.5cm for more accurate scaling.
--   An amazing new addition to the Burial Chamber has appeared on Sketchfab. Location: Paris, France. Welcome to a deadend in the famous Catacombs! See bones upon bones stacked in walls as arranged by workers in the 1800s. 
--   Using gltfpack to compress models and textures. Burial Chamber got the full compression and Basis Universal treatment. Everything else just got compressed to keep the smooth textures. Models folder went from 79MB to 57MB.
--   I had expert help to get compressed models working. But what about the large images, like the maps in the Burial Chamber? While I'm not skilled enough to change how images work, it was within my abilities to turn the images into textured glb files and then compress that. 50% savings!
+-   An amazing new addition to the Burial Chamber has appeared on Sketchfab. Location: Paris, France. Welcome to a 'deadend' in the famous Catacombs! See bones upon bones stacked in walls as arranged by workers in the 1800s. The side illustrations are also neat. One is another wall of skulls. The other is a cartoon from the time.
+-   Using gltfpack to compress models and textures. Burial Chamber except Paris got the full compression and Basis Universal treatment. Everything else just got compressed to keep the smooth textures. Models folder went from 79MB to 57MB. Everything from version to version went from 87 to 70MB.
+-   I had expert help to get compressed models working. But what about the large images, like the maps in the Burial Chamber? While I'm not skilled enough to change how images work, it was within my abilities to turn the images into textured glb files and then compress that with gltfpack. 50% savings!
 -   Grab Lab table labels are now aligned with table surface and will move up in PC mode too.
 -   Woops, mandrill info in Grab Lab was a copy/paste of the baboons'. Mandrill has its own fascinating information now. 
 

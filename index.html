@@ -29,7 +29,7 @@
 <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 <script src="js/msc_basis_transcoder.js"></script>
 <script src="js/full-gltf-model.js"></script>
-<script src="js/anvro.js"></script>
+<script src="js/anvro-b.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
 </head>
 
@@ -134,7 +134,7 @@
 
      <!-- Scale Model Hall Title -->
       <a-text position="-6.74 0.7 0.01" value="Scale Model Hall" color="black" width="13.5"></a-text>
-      <a-text id="SMH-VR" visible="false" position="-6.65 -0.57 0.01" value="Move: Walk with left thumbstick or forward on right thumbstick to teleport.\nTurn: Left or right on right thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-VR" visible="false" position="-6.65 -0.7 0.01" value="Move: Walk with left thumbstick or forward on right thumbstick to teleport.\n\nTurn: Left or right on right thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
       <a-text id="SMH-PC" visible="false" position="-6.65 -0.75 0.01" value="Move: WASD keys\n\nLook: Drag mouse\n\nInfo: Click orbs\n\n"  color="black" width="5" line-height="40" text="wrapCount: 30"></a-text>
       <a-text id="SMH-SP" visible="false" position="-6.65 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
@@ -227,7 +227,7 @@
 
             <a-text id="Paris-Title" class="burial paris" visible="false" position="-0.01 1.4 -1.04" rotation="0 -90 0" value="18th Century Parisians"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>        
 	        <a-text id="paris-tit" class="burial burial-text-1 paris" mixin="burial-label" visible="false" position="0 -0.2 -1" rotation="0 -90 0"  text="value: Date Interred: 1859 \nAge: Adults\nModel Source: Benoit Rogez\n\nContext: The section presented here contained bones from the Magdeleine Cemetery, which was in operation from 1720 until 1794 when it was filled. Those remains were moved in night time ceremonial processions to the ossuary in 1859. Those interred included dead from several French Revolution events. As was the custom of the time, the skeletons were not kept intact, but bones were organized by type and placed into eye-pleasing arrangements.">
-            <a-entity position="4 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/paris-wall-p.jpg" position="-0.2 -0.14 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.75; value: Image by Dale Cruse, used under CC BY 2.0;" position="1.3 0.95 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.75; value: Another wall of human skeletal remains in the Catacombs with skulls, femora (thigh bones), and tibiae (shin bones).;" position="1.3 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+            <a-entity position="4 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/pariswall-p.jpg" position="-0.2 -0.14 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.75; value: Image by Dale Cruse, used under CC BY 2.0;" position="1.3 0.95 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.75; value: Another wall of human skeletal remains in the Catacombs with skulls, femora (thigh bones), and tibiae (shin bones).;" position="1.3 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         </a-entity>
 
       <a-entity id="burialscreenleft" class="burial-zone" visible="true" position="-16.45 1.9 -10">
@@ -238,7 +238,7 @@
         <a-entity position="4.2 -0.06 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravacastle-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Centre Europeu de Barcelona, used under CC BY-NC-ND 2.0;" position="1.5 1.2 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: View of the church within the fortress.;" position="1.5 -1.1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
        
         <a-text id="paris2-tit" class="burial burial-text-1 paris" mixin="burial-label" visible="false" position="0 0 -5" rotation="0 90 0" text="value: The Catacombs of Paris are a network of tunnels under the city used to house human remains. They are five stories (20 meters) underground and cover 11,000 square meters.\n\nPopulation growth in Paris at the end of the 18th century led to an overflow of cemeteries. As a solution to the hygiene emergency, abandoned mine tunnels under the city were retrofitted to be ossuaries&colon; storage for skeletal remains. Several cemeteries' contents were transfered to the tunnels from 1787 to 1814.\n\nStarting in 1810, the Paris Mine Inspection Service rearranged the bones into patterns and added structures, exhibits, and signage for visitors. While most of the tunnels under Paris are closed to visitors today, the ossuary is open for tours.">
-        <a-entity position="-2 -0.06 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravacastle-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Centre Europeu de Barcelona, used under CC BY-NC-ND 2.0;" position="1.5 1.2 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: View of the church within the fortress.;" position="1.5 -1.1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+        <a-entity position="-2 -0.06 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/parisprint-p.jpg" position="0 0 0.01" width="3" height="2.1"></a-image><a-text mixin="table-caption" text="width: 3; value: Print by George Cruikshank, scan by The British Museum, used under CC BY-NC-SA 4.0;" position="1.5 1.25 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: 1822 satirical print made from an aquatint eteching named &apos;&quot;Life&quot; among the Dead!! or Dick Wildfire, Squire Jenkins & the Halibut family in the Catacombs.&apos;   ;" position="1.5 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         </a-entity> 
         
        <a-entity id="burialscreenback" class="burial-zone" visible="true" position="-10.3 2 -8.7">
@@ -264,10 +264,10 @@
 
         </a-entity>
 
-        <a-entity full-gltf-model="models/turkana.glb"   static-body position="0 0 2" rotation="0 180 0" mixin="obj"></a-entity> <!-- Demo Place -->
+        <a-entity full-gltf-model=""   static-body position="0 0 2" rotation="0 180 0" mixin="obj"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
-<a-entity static-body warp mixin="button" class="clickable center-zone" position="0.1 0 2.7" id="burialwarpbutt" full-gltf-model="#buttonmodel" shadow></a-entity> 
+<a-entity static-body warp mixin="button" class="clickable" position="0.8 0.16 6" id="burialwarpbutt" visible="false"  full-gltf-model="#buttonmodel" shadow></a-entity> 
 
 <a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" full-gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
    <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" full-gltf-model="#buttonmodel" shadow></a-entity>
@@ -780,6 +780,9 @@ https://www.flickr.com/photos/7955505@N05/2197617740
 
 &quot;Paris catacombs&quot;: Photo by Dale Cruse. (CC BY 2.0).
 https://flic.kr/p/UZdDhZ
+
+&apos;&quot;Life&quot; among the Dead!! or Dick Wildfire, Squire Jenkins & the Halibut family in the Catacombs.&apos;: Print by George Cruikshank, scan by The British Museum. (CC BY-NC-SA 4.0).
+https://www.britishmuseum.org/collection/image/166522001
 ; "></a-entity>
 
 <a-entity mixin="credit-text" class="credits" id="credits-8" visible="false" position="-0.7 2 -7.499" text="value: VR Sources
@@ -798,10 +801,10 @@ Will Murphy
 A-Frame Physics Extras
 Super-Hands
 
-Fernando Serrano
-A-Frame Teleport Component
+Jure Triglav and Fernando Serrano
+A-Frame Blink Controls Component
 
-Ben Erwin
+Ben Erwin and Piotr Adam Milewski
 Special Fixes;"></a-entity>
 </a-scene>
 </body>
