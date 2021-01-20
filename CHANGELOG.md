@@ -1,11 +1,11 @@
 # AnVRopomotron Changelog
 
 
-## 1.1.X (next next)
+## 1.1.X (next)
 -   What if there were strategically placed mini maps to telport the user to different exhibits? I now have a button that takes me from the start to the Burial Chamber. Great for developing! It's invisible in the official release. Click the tip of the p in AnVRopomotron.
--   Chimpanzees for next scale model?
+-   Chimpanzees for next scale model.
 
-## 1.1.4 (next)
+## 1.1.4 (1/19/2021)
 -   Upgraded to A-Frame 1.1.0
 -   Upgraded A-Frame Extras. The motion controls are now confidently on the left hand. Before, they were on whichever hand loaded first. My instructions on VR movement had to be vague to account for that! Now left thumbstick is the one for walking. Instructions on the wall updated.
 -   Switched from aframe-teleport-controls to aframe-blink-controls by Jure Triglav. Now the right stick is used for teleportation, with two added bonuses. One is that pushing forward then swiveling the stick to the side rotates the orientation upon landing. The other bonus is that left and right movements on the stick now rotate the view by 45 degrees. Chair VR is now a whole lot better with this alternate way to turn.
