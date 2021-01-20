@@ -20,23 +20,27 @@
   <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
   <meta http-equiv="pragma" content="no-cache" />
 <meta name="description" content="VR Anthropology Viewer">
-<script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
-<script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+<script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+<script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
 <script src="js/aframe-physics-system.min.js"></script>
 <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
-<script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script>
+<script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
 <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
-<script src="js/anvro.js"></script>
-<script src="js/aframe-teleport-controls.min.js"></script>
+<script src="js/msc_basis_transcoder.js"></script>
+<script src="js/full-gltf-model.js"></script>
+<script src="js/anvro-b.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
 </head>
 
 <body>
-<a-scene gltf-model="dracoDecoderPath: draco/;" anti-drop grab-panels burial-grab item-grab device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA">
+<a-scene anti-drop grab-panels burial-grab item-grab device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA">
        
 <a-assets timeout="80000"> <!-- Loads models -->
                 <a-asset-item id="tablemodel" id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
-                <a-asset-item id="room" id="room" response-type="arraybuffer" src="models/floorplan.glb"></a-asset-item>
+                <a-asset-item id="room" response-type="arraybuffer" src="models/floorplan.glb"></a-asset-item>
+                <a-asset-item id="navmesh" response-type="arraybuffer" src="models/nav.glb"></a-asset-item>
+                <a-asset-item id="floor" response-type="arraybuffer" src="models/solidfloor.glb"></a-asset-item>
                 <a-asset-item id="buttonmodel" response-type="arraybuffer" src="models/button.glb"></a-asset-item>
                 <a-asset-item id="buttonupmodel" response-type="arraybuffer" src="models/button-up.glb"></a-asset-item>
                 <a-asset-item id="centerpiecemodel" response-type="arraybuffer" src="models/centerpiece.glb"></a-asset-item>
@@ -72,7 +76,7 @@
                 <a-asset-item id="gorillaskullfmodel" response-type="arraybuffer" src="models/gorillaskull-f.glb"></a-asset-item>
                 <a-asset-item id="mhsmodel" response-type="arraybuffer" src="models/mhs.glb"></a-asset-item>
                 <a-asset-item id="archicebusmodel" response-type="arraybuffer" src="models/archicebus.glb"></a-asset-item>
-                <a-asset-item id="turkanamodel" response-type="arraybuffer" src="models/turkana.glb"></a-asset-item>
+                <a-asset-item id="turkanaskullmodel" response-type="arraybuffer" src="models/turkanaskull.glb"></a-asset-item>
                 <a-asset-item id="rhesusskullmodel" response-type="arraybuffer" src="models/rhesusskull.glb"></a-asset-item>
                 <a-asset-item id="squirrelmonkeyskullmodel" response-type="arraybuffer" src="models/squirrelmonkeyskull.glb"></a-asset-item>
 				<a-asset-item id="lomekmodel" response-type="arraybuffer" src="models/lomekwian.glb"></a-asset-item>
@@ -86,21 +90,21 @@
                               colliderEndEvent: collisions;
                               colliderEndEventProperty: clearedEls;
                               grabStartButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; 
-                              grabEndButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" 
-                teleport-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; startEvents: teleportstart; endEvents: teleportend; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 48; curveShootingSpeed: 12" buttons></a-mixin>
+                              grabEndButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" </a-mixin>                 
                  <a-mixin id="table-label" position="0 0 -1" rotation="0 -90 0" visible="false"  text="width: 2; color: black; lineHeight: 60; wrap-count: 35"></a-mixin>
                  <a-mixin id="burial-label" position="0 0 -1" text="width: 2; color: black; lineHeight: 60; wrap-count: 35"></a-mixin>
                  <a-mixin id="table-caption" text="align: right; color: black; lineHeight: 55; wrap-count: 50"></a-mixin>
                  <a-mixin id="scale-box" visible="false"></a-mixin>
                  <a-mixin id="scale-label-border" geometry="primitive: plane; height: 1.05; width: 1.05; buffer: false" material="color: #375719; shader: flat;"></a-mixin>
-                 <a-mixin id="scale-label" geometry="primitive: plane; height: 1; width: 1; buffer: false" material="color: #f5f5f5; shader: flat;"></a-mixin>
+                 <a-mixin id="scale-label" geometry="primitive: plane; height: 1; width: 1; buffer: false" material="color: #dadada; shader: flat;"></a-mixin>
                  <a-mixin id="scale-text" text="color: black; width: 2; wrapCount: 45"></a-mixin>
                  <a-mixin id="credit-text" text="anchor: align; color: black; width: 2; wrapCount: 70; lineHeight: 55"</a-mixin>
 				 <a-mixin id="mapmarker" scale ="0.17 0.17 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.2; radiusTop: 0.01; segmentsRadial: 6" material="color: #ffaa00"</a-mixin>
  </a-assets>
  
-<a-entity position="0 0.05 0" static-body gltf-model="models/nav.glb" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
-<a-entity position="0 0 0" gltf-model="models/floorplan.glb"></a-entity> <!-- Building -->
+<a-entity position="0 0 0" static-body full-gltf-model="#navmesh" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
+<a-entity position="0 0 0" static-body full-gltf-model="#floor" visible="false"></a-entity> <!-- Solid Floor to Block Objects -->
+<a-entity position="0 0 0" full-gltf-model="models/floorplan.glb"></a-entity> <!-- Building -->
 <a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0.01 1"> <!-- Player Character -->
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
         <a-entity id="camera" camera look-controls cursor="rayOrigin:mouse" raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection;
@@ -108,7 +112,7 @@
                              colliderEndEvent:raycaster-intersection-cleared;
                              colliderEndEventProperty: clearedEls;" position="0 1.6 0"></a-entity>
         <a-entity mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff"></a-entity>
-        <a-entity mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff"></a-entity>
+        <a-entity mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8"></a-entity>
  </a-entity>
  
 <a-light type="ambient" color="white" intensity="0.05"></a-light> 
@@ -117,10 +121,10 @@
 <!-- Shadow Light for Burial Hall -->
 
 <!-- Occlusion Zones -->
-<a-entity class="zone" id="just-grab" gltf-model="models/grabzone.glb" visible="false"></a-entity> 
-<a-entity class="zone" id="just-center" gltf-model="models/centerzone.glb" visible="false"></a-entity> 
-<a-entity class="zone" id="just-scale" gltf-model="models/scalezone.glb" visible="false"></a-entity> 
-<a-entity class="zone" id="just-burial" gltf-model="models/burialzone.glb" visible="false"></a-entity> 
+<a-entity class="zone" id="just-grab" full-gltf-model="models/grabzone.glb" visible="false"></a-entity> 
+<a-entity class="zone" id="just-center" full-gltf-model="models/centerzone.glb" visible="false"></a-entity> 
+<a-entity class="zone" id="just-scale" full-gltf-model="models/scalezone.glb" visible="false"></a-entity> 
+<a-entity class="zone" id="just-burial" full-gltf-model="models/burialzone.glb" visible="false"></a-entity> 
 
 <!-- Wall Text -->
     <!-- Front wall -->
@@ -133,33 +137,34 @@
 
      <!-- Scale Model Hall Title -->
       <a-text position="-6.74 0.7 0.01" value="Scale Model Hall" color="black" width="13.5"></a-text>
-      <a-text id="SMH-VR" visible="false" position="-6.65 -0.57 0.01" value="Move: Thumbstick for walking or ABXY buttons to teleport.\nLook: Turn body\nInfo: Trigger orbs"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-VR" visible="false" position="-6.65 -0.7 0.01" value="Move: Walk with left thumbstick or forward on right thumbstick to teleport.\n\nTurn: Left or right on right thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
       <a-text id="SMH-PC" visible="false" position="-6.65 -0.75 0.01" value="Move: WASD keys\n\nLook: Drag mouse\n\nInfo: Click orbs\n\n"  color="black" width="5" line-height="40" text="wrapCount: 30"></a-text>
       <a-text id="SMH-SP" visible="false" position="-6.65 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
       
       <!-- Behind wall -->
-       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="0 0 0.01" value="AnVRopomotron" align="center" color="black" width="35"></a-text><a-text position="5.5 -0.89 0.01" value="1.1.3" align="center" color="black" width="5"></a-text></a-entity> 
+       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="0 0 0.01" value="AnVRopomotron" align="center" color="black" width="35"></a-text><a-text position="5.5 -0.89 0.01" value="1.1.4" align="center" color="black" width="5"></a-text></a-entity> 
        <!-- Left display wall -->
         <a-entity visible="true" static-body position="-5.08 2 -0.5" rotation="0 90 0" depth="0.1" width="8" height="4.5" color="#dfe0e2" material="shader: flat">
         <a-image position="0 -0.48 0.10" src="#height" material.transparent="true" shader="flat" geometry="height: 3.048; width: 7.3152"></a-image><!-- Correct by -2.0 -->
-
+        
+        <!-- Side walls -->
       <a-text position="0 1.6 0.09" value="Height Chart" color="black" width="4" text="wrapCount: 45; align: center"></a-text>
-      
+      <a-text position="-5.15 0.1 -2.3" value="Scale Model Hall" color="black" width="3" text="wrapCount: 20; align: center"></a-text>
       </a-entity> 
       
 <!-- Burial Chamber -->
      <a-text position="-14 1.6 -9.5" value="Burial Chamber" color="black" width="4" line-height="50" text="wrapCount: 15"></a-text>
      <a-text position="-13.9 1.3 -9.5" value="Warning: Simulated human burials inside" color="black" width="3" line-height="50" text="wrapCount: 35"></a-text>
      <a-entity class="burial-zone">
-        <a-entity togg-burial mixin="button" class="clickable"  position="-12.5 1 -17.9" rotation="90 0 0" id="burialbutt" gltf-model="#buttonmodel"></a-entity>
+        <a-entity togg-burial mixin="button" class="clickable"  position="-12.5 1 -17.9" rotation="90 0 0" id="burialbutt" full-gltf-model="#buttonmodel"></a-entity>
 		<a-entity position="-12.5 0 -13.5" class="burial-zone" visible="false"> <!-- Grave Model Zone for relative positioning-->
 		
 		<a-entity class="burial jamestown jameshide" visible="false" position="0 -3 0"> <!-- Jamestown Burial Zone -->
-        <a-entity mixin="button" class="clickable burialbutton"  position="0 0 -1.7" id="jamesbuttpos" gltf-model="#buttonupmodel"></a-entity>
-        <a-entity mixin="button" class="clickable"  position="0 0 1.7" id="jamesbuttinfo" gltf-model="#buttonmodel"></a-entity>
-        <a-entity position="0 -2.998 0" static-body class="jamestown jameshide" gltf-model="models/jamestown-floor.glb" ></a-entity>
-        <a-entity class="buriallift jamestown" id="jamesburialset" position="0 0.8 0" visible="false"><a-entity gltf-model="models/jamestown.glb" ></a-entity>
+        <a-entity mixin="button" class="clickable burialbutton"  position="0 0 -1.7" id="jamesbuttpos" full-gltf-model="#buttonupmodel"></a-entity>
+        <a-entity mixin="button" class="clickable"  position="0 0 1.7" id="jamesbuttinfo" full-gltf-model="#buttonmodel"></a-entity>
+        <a-entity position="0 -2.998 0" static-body class="jamestown jameshide" full-gltf-model="models/jamestown-floor.glb" ></a-entity>
+        <a-entity class="buriallift jamestown" id="jamesburialset" position="0 0.8 0" visible="false"><a-entity full-gltf-model="models/jamestown.glb" ></a-entity>
         
         <a-entity mixin="scale-box" id="james-tit" position="0 0 0">
 			<a-entity position="-0.112 0.83 -1.31" rotation="0 90 0"><a-plane mixin="scale-label" width="1.05" height="0.8" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.75" text="value: Silver Reliquary Location\n\nThe small silver box with the letter M engraved in one side was found here. Archaeologists left the pedastal of soil to show the depth of the artifact in the grave.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.59 -0.08 0" material="shader: flat" geometry="vertexC: -0.16 -0.7 0; vertexA: 0.5 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
@@ -177,39 +182,55 @@
         </a-entity></a-entity>
 		
 		<a-entity class="burial calatrava calatravahide" visible="false" position="1.4 -3 0"> <!-- Calatrava Burial Zone -->
-        <a-entity mixin="button" class="clickable burialbutton"  position="-1.25 0 -1.7" id="calatravabuttpos" gltf-model="#buttonupmodel"></a-entity>
-        <a-entity mixin="button" class="clickable"  position="-1.25 0 1.7" id="calatravabuttinfo" gltf-model="#buttonmodel"></a-entity>
+        <a-entity mixin="button" class="clickable burialbutton"  position="-1.25 0 -1.7" id="calatravabuttpos" full-gltf-model="#buttonupmodel"></a-entity>
+        <a-entity mixin="button" class="clickable"  position="-1.25 0 1.7" id="calatravabuttinfo" full-gltf-model="#buttonmodel"></a-entity>
         
 		<a-entity position="-2.5 0 0">
 			<a-cylinder color="gray" rotation="0 30 0" segments-radial="8" segments-height="1" height="0.15" geometry="radius: 0.1" ></a-cylinder>
 			<a-entity id="holoburialproj">
 			<a-entity mixin="holoprojector" animation="enabled: false;"></a-entity>
-			<a-entity id="holocalatrava" class="buriallift" rotation="0 150 0" position="0 0.7 0" gltf-model="models/calatrava-castle.glb">
+			<a-entity id="holocalatrava" class="buriallift" rotation="0 150 0" position="0 0.7 0" full-gltf-model="models/calatrava-castle.glb">
 		</a-entity></a-entity>
 		</a-entity>
-        <a-entity class="buriallift calatrava" id="calatravaburialset" position="0 0.8 0" visible="false"><a-entity gltf-model="models/calatrava-knight.glb"></a-entity>
+        <a-entity class="buriallift calatrava" id="calatravaburialset" position="0 0.8 0" visible="false"><a-entity full-gltf-model="models/calatrava-knight.glb"></a-entity>
         <a-entity mixin="scale-box" id="calatrava-tit" position="0 0 0">
-			<a-entity position="-0.112 0.83 -0.87" rotation="0 -90 0"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.55" text="value: Shoe Remains\n\nThe discolored soil is from the decomposed leather shoes that the knight was wearing. ; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.38 -0.08 0" material="shader: flat" geometry="vertexC: 0.47 -0.7 0; vertexA: 0.5 0 0; vertexB: 0.3 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
-			<a-entity rotation="0 -90 0" position="0 1.07 0.83"><a-plane mixin="scale-label" width="1.05" height="0.7" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.65" text="value: Preservation\n\nThis is a modern display case with a transparent cover that protects the grave in situ (the original place) at the chapter house.; color: black; lineHeight: 75; wrap-count: 30"></a-plane><a-triangle color="#375719" position="-0.28 -0.2 0" material="shader: flat" geometry="vertexC: 0.22 -0.6 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+			<a-entity position="-0.112 0.83 -0.87" rotation="0 180 0"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.55" text="value: Shoe Remains\n\nThe discolored soil is from the decomposed leather shoes that the knight was wearing. ; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.38 -0.08 0" material="shader: flat" geometry="vertexC: 0.47 -0.7 0; vertexA: 0.5 0 0; vertexB: 0.3 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+			<a-entity rotation="0 180 0" position="0 1.07 0.83"><a-plane mixin="scale-label" width="1.05" height="0.7" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.65" text="value: Preservation\n\nThis is a modern display case with a transparent cover that protects the grave in situ (the original place) at the chapter house.; color: black; lineHeight: 75; wrap-count: 30"></a-plane><a-triangle color="#375719" position="-0.28 -0.2 0" material="shader: flat" geometry="vertexC: 0.22 -0.6 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			
-			<a-entity position="-2.73 0.65 1.3" rotation="0 90 0"><a-plane mixin="scale-label" width="0.75" height="0.45" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.4" text="value: The Church\n\nConstructed from volcanic rock and built in the Cistercian style.; color: black; lineHeight: 75; wrap-count: 25;"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 1.2 -0.14 0; vertexA: 0.55 0.2 0; vertexB: 0.55 0.1 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+			<a-entity position="-2.73 0.65 1.3" rotation="0 180 0"><a-plane mixin="scale-label" width="0.75" height="0.45" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.4" text="value: The Church\n\nConstructed from volcanic rock and built in the Cistercian style.; color: black; lineHeight: 75; wrap-count: 25;"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 1.2 -0.14 0; vertexA: 0.55 0.2 0; vertexB: 0.55 0.1 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			
-			<a-entity position="-3.25 0.5 -0.8" rotation="0 90 0"><a-plane mixin="scale-label" width="0.75" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.55" text="value: Calatrava la Nueva Central Fortress\n\nScale: 1:150\nNorth; color: black; lineHeight: 75; wrap-count: 20; align: right; xOffset: -0.02"></a-plane><a-triangle color="#375719" position="-0.36 -0.22 0.01" material="shader: flat" geometry="vertexC: 0.5 -0.04 0; vertexA: 0.5 0.04 0; vertexB: 0.35 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
+			<a-entity position="-3.25 0.5 -0.8" rotation="0 180 0"><a-plane mixin="scale-label" width="0.75" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="0.7" height="0.55" text="value: Calatrava la Nueva Central Fortress\n\nScale: 1:150\nNorth; color: black; lineHeight: 75; wrap-count: 20; align: right; xOffset: -0.02"></a-plane><a-triangle color="#375719" position="-0.36 -0.22 0.01" material="shader: flat" geometry="vertexC: 0.5 -0.04 0; vertexA: 0.5 0.04 0; vertexB: 0.35 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
 			
-			<a-entity rotation="0 90 0" position="-2.93 1 -0.02"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.55" text="value: Chapter House\n\nThe burials were found here in the chapter house (sala capitular), or meeting hall.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 0.2 -0.54 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
-		<!-- Calatrava annotations go here -->
+			<a-entity rotation="0 180 0" position="-2.93 1 -0.02"><a-plane mixin="scale-label" width="1.05" height="0.6" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1" height="0.55" text="value: Chapter House\n\nThe burials were found here in the chapter house (sala capitular), or meeting hall.; color: black; lineHeight: 75; wrap-count: 35"></a-plane><a-triangle color="#375719" position="-0.29 -0.2 0" material="shader: flat" geometry="vertexC: 0.2 -0.54 0; vertexA: 0.42 0 0; vertexB: 0.25 0 0" rotation="0 0 0"></a-triangle><!-- Annotation --></a-entity>
         </a-entity>
         </a-entity></a-entity>
+
+        <a-entity class="burial paris parishide" visible="false" position="0 -3 1.6"> <!-- Paris Burial Zone -->
+            <a-entity mixin="button" class="clickable"  position="-1.6 0 -2.2" id="parisbuttinfo" full-gltf-model="#buttonmodel"></a-entity>
+            <a-text id="paris-eegg" class="burial burial-text-1 paris" mixin="burial-label" visible="false" position="0 3 2" rotation="0 180 0" text="color: #dadada; align: center; value: You're too tall! You'll have to duck."></a-text>
+            <a-entity class="buriallift paris" id="parisburial" position="0 0 0" visible="false"><a-entity full-gltf-model="models/paris.glb"></a-entity>
+            <a-entity mixin="scale-box" id="paris-tit" position="0 0 0">
+                <a-entity position="1.06 1 -0.87" rotation="0 -90 0"><a-plane mixin="scale-label" width="1.05" height="0.7" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.65" text="value: Decoration\n\nMost bones stacked seen here were femora with the distal knee joint end facing out. Tibiae were also visible. Skulls were embedded as embellishments. Other bones were placed behind this exterior wall.; color: black; lineHeight: 75; wrap-count: 40"></a-plane><!-- Annotation --></a-entity>
+                <a-entity rotation="0 180 0" position="-0.05 0.6 0.83"><a-plane mixin="scale-label" width="1.5" height="0.8" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1.45" height="0.75" text="value: Translation\n\nThe plaque states &quot;Bones from the former Magdeleine cemetery (La Ville Leveque Street numbers 1 and 2). Deposited in 1844 in the western ossuary and transferred to the catacombs in September 1859&quot;; color: black; lineHeight: 65; wrap-count: 40"></a-plane><!-- Annotation --></a-entity>
+
+            </a-entity>
+            </a-entity></a-entity>
 		<!-- End Burial Zones-->
 		</a-entity>
         
-	    <a-entity id="burialscreenright" class="burial-zone" visible="true" position="-8.51 2 -15.7">
+	    <a-entity id="burialscreenright" class="burial-zone" visible="true" position="-8.51 2 -16">
 	        <a-text id="Jamestown-Title" class="burial jamestown" visible="false" position="-0.01 1.6 -1.04" rotation="0 -90 0" value="Captain Gabriel Archer"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>        
 	        <a-text id="james1-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" position="0 -0.15 -1" rotation="0 -90 0"  text="width: 2.25; wrapCount: 40; value: Born: 1575 in Mountnessing, Essex, England\nDied: 1609 or 1610, Jamestown, Virginia, United States\nAge: 34 to 35\nModel Source: Smithsonian 3D, National Museum of Natural History Anthropology Department, and Jamestown Rediscovery (Preservation Virginia)\n\nBiography: Captain Archer attended Cambridge and studied law before traveling to North America. In 1602 he documented an expedition led by Captain Bartholomew Gosnold to locations such as Cape Cod and Martha's Vineyard.\n\nArcher was among the founders of the Jamestown colony and became involved in the politics of the settlement, notably becoming a rival of leader John Smith.\n\nCaptain Archer died during the &quot;starving time&quot; in the winter of 1609 to 1610.">
-            <a-entity position="4 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/jamestownmap-p.jpg" position="0 0 0.01" width="3" height="2.3"></a-image><a-text mixin="table-caption" text="width: 2.75; value: Engraving by William Hole, image by The Library of Congress, used under U.S. public domain;" position="1.4 1.3 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.75; value: Map of the Virigina colony from 1606. The colony is located at around (308.5, 37.5).;" position="1.4 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+            <a-entity position="4 0 0"  rotation="0 0 0">
+                <a-entity full-gltf-model="images/jamestownmap-p.glb" static-body position="0 0 0.01" rotation="0 0 0"></a-entity>
+                <a-text mixin="table-caption" text="width: 2.75; value: Engraving by William Hole, image by The Library of Congress, used under U.S. public domain;" position="1.4 1.3 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.75; value: Map of the Virigina colony from 1606. The colony is located at around (308.5, 37.5).;" position="1.4 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 			<a-text id="Calatrava-Title" class="burial calatrava" visible="false" position="-0.01 1.4 -1.04" rotation="0 -90 0" value="Knight of Calatrava"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>        
 	        <a-text id="calatrava-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" position="0 -0.2 -1" rotation="0 -90 0"  text="value: Date: Early 1200s \nAge: Adult\nModels Source: Global Digital Heritage\n\nContext: Excavations from 2001 to 2004 led by Ana Maria Segovia Fernandez uncovered a series of burials in the chapter house of the convent. The burials were arranged along the north-south axis with their heads pointed west. This burial was noted as Enterramiento (burial) 6, located furthest to the south, but was the fifth buried in the chapter house of the convent. They are believed to be knights of the Order of Calatrava, a Spanish military and religious organization.">
             <a-entity position="4 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravaknight-p.jpg" position="-0.85 -0.14 0.01" width="1.36" height="2.4"></a-image><a-text mixin="table-caption" text="width: 1.3; wrapCount: 35; value: Image by The Metropolitan Museum of Art, used under CC0 1.0 Universal;" position="-0.19 1.19 0.01" ></a-text><a-text mixin="table-caption" text="width: 1.3; wrapCount: 35; value: &quot;Sculpture of a Kneeling Knight or King&quot;, from Northern Spain from 1175 to 1225.;" position="-0.19 -1.46 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+
+            <a-text id="Paris-Title" class="burial paris" visible="false" position="-0.01 1.4 -1.04" rotation="0 -90 0" value="18th Century Parisians"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>        
+	        <a-text id="paris-tit" class="burial burial-text-1 paris" mixin="burial-label" visible="false" position="0 -0.2 -1" rotation="0 -90 0"  text="value: Date Interred: 1859 \nAge: Adults\nModel Source: Benoit Rogez\n\nContext: The section presented here contained bones from the Magdeleine Cemetery, which was in operation from 1720 until 1794 when it was filled. Those remains were moved in night time ceremonial processions to the ossuary in 1859. Those interred included dead from several French Revolution events. As was the custom of the time, the skeletons were not kept intact, but bones were organized by type and placed into eye-pleasing arrangements.">
+            <a-entity position="4 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/pariswall-p.jpg" position="-0.2 -0.14 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.75; value: Image by Dale Cruse, used under CC BY 2.0;" position="1.3 0.95 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.75; value: Another wall of human skeletal remains in the Catacombs with skulls, femora (thigh bones), and tibiae (shin bones).;" position="1.3 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         </a-entity>
 
       <a-entity id="burialscreenleft" class="burial-zone" visible="true" position="-16.45 1.9 -10">
@@ -218,6 +239,9 @@
         <a-entity position="4.2 -0.06 0" rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Darren and Brad, used under CC BY-NC 2.0;" position="1.5 1.1 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Reconstruction of the remains of the 1608 church where Captain Archer's remains were found. His grave is marked by the third cross from the left.;" position="1.5 -1.25 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		<a-text id="calatrava2-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" rotation="0 90 0" text="value: The Sacred Convent and Castle of Calatrava la Nueva was the headquarters of the Order of Calatrava, a society of religious warriors. It was occupied from 1217 to 1804, before the Order moved to another location. The fortress occupied a strategic view of the Aldea del Rey region from the peak of the Cerro del Alancrenejo mountain. Within sight was the rival Almohad-occupied Salvatierra Castle, their last stronghold in the region.\n\nThe grounds covered 46,000 square meters and was a self-sufficient community. Today the site is a tourist attraction with restored structures in some areas though the chapter house has been sealed.">
         <a-entity position="4.2 -0.06 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravacastle-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Centre Europeu de Barcelona, used under CC BY-NC-ND 2.0;" position="1.5 1.2 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: View of the church within the fortress.;" position="1.5 -1.1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+       
+        <a-text id="paris2-tit" class="burial burial-text-1 paris" mixin="burial-label" visible="false" position="0 0 -5" rotation="0 90 0" text="value: The Catacombs of Paris are a network of tunnels under the city used to house human remains. They are five stories (20 meters) underground and cover 11,000 square meters.\n\nPopulation growth in Paris at the end of the 18th century led to an overflow of cemeteries. As a solution to the hygiene emergency, abandoned mine tunnels under the city were retrofitted to be ossuaries&colon; storage for skeletal remains. Several cemeteries' contents were transfered to the tunnels from 1787 to 1814.\n\nStarting in 1810, the Paris Mine Inspection Service rearranged the bones into patterns and added structures, exhibits, and signage for visitors. While most of the tunnels under Paris are closed to visitors today, the ossuary is open for tours.">
+        <a-entity position="-2 -0.06 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/parisprint-p.jpg" position="0 0 0.01" width="3" height="2.1"></a-image><a-text mixin="table-caption" text="width: 3; value: Print by George Cruikshank, scan by The British Museum, used under CC BY-NC-SA 4.0;" position="1.5 1.25 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: 1822 satirical print made from an aquatint eteching named &apos;&quot;Life&quot; among the Dead!! or Dick Wildfire, Squire Jenkins & the Halibut family in the Catacombs.&apos;   ;" position="1.5 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         </a-entity> 
         
        <a-entity id="burialscreenback" class="burial-zone" visible="true" position="-10.3 2 -8.7">
@@ -226,25 +250,31 @@
 <!--         <a-entity position="4.2 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2.25"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Caption;" position="1.5 1.26 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Caption.;" position="1.5 -1.64 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		<a-text id="calatrava3-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" rotation="0 180 0" text="value: The knight was buried in a wooden box placed in the grave as evidenced by nails and the wood remnants. The decomposed remains of leather shoes were found at the feet. These were better preserved in some of the other burials.\n\nPaintings decorated the walls of the chapter house, including one of a knight and Almohad warrior fighting on horseback. ">
         <a-entity position="3.3 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravashoes-p.jpg" position="0 0 0.01" width="2.25" height="1.725"></a-image><a-text mixin="table-caption" text="width: 2; value: Photo by Curious Expeditions, used under CCC BY-NC-SA 2.0;" position="1.15 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Shoes of a style similar to the degraded remains found in the grave.;" position="1.15 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+
         </a-entity>
 		
 		<a-entity id="burialscreenfront" class="burial-zone" visible="true" position="-15.5 2 -16.5">
-        <!-- <a-text id="Generic-Selector" visible="true" position="3 1 -1" rotation="0 0 0" value="Choose Burial"  color="black" width="5" line-height="50" text="wrapCount: 30; align:center;"></a-text> -->
 		<a-entity id="burial-map" class="" mixin="burial-label" rotation="0 0 0">
-        <a-entity position="3 -0.3 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/worldmap.png" position="0 0 0.01" width="2" height="1"></a-image>
+        <a-entity position="3 -0.3 0"  rotation="0 0 0">
+            <a-entity full-gltf-model="images/worldmap-p.glb" static-body position="0 0 0.01" rotation="0 0 0"></a-entity>
 		<a-text id="burialname" mixin="table-caption" text="align: center; width: 2; letterSpacing: 3; wrapCount: 35;" value="Choose Burial" position="0 0.8 0.02" ></a-text>
 		<a-text mixin="table-caption" text="align: center; width: 1.5; value: Image by Strebe, used under CC BY-SA 3.0;" position="0 -0.46 0.02" ></a-text>
 		<a-entity mixin="mapmarker" class="jamestown" position="-0.388 0.273 0.09" visible="false"></a-entity>
-		<a-entity mixin="mapmarker" class="calatrava" position="-0.02 0.285 0.09" visible="false"></a-entity>
-		</a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity>
+        <a-entity mixin="mapmarker" class="calatrava" position="-0.02 0.285 0.09" visible="false"></a-entity>
+        <a-entity mixin="mapmarker" class="paris" position="0.01 0.347 0.09" visible="false"></a-entity>
+		</a-entity></a-entity>
         </a-entity>
+
         </a-entity>
-        </a-entity></a-entity>
-       <a-entity gltf-model=""   static-body position="0 1.6 -0.5" mixin="obj"></a-entity> <!-- Demo Place -->
+
+        <a-entity full-gltf-model=""   static-body position="0 0 2" rotation="0 180 0" mixin="obj"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
-   <a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
-   <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" gltf-model="#buttonmodel" shadow></a-entity> 
+<a-entity static-body warp mixin="button" class="clickable" position="0.8 0.16 6" id="burialwarpbutt" visible="false"  full-gltf-model="#buttonmodel" shadow></a-entity> 
+
+<a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" full-gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
+   <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" full-gltf-model="#buttonmodel" shadow></a-entity>
+    
        <a-entity mixin="scale-box" id="centerpiece-tit" ><a-entity mixin="scale-label-border" position="-1.5 0.88 1.69" rotation="0 0 0"></a-entity><a-entity mixin="scale-label" position="-1.5 0.88 1.7" rotation="0 0 0" text="value: Lucy\nScientific Name: Australopithecus afarensis\nLocation: Ethiopia\nTime: 3.4 million years ago\n\nNotes: Female australopithecine discovered by Donald Johanson and team in 1974.; color: black; lineHeight: 75; wrap-count: 35"></a-entity>
        <a-entity mixin="scale-label-border" position="1.4 2 1.69" rotation="0 0 0" ></a-entity><a-entity mixin="scale-label" position="1.4 2 1.7" rotation="0 0 0" text="value: Gigantopithecus\nScientific Name: Gigantopithecus blacki\nLocation: China, Vietnam, and Indonesia\nTime: 9 to 0.1 million years ago\n\nNotes: The largest primate that has ever lived. Estimates reach 3 meters (9.8 feet) tall and 1300 pounds. Only teeth and mandible fossils have been found.; color: black; lineHeight: 75; wrap-count: 35" geometry="primitive: plane; buffer: false"></a-entity>
        <a-entity mixin="scale-label-border" position="-1.2 2.5 1.69" rotation="0 0 0" ></a-entity><a-entity mixin="scale-label" position="-1.2 2.5 1.7" rotation="0 0 0" text="value: Archicebus\nScientific Name: Archicebus achilles\nLocation: China\nTime: 55 million years ago\n\nNotes: Possibly the smallest primate ever.; color: black; lineHeight: 75; wrap-count: 35" ></a-entity>
@@ -252,49 +282,49 @@
     
 <!-- Pre-Homo Fossil Skull table -->
    <a-entity  id="phtable" position="10.5 0 -4.5"> <!-- This sets the relative state of the table --> 
-        <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table1" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-        <a-entity rotation="0 270 0" position="-0.201 0.84 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Early Primate Fossils; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-        <a-entity id="archicebus-grab" class="clickable grabbable grab-obj-zone" gltf-model="models/archicebus.glb"   dynamic-body="shape: box; mass: 2"  position="0 1.03 -0.5" mixin="obj"></a-entity>
-        <a-entity id="proconsul-grab" class="clickable grabbable grab-obj-zone" gltf-model="models/proconsulskull.glb"   dynamic-body="shape: box; mass: 2" position="0 1.01 -0.4" mixin="obj"></a-entity>
-        <a-entity id="sahelanthropus-grab" class="clickable grabbable grab-obj-zone" gltf-model="models/sahel.glb"   dynamic-body="shape: box; mass: 3" position="0 1.01 -0.2" mixin="obj"></a-entity>
-        <a-entity id="platyops-grab" class="clickable grabbable grab-obj-zone" gltf-model="models/platyops.glb"   dynamic-body="shape: box; mass: 3" position="0 1.01 0" mixin="obj"></a-entity>
-        <a-entity id="aethiopicus-grab" class="clickable grabbable grab-obj-zone" gltf-model="models/aethiopicus.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 0.2" mixin="obj"></a-entity>
+        <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table1" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
+        <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Early Primate Fossils; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+        <a-entity id="archicebus-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/archicebus.glb"   dynamic-body="shape: box; mass: 2"  position="0 1.03 -0.5" mixin="obj"></a-entity>
+        <a-entity id="proconsul-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/proconsulskull.glb"   dynamic-body="shape: box; mass: 2" position="0 1.01 -0.4" mixin="obj"></a-entity>
+        <a-entity id="sahelanthropus-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/sahel.glb"   dynamic-body="shape: box; mass: 3" position="0 1.01 -0.2" mixin="obj"></a-entity>
+        <a-entity id="platyops-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/platyops.glb"   dynamic-body="shape: box; mass: 3" position="0 1.01 0" mixin="obj"></a-entity>
+        <a-entity id="aethiopicus-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/aethiopicus.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 0.2" mixin="obj"></a-entity>
 </a-entity>    
     
 <!-- Hominin Fossil Skull table -->
    <a-entity id="stable" position="10.5 0 -2"> <!-- This sets the relative state of the table --> 
-         <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table2" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-         <a-entity rotation="0 270 0" position="-0.201 0.84 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Prehistoric Homo Skulls; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-         <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone" gltf-model="models/habilis.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.5" mixin="obj"></a-entity>
-         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone"  gltf-model="models/turkana.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.3" mixin="obj"></a-entity>
-         <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone"  gltf-model="models/atapuerca.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0" mixin="obj"></a-entity>
-         <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone"  gltf-model="models/nean.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.3" mixin="obj"></a-entity>
-         <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone"  gltf-model="models/vLCA1.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.5" mixin="obj"></a-entity>
+         <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table2" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
+         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Prehistoric Homo Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+         <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/habilis.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.5" mixin="obj"></a-entity>
+         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/turkanaskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.3" mixin="obj"></a-entity>
+         <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/atapuerca.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0" mixin="obj"></a-entity>
+         <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/nean.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.3" mixin="obj"></a-entity>
+         <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/vLCA1.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.5" mixin="obj"></a-entity>
 </a-entity>
      
     <!-- Modern Non-Hominoid Skull table -->
      <a-entity id="ptable" position="10.5 0 1"> <!-- This sets the relative state of the table --> 
-         <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table3" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-         <a-entity rotation="0 270 0" position="-0.201 0.84 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Prosimian and Monkey Skulls; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-         <a-entity id="potto-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.6" mixin="obj" gltf-model="models/potto.glb"></a-entity> 
-         <a-entity id="indri-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.4" mixin="obj" gltf-model="models/indri.glb"></a-entity> 
-         <a-entity id="howler-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.2" mixin="obj" gltf-model="models/howlerskull.glb"></a-entity> 
-		 <a-entity id="squirrelmonkey-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.1" mixin="obj" gltf-model="models/squirrelmonkeyskull.glb"></a-entity> 
-        <a-entity  id="baboon-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.1" mixin="obj" gltf-model="models/baboonskull.glb"></a-entity>
-		<a-entity  id="rhesus-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.25" mixin="obj" gltf-model="models/rhesusskull.glb"></a-entity>
-		<a-entity  id="mandrill-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.4" mixin="obj" gltf-model="models/mandrillskull.glb"></a-entity>
-        <a-entity id="snub-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.6" mixin="obj" gltf-model="models/snub.glb"></a-entity> 
+         <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table3" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
+         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Prosimian and Monkey Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+         <a-entity id="potto-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.6" mixin="obj" full-gltf-model="models/potto.glb"></a-entity> 
+         <a-entity id="indri-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.4" mixin="obj" full-gltf-model="models/indri.glb"></a-entity> 
+         <a-entity id="howler-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.2" mixin="obj" full-gltf-model="models/howlerskull.glb"></a-entity> 
+		 <a-entity id="squirrelmonkey-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.1" mixin="obj" full-gltf-model="models/squirrelmonkeyskull.glb"></a-entity> 
+        <a-entity  id="baboon-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.1" mixin="obj" full-gltf-model="models/baboonskull.glb"></a-entity>
+		<a-entity  id="rhesus-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.25" mixin="obj" full-gltf-model="models/rhesusskull.glb"></a-entity>
+		<a-entity  id="mandrill-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 3" position="0 1.01 0.4" mixin="obj" full-gltf-model="models/mandrillskull.glb"></a-entity>
+        <a-entity id="snub-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.6" mixin="obj" full-gltf-model="models/snub.glb"></a-entity> 
 </a-entity>
     
         <!-- Hominoid Skull table -->
      <a-entity id="ptable2" position="10.5 0 3.5"> <!-- This sets the relative state of the table --> 
-         <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table5" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-         <a-entity rotation="0 270 0" position="-0.201 0.84 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Hominoid Skulls; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-        <a-entity id="gibbon-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 5" position="0 1.01 -0.3" mixin="obj" gltf-model="models/gibbonskull.glb"></a-entity> 
-        <a-entity id="gorilla-m-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 5" position="0 1.01 -0.1" mixin="obj" gltf-model="models/gorillaskull-m.glb"></a-entity> 
-        <a-entity id="gorilla-f-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 5" position="0 1.01 0.2" mixin="obj" gltf-model="models/gorillaskull-f.glb"></a-entity> 
-         <a-entity id="chimp-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 4" position="0 1.01 0.4" mixin="obj" gltf-model="models/chimp.glb"></a-entity>
-         <a-entity id="mhs-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 5" position="0 1.01 0.6" mixin="obj" gltf-model="models/mhs.glb"></a-entity> 
+         <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table5" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
+         <a-entity rotation="0 270 0" position="-0.201 1.085 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Hominoid Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+        <a-entity id="gibbon-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 5" position="0 1.01 -0.3" mixin="obj" full-gltf-model="models/gibbonskull.glb"></a-entity> 
+        <a-entity id="gorilla-m-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 5" position="0 1.01 -0.1" mixin="obj" full-gltf-model="models/gorillaskull-m.glb"></a-entity> 
+        <a-entity id="gorilla-f-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 5" position="0 1.01 0.2" mixin="obj" full-gltf-model="models/gorillaskull-f.glb"></a-entity> 
+         <a-entity id="chimp-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 4" position="0 1.01 0.4" mixin="obj" full-gltf-model="models/chimp.glb"></a-entity>
+         <a-entity id="mhs-grab" class="clickable grabbable grab-obj-zone" dynamic-body="shape: box; mass: 5" position="0 1.01 0.6" mixin="obj" full-gltf-model="models/mhs.glb"></a-entity> 
     </a-entity>
     
 <a-entity id="bonescreen" class="grab-zone" position="13.48 2 -4.8">
@@ -302,7 +332,7 @@
 	<a-cylinder color="gray" rotation="0 30 0" segments-radial="8" segments-height="1" height="0.15" geometry="radius: 0.1" ></a-cylinder>
 	<a-entity id="holoboneproj"  visible="false">
 	<a-entity mixin="holoprojector"></a-entity>
-	<a-entity id="holobone" scale="5 5 5" rotation="0 0 0" class="grab-zone" static-body position="0 1.25 0" gltf-model="" animation="property: object3D.rotation.y; to: 360; easing: linear; dur: 12000; loop: true;" visible="false"></a-entity></a-entity></a-entity>
+	<a-entity id="holobone" scale="5 5 5" rotation="0 0 0" class="grab-zone" static-body position="0 1.25 0" full-gltf-model="" animation="property: object3D.rotation.y; to: 360; easing: linear; dur: 12000; loop: true;" visible="false"></a-entity></a-entity></a-entity>
 	
 	    <a-entity id="archicebus-tit" class="bone-text" mixin="table-label" text="value: Archicebus\nScientific Name: Archicebus achilles\nLocation: China\nTime: 55 million years ago\nItem: Scale Model\nSource: Model by Keith Chan\n\nNotes: Possibly the smallest primate ever. The collection of traits resemble haplorhine primates (tarsier, monkeys, apes, and humans). The weight of the organism is from 20 to 30 grams. The small body and pointed teeth suggest an insectivorous diet."></a-entity> 
           <a-entity id="proconsul-tit" class="bone-text" mixin="table-label" text="value: Proconsul\nScientific Name: Proconsul africanus or hesloni\nLocation: Rusinga Island, Lake Victoria, Kenya\nTime: 23 million years ago\nItem: Cranium\nSource: Replica scan by African Fossils\n\nNotes: Proconsulids were species of early apes. While possessing ape dental traits and lacking a tail, the rest of their anatomy was similar to Old World monkeys."></a-entity>
@@ -324,7 +354,7 @@
 	<a-cylinder color="gray" rotation="0 30 0" segments-radial="8" segments-height="1" height="0.15" geometry="radius: 0.1" ></a-cylinder>
 	<a-entity id="holoboneproj2" visible="false">
 	<a-entity mixin="holoprojector"></a-entity>
-	<a-entity id="holobone2" scale="5 5 5" rotation="0 0 0" class="grab-zone" static-body position="0 1.25 0" gltf-model="" animation="property: object3D.rotation.y; to: 360; easing: linear; dur: 12000; loop: true;" visible="false"></a-entity></a-entity></a-entity>
+	<a-entity id="holobone2" scale="5 5 5" rotation="0 0 0" class="grab-zone" static-body position="0 1.25 0" full-gltf-model="" animation="property: object3D.rotation.y; to: 360; easing: linear; dur: 12000; loop: true;" visible="false"></a-entity></a-entity></a-entity>
 	            
 	    <a-text id="potto-tit" class="bone-text-2" mixin="table-label" text="value: Potto\nScientific Name: Perodicticus potto\nLocation: West and Central African tropical forests\nItem: Cranium\nSource: Scan by Lapworth Museum of Geology\nNotes: Pottos are slow-climbing prosimians that live in African tropical forests. They are active at night and eat fruits and insects.Their maximum size is from 30 to 39 cm (1 foot to 1 foot 3 inches)."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/potto-p.jpg" position="0 0 0.01" width="2.8" height="3"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Drawing by St. George Jackson Mivart, image by The Internet Archive;" position="1.4 1.62 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Drawing of a potto from 1894.;" position="1.4 -1.64 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 	    
@@ -338,15 +368,15 @@
         
         <a-text id="baboon-tit" class="bone-text-2" mixin="table-label" text="value: Hamadryas Baboon\nScientific Name: Papio hamadryas hamadryas\nLocation: The Horn of Africa and southwestern Arabian Peninsula\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Baboons are Old World monkeys that form troops of a few adult males, many adult females, and their offspring. Troops can form larger groups of up to 400 individuals.The snout of baboons have evolved to allow for forward-facing vision while providing structural support for the large canine teeth."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/baboonskull-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.5; value: By UrLunkwill, used under CC BY-SA 3.0 DE;" position="1.5 1.1 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Hamadryas baboon troop with one adult male and numerous females.;" position="1.5 -1.2 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		
-		<a-text id="rhesus-tit" class="bone-text-2" mixin="table-label" text="value: Rhesus Macaque\nScientific Name: Macaca mulatta\nLocation: Central Asia, India, Southeast Asia, and China\nItem: Skull\nSource: Scan by RISD Nature Lab\nNotes: The wide range of rhesus macaques attest to their adaptability to different environments. Some live within human farmland and cities. Also, several colonies of released monkeys live in United States territory."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/rhesusskull-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Allan Hopkins, used under CC BY-NC-ND 2.0; lineHeight: 50 wrapCount: 45" position="1.5 1.07 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Rhesus monkey in Keoladeo National Park, India.; lineHeight: 50; wrapCount: 45" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+		<a-text id="rhesus-tit" class="bone-text-2" mixin="table-label" text="value: Rhesus Macaque\nScientific Name: Macaca mulatta\nLocation: Central Asia, India, Southeast Asia, and China\nItem: Skull\nSource: Scan by RISD Nature Lab\nNotes: The wide range of rhesus macaques attest to their adaptability to different environments. Some live within human farmland and cities. Also, several colonies of released monkeys live in United States territory.\n\nSee a model of a rhesus macque in the Scale Model Hall!"><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/rhesusskull-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Photo by Allan Hopkins, used under CC BY-NC-ND 2.0; lineHeight: 50 wrapCount: 45" position="1.5 1.07 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Rhesus monkey in Keoladeo National Park, India.; lineHeight: 50; wrapCount: 45" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
-		<a-text id="mandrill-tit" class="bone-text-2" mixin="table-label" text="value: Hamadryas Baboon\nScientific Name: Papio hamadryas hamadryas\nLocation: The Horn of Africa and southwestern Arabian Peninsula\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Baboons are Old World monkeys that form troops of a few adult males, many adult females, and their offspring. Troops can form larger groups of up to 400 individuals.The snout of baboons have evolved to allow for forward-facing vision while providing structural support for the large canine teeth."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/mandrill-p.jpg" position="0 0 0.01" width="2.2" height="3"></a-image><a-text mixin="table-caption" text="width: 2.2; value: Photo by William Warby, used under CC BY 2.0; lineHeight: 45; wrapCount: 40" position="1.11 1.58 0.01" ></a-text><a-text mixin="table-caption" text="width: 2; value: Male mandrill. The red and blue hues are from light scattering through an array of collagen fibers in the skin.; lineHeight: 45; wrapCount: 40" position="1.11 -1.68 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+		<a-text id="mandrill-tit" class="bone-text-2" mixin="table-label" text="value: Mandrill\nScientific Name: Mandrillus sphinx\nLocation: Tropical forests of western Africa\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: The male mandrill is the heaviest Old World monkey, though slightly shorter than baboons. Females live in stable social groups that can number 1,300 members. In contrast, males live solitary lifestyles but compete with each other to be accepted into the female group for mating."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/mandrill-p.jpg" position="0 0 0.01" width="2.2" height="3"></a-image><a-text mixin="table-caption" text="width: 2.2; value: Photo by William Warby, used under CC BY 2.0; lineHeight: 45; wrapCount: 40" position="1.11 1.58 0.01" ></a-text><a-text mixin="table-caption" text="width: 2; value: Male mandrill. The red and blue hues are from light scattering through an array of collagen fibers in the skin.; lineHeight: 45; wrapCount: 40" position="1.11 -1.68 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		
         <a-text id="gibbon-tit" class="bone-text-2" mixin="table-label" text="value: Lar Gibbon\nScientific Name: Hylobates lar carpenteri\nLocation: Southeast Asia\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: The specimen was found in Phak Khinak Mountain, Thailand. The sex is unknown.The left mandible has an extra tooth, an impacted fourth molar"><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/gibbonskull-p.gif" position="0 0 0.01" width="3" height="2.7"></a-image><a-text mixin="table-caption" text="width: 3; value: Image by The National Museum of Natural History, used under CC0;" position="1.5 1.55 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: X-ray image of the specimen cranium.;" position="1.5 -1.45 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
-        <a-text id="gorilla-m-tit" class="bone-text-2" mixin="table-label" text="value: Western Lowland Gorilla, male\nScientific Name: Gorilla gorilla gorilla\nLocation: Central Africa\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Western lowland gorillas are the most common type found in captivity. This male's skull has a large sagittal crest down the top of the cranium that acts as attachment sites for jaw muscles. The specimen was found in South Kamerun, Cameroon, Africa."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/gorillaskull-m-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: By Mehgan Murphy, Smithsonian's National Zoo, used under CC0;" position="1.5 1.2 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Male western lowland gorilla.;" position="1.5 -1.1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+        <a-text id="gorilla-m-tit" class="bone-text-2" mixin="table-label" text="value: Western Lowland Gorilla, male\nScientific Name: Gorilla gorilla gorilla\nLocation: Central Africa\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Western lowland gorillas are the most common type found in captivity. This male's skull has a large sagittal crest down the top of the cranium that acts as attachment sites for jaw muscles. The specimen was found in South Kamerun, Cameroon, Africa.\nSee models of the related eastern lowland gorilla in the Scale Model Hall!"><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/gorillaskull-m-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: By Mehgan Murphy, Smithsonian's National Zoo, used under CC0;" position="1.5 1.2 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Male western lowland gorilla.;" position="1.5 -1.1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
-        <a-text id="gorilla-f-tit" class="bone-text-2" mixin="table-label" text="value: Western Lowland Gorilla, female\nScientific Name: Gorilla gorilla gorilla\nLocation: Central Africa\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Gorillas are herbivores, eating plant material in their lush tropical forest environment. The specimen was found in Souanke Region of Africa, in the border area of Gabon, Cameroon, and Congo."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/gorillaskull-f-p.jpg" position="0 0 0.01" width="2" height="3"></a-image><a-text mixin="table-caption" text="width: 2; value: By Mehgan Murphy, Smithsonian's National Zoo, used under CC0; lineHeight: 45; wrapCount: 40" position="1 1.6 0.01" ></a-text><a-text mixin="table-caption" text="width: 2; value: Female western lowland gorilla with infant.; lineHeight: 45; wrapCount: 40" position="1 -1.6 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+        <a-text id="gorilla-f-tit" class="bone-text-2" mixin="table-label" text="value: Western Lowland Gorilla, female\nScientific Name: Gorilla gorilla gorilla\nLocation: Central Africa\nItem: Skull\nSource: Scan by The Smithsonian Museum of Natural History\nNotes: Gorillas are herbivores, eating plant material in their lush tropical forest environment. The specimen was found in Souanke Region of Africa, in the border area of Gabon, Cameroon, and Congo. There is a high level of sexual dimorphism in overall size and thickness of the features compared with the skull of the male gorilla to your left.\nSee models of the related eastern lowland gorilla in the Scale Model Hall!"><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/gorillaskull-f-p.jpg" position="0 0 0.01" width="2" height="3"></a-image><a-text mixin="table-caption" text="width: 2; value: By Mehgan Murphy, Smithsonian's National Zoo, used under CC0; lineHeight: 45; wrapCount: 35" position="1 1.6 0.01" ></a-text><a-text mixin="table-caption" text="width: 2; value: Female western lowland gorilla with infant.; lineHeight: 45; wrapCount: 40" position="1 -1.6 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
         <a-text id="chimp-tit" class="bone-text-2" mixin="table-label" text="value: Chimpanzee\nScientific Name: Pan troglodytes\nLocation: West and Central African tropical forests\nItem: Skull\nSource: Scan by National History Museum Imaging, London, UK\nNotes: The Pan genus is the closest living lineage to humans. Chimpanzees have complex social dyanamics and cultural transmission of tools and behavior."><a-entity position="3.75 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/chimpanzee-p.jpg" position="0 0 0.01" width="2" height="3"></a-image><a-text mixin="table-caption" text="width: 2; value: Photo by the National Museum of Natural History, used under CC0; align: right; color: black; lineHeight: 45; wrapCount: 40" position="1 1.6 0.01" ></a-text><a-text mixin="table-caption" text="width: 2; value: Mounted chimpanzee skeleton.; align: right; lineHeight: 45; wrapCount: 40" position="1 -1.6 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         
@@ -355,25 +385,25 @@
     
      <!-- Artifact table -->
      <a-entity class="center-zone" id="atable" position="4.94 0 -2.1"> <!-- This sets the relative state of the table --> 
-        <a-entity class="table" static-body="shape: box;" scale="1 1 1" id="table4" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-        <a-entity rotation="0 270 0" position="-0.201 0.84 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Artifacts; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-  		<a-entity id="lomek-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.6" mixin="obj" gltf-model="#lomekmodel"></a-entity>
-		<a-entity id="acheul-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.45" mixin="obj" gltf-model="#acheulmodel"></a-entity>
-        <a-entity id="mousterian-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.3" mixin="obj" gltf-model="#mousterianmodel"></a-entity>
-        <a-entity id="clovis-grab" class="clickable grabbable center-obj-zone standup"dynamic-body="shape: box; mass: 1" position="0 1.01 -0.2" mixin="obj" gltf-model="#clovismodel"></a-entity>
-        <a-entity id="harpoon-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 0" mixin="obj" gltf-model="#harpoonmodel"></a-entity>
-        <a-entity id="moundville-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.3" mixin="obj" gltf-model="#moundvillemodel"></a-entity>
-        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.1 0.5" mixin="obj" gltf-model="#daggermodel"></a-entity>
+        <a-entity class="table" static-body="shape: box;" scale="1 1 1" id="table4" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
+        <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Artifacts; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+  		<a-entity id="lomek-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.6" mixin="obj" full-gltf-model="#lomekmodel"></a-entity>
+		<a-entity id="acheul-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.45" mixin="obj" full-gltf-model="#acheulmodel"></a-entity>
+        <a-entity id="mousterian-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.3" mixin="obj" full-gltf-model="#mousterianmodel"></a-entity>
+        <a-entity id="clovis-grab" class="clickable grabbable center-obj-zone standup"dynamic-body="shape: box; mass: 1" position="0 1.01 -0.2" mixin="obj" full-gltf-model="#clovismodel"></a-entity>
+        <a-entity id="harpoon-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.01 0" mixin="obj" full-gltf-model="#harpoonmodel"></a-entity>
+        <a-entity id="moundville-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.3" mixin="obj" full-gltf-model="#moundvillemodel"></a-entity>
+        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup" dynamic-body="shape: box; mass: 1" position="0 1.1 0.5" mixin="obj" full-gltf-model="#daggermodel"></a-entity>
 </a-entity>
 
      <!-- Artifact table 2-->
      <a-entity class="center-zone" id="atable2" position="4.94 0 1"> <!-- This sets the relative state of the table --> 
-        <a-entity class="table" static-body="shape: box;" scale="1 1 1" id="table6" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
-        <a-entity rotation="0 270 0" position="-0.201 0.84 0"><a-plane height="0.3" width="0.75" color="#7a7a7a" text="value:Primate Figures; color:#f5f5f5; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-        <a-entity id="venus-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.5" mixin="obj" gltf-model="#venusmodel"></a-entity>
-        <a-entity id="nasca-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.3" mixin="obj" gltf-model="#nascamodel"></a-entity>
-        <a-entity id="canopic-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 -0.2" mixin="obj" gltf-model="#canopicmodel"></a-entity>
-        <a-entity id="baboon-blue-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.5" mixin="obj" gltf-model="#baboon-bluemodel"></a-entity>
+        <a-entity class="table" static-body="shape: box;" scale="1 1 1" id="table6" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
+        <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Primate Figures; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
+        <a-entity id="venus-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.5" mixin="obj" full-gltf-model="#venusmodel"></a-entity>
+        <a-entity id="nasca-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.3" mixin="obj" full-gltf-model="#nascamodel"></a-entity>
+        <a-entity id="canopic-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 -0.2" mixin="obj" full-gltf-model="#canopicmodel"></a-entity>
+        <a-entity id="baboon-blue-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.5" mixin="obj" full-gltf-model="#baboon-bluemodel"></a-entity>
 </a-entity>
 
 <a-entity id="artifactscreen" class="center-zone" position="7.77 2 -2.0">
@@ -381,7 +411,7 @@
 	<a-cylinder color="gray" rotation="0 30 0" segments-radial="8" segments-height="1" height="0.15" geometry="radius: 0.1" ></a-cylinder>
 	<a-entity id="holoartproj" visible="false">
 	<a-entity mixin="holoprojector"></a-entity>
-	<a-entity id="holoartifact" scale="7 7 7" rotation="0 0 0" class="center-obj-zone" static-body position="0 1.25 0" gltf-model="" animation="property: object3D.rotation.y; to: 360; easing: linear; dur: 12000; loop: true;" visible="false"></a-entity></a-entity></a-entity>
+	<a-entity id="holoartifact" scale="7 7 7" rotation="0 0 0" class="center-obj-zone" static-body position="0 1.25 0" full-gltf-model="" animation="property: object3D.rotation.y; to: 360; easing: linear; dur: 12000; loop: true;" visible="false"></a-entity></a-entity></a-entity>
 	
         <a-text id="lomek-tit" class="art-text" mixin="table-label" text="value: Lomekwian Hammerstone\nLocation: Lake Turkana, Kenya\nTime: 3.3 million years ago\nSource: Scan by the UCFanthropology\n\nNotes: The Lomekwian is the currently oldest known stone tool style. The hominids of this time and location were members of  Australopithecus and Kenyanthropus, though they have not been directly associated with the tools. Types of worked stone include hammerstones, anvils, cores, and flakes.\n\nThis hammerstone, labeled LOM3-2012 surf 54, has impact points and an area that resembles a flaked rock."></a-text>
 		
@@ -408,8 +438,8 @@
 	
 <!-- Scale Models -->
         <a-entity class="scale-zone-2" position="-14.9 0 2.6">
-        <a-entity gltf-model="models/gorilla-mouselemur.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> <!-- Model File -->
-        <a-entity mixin="button" class="clickable" position="1.5 0 -0.4" id="gorillabutt" gltf-model="#buttonmodel"></a-entity></a-entity> <!-- Info Button -->
+        <a-entity full-gltf-model="models/gorilla-mouselemur.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> <!-- Model File -->
+        <a-entity mixin="button" class="clickable" position="1.5 0 -0.4" id="gorillabutt" full-gltf-model="#buttonmodel"></a-entity></a-entity> <!-- Info Button -->
        
         <a-entity mixin="scale-box" id="stand1-tit"><a-entity mixin="scale-label-border" position="-0.01 2 -0.78" rotation="0 90 0" geometry="height: 0.95"></a-entity><a-entity mixin="scale-label" position="0 2 -0.78" rotation="0 90 0" geometry="height: 0.9" text="value: Eastern Lowland Gorilla\nScientific Name: Gorilla beringei graueri \nLocation: Democratic Republic of Congo\nTime: Present\n\nNotes: The largest living primate, though critically endangered.\n\nMale                                                        Female; color: black; lineHeight: 75; wrap-count: 35"><a-triangle color="#375719" position="0 -0.08 -0.01" material="shader: flat" geometry="vertexC: -0.6 -0.48 0; vertexA: -0.29 -0.35 0; vertexB: -0.5 -0.21 0" rotation="0 0 0"></a-triangle>
 		<a-triangle color="#375719" position="0 -0.08 -0.01" material="shader: flat" geometry="vertexC: 0.62 -0.67 0; vertexA: 0.52 -0.34 0; vertexB: 0.34 -0.34 0" rotation="0 0 0"></a-triangle></a-entity> <!-- Info Panels -->
@@ -417,62 +447,62 @@
         <a-plane mixin="scale-label-border" position="0.86 0.65 -0.7" rotation="-15 90 0" geometry="height: 0.75"></a-plane><a-entity mixin="scale-label" position="0.87 0.65 -0.7" rotation="-15 90 0" geometry="height: 0.7" text="value: Madame Berthe's Mouse Lemur\nScientific Name: Microcebus berthae \nLocation: Madagascar\nTime: Present\n\nNotes: The smallest living primate, with a weight of 1.1 ounces.; color: black; lineHeight: 75; wrap-count: 35"><a-triangle color="#375719" position="0 -0.08 -0.01" material="shader: flat" geometry="vertexC: -0.4 0.01 0; vertexA: -0.1 0.01 0; vertexB: -0.07 0.86 0" rotation="0 0 0"></a-triangle></a-entity></a-entity></a-entity>
       
          <a-entity class="scale-zone" position="-8.7 0 4.9" rotation="0 90 0">
-         <a-entity gltf-model="models/rhesus-rh.glb"   rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false">
-          <a-entity mixin="button" class="clickable" position="1.1 0 -0.4" id="rhesusbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
+         <a-entity full-gltf-model="models/rhesus-rh.glb"   rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false">
+          <a-entity mixin="button" class="clickable" position="1.1 0 -0.4" id="rhesusbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
           
          <a-entity  mixin="scale-box" id="stand2-tit"><a-entity mixin="scale-label-border" position="1.1 2 1.204" rotation="0 180 0"></a-entity><a-entity mixin="scale-label" position="1.1 2 1.2" rotation="0 180 0" text="value: Rhesus Macaque\nScientific Name: Macaca mulatta\nLocation: Central Asia, India, Southeast Asia, and China\nTime: Present\n\nNotes: The primate with the second largest geographic range. Humans have used rhesus macaques for scientific research, including  a role in the discovery of the Rh factor antigen in human blood types.; color: black; lineHeight: 75; wrap-count: 35"></a-entity>
          <a-entity mixin="scale-label-border" position="1.1 0.8 1.204" rotation="0 180 0"></a-entity><a-entity mixin="scale-label" position="1.1 0.8 1.2" rotation="0 180 0" text="value: Anti-Rhesus D Antibody\nLocation: Inside Rh- humans\nSize: Around 100 million times actual size\nSource: TedNIH of the U.S. National Institute of Health\n\nNotes: This protein is made by the immune system of Rh- humans when it contacts Rh antigens, such as from Rh+ fetal blood. The antibodies can then attack Rh+ blood cells.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
         <a-entity position="-1.035 2.2 -0.6"  rotation="0 90 0"><a-plane mixin="scale-label" width="2.45" height="3.15" position="0 -0.05 0" color="#375719"></a-plane><a-image mixin="scale-label" src="images/rhesus-p.jpg" position="0 0 0.01" width="2.4" height="3"></a-image><a-text text="width: 2; value: By Thomas Schoch, used under CC BY-SA 3.0 ; align: right; color: #d7d7d7" position="1.2 -1.56 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
          <a-entity class="scale-zone-3" position="-6.4 1.66 -6">
-         <a-entity gltf-model="models/gibbon.glb" rotation="0 -22 0" scale="1 1 1" shadow="cast: false; receive: false"> 
-         <a-entity togg-gibb mixin="button" class="clickable" position="1.3 -1.64 0.82" id="gibbonbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
+         <a-entity full-gltf-model="models/gibbon.glb" rotation="0 -22 0" scale="1 1 1" shadow="cast: false; receive: false"> 
+         <a-entity togg-gibb mixin="button" class="clickable" position="1.3 -1.64 0.82" id="gibbonbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
          
          <a-entity  mixin="scale-box" id="stand3-tit"><a-entity mixin="scale-label-border" position="-0.55 -0.75 -0.88" rotation="0 60 0"></a-entity><a-entity mixin="scale-label" position="-0.54 -0.75 -0.87" rotation="0 60 0" text="value: Lar Gibbon\nScientific Name: Hylobates lar\nLocation: Southeast Asia\nTime: Present\n\nNotes: Hylobatids are specialized brachiators, swinging their compact bodies using elongated arms.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
         <a-entity position="-3.29 0.1 0.24" rotation="0 90 0"><a-plane mixin="scale-label" width="2.65" height="2.2" position="0 -0.05 0" color="#375719"></a-plane><a-image mixin="scale-label" src="images/gibbon-p.jpg" position="0 0 0.01" width="2.6" height="2"></a-image><a-text text="width: 2; value: By Ladislav Kral, used under CC BY-SA 3.0; align: right; color: #d7d7d7" position="1.3 -1.07 0.01"></a-text></a-entity><!-- Photo Caption --> <!-- Image Panels -->
          </a-entity></a-entity>
          
          <a-entity class="scale-zone-2" rotation="0 180 0" position="-11 0 -1.85">
-         <a-entity gltf-model="models/orangutan.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
-         <a-entity mixin="button" class="clickable" position="1.3 -0 0.19" id="orangbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
+         <a-entity full-gltf-model="models/orangutan.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
+         <a-entity mixin="button" class="clickable" position="1.3 -0 0.19" id="orangbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
          
          <a-entity mixin="scale-box" id="stand4-tit"><a-entity mixin="scale-label-border" position="-0.49 1.2 -0.76" rotation="0 90 0"></a-entity><a-entity mixin="scale-label" position="-0.48 1.2 -0.76" rotation="0 90 0" text="value: Bornean Orangutan\nScientific Name: Pongo pygmaeus\nLocation: Borneo\nTime: Present\n\nNotes: The orangutans are the only living great ape genus in Asia. They are critically endangered due to human action, including hunting and the palm oil industry.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
         <a-entity position="-1.19 2.55 0.8" rotation="0 90 0"><a-plane mixin="scale-label" width="3.1" height="2.2" position="0 -0.05 0" color="#375719"></a-plane><a-image mixin="scale-label" src="images/orangutan-p.jpg" position="0 0 0.01"  width="3" height="2"></a-image><a-text text="width: 3; value: &quot;Male Bornean Orangutan - Big Cheeks&quot; by Eric Kilby, used under CC BY-SA 2.0; align: right; color: #d7d7d7; wrapCount: 70" position="1.49 -1.07 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
          <a-entity class="scale-zone-3" position="-6.0 1.8 -0.6">
-         <a-entity gltf-model="models/notharctus.glb"   rotation="0 -90 0" scale="1 1 1" shadow="cast: false; receive: false"> 
-         <a-entity mixin="button" class="clickable" position="-0.5 -1.8 0.68" id="notharctusbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
+         <a-entity full-gltf-model="models/notharctus.glb"   rotation="0 -90 0" scale="1 1 1" shadow="cast: false; receive: false"> 
+         <a-entity mixin="button" class="clickable" position="-0.5 -1.8 0.68" id="notharctusbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
          
          <a-entity mixin="scale-box" id="stand5-tit"><a-entity mixin="scale-label-border" position="0.43 -0.8 -0.49" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.429 -0.8 -0.49" rotation="0 -90 0" text="value: Notharctus\nScientific Name: Notharctus tenebrosus\nLocation: Wyoming, USA\nTime: 46 million years ago\n\nNotes: This early primate resembles a lemur, with core primate traits such as grasping limbs.; color: black; lineHeight: 75; wrap-count: 35"></a-entity></a-entity></a-entity>
 
           <a-entity class="scale-zone-2" position="-15 1.4 -6.57">
-         <a-entity gltf-model="models/howler.glb"   rotation="0 90 0" scale="1 1 1" shadow="cast: false; receive: false"> 
-         <a-entity mixin="button" class="clickable"  position="-0.3 -1.4 0.91" id="howlerbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
+         <a-entity full-gltf-model="models/howler.glb"   rotation="0 90 0" scale="1 1 1" shadow="cast: false; receive: false"> 
+         <a-entity mixin="button" class="clickable"  position="-0.3 -1.4 0.91" id="howlerbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
          <a-entity mixin="scale-box" id="stand6-tit"><a-entity mixin="scale-label-border" position="-1.262 0.5 0.4" rotation="0 90 0"></a-entity><a-entity mixin="scale-label" position="-1.26 0.5 0.4" rotation="0 90 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
          <a-entity position="-0 1.52 -0.9"><a-plane mixin="scale-label" width="2.75" height="1.95" position="0 -0.05 0" color="#375719"></a-plane><a-image mixin="scale-label" src="images/howler-p.jpg" position="0 0 0.01" rotation="0 0 0" width="2.625" height="1.75"></a-image><a-text text="width: 3; value: &quot;Black Howler Monkey Family&quot; by Kent MacElwee, used under CC BY-NC 2.0; align: right; color: #d7d7d7; wrapCount: 70" position="1.32 -0.94 0" rotation="0 0 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
          <a-entity class="scale-zone-3" position="-6 0 1">
-         <a-entity gltf-model="models/megaladapis.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> 
-         <a-entity mixin="button" class="clickable"  position="-1.1 -0 -0.35" id="megaladapisbutt" gltf-model="#buttonmodel"></a-entity></a-entity> 
+         <a-entity full-gltf-model="models/megaladapis.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> 
+         <a-entity mixin="button" class="clickable"  position="-1.1 -0 -0.35" id="megaladapisbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity> 
          <a-entity mixin="scale-box" id="stand7-tit"><a-entity mixin="scale-label-border" position="0 1 1" rotation="0 -120 0"></a-entity><a-entity mixin="scale-label" position="-0.01 1 1" rotation="0 -120 0" text="value: Megaladapis\nScientific Name: Megaladapis edwardsi\nLocation: Madagascar\nTime: From unknown to around the year 1500\n\nNotes: One of the extinct 'koala lemurs,' adapted for slow vertical climbing and leaf-eating.; color: black; lineHeight: 75; wrap-count: 35"></a-entity></a-entity></a-entity>
          
          <a-entity class="scale-zone-2" rotation="0 -90 0" position="-10.7 0 5.3">
-         <a-entity gltf-model="models/tarsiers.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
-         <a-entity mixin="button" class="clickable"  position="-0.6 0 0.35" id="tarsierbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
+         <a-entity full-gltf-model="models/tarsiers.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
+         <a-entity mixin="button" class="clickable"  position="-0.6 0 0.35" id="tarsierbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
          <a-entity mixin="scale-box" id="stand8-tit"><a-entity mixin="scale-label-border" position="0.65 0.9 1.1" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.64 0.9 1.1" rotation="0 -90 0" text="value: Philippine tarsier\nScientific Name: Carlito syrichta\nLocation: Southeastern Philippine archipelago\nTime: Present\n\nNotes: Members of the family Tarsiidae are nocturnal ambush predators with the ability to communicate ultrasonically.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
          <a-entity mixin="scale-label-border" position="0.323 2 4.75" rotation="0 -120 0" geometry="height: 0.55"></a-entity><a-entity mixin="scale-label" position="0.314 2 4.75" rotation="0 -120 0" geometry="height: 0.5" text="value: The distance from branch to branch, 16 feet (4.9 m), can be leaped by a tarsier!.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
          <a-entity position="0.65 2 3" rotation="0 -90 0"><a-plane mixin="scale-label" width="2.1" height="3.2" position="0 -0.05 0" color="#375719"></a-plane><a-image mixin="scale-label" src="images/tarsier-p.jpg" position="0 0 0.01" width="2" height="3"></a-image><a-text text="width: 3; value: Photo by Pierre Fidenci, used under CC BY-SA 2.5; align: right; color: #d7d7d7; wrapCount: 70" position="0.94 -1.57 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
          <a-entity class="scale-zone-3" position="-9.1 0 -3.3">
-         <a-entity gltf-model="models/proconsul.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> 
-         <a-entity mixin="button" class="clickable" position="1 0 -0.54" id="proconsulbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
+         <a-entity full-gltf-model="models/proconsul.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> 
+         <a-entity mixin="button" class="clickable" position="1 0 -0.54" id="proconsulbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
          
          <a-entity mixin="scale-box" id="stand9-tit"><a-entity mixin="scale-label-border" position="-0.136 0.8 -0.637" rotation="0 120 0"></a-entity><a-entity mixin="scale-label" position="-0.136 0.8 -0.638" rotation="0 120 0" text="value: Proconsul\nScientific Name: Proconsul nyanzae\nLocation: Lake Victoria region, Kenya\nTime: 18 million years ago\n\nNotes: Proconsul nyanzae is the largest of the proconsulids, whose traits were adapted to movement on large tree limbs in dense forests.; color: black; lineHeight: 75; wrap-count: 35"></a-entity></a-entity></a-entity>
          
          
 <!-- Credits -->
 <a-text position="-0.7 3.9 -7.499" value="Credits and Info" color="black" width="2"></a-text>
-<a-entity static-body togg-cred mixin="button" class="clickable"  position="1.5 1 -8" id="credbutt" gltf-model="#buttonmodel" rotation="90 0 0" shadow ></a-entity>  
+<a-entity static-body togg-cred mixin="button" class="clickable"  position="1.5 1 -8" id="credbutt" full-gltf-model="#buttonmodel" rotation="90 0 0" shadow ></a-entity>  
 
 <a-entity mixin="credit-text" class="credits" id="credits-1" position="-0.7 2 -7.499" text="value:  Environment, primate models, and text by Dr. Keith Chan. 
 
@@ -550,6 +580,11 @@ Mandible: https://3d.si.edu/object/3d/papio-hamadryas-mandible:70253f8c-ef0f-455
 Indri
 D’Arcy Thompson Zoology Museum at the University of Dundee (CC-BY-NC-SA)
 https://www.myminifactory.com/object/3d-print-indri-lemur-skull-35329
+
+Mandrill
+Smithsonian 3D (CC0 Public Domain)
+Cranium: https://3d.si.edu/object/3d/mandrillus-sphinx-cranium%3A83efaccc-2462-4306-a52c-14d2115976db
+Mandible: https://3d.si.edu/object/3d/mandrillus-sphinx-mandible%3Ab3025963-15a0-424d-a9b8-d484a50ae92b
 
 Modern Homo sapiens
 aellis43 (CC-Attribution)
@@ -745,6 +780,12 @@ https://www.flickr.com/photos/centreeuropeubarcelona/48881518216
 
 &quot;Medieval Shoes from the cobbler's guild&quot;: Photo by Curious Expeditions. (CC BY-NC-SA 2.0).
 https://www.flickr.com/photos/7955505@N05/2197617740
+
+&quot;Paris catacombs&quot;: Photo by Dale Cruse. (CC BY 2.0).
+https://flic.kr/p/UZdDhZ
+
+&apos;&quot;Life&quot; among the Dead!! or Dick Wildfire, Squire Jenkins & the Halibut family in the Catacombs.&apos;: Print by George Cruikshank, scan by The British Museum. (CC BY-NC-SA 4.0).
+https://www.britishmuseum.org/collection/image/166522001
 ; "></a-entity>
 
 <a-entity mixin="credit-text" class="credits" id="credits-8" visible="false" position="-0.7 2 -7.499" text="value: VR Sources
@@ -763,10 +804,10 @@ Will Murphy
 A-Frame Physics Extras
 Super-Hands
 
-Fernando Serrano
-A-Frame Teleport Component
+Jure Triglav and Fernando Serrano
+A-Frame Blink Controls Component
 
-Ben Erwin
+Ben Erwin and Piotr Adam Milewski
 Special Fixes;"></a-entity>
 </a-scene>
 </body>
