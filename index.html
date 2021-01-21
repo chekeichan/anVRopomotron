@@ -267,10 +267,11 @@
 
         </a-entity>
 
-        <a-entity full-gltf-model="chimpstatue.glb"   static-body position="0 0 2" rotation="0 180 0" mixin="obj"></a-entity> <!-- Demo Place -->
+        <a-entity full-gltf-model="" static-body position="2 0 0" rotation="0 180 0" mixin="obj"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
-<a-entity static-body warp mixin="button" class="clickable" position="0.8 0.16 6" id="burialwarpbutt" visible="false"  full-gltf-model="#buttonmodel" shadow></a-entity> 
+<a-entity full-gltf-model="models/chimpstatue.glb" static-body position="4.9 0 4" rotation="0 180 0" mixin="obj"></a-entity> 
+<a-entity static-body warp mixin="button" class="clickable" position="0.8 0.16 6" id="burialwarpbutt" visible="false"  full-gltf-model="#buttonmodel"></a-entity> 
 
 <a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" full-gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
    <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" full-gltf-model="#buttonmodel" shadow></a-entity>
