@@ -30,7 +30,7 @@ AFRAME.registerComponent('device-set', {
                 rig.setAttribute("movement-controls", "speed", 0.15);
                 for (let each of tablestand) {
                     let poss = each.getAttribute('position');
-                    each.setAttribute('animation', {property: 'position.y', to: poss.y + 0.35, dur: 5000, delay: 50});
+                    each.setAttribute('animation', {property: 'position.y', to: poss.y + 0.25, dur: 5000, delay: 50});
                 }
                 for (let each of standup) {
                     each.removeAttribute('dynamic-body');
@@ -70,9 +70,10 @@ var visidistanceswitch = function(zone, toggle) {
     for (let each of zone) {
             let poss = each.getAttribute('position');
 			let area = (poss.x + 1) * (poss.z + 1);
-			let absarea = Math.abs(area)
+            let absarea = Math.abs(area)
+            console.log(absarea)
              if (each.is('grabbed') == false && absarea <= 2) { // See if object has moved under 2 meters in coordinates
-                 each.object3D.visible = toggle; // Hide object if close to table
+                each.object3D.visible = toggle; // Hide object if close to table
              } else {
 				each.object3D.visible = true; // Keep object visible if it has been carried
 	}}
@@ -125,7 +126,7 @@ for (let each of list) {
 	} else {
 	console.log("grab off");
 		visiswitch(gzone, false);
-		visidistanceswitch(gzoneobjs, false);
+        visidistanceswitch(gzoneobjs, false);
 }
 	if (centercheck == 1) {
 		console.log("center on");
@@ -137,7 +138,7 @@ for (let each of list) {
 		
 	} else {
 	console.log("center off");
-		visiswitch(czone, false);
+        visiswitch(czone, false);
 		visidistanceswitch(czoneobjs, false);
 }
 	if (scalecheck == 1) {

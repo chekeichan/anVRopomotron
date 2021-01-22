@@ -1,8 +1,11 @@
 # AnVRopomotron Changelog
 
 
-## 1.1.X (next)
+## 1.1.X (next next)
 -   What if there were strategically placed mini maps to telport the user to different exhibits? I now have a button that takes me from the start to the Burial Chamber. Great for developing! It's invisible in the official release. Click the tip of the p in AnVRopomotron.
+
+## 1.1.5 (next)
+-   Fixed bug with grabbed artifacts going invisible when crossing zones. There was an occlusion class that inadvertenly applied to all child objects within.
 -   Chimpanzees for next scale model.
 
 ## 1.1.4 (1/19/2021)
