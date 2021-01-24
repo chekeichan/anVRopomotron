@@ -201,7 +201,7 @@ AFRAME.registerComponent("buttons", {
   }
 })
 
-// Scale Model Hall and Burial Chamber Toggle Buttons
+// Orb Toggle Buttons
 AFRAME.registerComponent("grab-panels", {
 	init: function() {
 var grabpanel = function(grabbutt, grabset) {
@@ -210,7 +210,8 @@ document.getElementById(grabbutt).addEventListener("grab-start", function(evt) {
       cent.object3D.visible = !cent.getAttribute("visible");
        })  
        }
-grabpanel("centerbutt","#centerpiece-tit");
+grabpanel("chimpstatuebutt","#chimpstatue-tit");
+grabpanel("parisbuttinfo","#paris-tit");
 grabpanel("gorillabutt","#stand1-tit");
 grabpanel("rhesusbutt","#stand2-tit");
 grabpanel("gibbonbutt","#stand3-tit");
