@@ -71,7 +71,6 @@ var visidistanceswitch = function(zone, toggle) {
             let poss = each.getAttribute('position');
 			let area = (poss.x + 1) * (poss.z + 1);
             let absarea = Math.abs(area)
-            console.log(absarea)
              if (each.is('grabbed') == false && absarea <= 2) { // See if object has moved under 2 meters in coordinates
                 each.object3D.visible = toggle; // Hide object if close to table
              } else {
@@ -181,36 +180,22 @@ zonechecker();
 })
 }})
 
-// Controller Teleport Button Listeners
-AFRAME.registerComponent("buttons", {
-	init: function() {
-	var el = this.el;
-	var binder = function(butt, emits) {
-	    el.addEventListener(butt, function (e) {
-                    el.emit(emits);
-                });
-        }
-    binder("xbuttondown", "teleportstart");
-    binder("xbuttonup", "teleportend");
-    binder("abuttondown", "teleportstart");
-    binder("abuttonup", "teleportend");
-    binder("bbuttondown", "teleportstart");
-    binder("bbuttonup", "teleportend");
-    binder("ybuttondown", "teleportstart");
-    binder("ybuttonup", "teleportend");	   
-  }
-})
-
 // Orb Toggle Buttons
 AFRAME.registerComponent("grab-panels", {
 	init: function() {
-var grabpanel = function(grabbutt, grabset) {
+var grabpanel = function(grabbutt, grabset, grabinfo) {
 document.getElementById(grabbutt).addEventListener("grab-start", function(evt) {
       var cent = document.querySelector(grabset);
+      var info = document.querySelector(grabinfo);
       cent.object3D.visible = !cent.getAttribute("visible");
+      var msg = new SpeechSynthesisUtterance();
+      console.log(info);
+      msg.text = info.components.text.data.value;
+      window.speechSynthesis.speak(msg);
        })  
        }
-grabpanel("chimpstatuebutt","#chimpstatue-tit");
+grabpanel("centerbutt","#centerpiece-tit","d");
+grabpanel("chimpstatuebutt","#chimpstatue-tit","#chimpstatue-info");
 grabpanel("parisbuttinfo","#paris-tit");
 grabpanel("gorillabutt","#stand1-tit");
 grabpanel("rhesusbutt","#stand2-tit");
@@ -224,6 +209,7 @@ grabpanel("proconsulbutt","#stand9-tit");
 grabpanel("jamesbuttinfo","#james-tit");
 grabpanel("calatravabuttinfo","#calatrava-tit");
 grabpanel("parisbuttinfo","#paris-tit");
+grabpanel("chimpsbutt","#stand10-tit");
     }
 })
 
@@ -406,19 +392,15 @@ var state = "down";
 var heightswitch = function(button) {
 document.getElementById(button).addEventListener("grab-start", function(evt) {
 if (state == "up") {
-    console.log("up detected");
 	document.getElementById("jamesburialset").setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
 	document.getElementById("holocalatrava").setAttribute('animation', {property: 'position.y', to: 0.5, dur: 3000});
 	document.getElementById("calatravaburialset").setAttribute('animation', {property: 'position.y', to: 0.8, dur: 3000});
     state = "down";
-	console.log(state);
 } else {
-    console.log("down detected");
 	document.getElementById("jamesburialset").setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
 	document.getElementById("holocalatrava").setAttribute('animation', {property: 'position.y', to: 1, dur: 3000});
 	document.getElementById("calatravaburialset").setAttribute('animation', {property: 'position.y', to: 1.3, dur: 3000});
     state = "up";
-	console.log(state);
          }
      }) 
 }
@@ -440,7 +422,6 @@ for (let each of this.grabbablelist) {
 			let area = (poss.x + 1) * (poss.z + 1);
 			let absarea = Math.abs(area)
 			if (poss.y <= 0.1 && absarea <= 5) {
-                 console.log(each.object3D.position);
 				 each.object3D.position.set(0, 1.4, 0);
 				 each.components['dynamic-body'].syncToPhysics(); // This makes the position official
              }}
