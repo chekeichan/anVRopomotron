@@ -346,7 +346,7 @@ grabtrig("aethiopicus-grab","aethiopicus-tit",".bone-text", "holobone", "holobon
 
 // Toggle Homo Skulls
 grabtrig("habilis-grab","habilis-tit",".bone-text", "holobone", "holoboneproj", "models/habilis.glb", undefined, undefined, "0 1.2 0");
-grabtrig("turkana-grab","turkana-tit",".bone-text", "holobone", "holoboneproj", "models/turkana.glb", undefined, undefined, "0 1.2 0");
+grabtrig("turkana-grab","turkana-tit",".bone-text", "holobone", "holoboneproj", "models/turkanaskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("atapuerca-grab","atapuerca-tit",".bone-text", "holobone", "holoboneproj", "models/atapuerca.glb", undefined, undefined, undefined);
 grabtrig("nean-grab","nean-tit",".bone-text", "holobone", "holoboneproj", "models/nean.glb", undefined, undefined, "0 1.2 0");
 grabtrig("vlca1-grab","vlca1-tit",".bone-text", "holobone", "holoboneproj", "models/vLCA1.glb", undefined, undefined, "0 1.2 0");
