@@ -87,6 +87,10 @@ Potto
 Lapworth Museum of Geology (CC-Attribution-NonCommercial)
 https://sketchfab.com/3d-models/potto-skull-birug-18612-dbb114c765b648aab6d4cc436fe96b8c
 
+Rhesus Monkey
+RISD Nature Lab (CC BY 4.0)
+https://skfb.ly/6UoqC
+
 Snub-Nosed Monkey
 Morphosourcus (CC-BY-NC-SA)
 https://wiiboox.myminifactory.com/object/3d-print-rhinopithecus-roxellana-36244
@@ -123,6 +127,10 @@ Hippo Ivory Harpoon
 African Fossils (CC-Attribution-NonCommercial-ShareAlike 3.0)
 https://africanfossils.org/tools/hippo%20tusk%20harpoon?o=1
 
+Lomekwian Hammerstone
+UCFanthropology (CC Attribution 4.0 International)
+https://skfb.ly/6SLO8
+
 Moundville Vessel
 RLA Archaeology (CC-Attribution-NonCommercial-ShareAlike 3.0)
 https://sketchfab.com/3d-models/moundville-engraved-bottle-758edcd2cf0345369951c6b67bec8160
@@ -152,6 +160,10 @@ https://skfb.ly/6RLHB
 Calatrava la Nueva
 Global Digital Heritage (CC BY-NC 4.0)
 https://skfb.ly/6TZrN
+
+Catacombs of Paris - room (VR ready)
+Benoît Rogez (CC BY-NC 4.0)
+https://skfb.ly/6UIZn
 
 ## -Image Sources-
 ### -Scale Model Hall-
@@ -219,6 +231,9 @@ https://commons.wikimedia.org/wiki/File:Peru,_South_Coast,_Nasca_style_-_Mask_-_
 Potto: Drawing by St. George Jackson Mivart, image by The Internet Archive. (Public Domain)
 https://www.flickr.com/photos/internetarchivebookimages/18158318792
 
+Rhesus Monkey: Photo by Allan Hopkins. (CC BY-NC-ND 2.0)
+https://flic.kr/p/cuxbdW
+
 Snub-Nosed Monkey: Photo by Jack Hynes. (CC BY-SA 2.0)
 https://commons.wikimedia.org/wiki/File:Golden_Snub-nosed_Monkeys.jpg
 
@@ -248,6 +263,12 @@ https://www.flickr.com/photos/centreeuropeubarcelona/48881518216
 &quot;Medieval Shoes from the cobbler's guild&quot;: Photo by Curious Expeditions. (CC BY-NC-SA 2.0).
 https://www.flickr.com/photos/7955505@N05/2197617740
 
+&quot;Paris catacombs&quot;: Photo by Dale Cruse. (CC BY 2.0).
+https://flic.kr/p/UZdDhZ
+
+&apos;&quot;Life&quot; among the Dead!! or Dick Wildfire, Squire Jenkins & the Halibut family in the Catacombs.&apos; Print by George Cruikshank, scan by The British Museum. (CC BY-NC-SA 4.0).
+https://www.britishmuseum.org/collection/image/166522001
+
 ##VR Sources
 Diego Marcos, Don McCurdy, and Kevin Ngo
 A-Frame
@@ -264,8 +285,8 @@ Will Murphy
 A-Frame Physics Extras
 Super-Hands
 
-Fernando Serrano
-A-Frame Teleport Component
+Jure Triglav and Fernando Serrano
+A-Frame Blink Controls Component
 
-Ben Erwin
-Special Thanks
+Ben Erwin and Piotr Adam Milewski
+Special Thanks and Fixes
