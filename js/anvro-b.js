@@ -3,10 +3,11 @@ AFRAME.registerComponent('device-set', {
         var sceneEl = document.querySelector('a-scene');
         var tablestand = sceneEl.querySelectorAll('.table');
         var standup = sceneEl.querySelectorAll('.standup');
-        
         var rig = document.querySelector('#rig');
+        var camera = document.querySelector('#camera');
         if (AFRAME.utils.device.isMobile() === true) { // Smartphone Mode
             sceneEl.setAttribute("vr-mode-ui", "enabled", "false");
+            document.querySelector('#crosshair').object3D.visible = false;
             rig.setAttribute("movement-controls", "speed", 0.15);
             document.querySelector('#GL-SP').object3D.visible = true;
             document.querySelector('#SMH-SP').object3D.visible = true;
@@ -20,11 +21,14 @@ AFRAME.registerComponent('device-set', {
                 each.setAttribute('rotation', {z: 90});
                 each.dispatchEvent(new CustomEvent("standtrigger"));
             }
-        } else if (AFRAME.utils.device.checkHeadsetConnected() === true) { // VR Mode
+        } else if (AFRAME.utils.device.checkHeadsetConnected() === true) { // VR Modes
+            document.querySelector('#crosshair').object3D.visible = false;
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.10);
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
+            camera.removeAttribute('look-controls');
+            camera.setAttribute('fps-look-controls', 'userHeight', 0);
             document.querySelector('#GL-PC').object3D.visible = true;
             document.querySelector('#SMH-PC').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.15);
@@ -39,7 +43,7 @@ AFRAME.registerComponent('device-set', {
                 each.setAttribute('rotation', {z: 90});
                 each.dispatchEvent(new CustomEvent("standtrigger"));
             }
-        }
+        } 
     }
 })
 

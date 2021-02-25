@@ -82,6 +82,7 @@
                 <a-asset-item id="rhesusskullmodel" response-type="arraybuffer" src="models/rhesusskull.glb"></a-asset-item>
                 <a-asset-item id="squirrelmonkeyskullmodel" response-type="arraybuffer" src="models/squirrelmonkeyskull.glb"></a-asset-item>
 				<a-asset-item id="lomekmodel" response-type="arraybuffer" src="models/lomekwian.glb"></a-asset-item>
+                <a-asset-item id="africanusskullmodel" response-type="arraybuffer" src="models/africanus.glb"></a-asset-item>
 
                 <a-mixin id="obj" hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" scale="1 1 1" rotation="0 0 0" animation="property: object3D.position.y; to: 1.45; startEvents: standtrigger; dur: 5000" shadow></a-mixin>
                 <a-mixin id="button" static-body hoverable clickable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" shadow></a-mixin>
@@ -109,8 +110,8 @@
 <a-entity position="0 0 0" full-gltf-model="models/floorplan.glb"></a-entity> <!-- Building -->
 <a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0.01 1"> <!-- Player Character -->
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
-        <a-entity id="camera" camera fps-look-controls="user-height:0" raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
-            <a-entity cursor="rayOrigin:mouse" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: #0055ff; shader: flat"></a-entity>
+        <a-entity id="camera" camera look-controls raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
+            <a-entity id="crosshair" cursor="rayOrigin:mouse" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: #0055ff; shader: flat"></a-entity>
         <a-entity mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff">
   </a-entity>
         </a-entity>
@@ -269,12 +270,12 @@
 
         </a-entity>
 
-        <a-entity full-gltf-model="models/chimps.glb" static-body position="2 0 0" rotation="0 180 0" mixin="obj"></a-entity> <!-- Demo Place -->
+        <a-entity full-gltf-model="models/africanus.glb" static-body position="2 1.5 0" rotation="0 0 0"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
 <a-entity class="center-zone" position="4.5 0 4" rotation="0 -135 0">
     <a-entity mixin="button" class="clickable" position="-.9 0 -0.1" id="chimpstatuebutt" full-gltf-model="#buttonmodel"></a-entity>
-    <a-entity full-gltf-model="models/chimpstatue.glb" static-body rotation="0 0 0" mixin="obj">
+    <a-entity full-gltf-model="models/chimpstatue.glb" static-body rotation="0 0 0">
     </a-entity>
     <a-entity  mixin="scale-box" id="chimpstatue-tit" position="-1.25 1.2 -0.7" rotation="0 45 0">
         <a-entity mixin="scale-label-border" position="0 0 0"></a-entity><a-entity id="chimpstatue-info" mixin="scale-label" position="0 0 0.01" text="value: &quot;Coverversion&quot;\nLocation: Au von Tulln, Austria\nDate: 2008\nSource: Scan by Niederösterreich 3D\n\nNotes: This statue by Klaus Weber is based on the 1893 &quot;Affe mit Schädel&quot; (Monkey with Skull) by Hugo Rheinhold.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
