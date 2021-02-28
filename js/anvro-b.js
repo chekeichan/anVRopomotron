@@ -43,6 +43,16 @@ AFRAME.registerComponent('device-set', {
                 each.setAttribute('rotation', {z: 90});
                 each.dispatchEvent(new CustomEvent("standtrigger"));
             }
+            window.addEventListener("keydown", function(e){
+                if(e.keyCode === 67) { 
+                    camera.setAttribute('position', {y: 1.0});
+                }
+            });
+            window.addEventListener("keyup", function(e){
+                if(e.keyCode === 67) { 
+                    camera.setAttribute('position', {y: 1.6});
+                }
+            });
         } 
     }
 })
