@@ -1,13 +1,14 @@
-AFRAME.registerComponent('device-set', {
+AFRAME.registerComponent('device-set', { // Device-specific settings
     init: function() {
         var sceneEl = document.querySelector('a-scene');
         var tablestand = sceneEl.querySelectorAll('.table');
         var standup = sceneEl.querySelectorAll('.standup');
         var rig = document.querySelector('#rig');
         var camera = document.querySelector('#camera');
+        var state = "stand";
         if (AFRAME.utils.device.isMobile() === true) { // Smartphone Mode
             sceneEl.setAttribute("vr-mode-ui", "enabled", "false");
-            document.querySelector('#crosshair').object3D.visible = false;
+            document.querySelector('#crosshair').object3D.visible = false; // Hides crosshair for non PC
             rig.setAttribute("movement-controls", "speed", 0.15);
             document.querySelector('#GL-SP').object3D.visible = true;
             document.querySelector('#SMH-SP').object3D.visible = true;
@@ -22,10 +23,10 @@ AFRAME.registerComponent('device-set', {
                 each.dispatchEvent(new CustomEvent("standtrigger"));
             }
         } else if (AFRAME.utils.device.checkHeadsetConnected() === true) { // VR Modes
-            document.querySelector('#crosshair').object3D.visible = false;
+            document.querySelector('#crosshair').object3D.visible = false; // Hides crosshair for non PC
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
-            rig.setAttribute("movement-controls", "speed", 0.10);
+            rig.setAttribute("movement-controls", "speed", 0.10); // VR movement is slower than other modes for non barfing
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
             camera.removeAttribute('look-controls');
             camera.setAttribute('fps-look-controls', 'userHeight', 0);
@@ -36,13 +37,21 @@ AFRAME.registerComponent('device-set', {
                 let poss = each.getAttribute('position');
                 each.setAttribute('animation', {property: 'position.y', to: poss.y + 0.25, dur: 5000, delay: 50});
             }
-            for (let each of standup) {
+            for (let each of standup) { // Stands up small objects
                 each.removeAttribute('dynamic-body');
                 each.removeAttribute('grabbable');
                 each.setAttribute('static-body');
                 each.setAttribute('rotation', {z: 90});
                 each.dispatchEvent(new CustomEvent("standtrigger"));
             }
+            window.addEventListener("keydown", function(e){ // Crouch key for PC
+                if(e.keyCode === 67 && state == "stand") { 
+                    camera.setAttribute('position', {y: 1.0});
+                    state = "crouch";
+                } else if (e.keyCode === 67 && state == "crouch") {
+                    camera.setAttribute('position', {y: 1.6});
+                    state ="stand";
+            }});
         } 
     }
 })
@@ -389,8 +398,6 @@ grabtrig("canopic-grab","canopic-tit",".art-text","holoartifact", "holoartproj",
 grabtrig("baboon-blue-grab","baboon-blue-tit",".art-text","holoartifact", "holoartproj", "models/baboon-blue.glb", undefined, "7 7 7", "0 0.9 -0.1");
 }
 })
-
-
 
 // Raise and Lower Burial
 AFRAME.registerComponent("burial-grab", {
