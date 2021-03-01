@@ -1,4 +1,4 @@
-AFRAME.registerComponent('device-set', {
+AFRAME.registerComponent('device-set', { // Device-specific settings
     init: function() {
         var sceneEl = document.querySelector('a-scene');
         var tablestand = sceneEl.querySelectorAll('.table');
