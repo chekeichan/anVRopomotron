@@ -51,10 +51,11 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
                 } else if (e.keyCode === 67 && state == "crouch") {
                     camera.setAttribute('position', {y: 1.6});
                     state ="stand";
-            }});
-        } 
+        
+                }
+            });
     }
-})
+}})
 
 AFRAME.registerComponent("plane-hit", { // Manual occlusion zones
 init: function() {
