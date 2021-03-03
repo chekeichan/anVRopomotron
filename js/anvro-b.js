@@ -357,33 +357,33 @@ document.getElementById(grabitem).addEventListener("grab-start", function(evt) {
 // Toggle Early Primate Skulls
 grabtrig("proconsul-grab","proconsul-tit",".bone-text", "holobone", "holoboneproj", "models/proconsulskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("archicebus-grab","archicebus-tit",".bone-text", "holobone", "holoboneproj", "models/archicebus.glb", undefined, undefined, "0 1.2 0");
-grabtrig("sahelanthropus-grab","sahel-tit",".bone-text", "holobone", "holoboneproj", "models/sahel.glb", undefined, undefined, "0 1.2 0");
-grabtrig("platyops-grab","platyops-tit",".bone-text", "holobone", "holoboneproj", "models/platyops.glb", undefined, undefined, "0 1.2 0");
-grabtrig("aethiopicus-grab","aethiopicus-tit",".bone-text", "holobone", "holoboneproj", "models/aethiopicus.glb", undefined, undefined, "0 1.2 0");
+grabtrig("sahelanthropus-grab","sahel-tit",".bone-text", "holobone", "holoboneproj", "models/sahelskull.glb", undefined, undefined, "0 1.2 0");
+grabtrig("platyops-grab","platyops-tit",".bone-text", "holobone", "holoboneproj", "models/platyopsskull.glb", undefined, undefined, "0 1.2 0");
+grabtrig("aethiopicus-grab","aethiopicus-tit",".bone-text", "holobone", "holoboneproj", "models/aethiopicusskull.glb", undefined, undefined, "0 1.2 0");
 
 // Toggle Homo Skulls
-grabtrig("habilis-grab","habilis-tit",".bone-text", "holobone", "holoboneproj", "models/habilis.glb", undefined, undefined, "0 1.2 0");
+grabtrig("habilis-grab","habilis-tit",".bone-text", "holobone", "holoboneproj", "models/habilisskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("turkana-grab","turkana-tit",".bone-text", "holobone", "holoboneproj", "models/turkanaskull.glb", undefined, undefined, "0 1.2 0");
-grabtrig("atapuerca-grab","atapuerca-tit",".bone-text", "holobone", "holoboneproj", "models/atapuerca.glb", undefined, undefined, undefined);
-grabtrig("nean-grab","nean-tit",".bone-text", "holobone", "holoboneproj", "models/nean.glb", undefined, undefined, "0 1.2 0");
-grabtrig("vlca1-grab","vlca1-tit",".bone-text", "holobone", "holoboneproj", "models/vLCA1.glb", undefined, undefined, "0 1.2 0");
+grabtrig("atapuerca-grab","atapuerca-tit",".bone-text", "holobone", "holoboneproj", "models/atapuercaskull.glb", undefined, undefined, undefined);
+grabtrig("nean-grab","nean-tit",".bone-text", "holobone", "holoboneproj", "models/neanskull.glb", undefined, undefined, "0 1.2 0");
+grabtrig("vlca1-grab","vlca1-tit",".bone-text", "holobone", "holoboneproj", "models/vLCA1skull.glb", undefined, undefined, "0 1.2 0");
 
 // Toggle Modern Prosimian Skulls
-grabtrig("potto-grab","potto-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/potto.glb", undefined, "10 10 10", "0 1.3 0");
-grabtrig("indri-grab","indri-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/indri.glb", undefined, "8 8 8", "0 1.3 0");
+grabtrig("potto-grab","potto-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/pottoskull.glb", undefined, "10 10 10", "0 1.3 0");
+grabtrig("indri-grab","indri-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/indriskull.glb", undefined, "8 8 8", "0 1.3 0");
 grabtrig("howler-grab","howler-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/howlerskull.glb", undefined, "7 7 7", "0 1.3 0");
 grabtrig("squirrelmonkey-grab","squirrelmonkey-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/squirrelmonkeyskull.glb", undefined, "10 10 10", "0 1.3 0");
 grabtrig("baboon-grab","baboon-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/baboonskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("rhesus-grab","rhesus-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/rhesusskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("mandrill-grab","mandrill-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/mandrillskull.glb", undefined, undefined, "0 1.2 0");
-grabtrig("snub-grab","snub-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/snub.glb", undefined, "7 7 7", "0 1.3 0");
+grabtrig("snub-grab","snub-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/snubskull.glb", undefined, "7 7 7", "0 1.3 0");
 
 // Toggle Modern Hominoid Skulls
 grabtrig("gibbon-grab","gibbon-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/gibbonskull.glb", undefined, "7 7 7", "0 1.2 0");
 grabtrig("gorilla-m-grab","gorilla-m-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/gorillaskull-m.glb", undefined, "4 4 4", undefined);
 grabtrig("gorilla-f-grab","gorilla-f-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/gorillaskull-f.glb", undefined, "4 4 4", undefined);
-grabtrig("chimp-grab","chimp-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/chimp.glb", undefined, undefined, undefined);
-grabtrig("mhs-grab","mhs-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/mhs.glb", undefined, undefined, undefined);
+grabtrig("chimp-grab","chimp-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/chimpskull.glb", undefined, undefined, undefined);
+grabtrig("mhs-grab","mhs-tit",".bone-text-2", "holobone2", "holoboneproj2", "models/mhsskull.glb", undefined, undefined, undefined);
 
 // Toggle Artifacts
 grabtrig("lomek-grab","lomek-tit",".art-text","holoartifact", "holoartproj", "models/lomekwian.glb", "0 0 90", "7 7 7", "0.18 1.3 0");
