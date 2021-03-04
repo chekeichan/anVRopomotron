@@ -85,7 +85,7 @@ for (let each of zone) {
         let poss = each.getAttribute('position');
         let area = (poss.x + 1) * (poss.z + 1);
         let absarea = Math.abs(area)
-         if (each.is('grabbed') == false && absarea <= 2) { // See if object has moved under 2 meters in coordinates
+         if (each.is('grabbed') == false && absarea <= 3) { // See if object has moved under 2 meters in coordinates
             each.object3D.visible = toggle; // Hide object if close to table
          } else {
             each.object3D.visible = true; // Keep object visible if it has been carried
@@ -202,17 +202,9 @@ document.getElementById(grabbutt).addEventListener("grab-start", function(evt) {
   var cent = document.querySelector(grabset);
   var info = document.querySelector(grabinfo);
   cent.object3D.visible = !cent.getAttribute("visible");
-  var utter = new SpeechSynthesisUtterance();
-  if ('speechSynthesis' in window) {
-    var utter = new SpeechSynthesisUtterance();
-    window.speechSynthesis.cancel();
-
-    utter.text = info.components.text.data.value;
-    window.speechSynthesis.speak(utter);
-}})  
-   }
-grabpanel("centerbutt","#centerpiece-tit","d");
-grabpanel("chimpstatuebutt","#chimpstatue-tit","#chimpstatue-info");
+})};
+grabpanel("centerbutt","#centerpiece-tit");
+grabpanel("chimpstatuebutt","#chimpstatue-tit");
 grabpanel("parisbuttinfo","#paris-tit");
 grabpanel("gorillabutt","#stand1-tit");
 grabpanel("rhesusbutt","#stand2-tit");
@@ -360,6 +352,7 @@ grabtrig("archicebus-grab","archicebus-tit",".bone-text", "holobone", "holobonep
 grabtrig("sahelanthropus-grab","sahel-tit",".bone-text", "holobone", "holoboneproj", "models/sahelskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("platyops-grab","platyops-tit",".bone-text", "holobone", "holoboneproj", "models/platyopsskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("aethiopicus-grab","aethiopicus-tit",".bone-text", "holobone", "holoboneproj", "models/aethiopicusskull.glb", undefined, undefined, "0 1.2 0");
+grabtrig("africanus-grab","africanus-tit",".bone-text", "holobone", "holoboneproj", "models/africanusskull.glb", undefined, undefined, "0 1.2 0");
 
 // Toggle Homo Skulls
 grabtrig("habilis-grab","habilis-tit",".bone-text", "holobone", "holoboneproj", "models/habilisskull.glb", undefined, undefined, "0 1.2 0");
