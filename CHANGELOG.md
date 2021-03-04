@@ -10,6 +10,7 @@
 -   Experimental first person shooter controls on desktop, using fps-look-controls. A reticle almost straight from the A-Frame tutorial is there for aiming. I like this more familiar control system instead of mouse dragging.
 -   On desktop, holding down c now crouches to 1 meter. Get some low views on those ground level primates.
 -   Archicebus in the Grab Lab got a makeover. I was young and inexperienced making the original model and decimated the whole thing to squeeze polygons out. The tail suffered the most. My new goal is to have nice simple meshes so Archicebus got some curves back and a new tail. It has a more typical mammal coloration with a light belly and a dark tail tuft just for a little realistic flair. I also rigified this with a cat model for quick limb and tail posing.
+-   Grab Lab got the "Mrs. Ples" Austrlopithecus africanus cranium. It itself is an artifact being based on a replica from the mid 20th century.
 -   Fixed bug with grabbed artifacts going invisible when crossing zones. There was an occlusion class that inadvertently applied to all child objects within.
 -   Various little bug fixes that were actually hotfixed into the previous version. They include a misaligned Grab Lab sign, using the wrong Homo erectus model in the Grab Lab, and a few typos.
 
