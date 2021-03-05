@@ -83,6 +83,7 @@
                 <a-asset-item id="squirrelmonkeyskullmodel" response-type="arraybuffer" src="models/squirrelmonkeyskull.glb"></a-asset-item>
 				<a-asset-item id="lomekmodel" response-type="arraybuffer" src="models/lomekwian.glb"></a-asset-item>
                 <a-asset-item id="africanusskullmodel" response-type="arraybuffer" src="models/africanusskull.glb"></a-asset-item>
+                <a-asset-item id="nalediskullmodel" response-type="arraybuffer" src="models/nalediskull.glb"></a-asset-item>
 
                 <a-mixin id="obj" hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" scale="1 1 1" rotation="0 0 0" animation="property: object3D.position.y; to: 1.45; startEvents: standtrigger; dur: 5000" shadow></a-mixin>
                 <a-mixin id="button" static-body hoverable clickable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" shadow></a-mixin>
@@ -268,7 +269,7 @@
 
         </a-entity>
 
-        <a-entity full-gltf-model="models/africanusskull.glb" static-body position="2 1.5 0" rotation="0 0 0"></a-entity> <!-- Demo Place -->
+        <a-entity full-gltf-model="models/nalediskull.glb" static-body position="2 1.5 0" rotation="0 0 0"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
 <a-entity class="center-zone" position="4.5 0 4" rotation="0 -135 0">
@@ -307,6 +308,7 @@
          <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone" full-gltf-model="models/habilisskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.5" mixin="obj"></a-entity>
          <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/turkanaskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.3" mixin="obj"></a-entity>
          <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/atapuercaskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0" mixin="obj"></a-entity>
+         <a-entity id="naledi-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/nalediskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0" mixin="obj"></a-entity>
          <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/neanskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.3" mixin="obj"></a-entity>
          <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone"  full-gltf-model="models/vLCA1skull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.5" mixin="obj"></a-entity>
 </a-entity>
@@ -349,11 +351,11 @@
         <a-entity id="platyops-tit" class="bone-text" mixin="table-label" text="value: KNM-WT 40000\nScientific Name: Australopithecus or Kenyanthropus platyops\nLocation: West Turkana, Kenya\nTime: 3.5 to 3.2 million years ago\nItem: Cranium\nSource: Replica scan by African Fossils\n\nNotes: Named for the flattened face compared to other hominins of its time, this species has been interpreted to be a separate species or genus from Australopithecus afarensis. The presence of early hominins of different shapes shows that diversity among hominins already existed at that time."></a-entity>
         <a-entity id="aethiopicus-tit" class="bone-text" mixin="table-label" text="value: The Black Skull (KNM-WT 17000)\nScientific Name: Australopithecus or Paranthropus aethiopicus\nLocation: Ethiopia\nTime: 2.5 million years ago\nItem: Cranium\nSource: Replica scan by African Fossils\n\nNotes: This fossil is named for the dark manganese mineral that became part of the  structure. The cranium has large features that accommodate strong jaw muscles. The muscles would have reached from the mandible, under the arches of the zygomatic (cheek) bones, and all the way up to the sagittal crest at the very top of the cranium."></a-entity>
         <a-entity id="africanus-tit" class="bone-text" mixin="table-label" text="value: Mrs. Ples (STS 5)\nScientific Name: Australopithecus africanus\nLocation: Sterkfontein, South Africa\nTime: 2.05 million years ago\nItem: Cranium\nSource: Replica scan by Digital Atlast of Ancient Life\n\nNotes: While nicknamed Mrs. Ples by the discoverers, the sex of this individual is debated by scholars. The fossil, the most complete Australopithecus africanus cranium, was discovered in 1947. The species lived in forested regions along sources of water surrounded by grassland."></a-entity>
-
          
         <a-entity id="habilis-tit" class="bone-text" mixin="table-label" text="value: KNM-ER 1470\nScientific Name: Homo habilis or rudolfensis\nLocation: East Turkana, Kenya\nTime: 1.9 million years ago\nItem: Cranium\nSource: Replica scan by African Fossils\n\nNotes: Early Homo is characterized by an increased cranial capacity from the australopithecines. This fossil was discovered in 1972 by Bernard Ngeneo."></a-entity>
         <a-entity id="turkana-tit" class="bone-text" mixin="table-label" text="value: Nariokotome Boy (KNM-WT 15000)\nScientific Name: Homo erectus\nLocation: Turkana, Kenya\nTime: 1.6 million years ago\nItem: Cranium\nSource: Replica scan by Museo [UV] Historia Natural\n\nNotes: This fossilized H. erectus, the most complete known skeleton of his species, was found in 1984. The estimated stature of 160 cm (5 foot 3 inches) is tall compared to the estimated juvenile age."></a-entity>
         <a-entity id="atapuerca-tit" class="bone-text" mixin="table-label" text="value: Atapuerca 5\nHuman Group: Archaic Homo sapiens (Homo heidelbergensis)\nTime: 430,000 years ago\nItem: Skull\nSource: Scan by Geoffrey Marchal\n\nNotes: The Atapuerca 5 individual is from the site of Sima de los Huesos in Atapuerca, Spain. His skeletal features indicate a 30-year-old male with numerous cranial and dental injuries."></a-entity>
+        <a-entity id="naledi-tit" class="bone-text" mixin="table-label" text="value: Neo 5\nHuman Group: Archaic Homo sapiens (Homo heidelbergensis)\nTime: 430,000 years ago\nItem: Skull\nSource: Scan by Geoffrey Marchal\n\nNotes: The Atapuerca 5 individual is from the site of Sima de los Huesos in Atapuerca, Spain. His skeletal features indicate a 30-year-old male with numerous cranial and dental injuries."></a-entity>
         <a-entity id="nean-tit" class="bone-text" mixin="table-label" text="value: La Chapelle-aux-Saints 1\nHuman Group: Neanderthal\nLocation: France\nTime: 60,000 years ago\nItem: Cranium\nSource: Replica scan by Anatomical Museum\n\nNotes: The remains of this individual were discovered in 1908. The skeleton, including the cranium, shows heavy tooth and joint wear, showing that he survived in an extremely demanding environment. Misinterpretation of the skeleton led to the old perception of Neanderthals as ape-like."></a-entity>
         <a-entity id="vlca1-tit" class="bone-text" mixin="table-label" text="value: Virtual Last Common Ancestor, Hypothesis 1\nHuman Group: Archaic Homo sapiens\nItem: Cranium\nSource: Phylogenetic model by Mounier and Lahr (2019)\n\nNotes: This model is based on a statistical estimation of cranial landmarks from modern human crania and human fossils. The shape represents a hypothetical last common ancestor of our species."></a-entity>
     
