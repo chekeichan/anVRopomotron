@@ -217,7 +217,6 @@ grabpanel("tarsierbutt","#stand8-tit");
 grabpanel("proconsulbutt","#stand9-tit");
 grabpanel("jamesbuttinfo","#james-tit");
 grabpanel("calatravabuttinfo","#calatrava-tit");
-grabpanel("parisbuttinfo","#paris-tit");
 grabpanel("chimpsbutt","#stand10-tit");
 }
 })
