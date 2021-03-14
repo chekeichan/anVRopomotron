@@ -1,3 +1,5 @@
+console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
+
 AFRAME.registerComponent('device-set', { // Device-specific settings
     init: function() {
         var sceneEl = document.querySelector('a-scene');
