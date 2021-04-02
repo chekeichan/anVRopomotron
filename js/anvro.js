@@ -1,4 +1,17 @@
-console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
+// console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
+AFRAME.registerComponent('table-wait', {
+    init: function () {
+        var setphys = sceneEl.querySelectorAll('.grabbable');
+        // Wait for model to load.
+      this.el.addEventListener('model-loaded', () => {
+        // Grab the mesh / scene.
+        for (let each of setphys) {
+            each.removeAttribute('static-body');
+            each.setAttribute('dynamic-body', {shape: 'box', mass: 1});
+        }
+        });
+}});
+
 
 AFRAME.registerComponent('device-set', { // Device-specific settings
     init: function() {

@@ -57,14 +57,12 @@
                 <a-asset-item id="atapuercaskullmodel" response-type="arraybuffer" src="models/atapuercaskull.glb"></a-asset-item>
                 <a-asset-item id="acheulmodel" response-type="arraybuffer" src="models/acheul.glb"></a-asset-item>
                 <a-asset-item id="mousterianmodel" response-type="arraybuffer" src="models/mousterian.glb"></a-asset-item>
-                <a-asset-item id="venusmodel" response-type="arraybuffer" src="models/venus.glb"></a-asset-item>
                 <a-asset-item id="clovismodel" response-type="arraybuffer" src="models/clovis.glb"></a-asset-item>       
                 <a-asset-item id="canopicmodel" response-type="arraybuffer" src="models/canopic.glb"></a-asset-item>       
                 <a-asset-item id="harpoonmodel" response-type="arraybuffer" src="models/harpoon.glb"></a-asset-item>               
                 <a-asset-item id="moundvillemodel" response-type="arraybuffer" src="models/moundville.glb"></a-asset-item>
                 <a-asset-item id="daggermodel" response-type="arraybuffer" src="models/dagger.glb"></a-asset-item>
                 <a-asset-item id="nascamodel" response-type="arraybuffer" src="models/nasca.glb"></a-asset-item>
-                <a-asset-item id="baboon-bluemodel" response-type="arraybuffer" src="models/baboon-blue.glb"></a-asset-item>
                 <a-asset-item id="snubskullmodel" response-type="arraybuffer" src="models/snubskull.glb"></a-asset-item>
                 <a-asset-item id="pottoskullmodel" response-type="arraybuffer" src="models/pottoskull.glb"></a-asset-item>
                 <a-asset-item id="indriskullmodel" response-type="arraybuffer" src="models/indriskull.glb"></a-asset-item>
@@ -143,7 +141,7 @@
       <a-text id="SMH-SP" visible="false" position="-6.65 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
     <!-- Behind wall -->
-       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="0 0 0.01" value="AnVRopomotron" align="center" color="black" width="35"></a-text><a-text position="5.65 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.1.5" align="right" color="black" width="5"></a-text></a-entity> 
+       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="0 0 0.01" value="AnVRopomotron" align="center" color="black" width="35"></a-text><a-text position="5.65 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.1.6" align="right" color="black" width="5"></a-text></a-entity> 
     <!-- Left display wall -->
         <a-entity visible="true" static-body position="-5.08 2 -0.5" rotation="0 90 0" depth="0.1" width="8" height="4.5" color="#dfe0e2" material="shader: flat">
         <a-image position="0 -0.48 0.10" src="#height" material.transparent="true" shader="flat" geometry="height: 3.048; width: 7.3152"></a-image><!-- Correct by -2.0 -->
@@ -393,12 +391,12 @@
 
      <!-- Artifact table 2-->
      <a-entity id="atable2" position="4.94 0 1"> <!-- This sets the relative state of the table --> 
-        <a-entity class="table center-zone" static-body="shape: box;" scale="1 1 1" id="table6" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
+        <a-entity table-wait class="table center-zone" static-body="shape: box;" scale="1 1 1" id="table6" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Primate Figures; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-        <a-entity id="venus-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.5" mixin="obj" full-gltf-model="#venusmodel"></a-entity>
-        <a-entity id="nasca-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.3" mixin="obj" full-gltf-model="#nascamodel"></a-entity>
-        <a-entity id="canopic-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 -0.2" mixin="obj" full-gltf-model="#canopicmodel"></a-entity>
-        <a-entity id="baboon-blue-grab" class="clickable grabbable center-obj-zone" dynamic-body="shape: box; mass: 2" position="0 1.01 0.5" mixin="obj" full-gltf-model="#baboon-bluemodel"></a-entity>
+        <a-entity id="venus-grab" class="clickable grabbable center-obj-zone" static-body position="0 1.264 -0.5" mixin="obj" full-gltf-model="models/venus.glb"></a-entity>
+        <a-entity id="nasca-grab" class="clickable grabbable center-obj-zone" static-body position="0 1.264 0.3" mixin="obj" full-gltf-model="#nascamodel"></a-entity>
+        <a-entity id="canopic-grab" class="clickable grabbable center-obj-zone" static-body position="0 1.264 -0.2" mixin="obj" full-gltf-model="#canopicmodel"></a-entity>
+        <a-entity id="baboon-blue-grab" class="clickable grabbable center-obj-zone" static-body position="0 1.264 0.5" mixin="obj" full-gltf-model="models/baboon-blue.glb"></a-entity>
 </a-entity>
 
 <a-entity id="artifactscreen" class="center-zone" position="7.77 2 -2.0">
