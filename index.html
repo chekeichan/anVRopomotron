@@ -46,41 +46,17 @@
                 <a-asset-item id="buttonupmodel" response-type="arraybuffer" src="models/button-up.glb"></a-asset-item>
                 <a-asset-item id="centerpiecemodel" response-type="arraybuffer" src="models/centerpiece.glb"></a-asset-item>
                 <img id="height" src="images/height.png">
-                <a-asset-item id="archicebusmodel" response-type="arraybuffer" src="models/archicebus.glb"></a-asset-item>
-                <a-asset-item id="habilisskullmodel" response-type="arraybuffer" src="models/habilisskull.glb"></a-asset-item>
-                <a-asset-item id="neanskullmodel" response-type="arraybuffer" src="models/neanskull.glb"></a-asset-item>
-                <a-asset-item id="proconsulskullmodel" response-type="arraybuffer" src="models/proconsulskull.glb"></a-asset-item>
-                <a-asset-item id="sahelskullmodel" response-type="arraybuffer" src="models/sahelskull.glb"></a-asset-item>
-                <a-asset-item id="aethiopicusskullmodel" response-type="arraybuffer" src="models/aethiopicusskull.glb"></a-asset-item>
-                <a-asset-item id="platyopsskullmodel" response-type="arraybuffer" src="models/platyopsskull.glb"></a-asset-item>
-                <a-asset-item id="vLCA1skullmodel" response-type="arraybuffer" src="models/vLCA1skull.glb"></a-asset-item>
-                <a-asset-item id="atapuercaskullmodel" response-type="arraybuffer" src="models/atapuercaskull.glb"></a-asset-item>
                 <a-asset-item id="acheulmodel" response-type="arraybuffer" src="models/acheul.glb"></a-asset-item>
                 <a-asset-item id="mousterianmodel" response-type="arraybuffer" src="models/mousterian.glb"></a-asset-item>
+                <a-asset-item id="venusmodel" response-type="arraybuffer" src="models/venus.glb"></a-asset-item>
                 <a-asset-item id="clovismodel" response-type="arraybuffer" src="models/clovis.glb"></a-asset-item>       
                 <a-asset-item id="canopicmodel" response-type="arraybuffer" src="models/canopic.glb"></a-asset-item>       
                 <a-asset-item id="harpoonmodel" response-type="arraybuffer" src="models/harpoon.glb"></a-asset-item>               
                 <a-asset-item id="moundvillemodel" response-type="arraybuffer" src="models/moundville.glb"></a-asset-item>
                 <a-asset-item id="daggermodel" response-type="arraybuffer" src="models/dagger.glb"></a-asset-item>
                 <a-asset-item id="nascamodel" response-type="arraybuffer" src="models/nasca.glb"></a-asset-item>
-                <a-asset-item id="snubskullmodel" response-type="arraybuffer" src="models/snubskull.glb"></a-asset-item>
-                <a-asset-item id="pottoskullmodel" response-type="arraybuffer" src="models/pottoskull.glb"></a-asset-item>
-                <a-asset-item id="indriskullmodel" response-type="arraybuffer" src="models/indriskull.glb"></a-asset-item>
-                <a-asset-item id="baboonskullmodel" response-type="arraybuffer" src="models/baboonskull.glb"></a-asset-item>
-                <a-asset-item id="howlerskullmodel" response-type="arraybuffer" src="models/howlerskull.glb"></a-asset-item>
-                <a-asset-item id="mandrillskullmodel" response-type="arraybuffer" src="models/mandrillskull.glb"></a-asset-item>
-                <a-asset-item id="gibbonskullmodel" response-type="arraybuffer" src="models/gibbonskull.glb"></a-asset-item>
-                <a-asset-item id="chimpskullmodel" response-type="arraybuffer" src="models/chimpskull.glb"></a-asset-item>
-                <a-asset-item id="gorillaskullmmodel" response-type="arraybuffer" src="models/gorillaskull-m.glb"></a-asset-item>
-                <a-asset-item id="gorillaskullfmodel" response-type="arraybuffer" src="models/gorillaskull-f.glb"></a-asset-item>
-                <a-asset-item id="mhsskullmodel" response-type="arraybuffer" src="models/mhsskull.glb"></a-asset-item>
-                <a-asset-item id="archicebusmodel" response-type="arraybuffer" src="models/archicebus.glb"></a-asset-item>
-                <a-asset-item id="turkanaskullmodel" response-type="arraybuffer" src="models/turkanaskull.glb"></a-asset-item>
-                <a-asset-item id="rhesusskullmodel" response-type="arraybuffer" src="models/rhesusskull.glb"></a-asset-item>
-                <a-asset-item id="squirrelmonkeyskullmodel" response-type="arraybuffer" src="models/squirrelmonkeyskull.glb"></a-asset-item>
+                <a-asset-item id="baboon-bluemodel" response-type="arraybuffer" src="models/baboon-blue.glb"></a-asset-item>
 				<a-asset-item id="lomekmodel" response-type="arraybuffer" src="models/lomekwian.glb"></a-asset-item>
-                <a-asset-item id="africanusskullmodel" response-type="arraybuffer" src="models/africanusskull.glb"></a-asset-item>
-                <a-asset-item id="nalediskullmodel" response-type="arraybuffer" src="models/nalediskull.glb"></a-asset-item>
 
                 <a-mixin id="obj" hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" scale="1 1 1" rotation="0 0 0" animation="property: object3D.position.y; to: 1.45; startEvents: standtrigger; dur: 5000" shadow></a-mixin>
                 <a-mixin id="button" static-body hoverable clickable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" shadow></a-mixin>
@@ -393,10 +369,10 @@
      <a-entity id="atable2" position="4.94 0 1"> <!-- This sets the relative state of the table --> 
         <a-entity table-wait class="table center-zone" static-body="shape: box;" scale="1 1 1" id="table6" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Primate Figures; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-        <a-entity id="venus-grab" class="clickable grabbable center-obj-zone" static-body position="0 1.264 -0.5" mixin="obj" full-gltf-model="models/venus.glb"></a-entity>
+        <a-entity id="venus-grab" class="clickable grabbable center-obj-zone" static-body position="0 1.264 -0.5" mixin="obj" full-gltf-model="#venusmodel"></a-entity>
         <a-entity id="nasca-grab" class="clickable grabbable center-obj-zone" static-body position="0 1.264 0.3" mixin="obj" full-gltf-model="#nascamodel"></a-entity>
         <a-entity id="canopic-grab" class="clickable grabbable center-obj-zone" static-body position="0 1.264 -0.2" mixin="obj" full-gltf-model="#canopicmodel"></a-entity>
-        <a-entity id="baboon-blue-grab" class="clickable grabbable center-obj-zone" static-body position="0 1.264 0.5" mixin="obj" full-gltf-model="models/baboon-blue.glb"></a-entity>
+        <a-entity id="baboon-blue-grab" class="clickable grabbable center-obj-zone" static-body position="0 1.264 0.5" mixin="obj" full-gltf-model="#baboonbluemodel"></a-entity>
 </a-entity>
 
 <a-entity id="artifactscreen" class="center-zone" position="7.77 2 -2.0">

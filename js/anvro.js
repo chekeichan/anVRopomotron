@@ -2,9 +2,7 @@
 AFRAME.registerComponent('table-wait', {
     init: function () {
         var setphys = sceneEl.querySelectorAll('.grabbable');
-        // Wait for model to load.
-      this.el.addEventListener('model-loaded', () => {
-        // Grab the mesh / scene.
+      this.el.addEventListener('model-loaded', () => { // Wait for model to load.
         for (let each of setphys) {
             each.removeAttribute('static-body');
             each.setAttribute('dynamic-body', {shape: 'box', mass: 1});
