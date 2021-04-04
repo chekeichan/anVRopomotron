@@ -1,12 +1,17 @@
 // console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
 AFRAME.registerComponent('table-wait', {
     init: function () {
-        var setphys = sceneEl.querySelectorAll('.grabbable');
+        var tablename = this.el.id;
+        var tableitems = sceneEl.querySelectorAll('.'+tablename+'art');
+        console.log(tablename);
+        console.log(tableitems);
       this.el.addEventListener('model-loaded', () => { // Wait for model to load.
-        for (let each of setphys) {
-            each.removeAttribute('static-body');
-            each.setAttribute('dynamic-body', {shape: 'box', mass: 1});
-        }
+        for (let each of tableitems) {
+            if (each.classList.contains('standup') == false) { // PC small objects have their own standup animation
+                each.removeAttribute('static-body');
+                each.setAttribute('dynamic-body', {shape: 'box', mass: 1});
+                console.log("yes");
+        }}
         });
 }});
 
