@@ -2,7 +2,7 @@ console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove
 AFRAME.registerComponent('table-wait', {
     init: function () {
         var tablename = this.el.id;
-        var tableitems = sceneEl.querySelectorAll('.'+tablename+'art');
+        var tableitems = sceneEl.querySelectorAll('.'+tablename+'obj');
         console.log(tablename);
         console.log(tableitems);
       this.el.addEventListener('model-loaded', () => { // Wait for model to load.
