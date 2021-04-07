@@ -3,8 +3,6 @@ AFRAME.registerComponent('table-wait', {
     init: function () {
         var tablename = this.el.id;
         var tableitems = sceneEl.querySelectorAll('.'+tablename+'obj');
-        console.log(tablename);
-        console.log(tableitems);
       this.el.addEventListener('model-loaded', () => { // Wait for model to load.
         for (let each of tableitems) {
             if (each.classList.contains('standup') == false) { // PC small objects have their own standup animation
@@ -15,6 +13,30 @@ AFRAME.registerComponent('table-wait', {
         });
 }});
 
+// PC Look Preference Switcher
+AFRAME.registerComponent("look-switch", {
+    init: function() {
+        var sceneEl = this.el.sceneEl;
+        var canvasEl = sceneEl.canvas;
+        var camera = document.querySelector('#camera');
+        var switchstate = 1;
+        document.getElementById("pclookbutt").addEventListener("grab-start", function(evt) {
+            var cross = document.querySelector('#crosshair');
+            cross.object3D.visible = !cross.getAttribute("visible");
+            if (switchstate == 0) { // Go from FPS to swipe
+                camera.removeAttribute('fps-look-controls');
+                camera.setAttribute('look-controls', {enabled: true});
+                canvasEl.onclick = null; // Removes FPS components taking mouse on click
+                document.exitPointerLock();
+                switchstate = 1;
+            } else if (switchstate == 1) { // Go from swipe to FPS
+                camera.setAttribute('look-controls', {enabled: false});
+                camera.setAttribute('fps-look-controls', 'userHeight', 0);
+                switchstate = 0;
+            }
+    });
+    }
+    })
 
 AFRAME.registerComponent('device-set', { // Device-specific settings
     init: function() {
@@ -26,7 +48,6 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
         var state = "stand";
         if (AFRAME.utils.device.isMobile() === true) { // Smartphone Mode
             sceneEl.setAttribute("vr-mode-ui", "enabled", "false");
-            document.querySelector('#crosshair').object3D.visible = false; // Hides crosshair for non PC
             rig.setAttribute("movement-controls", "speed", 0.15);
             document.querySelector('#GL-SP').object3D.visible = true;
             document.querySelector('#SMH-SP').object3D.visible = true;
@@ -41,13 +62,10 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
                 each.dispatchEvent(new CustomEvent("standtrigger"));
             }
         } else if (AFRAME.utils.device.checkHeadsetConnected() === true) { // VR Modes
-            document.querySelector('#crosshair').object3D.visible = false; // Hides crosshair for non PC
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.10); // VR movement is slower than other modes for non barfing
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
-            camera.removeAttribute('look-controls');
-            camera.setAttribute('fps-look-controls', 'userHeight', 0);
             document.querySelector('#GL-PC').object3D.visible = true;
             document.querySelector('#SMH-PC').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.15);
