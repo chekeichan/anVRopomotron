@@ -113,7 +113,8 @@
     <!-- Scale Model Hall Title -->
       <a-text position="-6.74 0.7 0.01" value="Scale Model Hall" color="black" width="13.5"></a-text>
       <a-text id="SMH-VR" visible="false" position="-6.65 -0.7 0.01" value="Move: Walk with left thumbstick or forward on right thumbstick to teleport.\n\nTurn: Left or right on right thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
-      <a-text id="SMH-PC" visible="false" position="-6.65 -0.75 0.01" value="Move: WASD keys\n\nLook: Click and move mouse\n\nCrouch: C key\n\nInfo: Click orbs in reticle\n\n"  color="black" width="5" line-height="40" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-PC1" visible="false" position="-6.65 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\n\nLook: Swipe mouse\n\nInfo: Click orbs\n\nSwitch to Mouselook: M key"  color="black" width="5" line-height="40" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-PC2" visible="false" position="-6.65 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\n\nInfo: Click orbs in reticle\n\nSwitch to Swipe-Look: M key\n\n"  color="black" width="5" line-height="40" text="wrapCount: 30"></a-text>
       <a-text id="SMH-SP" visible="false" position="-6.65 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
     <!-- Behind wall -->
@@ -248,7 +249,6 @@
        </a-entity></a-entity>
 <a-entity full-gltf-model="models/trophy.glb" static-body position="-7.16 0 5.8"></a-entity>
 <a-entity static-body warp mixin="button" class="clickable" position="0.8 0.16 6" id="burialwarpbutt" visible="false"  full-gltf-model="#buttonmodel"></a-entity> 
-<a-entity static-body mixin="button" class="clickable" position="0.8 0.16 4" id="pclookbutt" visible="true"  full-gltf-model="#buttonmodel"></a-entity> 
 
 <a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" full-gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
    <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" full-gltf-model="#buttonmodel" shadow></a-entity>

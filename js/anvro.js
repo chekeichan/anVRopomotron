@@ -19,22 +19,25 @@ AFRAME.registerComponent("look-switch", {
         var sceneEl = this.el.sceneEl;
         var canvasEl = sceneEl.canvas;
         var camera = document.querySelector('#camera');
-        var switchstate = 1;
-        document.getElementById("pclookbutt").addEventListener("grab-start", function(evt) {
-            var cross = document.querySelector('#crosshair');
-            cross.object3D.visible = !cross.getAttribute("visible");
-            if (switchstate == 0) { // Go from FPS to swipe
+        var PCmode = 0;
+        window.addEventListener("keydown", function(e){ // Mouselook toggle
+            if(e.keyCode === 77 && PCmode == 0) { // Swipe to FPS
+                camera.setAttribute('look-controls', {enabled: false});
+                camera.setAttribute('fps-look-controls', 'userHeight', 0);
+                document.querySelector('#SMH-PC1').object3D.visible = false;
+                document.querySelector('#SMH-PC2').object3D.visible = true;
+                PCmode = 1;
+            } else if (e.keyCode === 77 && PCmode == 1) { // FPS to swipe
                 camera.removeAttribute('fps-look-controls');
                 camera.setAttribute('look-controls', {enabled: true});
                 canvasEl.onclick = null; // Removes FPS components taking mouse on click
                 document.exitPointerLock();
-                switchstate = 1;
-            } else if (switchstate == 1) { // Go from swipe to FPS
-                camera.setAttribute('look-controls', {enabled: false});
-                camera.setAttribute('fps-look-controls', 'userHeight', 0);
-                switchstate = 0;
+                document.querySelector('#SMH-PC1').object3D.visible = true;
+                document.querySelector('#SMH-PC2').object3D.visible = false;
+                PCmode = 0;
+    
             }
-    });
+        });
     }
     })
 
@@ -67,7 +70,7 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             rig.setAttribute("movement-controls", "speed", 0.10); // VR movement is slower than other modes for non barfing
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
             document.querySelector('#GL-PC').object3D.visible = true;
-            document.querySelector('#SMH-PC').object3D.visible = true;
+            document.querySelector('#SMH-PC1').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.15);
             for (let each of tablestand) {
                 let poss = each.getAttribute('position');
