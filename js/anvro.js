@@ -257,6 +257,7 @@ grabpanel("proconsulbutt","#stand9-tit");
 grabpanel("jamesbuttinfo","#james-tit");
 grabpanel("calatravabuttinfo","#calatrava-tit");
 grabpanel("chimpsbutt","#stand10-tit");
+grabpanel("mandrillsbutt","#stand11-tit");
 }
 })
 
