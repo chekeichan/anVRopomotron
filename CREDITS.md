@@ -188,6 +188,9 @@ https://commons.wikimedia.org/wiki/File:Macaque_India_3.jpg
 Tarsier: photo by Pierre Fidenci (CC BY-SA 2.5)
 https://commons.wikimedia.org/wiki/File:Tarsius_syrichta04.jpg
 
+Mandrills: "Mandrill Family Portrait" by Eric Kilby (CC BY-SA 2.0)
+https://flic.kr/p/wdoZL1
+
 ### -VR Grab Lab-
 Acheulian Handaxe: &quot;Palaeolithic Handaxe&quot; by The Portable Antiquities Scheme/ The Trustees of the British Museum (CC BY 2.0)
 https://commons.wikimedia.org/wiki/File:Palaeolithic_handaxe_(FindID_437041-356797).tif

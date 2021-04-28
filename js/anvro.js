@@ -1,4 +1,5 @@
 console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
+
 AFRAME.registerComponent('table-wait', {
     init: function () {
         var tablename = this.el.id;
