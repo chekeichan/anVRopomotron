@@ -27,6 +27,7 @@ AFRAME.registerComponent("look-switch", {
                 camera.setAttribute('fps-look-controls', 'userHeight', 0);
                 document.querySelector('#SMH-PC1').object3D.visible = false;
                 document.querySelector('#SMH-PC2').object3D.visible = true;
+                document.querySelector('#crosshair').object3D.visible = true;
                 PCmode = 1;
             } else if (e.keyCode === 77 && PCmode == 1) { // FPS to swipe
                 camera.removeAttribute('fps-look-controls');
@@ -35,6 +36,7 @@ AFRAME.registerComponent("look-switch", {
                 document.exitPointerLock();
                 document.querySelector('#SMH-PC1').object3D.visible = true;
                 document.querySelector('#SMH-PC2').object3D.visible = false;
+                document.querySelector('#crosshair').object3D.visible = false;
                 PCmode = 0;
     
             }
