@@ -1,15 +1,24 @@
 # AnVRopomotron Changelog
+## 1.2.1 (next next)
+-   With the new floorplan, now is the time to work on strategically placed mini maps to telport the user to different exhibits. I now have a button that takes me from the start to the Burial Chamber. Great for developing! It's invisible in the official release. Click the tip of the p in the big AnVRopomotron title behind you at start.
+-   Tweaks of the infrastructure to fine tune it to the new floorplan. Specifically, occlusion 
 
-
-## 1.1.X (next next)
--   What if there were strategically placed mini maps to telport the user to different exhibits? I now have a button that takes me from the start to the Burial Chamber. Great for developing! It's invisible in the official release. Click the tip of the p in the big AnVRopomotron title behind you at start.
--   The next promised model is the aye-aye.
+## 1.2 (next)
+-   The aye-aye creeps its way into the Scale Model Hall! 
+-   Remodel of the Scale Model Hall and Burial Chamber exhibits. Upgrades include:
+    -   The Scale Model Hall space has been expanded to give the current selection room to breathe and to make room for more. The primates are now organized by geographic location instead of by multiplying willy by nilly. Baked-in labels make it clear where you are.
+    -   I have doubled the textures of the floorplan into two 2048px textures. One has all of the baked text labels and the other has eveything else. How was baking text accomplished? The text are Blender text objects that hover 0.01m over the wall. Light baking simply bakes the text-shaped shadows into the texture. I first used text models but that made the model size grow exponentially. 
+    -   The entryway to the Modern Primates part of the Scale Model Hall got an archway and extended wall for better occlusion handling. 
+    -   The Burial Chamber got another turn and a narrow doorway into the exhibit for better occlusion handling.
+    -   Floorplan model size slightly trimmed by removing walls and edges that are never seen. I got very familiar with snapping in Blender so I no longer need the infrastructure to keep things aligned. 
+-   Rewriting of the Open Education Resource assignments to match the new locations.
+-   Ground has been broken on the next big exhibit: Human Evolution! This offshoot of Prehistoric Primates (spatial organization!) is very much under construction but if you look behind the barrier there is a teaser.
 
 ## 1.1.7 (next)
 -   The Kayan slow loris adorbs its way into the Scale Model Hall and into your heart. I went with this species because I'm friends with one of its discoverers, Rachel Munds. Unlike the mandrills, I had a wealth of realistic poses to choose from. I settled on an upside-down hanging pose because just look at it. This model has a few improvements. I used a new version of my basic quadruped mesh that now has marked seams for UV unwrapping. This leaves the UV positions left less to chance and can now follow the contours of the shape more precisely. It works! The UV map is more organized and the consolidation of UV islands means that it's a little easier on rendering. 
 -   I have a modern computer so I can finally do something I've put off: rebake the textures of the museum walls, floor, and ceiling. Since the gorillas and mouse lemur refresh, the lights and shadows of the building have not kept up with the models. With my old iMac a bake of the building texture took two overnight sessions so I put if off for months. With my new PC it now takes... 8 minutes! I also found a way to denoise the texture after baking using the Composition mode in Blender. I used to manually blur the texture in Affinity Photo. The new result looks much better and now there are cool spotlights and shadows to make the recent additions fit the environment better. Check out the angel wings on the trophy!
 
-## 1.1.6 (next)
+## 1.1.6 (06/14/2021)
 -   Male and female mandrills take center stage in the Scale Model Hall! After some plainer primates it's time for some primary colors. The mandrill couple shows the extreme sexual dimorphism. While the male mandrill looks fierce, he is depicted starting some grooming on the female, maybe leading to more? This is the first model to use a new base quadruped template based on the old Proconsul. Modeling was fast working off that frame. The Rigify rig is now refined with opposable toes as well as fingers, though these models do not really use that feature. Another new element to the mandrills is the use of blended vertex colors on the rumps. I preferred clearly delineated colors before but the complex shades of the mandrill butts was the perfect place to use some subtle shades. This is also the point where I ran out of creativity in propping up primates to a more visible height and just put them on a box. 
 -   Megaladapis is the latest to get the special edition treatment. It now has more realistic eyes and everything got rotated for a clear view.
 -   A new A-frame component now waits for artifact and skull tables to load before placing objects upon them. This should remove reloading weirdness. 
