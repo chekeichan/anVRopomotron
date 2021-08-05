@@ -104,35 +104,30 @@
 <!-- Wall Text -->
     <!-- Front wall -->
      <a-entity visible="true" static-body position="0 2 -7.5" rotation="0 0 0" width="40" height="4.5">
-     <!-- VR Grab Lab Title -->
-     <a-text position="2.5 0.7 0.01" value="VR Grab Lab" color="black" width="12"></a-text>
-     <a-text id="GL-VR" visible="false" position="2.55 -0.1 0.01" value="Grab: Use trigger or grip buttons. Use one button."  color="black" width="3" line-height="60" text="wrapCount: 20"></a-text>
-      <a-text id="GL-PC" visible="false" position="2.55 -0.1 0.1" value="Info: Click on objects in\nreticle"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
-      <a-text id="GL-SP" visible="false" position="2.55 -0.1 0.1" value="Info: Touch objects"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
+     <a-text id="GL-VR" visible="false" position="2.6 -0.1 0.01" value="Grab: Use trigger or grip buttons. Use one button."  color="black" width="3" line-height="50" text="wrapCount: 20"></a-text>
+      <a-text id="GL-PC" visible="false" position="2.6 -0.1 0.1" value="Info: Click on objects in\nreticle"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
+      <a-text id="GL-SP" visible="false" position="2.6 -0.1 0.1" value="Info: Touch objects"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
 
     <!-- Scale Model Hall Title -->
-      <a-text position="-6.74 0.7 0.01" value="Scale Model Hall" color="black" width="13.5"></a-text>
-      <a-text id="SMH-VR" visible="false" position="-6.65 -0.7 0.01" value="Move: Walk with left thumbstick or forward on right thumbstick to teleport.\n\nTurn: Left or right on right thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
-      <a-text id="SMH-PC1" visible="false" position="-6.65 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\n\nLook: Swipe mouse\n\nInfo: Click orbs\n\nSwitch to Mouselook: M key"  color="black" width="5" line-height="40" text="wrapCount: 30"></a-text>
-      <a-text id="SMH-PC2" visible="false" position="-6.65 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\n\nInfo: Click orbs in reticle\n\nSwitch to Swipe-Look: M key\n\n"  color="black" width="5" line-height="40" text="wrapCount: 30"></a-text>
-      <a-text id="SMH-SP" visible="false" position="-6.65 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
+      <a-text id="SMH-VR" visible="false" position="-6.6 -0.77 0.01" value="Move: Walk with left thumbstick or forward on right thumbstick to teleport.\n\nTurn: Left or right on right thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-PC1" visible="false" position="-6.6 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\nLook: Swipe mouse\nInfo: Click orbs\nSwitch to Mouselook: M key"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-PC2" visible="false" position="-6.6 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\nInfo: Click orbs in reticle\nSwitch to Swipe-Look: M key"  color="black" width="5" line-height="40" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-SP" visible="false" position="-6.6 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
     <!-- Behind wall -->
-       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="0 0 0.01" value="AnVRopomotron" align="center" color="black" width="35"></a-text><a-text position="5.65 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.1.7" align="right" color="black" width="5"></a-text></a-entity> 
+       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="5.05 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.2" align="right" color="black" width="5"></a-text></a-entity> 
     <!-- Left display wall -->
         <a-entity visible="true" static-body position="-5.08 2 -0.5" rotation="0 90 0" depth="0.1" width="8" height="4.5" color="#dfe0e2" material="shader: flat">
         <a-image position="0 -0.48 0.10" src="#height" material.transparent="true" shader="flat" geometry="height: 3.048; width: 7.3152"></a-image><!-- Correct by -2.0 -->
     <!-- Side walls -->
       <a-text position="0 1.6 0.09" value="Height Chart" color="black" width="4" text="wrapCount: 45; align: center"></a-text>
-      <a-text position="-5.15 0.1 -2.3" value="Scale Model Hall" color="black" width="3" text="wrapCount: 20; align: center"></a-text>
-      </a-entity> 
+    </a-entity>
+        
       
 <!-- Burial Chamber -->
-     <a-text position="-14 1.6 -9.5" value="Burial Chamber" color="black" width="4" line-height="50" text="wrapCount: 15"></a-text>
-     <a-text position="-13.9 1.3 -9.5" value="Warning: Simulated human burials inside" color="black" width="3" line-height="50" text="wrapCount: 35"></a-text>
      <a-entity class="burial-zone">
-        <a-entity togg-burial mixin="button" class="clickable"  position="-12.5 1 -17.9" rotation="90 0 0" id="burialbutt" full-gltf-model="#buttonmodel"></a-entity>
-		<a-entity position="-12.5 0 -13.5" class="burial-zone" visible="false"> <!-- Grave Model Zone for relative positioning-->
+        <a-entity togg-burial mixin="button" class="clickable"  position="-14 1 -19.8" rotation="90 0 0" id="burialbutt" full-gltf-model="#buttonmodel"></a-entity>
+		<a-entity position="-14 0 -16" class="burial-zone" visible="false"> <!-- Grave Model Zone for relative positioning-->
 		
 		<a-entity class="burial jamestown jameshide" visible="false" position="0 -3 0"> <!-- Jamestown Burial Zone -->
         <a-entity mixin="button" class="clickable burialbutton"  position="0 0 -1.7" id="jamesbuttpos" full-gltf-model="#buttonupmodel"></a-entity>
@@ -176,10 +171,10 @@
         </a-entity>
         </a-entity></a-entity>
 
-        <a-entity class="burial paris parishide" visible="false" position="0 -3 1.6"> <!-- Paris Burial Zone -->
+        <a-entity class="burial paris parishide" visible="false" position="0 -3 0.6"> <!-- Paris Burial Zone -->
             <a-entity mixin="button" class="clickable"  position="-1.6 0 -2.2" id="parisbuttinfo" full-gltf-model="#buttonmodel"></a-entity>
             <a-text id="paris-eegg" class="burial burial-text-1 paris" mixin="burial-label" visible="false" position="0 3 2" rotation="0 180 0" text="color: #dadada; align: center; value: You're too tall! You'll have to duck."></a-text>
-            <a-entity class="buriallift paris" id="parisburial" position="0 0 0" visible="false"><a-entity full-gltf-model="models/paris.glb"></a-entity>
+            <a-entity class="buriallift paris" id="parisburial" position="0 0.02 0" visible="false"><a-entity full-gltf-model="models/paris.glb"></a-entity>
             <a-entity mixin="scale-box" id="paris-tit" position="0 0 0">
                 <a-entity position="1.06 1 -0.87" rotation="0 -90 0"><a-plane mixin="scale-label" width="1.05" height="0.7" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005" width="1" height="0.65" text="value: Decoration\n\nMost bones stacked seen here were femora with the distal knee joint end facing out. Tibiae were also visible. Skulls were embedded as embellishments. Other bones were placed behind this exterior wall.; color: black; lineHeight: 75; wrap-count: 40"></a-plane><!-- Annotation --></a-entity>
                 <a-entity rotation="0 180 0" position="-0.05 0.6 0.83"><a-plane mixin="scale-label" width="1.5" height="0.8" color="#375719"></a-plane><a-plane mixin="scale-label" position="0 0 0.005"  width="1.45" height="0.75" text="value: Translation\n\nThe plaque states &quot;Bones from the former Magdeleine cemetery (La Ville Leveque Street numbers 1 and 2). Deposited in 1844 in the western ossuary and transferred to the catacombs in September 1859&quot;; color: black; lineHeight: 65; wrap-count: 40"></a-plane><!-- Annotation --></a-entity>
@@ -188,7 +183,7 @@
 		<!-- End Burial Zones-->
 		</a-entity>
         
-	    <a-entity id="burialscreenright" class="burial-zone" visible="true" position="-8.51 2 -16">
+	    <a-entity id="burialscreenright" class="burial-zone" visible="true" position="-9.82 2 -18">
 	        <a-text id="Jamestown-Title" class="burial jamestown" visible="false" position="-0.01 1.6 -1.04" rotation="0 -90 0" value="Captain Gabriel Archer"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>        
 	        <a-text id="james1-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" position="0 -0.15 -1" rotation="0 -90 0"  text="width: 2.25; wrapCount: 40; value: Born: 1575 in Mountnessing, Essex, England\nDied: 1609 or 1610, Jamestown, Virginia, United States\nAge: 34 to 35\nModel Source: Smithsonian 3D, National Museum of Natural History Anthropology Department, and Jamestown Rediscovery (Preservation Virginia)\n\nBiography: Captain Archer attended Cambridge and studied law before traveling to North America. In 1602 he documented an expedition led by Captain Bartholomew Gosnold to locations such as Cape Cod and Martha's Vineyard.\n\nArcher was among the founders of the Jamestown colony and became involved in the politics of the settlement, notably becoming a rival of leader John Smith.\n\nCaptain Archer died during the &quot;starving time&quot; in the winter of 1609 to 1610.">
             <a-entity position="4 0 0"  rotation="0 0 0">
@@ -203,8 +198,8 @@
             <a-entity position="4 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/pariswall-p.jpg" position="-0.2 -0.14 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 2.75; value: Image by Dale Cruse, used under CC BY 2.0;" position="1.3 0.95 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.75; value: Another wall of human skeletal remains in the Catacombs with skulls, femora (thigh bones), and tibiae (shin bones).;" position="1.3 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         </a-entity>
 
-      <a-entity id="burialscreenleft" class="burial-zone" visible="true" position="-16.45 1.9 -10">
-        <a-text id="Generic-Site" class="generichide" visible="false" position="-0.01 1.7 -0.97" rotation="0 90 0" value="The Site" color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
+      <a-entity id="burialscreenleft" class="burial-zone" visible="true" position="-17.8 1.9 -12">
+        <a-text id="Generic-Site" class="generichide" visible="false" position="0 1.7 -0.97" rotation="0 90 0" value="The Site" color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
         <a-text id="james2-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" rotation="0 90 0" text="value: Jamestown was the first English colony in the Americas, founded in 1607. Multiple setbacks, such as attacks from the Powhatan whose land the colony occupied, famine, disease, and political unrest led to a disastrous winter in 1609 and 1610. It was in this time that Captain Gabriel Archer died along with over a hundred others. Archer's grave was located in the chancel of the 1608 church.\n\nAfter the winter, new settlers and supplies bolstered the colony. Abducted Africans were forced into servitude in 1619, leading to institutionalized slavery in 1662. By 1689 Jamestown had dissolved as a settlement.\n\nThe area is now an active interpretation center and archaeological site maintained by Preservation Virginia and the National Park Service.">
         <a-entity position="4.2 -0.06 0" rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text mixin="table-caption" text="width: 3; value: Photo by Darren and Brad, used under CC BY-NC 2.0;" position="1.5 1.1 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: Reconstruction of the remains of the 1608 church where Captain Archer's remains were found. His grave is marked by the third cross from the left.;" position="1.5 -1.25 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 		<a-text id="calatrava2-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" rotation="0 90 0" text="value: The Sacred Convent and Castle of Calatrava la Nueva was the headquarters of the Order of Calatrava, a society of religious warriors. It was occupied from 1217 to 1804, before the Order moved to another location. The fortress occupied a strategic view of the Aldea del Rey region from the peak of the Cerro del Alancrenejo mountain. Within sight was the rival Almohad-occupied Salvatierra Castle, their last stronghold in the region.\n\nThe grounds covered 46,000 square meters and was a self-sufficient community. Today the site is a tourist attraction with restored structures in some areas though the chapter house has been sealed.">
@@ -214,16 +209,16 @@
         <a-entity position="-2 -0.06 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/parisprint-p.jpg" position="0 0 0.01" width="3" height="2.1"></a-image><a-text mixin="table-caption" text="width: 3; value: Print by George Cruikshank, scan by The British Museum, used under CC BY-NC-SA 4.0;" position="1.5 1.25 0.01" ></a-text><a-text mixin="table-caption" text="width: 3; value: 1822 satirical print made from an aquatint eteching named &apos;&quot;Life&quot; among the Dead!! or Dick Wildfire, Squire Jenkins & the Halibut family in the Catacombs.&apos;   ;" position="1.5 -1.3 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
         </a-entity> 
         
-       <a-entity id="burialscreenback" class="burial-zone" visible="true" position="-10.3 2 -8.7">
-        <a-text id="Generic-Artifacts" class="generichide" visible="false" position="-0.01 1.0 -0.97" rotation="0 180 0" value="Artifacts"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
-        <a-text id="james3-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" rotation="0 180 0" text="wrapCount: 60; width:4; value: Captain Archer was buried in a wooden coffin, which has since rotted but left the nails in place. Outside the coffin in the grave were a piece of a ceremonial staff and a small silver reliquary container. Micro CT analysis of the box revealed that it contained human bone fragments and a lead ampulla (flask with fluid of religious significance).">
+       <a-entity id="burialscreenback" class="burial-zone" visible="true" position="-10.1 2 -11.06">
+        <a-text id="Generic-Artifacts" class="generichide" visible="false" position="0 1.0 0" rotation="0 180 0" value="Artifacts"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
+        <a-text id="james3-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" position="0 0 0" rotation="0 180 0" text="wrapCount: 45; width:3; value: Captain Archer was buried in a wooden coffin, which has since rotted but left the nails in place. Outside the coffin in the grave were a piece of a ceremonial staff and a small silver reliquary container. Micro CT analysis of the box revealed that it contained human bone fragments and a lead ampulla (flask with fluid of religious significance).">
 <!--         <a-entity position="4.2 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2.25"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Caption;" position="1.5 1.26 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Caption.;" position="1.5 -1.64 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
-		<a-text id="calatrava3-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" rotation="0 180 0" text="value: The knight was buried in a wooden box placed in the grave as evidenced by nails and the wood remnants. The decomposed remains of leather shoes were found at the feet. These were better preserved in some of the other burials.\n\nPaintings decorated the walls of the chapter house, including one of a knight and Almohad warrior fighting on horseback. ">
-        <a-entity position="3.3 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravashoes-p.jpg" position="0 0 0.01" width="2.25" height="1.725"></a-image><a-text mixin="table-caption" text="width: 2; value: Photo by Curious Expeditions, used under CC BY-NC-SA 2.0;" position="1.15 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Shoes of a style similar to the degraded remains found in the grave.;" position="1.15 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+		<a-text id="calatrava3-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" position="0 0 0" rotation="0 180 0" text="value: The knight was buried in a wooden box placed in the grave as evidenced by nails and the wood remnants. The decomposed remains of leather shoes were found at the feet. These were better preserved in some of the other burials.\n\nPaintings decorated the walls of the chapter house, including one of a knight and Almohad warrior fighting on horseback. ">
+        <a-entity position="6 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravashoes-p.jpg" position="0 0 0.01" width="2.25" height="1.725"></a-image><a-text mixin="table-caption" text="width: 2; value: Photo by Curious Expeditions, used under CC BY-NC-SA 2.0;" position="1.15 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Shoes of a style similar to the degraded remains found in the grave.;" position="1.15 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 
         </a-entity>
 		
-		<a-entity id="burialscreenfront" class="burial-zone" visible="true" position="-15.5 2 -16.5">
+		<a-entity id="burialscreenfront" class="burial-zone" visible="true" position="-17 2 -18.5">
 		<a-entity id="burial-map" class="" mixin="burial-label" rotation="0 0 0">
         <a-entity position="3 -0.3 0"  rotation="0 0 0">
             <a-entity full-gltf-model="images/worldmap-p.glb" static-body position="0 0 0.01" rotation="0 0 0"></a-entity>
@@ -398,13 +393,13 @@
 </a-entity></a-entity>
 	
 <!-- Scale Models -->
-        <a-entity class="scale-zone-2" position="-14.9 0 2.56">
+        <a-entity class="scale-zone-2" position="-19.33 0 2.55">
         <a-entity full-gltf-model="models/gorilla-mouselemur.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> <!-- Model File -->
         <a-entity mixin="button" class="clickable" position="1.5 0 -0.4" id="gorillabutt" full-gltf-model="#buttonmodel"></a-entity></a-entity> <!-- Info Button -->
        
         <a-entity mixin="scale-box" id="stand1-tit"><a-entity mixin="scale-label-border" position="-0.01 2 -0.78" rotation="0 90 0" geometry="height: 0.95"></a-entity><a-entity mixin="scale-label" position="0 2 -0.78" rotation="0 90 0" geometry="height: 0.9" text="value: Eastern Lowland Gorilla\nScientific Name: Gorilla beringei graueri \nLocation: Democratic Republic of Congo\nTime: Present\n\nNotes: The largest living primate, though critically endangered.\n\nMale                                                        Female; color: black; lineHeight: 75; wrap-count: 35"><a-triangle color="#375719" position="0 -0.08 -0.01" material="shader: flat" geometry="vertexC: -0.6 -0.48 0; vertexA: -0.29 -0.35 0; vertexB: -0.5 -0.21 0" rotation="0 0 0"></a-triangle>
 		<a-triangle color="#375719" position="0 -0.08 -0.01" material="shader: flat" geometry="vertexC: 0.62 -0.67 0; vertexA: 0.52 -0.34 0; vertexB: 0.34 -0.34 0" rotation="0 0 0"></a-triangle></a-entity> <!-- Info Panels -->
-        <a-entity position="-1.563 1.6 1.6" rotation="0 90 0"><a-image mixin="scale-label" src="images/gorilla-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text text="width: 2; value: &quot;Imposing&quot; by Joe McKenna, used under CC BY 2.0 ; align: right; color: black" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
+        <a-entity position="-1.42 2.2 1" rotation="0 90 0"><a-image mixin="scale-label" src="images/gorilla-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text text="width: 2; value: &quot;Imposing&quot; by Joe McKenna, used under CC BY 2.0 ; align: right; color: black" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
         <a-plane mixin="scale-label-border" position="0.86 0.65 -0.7" rotation="-15 90 0" geometry="height: 0.75"></a-plane><a-entity mixin="scale-label" position="0.87 0.65 -0.7" rotation="-15 90 0" geometry="height: 0.7" text="value: Madame Berthe's Mouse Lemur\nScientific Name: Microcebus berthae \nLocation: Madagascar\nTime: Present\n\nNotes: The smallest living primate, with a weight of 1.1 ounces.; color: black; lineHeight: 75; wrap-count: 35"><a-triangle color="#375719" position="0 -0.08 -0.01" material="shader: flat" geometry="vertexC: -0.4 0.01 0; vertexA: -0.1 0.01 0; vertexB: -0.07 0.86 0" rotation="0 0 0"></a-triangle></a-entity></a-entity></a-entity>
       
          <a-entity class="scale-zone" position="-8.7 0 4.9" rotation="0 90 0">
@@ -423,58 +418,56 @@
         <a-entity position="-3.29 0.1 0.24" rotation="0 90 0"><a-image mixin="scale-label" src="images/gibbon-p.jpg" position="0 0 0.01" width="2.6" height="2"></a-image><a-text text="width: 2; value: By Ladislav Kral, used under CC BY-SA 3.0; align: right; color: black" position="1.3 -1.07 0.01"></a-text></a-entity><!-- Photo Caption --> <!-- Image Panels -->
          </a-entity></a-entity>
          
-         <a-entity class="scale-zone-2" rotation="0 180 0" position="-11 0 -1.85">
+         <a-entity class="scale-zone-2" rotation="0 -90 0" position="-17.2 0 -6.66">
          <a-entity full-gltf-model="models/orangutan.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
          <a-entity mixin="button" class="clickable" position="1 0 -0.35" id="orangbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
          
          <a-entity mixin="scale-box" id="stand4-tit"><a-entity mixin="scale-label-border" position="-0.49 1.2 -1" rotation="0 90 0"></a-entity><a-entity mixin="scale-label" position="-0.48 1.2 -1" rotation="0 90 0" text="value: Bornean Orangutan\nScientific Name: Pongo pygmaeus\nLocation: Borneo\nTime: Present\n\nNotes: The orangutans are the only living great ape genus in Asia. They are critically endangered due to human action, including hunting and the palm oil industry.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
-        <a-entity position="-1.19 2.9 -0.84" rotation="0 90 0"><a-image mixin="scale-label" src="images/orangutan-p.jpg" position="0 0 0.01"  width="2.5" height="1.7"></a-image><a-text text="width: 3; value: &quot;Male Bornean Orangutan - Big Cheeks&quot; by Eric Kilby, used under CC BY-SA 2.0; align: right; color: black; wrapCount: 75" position="1.27 -0.925 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
+        <a-entity position="-0.84 2.9 -0.84" rotation="0 90 0"><a-image mixin="scale-label" src="images/orangutan-p.jpg" position="0 0 0.01"  width="2.5" height="1.7"></a-image><a-text text="width: 3; value: &quot;Male Bornean Orangutan - Big Cheeks&quot; by Eric Kilby, used under CC BY-SA 2.0; align: right; color: black; wrapCount: 75" position="1.27 -0.925 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
-         <a-entity class="scale-zone-3" position="-6.0 1.8 -0.6">
+         <a-entity class="scale-zone-3" position="-9 1.8 -5.5" rotation="0 180 0">
          <a-entity full-gltf-model="models/notharctus.glb"   rotation="0 -90 0" scale="1 1 1" shadow="cast: false; receive: false"> 
          <a-entity mixin="button" class="clickable" position="0 -1.8 0.3" id="notharctusbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
          
          <a-entity mixin="scale-box" id="stand5-tit"><a-entity mixin="scale-label-border" position="0.43 -0.8 -0.49" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.429 -0.8 -0.49" rotation="0 -90 0" text="value: Notharctus\nScientific Name: Notharctus tenebrosus\nLocation: Wyoming, USA\nTime: 46 million years ago\n\nNotes: This early primate resembles a lemur, with core primate traits such as grasping limbs.; color: black; lineHeight: 75; wrap-count: 35"></a-entity></a-entity></a-entity>
 
-        <a-entity class="scale-zone-2" position="-15 1.4 -6.57">
-        <a-entity full-gltf-model="models/howler.glb"   rotation="0 90 0" scale="1 1 1" shadow="cast: false; receive: false"> 
+        <a-entity class="scale-zone-2" position="-10.73 1.4 -0.566">
+        <a-entity full-gltf-model="models/howler.glb" rotation="0 -90 0" shadow="cast: false; receive: false"> 
         <a-entity mixin="button" class="clickable"  position="-0.06 -1.4 0.18" id="howlerbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
-        <a-entity mixin="scale-box" id="stand6-tit"><a-entity mixin="scale-label-border" position="-1.262 0.5 0.4" rotation="0 90 0"></a-entity><a-entity mixin="scale-label" position="-1.26 0.5 0.4" rotation="0 90 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
+        <a-entity mixin="scale-box" id="stand6-tit"><a-entity mixin="scale-label-border" position="1 -0.33 -0.53" rotation="0 0 0"></a-entity><a-entity mixin="scale-label" position="1 -0.33 -0.529" rotation="0 0 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
          <a-entity position="-0 1.15 -0.9"><a-image mixin="scale-label" src="images/howler-p.jpg" position="0 0 0.01" rotation="0 0 0" width="2" height="1.33"></a-image><a-text text="width: 2; value: &quot;Black Howler Monkey Family&quot; by Kent MacElwee, used under CC BY-NC 2.0; align: right; color: black; wrapCount: 45" position="0.95 -0.77 0" rotation="0 0 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
-        <a-entity class="scale-zone-3" position="-6 0 1">
-        <a-entity full-gltf-model="models/megaladapis.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> 
+        <a-entity class="scale-zone-3" position="-8.76 0 -0.15" rotation="0 180 0">
+        <a-entity full-gltf-model="models/megaladapis.glb" shadow="cast: false; receive: false"> 
         <a-entity mixin="button" class="clickable"  position="-1.1 -0 -0.35" id="megaladapisbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity> 
         <a-entity mixin="scale-box" id="stand7-tit"><a-entity mixin="scale-label-border" position="0 1 1" rotation="0 -120 0"></a-entity><a-entity mixin="scale-label" position="-0.01 1 1" rotation="0 -120 0" text="value: Megaladapis\nScientific Name: Megaladapis edwardsi\nLocation: Madagascar\nTime: From unknown to around the year 1500\n\nNotes: One of the extinct 'koala lemurs,' adapted for slow vertical climbing and leaf-eating.; color: black; lineHeight: 75; wrap-count: 35"></a-entity></a-entity></a-entity>
          
-        <a-entity class="scale-zone-2" rotation="0 -90 0" position="-10.68 0 5.318">
+        <a-entity class="scale-zone-2" rotation="0 -90 0" position="-14.46 0 -1.58">
         <a-entity full-gltf-model="models/tarsiers.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
         <a-entity mixin="button" class="clickable"  position="-0.6 0 0.35" id="tarsierbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
-        <a-entity mixin="scale-box" id="stand8-tit"><a-entity mixin="scale-label-border" position="0.65 0.9 1.1" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.64 0.9 1.1" rotation="0 -90 0" text="value: Philippine tarsier\nScientific Name: Carlito syrichta\nLocation: Southeastern Philippine archipelago\nTime: Present\n\nNotes: Members of the family Tarsiidae are nocturnal ambush predators with the ability to communicate ultrasonically.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
+        <a-entity mixin="scale-box" id="stand8-tit" position="-0.13 0 0"><a-entity mixin="scale-label-border" position="0.65 0.9 1.1" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.64 0.9 1.1" rotation="0 -90 0" text="value: Philippine tarsier\nScientific Name: Carlito syrichta\nLocation: Southeastern Philippine archipelago\nTime: Present\n\nNotes: Members of the family Tarsiidae are nocturnal ambush predators with the ability to communicate ultrasonically.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
          <a-entity mixin="scale-label-border" position="0.323 2 4.75" rotation="0 -120 0" geometry="height: 0.55"></a-entity><a-entity mixin="scale-label" position="0.314 2 4.75" rotation="0 -120 0" geometry="height: 0.5" text="value: The distance from branch to branch, 16 feet (4.9 m), can be leaped by a tarsier!.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
          <a-entity position="0.65 2 3" rotation="0 -90 0"><a-image mixin="scale-label" src="images/tarsier-p.jpg" position="0 0 0.01" width="2" height="3"></a-image><a-text text="width: 3; value: Photo by Pierre Fidenci, used under CC BY-SA 2.5; align: right; color: black; wrapCount: 70" position="0.94 -1.57 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
         <a-entity class="scale-zone-3" position="-9.114 0 -3.3">
         <a-entity full-gltf-model="models/proconsul.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> 
         <a-entity mixin="button" class="clickable" position="1 0 -0.54" id="proconsulbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
-         
         <a-entity mixin="scale-box" id="stand9-tit"><a-entity mixin="scale-label-border" position="-0.136 0.8 -0.637" rotation="0 120 0"></a-entity><a-entity mixin="scale-label" position="-0.136 0.8 -0.638" rotation="0 120 0" text="value: Proconsul\nScientific Name: Proconsul nyanzae\nLocation: Lake Victoria region, Kenya\nTime: 18 million years ago\n\nNotes: Proconsul nyanzae is the largest of the proconsulids, whose traits were adapted to movement on large tree limbs in dense forests.; color: black; lineHeight: 75; wrap-count: 35"></a-entity></a-entity></a-entity>
 
-        <a-entity class="scale-zone-2" rotation="0 180 0" position="-11 0 -4.4">
+        <a-entity class="scale-zone-2" rotation="0 90 0" position="-16.88 0 5.02">
             <a-entity full-gltf-model="models/chimps.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
             <a-entity mixin="button" class="clickable" position="0.9 0 0.25" id="chimpsbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
-            
             <a-entity mixin="scale-box" id="stand10-tit"><a-entity mixin="scale-label-border" position="-0.75 0.7 0.56" rotation="0 80 0"></a-entity><a-entity mixin="scale-label" position="-0.75 0.7 0.565" rotation="0 80 0" text="value: Common Chimpanzee\nScientific Name: Pan troglodytes\nLocation: West and Central Africa\nTime: Present\n\nNotes: Chimpanzees are highly omnivorous and have been seen using a variety of tools and strategies to find food in the environment.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
             <a-entity mixin="scale-label-border" position="0.3 1.45 -1.1" rotation="0 20 0" geometry="height: 0.75"></a-entity><a-entity mixin="scale-label" position="0.3 1.45 -1.09" rotation="0 20 0" geometry="height: 0.7" text="value: The female (left) is depicted cracking palm nuts using a rock and tree branch. The male (right) is shown slapping the ground while &quot;displaying,&quot; making attention-getting gestures for status.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
-           <a-entity position="-1.07 2.1 -0.56" rotation="0 90 0"><a-image mixin="scale-label" src="images/chimpanzees-p.jpg" position="0 0 0.01"  width="2.5" height="1.67"></a-image><a-text text="width: 3; value: &quot;Chimpanzees in Kibaale Forest NP&quot; by Sandra Aceng, used under CC BY-SA 4.0; align: right; color: black; wrapCount: 75" position="1.27 -0.905 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
+           <a-entity position="-0.989 2.1 -0.56" rotation="0 90 0"><a-image mixin="scale-label" src="images/chimpanzees-p.jpg" position="0 0 0.01"  width="2.5" height="1.67"></a-image><a-text text="width: 3; value: &quot;Chimpanzees in Kibaale Forest NP&quot; by Sandra Aceng, used under CC BY-SA 4.0; align: right; color: black; wrapCount: 75" position="1.27 -0.905 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
 
-        <a-entity class="scale-zone-2" rotation="0 0 0" position="-13.45 0 -3">
+        <a-entity class="scale-zone-2" rotation="0 0 0" position="-13.87 0 2.77">
             <a-entity full-gltf-model="models/mandrills.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
             <a-entity mixin="button" class="clickable" position="0.1 0 1.2" id="mandrillsbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
             <a-entity mixin="scale-box" id="stand11-tit"><a-entity mixin="scale-label-border" position="-0.7 1.3 -0.5" rotation="0 30 0"></a-entity><a-entity mixin="scale-label" position="-0.7 1.3 -0.495" rotation="0 30 0" text="value: Mandrill\nScientific Name: Mandrillus sphinx\nLocation: West Central Africa\nTime: Present\n\nNotes: Female mandrills (front) prefer to mate with brightly colored males (back), possibly as an indicator of his status and health.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
-           <a-entity position="-3.02 2.1 1" rotation="0 90 0"><a-image mixin="scale-label" src="images/mandrills-p.jpg" position="0 0 0.01"  width="2.5" height="1.67"></a-image><a-text text="width: 3; value: &quot;Mandrill Family Portrait&quot; by Eric Kilby, used under CC BY-SA 2.0; align: right; color: black; wrapCount: 75" position="1.27 -0.905 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
+           <a-entity position="-4.7 2.1 -3.7" rotation="0 90 0"><a-image mixin="scale-label" src="images/mandrills-p.jpg" position="0 0 0.01"  width="2.5" height="1.67"></a-image><a-text text="width: 3; value: &quot;Mandrill Family Portrait&quot; by Eric Kilby, used under CC BY-SA 2.0; align: right; color: black; wrapCount: 75" position="1.27 -0.905 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
 
-        <a-entity class="scale-zone-2" position="-10.38 0 -6.9" rotation="0 -45 0">
+        <a-entity class="scale-zone-2" position="-20.13 0 -6.9" rotation="0 45 0">
             <a-entity full-gltf-model="models/loris.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
             <a-entity mixin="button" class="clickable" position="0 0 0.3" id="lorisbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
             <a-entity mixin="scale-box" id="stand12-tit"><a-entity mixin="scale-label-border" position="-0.523 0.64 -0.3" rotation="0 45 0"></a-entity><a-entity mixin="scale-label" position="-0.52 .64 -0.3" rotation="0 45 0" text="value: Kayan River Slow Loris\nScientific Name: Nycticebus kayan\nLocation: Borneo\nTime: Present\n\nNotes: This species of loris was recently found to be distinct from other species, especially in their facial markings.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><a-entity mixin="scale-label-border" position="0.55 1.2 -0.25" rotation="0 -45 0" geometry="height: 0.55"></a-entity><a-entity mixin="scale-label" position="0.545 1.2 -0.245" rotation="0 -45 0" geometry="height: 0.5" text="value: Lorises are threatened by habitat loss and the exotic pet trade.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
