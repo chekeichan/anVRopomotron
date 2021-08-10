@@ -1,18 +1,22 @@
 # AnVRopomotron Changelog
-## 1.2.1 (next next)
+## 1.2 (next next)
 -   With the new floorplan, now is the time to work on strategically placed mini maps to telport the user to different exhibits. I now have a button that takes me from the start to the Burial Chamber. Great for developing! It's invisible in the official release. Click the tip of the p in the big AnVRopomotron title behind you at start.
--   Tweaks of the infrastructure to fine tune it to the new floorplan. Specifically, occlusion 
+-   Tweaks of the infrastructure to fine tune it to the new floorplan.
 
-## 1.2 (next)
--   The aye-aye creeps its way into the Scale Model Hall! 
+## 1.1.8 (next)
+-   The aye-aye creeps its way into the Scale Model Hall! This lemur was the last primate up for voting but not the least since it has some amazing anatomy. Modeling the aye-aye turned out to be quite challenging due to a lack of good references for a black-furred nocturnal animal that lives only in Madagascar. Most online photos are based on captive individuals at the Duke Lemur Center and the Ohio Zoo. I made a composite of them along with fur patterns from other online examples. The base model was just the previous slow loris model. As usual, it's not business as usual since a new technique was used: hair simulation. Aye-ayes have almost porcupine-like white straggly strands of fur on their backs. Instead of leaving them out or painting them onto the back directly, I used Blender's hair and physics sims to give an array of procedural strands that were then converted to a mesh. It was fun using these tools, which included a comb tool to direct the fur in an intuitive way. The aye-aye is posed using its traits to hunt for grubs in wood.
 -   Remodel of the Scale Model Hall and Burial Chamber exhibits. Upgrades include:
     -   The Scale Model Hall space has been expanded to give the current selection room to breathe and to make room for more. The primates are now organized by geographic location instead of by multiplying willy by nilly. Baked-in labels make it clear where you are.
     -   I have doubled the textures of the floorplan into two 2048px textures. One has all of the baked text labels and the other has eveything else. How was baking text accomplished? The text are Blender text objects that hover 0.01m over the wall. Light baking simply bakes the text-shaped shadows into the texture. I first used text models but that made the model size grow exponentially. 
     -   The entryway to the Modern Primates part of the Scale Model Hall got an archway and extended wall for better occlusion handling. 
-    -   The Burial Chamber got another turn and a narrow doorway into the exhibit for better occlusion handling.
+    -   The Burial Chamber got another turn and a narrow doorway into the exhibit for better occlusion handling. Info that was projected on the back wall are now split to each mini wall.
+    -   The Burial Chamber also got some soft blue lighting.
     -   Floorplan model size slightly trimmed by removing walls and edges that are never seen. I got very familiar with snapping in Blender so I no longer need the infrastructure to keep things aligned. 
+    -   Occlusion zones updated to account for the new spaces. Standing in each zone will usually keep on any adjoining zones but render invisible everything else. 
+    -   Dynamic lighting model for hands and info buttons got a small tweak. Before, lights flicked on and off as you moved through the museum to keep things lit around you. Now, there is only one light but it moves to follow you based on the occlusion zones. 
+-   Text that are not dynamic got baked in other parts of the museum too so some text objects/draw calls got trimmed from the html.
 -   Rewriting of the Open Education Resource assignments to match the new locations.
--   Ground has been broken on the next big exhibit: Human Evolution! This offshoot of Prehistoric Primates (spatial organization!) is very much under construction but if you look behind the barrier there is a teaser.
+-   Ground has been broken on the next big exhibit: Human Evolution! This offshoot of Prehistoric Primates is very much under construction but if you look behind the barrier....
 
 ## 1.1.7 (next)
 -   The Kayan slow loris adorbs its way into the Scale Model Hall and into your heart. I went with this species because I'm friends with one of its discoverers, Rachel Munds. Unlike the mandrills, I had a wealth of realistic poses to choose from. I settled on an upside-down hanging pose because just look at it. This model has a few improvements. I used a new version of my basic quadruped mesh that now has marked seams for UV unwrapping. This leaves the UV positions left less to chance and can now follow the contours of the shape more precisely. It works! The UV map is more organized and the consolidation of UV islands means that it's a little easier on rendering. 

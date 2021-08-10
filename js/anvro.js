@@ -139,9 +139,9 @@ var lightswitch = function() { // Light switch logic to light the right area
     document.querySelector('#shadowlight').object3D.position.set(-1, 8, 4);
 } else if (burialcheck == 1) {
     console.log("burial lights");
-    document.querySelector('#shadowlight').object3D.position.set(-12.5, 4.75, -14);
+    document.querySelector('#shadowlight').object3D.position.set(-12.5, 8, -14);
 } else {
-    document.querySelector('#shadowlight').object3D.position.set(-12.5, 4.75, -1);
+    document.querySelector('#shadowlight').object3D.position.set(-15.7, 8, -1.67);
     console.log("scale lights");
 }
 }
@@ -191,7 +191,7 @@ if (centercheck == 1) {
     console.log("center on");
     visiswitch(czone, true);
     visiswitch(czoneobjs, true);
-    visiswitch(gzone, false);
+    visiswitch(gzone, true);
     visiswitch(scale1, true);
     visiswitch(scale2, false);
     visiswitch(scale3, false);

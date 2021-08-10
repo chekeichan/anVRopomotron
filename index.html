@@ -100,6 +100,7 @@
 <a-entity class="zone" id="just-center" full-gltf-model="models/centerzone.glb" visible="false"></a-entity> 
 <a-entity class="zone" id="just-scale1" full-gltf-model="models/scalezone1.glb" visible="false"></a-entity>
 <a-entity class="zone" id="just-scale2" full-gltf-model="models/scalezone2.glb" visible="false"></a-entity> 
+<a-entity class="zone" id="just-scale3" full-gltf-model="models/scalezone3.glb" visible="false"></a-entity> 
 <a-entity class="zone" id="just-burial" full-gltf-model="models/burialzone.glb" visible="false"></a-entity> 
 
 <!-- Wall Text -->
@@ -116,7 +117,7 @@
       <a-text id="SMH-SP" visible="false" position="-6.6 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
     <!-- Behind wall -->
-       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="5.05 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.2" align="right" color="black" width="5"></a-text></a-entity> 
+       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="5.05 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.1.8" align="right" color="black" width="5"></a-text></a-entity> 
     <!-- Left display wall -->
         <a-entity visible="true" static-body position="-5.08 2 -0.5" rotation="0 90 0" depth="0.1" width="8" height="4.5" color="#dfe0e2" material="shader: flat">
         <a-image position="0 -0.48 0.10" src="#height" material.transparent="true" shader="flat" geometry="height: 3.048; width: 7.3152"></a-image><!-- Correct by -2.0 -->
@@ -413,10 +414,10 @@
          
          <a-entity class="scale-zone-3" position="-13.16 1.66 -3.32">
          <a-entity full-gltf-model="models/gibbon.glb" rotation="0 -90 0" scale="1 1 1" shadow="cast: false; receive: false"> 
-         <a-entity togg-gibb mixin="button" class="clickable" position="1.3 -1.64 0.82" id="gibbonbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
+         <a-entity togg-gibb mixin="button" class="clickable" position="0.6 -1.64 -0.2" id="gibbonbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
          
          <a-entity  mixin="scale-box" id="stand3-tit"><a-entity mixin="scale-label-border" position="-0.55 -0.75 -0.88" rotation="0 20 0"></a-entity><a-entity mixin="scale-label" position="-0.54 -0.75 -0.87" rotation="0 20 0" text="value: Lar Gibbon\nScientific Name: Hylobates lar\nLocation: Southeast Asia\nTime: Present\n\nNotes: Hylobatids are specialized brachiators, swinging their compact bodies using elongated arms.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
-        <a-entity position="1.95 0.1 -4.18" rotation="0 0 0"><a-image mixin="scale-label" src="images/gibbon-p.jpg" position="0 0 0" width="2.34" height="1.8"></a-image><a-text text="width: 2; value: By Ladislav Kral, used under CC BY-SA 3.0; align: right; color: black" position="1.16 -1 0.01"></a-text></a-entity><!-- Photo Caption --> <!-- Image Panels -->
+        <a-entity position="1.95 0.1 -4.16" rotation="0 0 0"><a-image mixin="scale-label" src="images/gibbon-p.jpg" position="0 0 0" width="2.34" height="1.8"></a-image><a-text text="width: 2; value: By Ladislav Kral, used under CC BY-SA 3.0; align: right; color: black" position="1.16 -1 0.01"></a-text></a-entity><!-- Photo Caption --> <!-- Image Panels -->
          </a-entity></a-entity>
          
          <a-entity class="scale-zone-3" rotation="0 -90 0" position="-17.2 0 -6.66">
@@ -435,8 +436,8 @@
         <a-entity class="scale-zone-2" position="-10.73 1.4 -0.566">
         <a-entity full-gltf-model="models/howler.glb" shadow="cast: false; receive: false"> 
         <a-entity mixin="button" class="clickable"  position="-0.06 -1.4 0.18" id="howlerbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
-        <a-entity mixin="scale-box" id="stand6-tit"><a-entity mixin="scale-label-border" position="1 -0.33 -0.53" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="1 -0.33 -0.529" rotation="0 0 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
-         <a-entity position="-0 1.15 -0.9"><a-image mixin="scale-label" src="images/howler-p.jpg" position="0 0 0.01" rotation="0 0 0" width="2" height="1.33"></a-image><a-text text="width: 2; value: &quot;Black Howler Monkey Family&quot; by Kent MacElwee, used under CC BY-NC 2.0; align: right; color: black; wrapCount: 45" position="0.95 -0.77 0" rotation="0 0 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
+        <a-entity mixin="scale-box" id="stand6-tit"><a-entity mixin="scale-label-border" position="0.88 -0.7 -0.7" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.878 -0.7 -0.7" rotation="0 -90 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
+         <a-entity position="0.9 0.5 1.2" rotation="0 90 0"><a-image mixin="scale-label" src="images/howler-p.jpg" position="0 0 0.01" width="2" height="1.33"></a-image><a-text text="width: 2; value: &quot;Black Howler Monkey Family&quot; by Kent MacElwee, used under CC BY-NC 2.0; align: right; color: black; wrapCount: 45" position="0.95 -0.77 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
         <a-entity class="scale-zone-1" position="-8.76 0 -0.15" rotation="0 180 0">
         <a-entity full-gltf-model="models/megaladapis.glb" shadow="cast: false; receive: false"> 
@@ -474,10 +475,11 @@
             <a-entity mixin="scale-box" id="stand12-tit"><a-entity mixin="scale-label-border" position="-0.523 0.64 -0.3" rotation="0 45 0"></a-entity><a-entity mixin="scale-label" position="-0.52 .64 -0.3" rotation="0 45 0" text="value: Kayan River Slow Loris\nScientific Name: Nycticebus kayan\nLocation: Borneo\nTime: Present\n\nNotes: This species of loris was recently found to be distinct from other species, especially in their facial markings.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><a-entity mixin="scale-label-border" position="0.55 1.2 -0.25" rotation="0 -45 0" geometry="height: 0.55"></a-entity><a-entity mixin="scale-label" position="0.545 1.2 -0.245" rotation="0 -45 0" geometry="height: 0.5" text="value: Lorises are threatened by habitat loss and the exotic pet trade.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
            </a-entity></a-entity>
 
-           <a-entity class="scale-zone-2" position="-20.13 0 -0.6" rotation="0 90 0">
-            <a-entity full-gltf-model="models/aye-aye.glb" position="0 1 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
-            <a-entity mixin="button" class="clickable" position="0 0 0.3" id="aye-ayebutt" full-gltf-model="#buttonmodel"></a-entity>
-            <a-entity mixin="scale-box" id="stand13-tit"><a-entity mixin="scale-label-border" position="-0.523 0.64 -0.3" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="-0.52 .64 -0.3" rotation="0 -90 0" text="value: Aye-Aye\nScientific Name: Daubentonia madagascariensis\nLocation: Madagascar\nTime: Present\n\nNotes: Aye-ayes are nocturnal lemurs that have a specialized middle finger to dig wood and snare grubs.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
+           <a-entity class="scale-zone-2" position="-14 0 -0.6" rotation="0 90 0">
+            <a-entity full-gltf-model="models/aye-aye.glb" position="0.03 2.74 0.17" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
+            <a-entity mixin="button" class="clickable" position="-0.37 0 -0.1" id="aye-ayebutt" full-gltf-model="#buttonmodel"></a-entity>
+            <a-entity mixin="scale-box" id="stand13-tit"><a-entity mixin="scale-label-border" position="-0.7 0.64 -0.3" rotation="0 -50 0"></a-entity><a-entity mixin="scale-label" position="-0.327 .64 -0.3" rotation="0 -50 0" text="value: Aye-Aye\nScientific Name: Daubentonia madagascariensis\nLocation: Madagascar\nTime: Present\n\nNotes: Aye-ayes are nocturnal lemurs that have a specialized middle finger to dig wood and snare grubs.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
+            <a-entity position="0.3 2.4 -0.9" rotation="0 90 0"><a-image mixin="scale-label" src="images/aye-aye-p.jpg" position="0 0 0"  width="1.67" height="2.5"></a-image><a-text text="width: 1.75; value: &quot;Aye aye Nocturnal Lemur&quot; by Rod Waddington, used under CC BY-SA 2.0; align: right; color: black; wrapCount: 45" position="-0.8 -1.4 0" rotation="0 180 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
            </a-entity></a-entity>
         
          
@@ -664,6 +666,9 @@ https://skfb.ly/6UIZn
 
 <a-entity mixin="credit-text" class="credits" id="credits-7" visible="false" position="-0.7 2 -7.499" text="value: Image Sources
 Scale Model Hall
+Aye-Aye: &quot;Aye aye Nocturnal Lemur&quot; by Rod Waddington (CC BY-SA 2.0)
+https://flic.kr/p/N99ChK
+
 Bornean Orangutan: &quot;Male Bornean Orangutan - Big Cheeks&quot; by Eric Kilby (CC BY-SA 2.0)
 https://upload.wikimedia.org/wikipedia/commons/9/9d/Male_Bornean_Orangutan_-_Big_Cheeks.jpg
 
