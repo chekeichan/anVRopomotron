@@ -26,6 +26,8 @@ AFRAME.registerComponent("look-switch", {
                 camera.setAttribute('fps-look-controls', 'userHeight', 0);
                 document.querySelector('#SMH-PC1').object3D.visible = false;
                 document.querySelector('#SMH-PC2').object3D.visible = true;
+                document.querySelector('#GL-PC1').object3D.visible = false;
+                document.querySelector('#GL-PC2').object3D.visible = true;
                 document.querySelector('#crosshair').object3D.visible = true;
                 PCmode = 1;
             } else if (e.keyCode === 77 && PCmode == 1) { // FPS to swipe
@@ -35,6 +37,9 @@ AFRAME.registerComponent("look-switch", {
                 document.exitPointerLock();
                 document.querySelector('#SMH-PC1').object3D.visible = true;
                 document.querySelector('#SMH-PC2').object3D.visible = false;
+                document.querySelector('#GL-PC1').object3D.visible = true;
+                document.querySelector('#GL-PC2').object3D.visible = false;
+
                 document.querySelector('#crosshair').object3D.visible = false;
                 PCmode = 0;
     
@@ -71,7 +76,7 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             document.querySelector('#SMH-VR').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.10); // VR movement is slower than other modes for non barfing
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
-            document.querySelector('#GL-PC').object3D.visible = true;
+            document.querySelector('#GL-PC1').object3D.visible = true;
             document.querySelector('#SMH-PC1').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.15);
             for (let each of tablestand) {
