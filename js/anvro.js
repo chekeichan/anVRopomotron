@@ -165,7 +165,7 @@ if (each.id == "just-center") { // Turn off parts of Scale Model Hall and Grab L
 }
 if (each.id == "just-scale1") { // Turn off parts of Grab Lab when user is inside Scale Model Hall area
    console.log("just-scale1 entered");
-   scalecheck1++;
+    scalecheck1++;
 }
 if (each.id == "just-scale2") { // Turn off parts of Grab Lab when user is inside Scale Model Hall area
     console.log("just-scale2 entered");
@@ -173,7 +173,7 @@ if (each.id == "just-scale2") { // Turn off parts of Grab Lab when user is insid
  }
  if (each.id == "just-scale3") { // Turn off parts of Grab Lab when user is inside Scale Model Hall area
     console.log("just-scale3 entered");
-    scalecheck2++;
+    scalecheck3++;
  }
 if (each.id == "just-burial") { // Turn off parts of Burial Chamber when user is inside Scale Model Hall area
    console.log("just-burial entered");
@@ -239,7 +239,9 @@ console.log("scale3 off");
 if (burialcheck == 1) {
     console.log("burial on");
     visiswitch(bzone, true);
+    visiswitch(scale1, false);
     visiswitch(scale2, false);
+    visiswitch(scale3, true);
     lightswitch();
 } else {
 console.log("burial off");
