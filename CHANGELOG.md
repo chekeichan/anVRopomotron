@@ -14,7 +14,8 @@
     -   Floorplan model size slightly trimmed by removing walls and edges that are never seen. I got very familiar with snapping in Blender so I no longer need the infrastructure to keep things aligned. 
     -   Occlusion zones updated to account for the new spaces. Standing in each zone will usually keep on any adjoining zones but render invisible everything else. 
     -   Dynamic lighting model for hands and info buttons got a small tweak. Before, lights flicked on and off as you moved through the museum to keep things lit around you. Now, there is only one light but it moves to follow you based on the occlusion zones. 
--   Text that is not dynamic got baked in other parts of the museum too so some text objects/draw calls got trimmed from the html. Draw calls have dropped by a handful in general and the initial load time is down by half (!).
+-   Text that is not dynamic got baked in other parts of the museum too so some text objects/draw calls got trimmed from the html. Draw calls have dropped by a handful in general and initial loading feels faster.
+-   VR hand control issues have reappeared with controls ignoring left thumbstick and all piling into right thumbstick. Current solution is to swap the walking and teleporting hands.
 -   Rewriting of the Open Education Resource assignments to match the new locations.
 -   Ground has been broken on the next big exhibit: Human Evolution! This offshoot of Prehistoric Primates is very much under construction but if you look behind the barrier....
 

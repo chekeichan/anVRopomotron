@@ -203,11 +203,12 @@ if (centercheck == 1) {
     lightswitch();
 } else {
 console.log("center off");
-    visidistanceswitch(czoneobjs, false);
+    
 }
 if (scalecheck1 == 1) {
     console.log("scale1 on");
     visiswitch(czone, true);
+    visiswitch(czoneobjs, true);
     visiswitch(scale1, true);
     visiswitch(scale2, true);
     visiswitch(scale3, false);
@@ -219,6 +220,7 @@ console.log("scale1 off");
 if (scalecheck2 == 1) {
     console.log("scale2 on");
     visiswitch(czone, false);
+    visidistanceswitch(czoneobjs, false);
     visiswitch(scale1, true);
     visiswitch(scale2, true);
     visiswitch(scale3, true);
