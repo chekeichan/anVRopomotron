@@ -167,6 +167,9 @@ https://skfb.ly/6UIZn
 
 ## -Image Sources-
 ### -Scale Model Hall-
+Aye-Aye: "Aye aye Nocturnal Lemur" by Rod Waddington (CC BY-SA 2.0)
+https://flic.kr/p/N99ChK
+
 Bornean Orangutan: &quot;Male Bornean Orangutan - Big Cheeks&quot; by Eric Kilby (CC BY-SA 2.0)
 https://upload.wikimedia.org/wikipedia/commons/9/9d/Male_Bornean_Orangutan_-_Big_Cheeks.jpg
 
