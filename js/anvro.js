@@ -9,7 +9,6 @@ AFRAME.registerComponent('table-wait', {
             if (each.classList.contains('standup') == false) { // PC small objects have their own standup animation
                 each.removeAttribute('static-body');
                 each.setAttribute('dynamic-body', {shape: 'box', mass: 1});
-                console.log("yes");
         }}
         });
 }});
@@ -27,6 +26,8 @@ AFRAME.registerComponent("look-switch", {
                 camera.setAttribute('fps-look-controls', 'userHeight', 0);
                 document.querySelector('#SMH-PC1').object3D.visible = false;
                 document.querySelector('#SMH-PC2').object3D.visible = true;
+                document.querySelector('#GL-PC1').object3D.visible = false;
+                document.querySelector('#GL-PC2').object3D.visible = true;
                 document.querySelector('#crosshair').object3D.visible = true;
                 PCmode = 1;
             } else if (e.keyCode === 77 && PCmode == 1) { // FPS to swipe
@@ -36,6 +37,9 @@ AFRAME.registerComponent("look-switch", {
                 document.exitPointerLock();
                 document.querySelector('#SMH-PC1').object3D.visible = true;
                 document.querySelector('#SMH-PC2').object3D.visible = false;
+                document.querySelector('#GL-PC1').object3D.visible = true;
+                document.querySelector('#GL-PC2').object3D.visible = false;
+
                 document.querySelector('#crosshair').object3D.visible = false;
                 PCmode = 0;
     
@@ -72,7 +76,7 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             document.querySelector('#SMH-VR').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.10); // VR movement is slower than other modes for non barfing
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
-            document.querySelector('#GL-PC').object3D.visible = true;
+            document.querySelector('#GL-PC1').object3D.visible = true;
             document.querySelector('#SMH-PC1').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.15);
             for (let each of tablestand) {
@@ -103,25 +107,25 @@ AFRAME.registerComponent("plane-hit", { // Manual occlusion zones
 init: function() {
 sceneEl = document.querySelector('a-scene');
 var el = this.el;
-var scale1 = sceneEl.querySelectorAll(".scale-zone");
+var scale1 = sceneEl.querySelectorAll(".scale-zone-1");
 var scale2 = sceneEl.querySelectorAll(".scale-zone-2");
 var scale3 = sceneEl.querySelectorAll(".scale-zone-3");
 var czone = sceneEl.querySelectorAll(".center-zone");
 var gzone = sceneEl.querySelectorAll(".grab-zone");
 var bzone = sceneEl.querySelectorAll(".burial-zone");
-var mlightzone = sceneEl.querySelectorAll(".mainlight");
-var blightzone = sceneEl.querySelectorAll(".buriallight");
 var gzoneobjs = sceneEl.querySelectorAll(".grab-obj-zone");
 var czoneobjs = sceneEl.querySelectorAll(".center-obj-zone");
 var grabcheck = 0;
 var centercheck = 0;
-var scalecheck = 0;
+var scalecheck1 = 0;
+var scalecheck2 = 0;
+var scalecheck3 = 0;
 var burialcheck = 0;
 var visiswitch = function(zone, toggle) {
- for (let each of zone) {
-    each.object3D.visible = toggle;
-}
-}
+    for (let each of zone) {
+       each.object3D.visible = toggle;
+   }
+   }
 var visidistanceswitch = function(zone, toggle) {
 for (let each of zone) {
         let poss = each.getAttribute('position');
@@ -134,18 +138,16 @@ for (let each of zone) {
 }}
 }
 var lightswitch = function() { // Light switch logic to light the right area
-if (grabcheck == 1 || centercheck == 1 || (scalecheck == 1 && burialcheck == 0)) {
-    console.log("main lights on");
-    visiswitch(mlightzone, true);
-    visiswitch(blightzone, false);
-} else if (scalecheck == 1 && burialcheck == 1) {
-    console.log("both lights on");
-    visiswitch(mlightzone, true);
-    visiswitch(blightzone, true);
+    var el = sceneEl.querySelectorAll(".shadowlight");
+    if (grabcheck == 1 || centercheck == 1 || scalecheck1 == 1 ) {
+    console.log("main lights");
+    document.querySelector('#shadowlight').object3D.position.set(-1, 8, 4);
+} else if (burialcheck == 1) {
+    console.log("burial lights");
+    document.querySelector('#shadowlight').object3D.position.set(-12.5, 8, -14);
 } else {
-    console.log("burial lights on");
-    visiswitch(mlightzone, false);
-    visiswitch(blightzone, true);
+    document.querySelector('#shadowlight').object3D.position.set(-15.7, 8, -1.67);
+    console.log("scale lights");
 }
 }
 
@@ -161,10 +163,18 @@ if (each.id == "just-center") { // Turn off parts of Scale Model Hall and Grab L
    console.log("just-center entered");
    centercheck++;
 }
-if (each.id == "just-scale") { // Turn off parts of Grab Lab when user is inside Scale Model Hall area
-   console.log("just-scale entered");
-   scalecheck++;
+if (each.id == "just-scale1") { // Turn off parts of Grab Lab when user is inside Scale Model Hall area
+   console.log("just-scale1 entered");
+    scalecheck1++;
 }
+if (each.id == "just-scale2") { // Turn off parts of Grab Lab when user is inside Scale Model Hall area
+    console.log("just-scale2 entered");
+    scalecheck2++;
+ }
+ if (each.id == "just-scale3") { // Turn off parts of Grab Lab when user is inside Scale Model Hall area
+    console.log("just-scale3 entered");
+    scalecheck3++;
+ }
 if (each.id == "just-burial") { // Turn off parts of Burial Chamber when user is inside Scale Model Hall area
    console.log("just-burial entered");
    burialcheck++;
@@ -172,46 +182,68 @@ if (each.id == "just-burial") { // Turn off parts of Burial Chamber when user is
 }
 if (grabcheck == 1) {
     console.log("grab on");
+    visiswitch(czone, false);
     visiswitch(gzone, true);
     visiswitch(gzoneobjs, true);
+    visiswitch(scale1, false);
     visiswitch(scale2, false);
-    visiswitch(scale3, false);
     lightswitch();
-    
 } else {
 console.log("grab off");
-    visiswitch(gzone, false);
     visidistanceswitch(gzoneobjs, false);
 }
 if (centercheck == 1) {
     console.log("center on");
     visiswitch(czone, true);
     visiswitch(czoneobjs, true);
-    visiswitch(scale2, true);
-    visiswitch(scale3, true);
+    visiswitch(gzone, true);
+    visiswitch(scale1, true);
+    visiswitch(scale2, false);
+    visiswitch(scale3, false);
     lightswitch();
-    
 } else {
 console.log("center off");
+    
+}
+if (scalecheck1 == 1) {
+    console.log("scale1 on");
+    visiswitch(czone, true);
+    visiswitch(czoneobjs, true);
+    visiswitch(scale1, true);
+    visiswitch(scale2, true);
+    visiswitch(scale3, false);
+    lightswitch();
+} else {
+console.log("scale1 off");
+}
+
+if (scalecheck2 == 1) {
+    console.log("scale2 on");
     visiswitch(czone, false);
     visidistanceswitch(czoneobjs, false);
-}
-if (scalecheck == 1) {
-    console.log("scale on");
     visiswitch(scale1, true);
     visiswitch(scale2, true);
     visiswitch(scale3, true);
-    lightswitch();
-
 } else {
-console.log("scale off");
-    visiswitch(scale1, false);
-    visiswitch(scale2, false);
+console.log("scale2 off");
 }
+
+if (scalecheck3 == 1) {
+    console.log("scale3 on");
+    visiswitch(scale1, false);
+    visiswitch(scale2, true);
+    visiswitch(scale3, true);
+    lightswitch();
+} else {
+console.log("scale3 off");
+}
+
 if (burialcheck == 1) {
     console.log("burial on");
     visiswitch(bzone, true);
-    visiswitch(scale3, false);
+    visiswitch(scale1, false);
+    visiswitch(scale2, false);
+    visiswitch(scale3, true);
     lightswitch();
 } else {
 console.log("burial off");
@@ -219,11 +251,11 @@ console.log("burial off");
 }
 centercheck = 0;
 grabcheck = 0;
-scalecheck = 0;
+scalecheck1 = 0;
+scalecheck2 = 0;
+scalecheck3 = 0;
 burialcheck = 0;
-
 }
-
 
 el.addEventListener("hitstart", function(evt) {
 zonechecker();
@@ -262,6 +294,7 @@ grabpanel("calatravabuttinfo","#calatrava-tit");
 grabpanel("chimpsbutt","#stand10-tit");
 grabpanel("mandrillsbutt","#stand11-tit");
 grabpanel("lorisbutt","#stand12-tit");
+grabpanel("aye-ayebutt","#stand13-tit");
 }
 })
 
