@@ -104,6 +104,14 @@
 <a-entity class="zone" id="just-scale3" full-gltf-model="models/scalezone3.glb" visible="false"></a-entity> 
 <a-entity class="zone" id="just-burial" full-gltf-model="models/burialzone.glb" visible="false"></a-entity> 
 
+<!-- Master Map -->
+<a-entity id="warp-map" position="0 0 0">
+    <a-entity id="burialwarpbutt" mixin="mapmarker button" static-body warp class="clickable" position="0.0 0.0 0.0" visible="true"></a-entity>
+    <a-entity id="grabwarpbutt" mixin="mapmarker button" static-body warp class="clickable" position="0.0 0.0 0.0" visible="true"></a-entity>
+    <a-entity id="primatewarpbutt" mixin="mapmarker button" static-body warp  class="clickable" position="0.0 0.0 0.0" visible="true"></a-entity>
+    <a-entity id="centerwarpbutt" mixin="mapmarker button" static-body warp  class="clickable" position="0.0 0.0 0.0" visible="true"></a-entity>
+</a-entity>
+
 <!-- Wall Text -->
     <!-- Front wall -->
      <a-entity visible="true" static-body position="0 2 -7.5" rotation="0 0 0" width="40" height="4.5">
@@ -247,8 +255,6 @@
         <a-entity mixin="scale-label-border" position="0 0 0"></a-entity><a-entity id="chimpstatue-info" mixin="scale-label" position="0 0 0.01" text="value: &quot;Coverversion&quot;\nLocation: Au von Tulln, Austria\nDate: 2008\nSource: Scan by Niederösterreich 3D\n\nNotes: This statue by Klaus Weber is based on the 1893 &quot;Affe mit Schädel&quot; (Monkey with Skull) by Hugo Rheinhold.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
        </a-entity></a-entity>
 <a-entity class="scale-zone-1" full-gltf-model="models/trophy.glb" static-body position="-7.16 0 5.8"></a-entity>
-<a-entity static-body warp mixin="button" class="clickable" position="0.7 0.1 6" id="burialwarpbutt" visible="false"  full-gltf-model="#buttonmodel"></a-entity> 
-
 <a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" full-gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
    <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" full-gltf-model="#buttonmodel" shadow></a-entity>
     
