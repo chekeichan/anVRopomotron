@@ -20,7 +20,7 @@
   <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
   <meta http-equiv="pragma" content="no-cache" />
 <meta name="description" content="VR Anthropology Museum">
-<script src="https://aframe.io/releases/1.1.0/aframe.min.js"></script>
+<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
 <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
 <script src="js/aframe-physics-system.min.js"></script>
@@ -29,6 +29,7 @@
 <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
 <script src="https://unpkg.com/aframe-fps-look-controls-component/dist/aframe-fps-look-controls-component.min.js"></script>
+<script src="js/aframe-physics-system.js"></script>
 <script src="js/msc_basis_transcoder.js"></script>
 <script src="js/full-gltf-model.js"></script>
 <script src="js/anvro.js"></script>
@@ -105,7 +106,7 @@
 <a-entity class="zone" id="just-burial" full-gltf-model="models/burialzone.glb" visible="false"></a-entity> 
 
 <!-- Master Map -->
-<a-entity id="warp-map" position="0 0 0">
+<a-entity id="warp-map" position="0 1 0">
     <a-entity id="burialwarpbutt" mixin="mapmarker button" static-body warp class="clickable" position="0.0 0.0 0.0" visible="true"></a-entity>
     <a-entity id="grabwarpbutt" mixin="mapmarker button" static-body warp class="clickable" position="0.0 0.0 0.0" visible="true"></a-entity>
     <a-entity id="primatewarpbutt" mixin="mapmarker button" static-body warp  class="clickable" position="0.0 0.0 0.0" visible="true"></a-entity>
@@ -412,7 +413,7 @@
         <a-entity position="-1.42 2.2 1" rotation="0 90 0"><a-image mixin="scale-label" src="images/gorilla-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text text="width: 2; value: &quot;Imposing&quot; by Joe McKenna, used under CC BY 2.0 ; align: right; color: black" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
         <a-plane mixin="scale-label-border" position="0.86 0.65 -0.7" rotation="-15 90 0" geometry="height: 0.75"></a-plane><a-entity mixin="scale-label" position="0.87 0.65 -0.7" rotation="-15 90 0" geometry="height: 0.7" text="value: Madame Berthe's Mouse Lemur\nScientific Name: Microcebus berthae \nLocation: Madagascar\nTime: Present\n\nNotes: The smallest living primate, with a weight of 1.1 ounces.; color: black; lineHeight: 75; wrap-count: 35"><a-triangle color="#375719" position="0 -0.08 -0.01" material="shader: flat" geometry="vertexC: -0.4 0.01 0; vertexA: -0.1 0.01 0; vertexB: -0.07 0.86 0" rotation="0 0 0"></a-triangle></a-entity></a-entity></a-entity>
       
-         <a-entity class="scale-zone-1" position="-8.7 0 4.9" rotation="0 90 0">
+         <a-entity class="scale-zone-1 scale-zone-2" position="-8.7 0 4.9" rotation="0 90 0">
          <a-entity full-gltf-model="models/rhesus-rh.glb"   rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false">
           <a-entity mixin="button" class="clickable" position="1.1 0 -0.4" id="rhesusbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
           
