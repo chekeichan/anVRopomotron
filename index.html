@@ -35,7 +35,7 @@
 </head>
 
 <body>
-<a-scene look-switch anti-drop grab-panels burial-grab item-grab device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA">
+<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA">
        
 <a-assets timeout="80000"> <!-- Loads models -->
                 <a-asset-item id="tablemodel" id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
@@ -77,7 +77,7 @@
                  <a-mixin id="scale-label" geometry="primitive: plane; height: 1; width: 1; buffer: false" material="color: #dadada; shader: flat;"></a-mixin>
                  <a-mixin id="scale-text" text="color: black; width: 2; wrapCount: 45"></a-mixin>
                  <a-mixin id="credit-text" text="anchor: align; color: black; width: 2; wrapCount: 70; lineHeight: 55"></a-mixin>
-				 <a-mixin id="mapmarker" scale ="0.17 0.1 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.2; radiusTop: 0.01; segmentsRadial: 6" material="color: #ffaa00"></a-mixin>
+				 <a-mixin id="mapmarker" scale ="0.17 0.1 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.15; radiusTop: 0.02; segmentsRadial: 6" material="color: #ffaa00"></a-mixin>
  </a-assets>
  
 <a-entity position="0 0 0" static-body full-gltf-model="#navmesh" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
@@ -107,10 +107,10 @@
 <!-- Master Map -->
 <a-entity id="warp-map" position="0 1 0">
     <a-entity full-gltf-model="models/map.glb" static-body position="0 0 0" rotation="0 0 0"></a-entity>
-    <a-entity id="burialwarpbutt" mixin="mapmarker button" static-body warp class="clickable" position="0 0 0.05" visible="true"></a-entity>
-    <a-entity id="grabwarpbutt" mixin="mapmarker button" static-body warp class="clickable" position="0 0 0.05" visible="true"></a-entity>
-    <a-entity id="primatewarpbutt" mixin="mapmarker button" static-body warp  class="clickable" position="0 0 0.05" visible="true"></a-entity>
-    <a-entity id="centerwarpbutt" mixin="mapmarker button" static-body warp  class="clickable" position="0 0 0.05" visible="true"></a-entity>
+    <a-entity id="burialwarpbutt" mixin="mapmarker button" static-body class="clickable" position="-0.172 0.206 0.05" visible="true"></a-entity>
+    <a-entity id="grabwarpbutt" mixin="mapmarker button" static-body class="clickable" position="0.206 -0.101 0.05" visible="true"></a-entity>
+    <a-entity id="primatewarpbutt" mixin="mapmarker button" static-body  class="clickable" position="-0.206 -0.152 0.05" visible="true"></a-entity>
+    <a-entity id="centerwarpbutt" mixin="mapmarker button" static-body  class="clickable" position="0.057 -0.138 0.05" visible="true"></a-entity>
 </a-entity>
 
 <!-- Wall Text -->

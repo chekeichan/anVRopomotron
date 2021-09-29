@@ -517,11 +517,16 @@ this.dropcheck();
 
 })
 
-// Warp
 AFRAME.registerComponent("warp", {
-init: function() {
-sceneEl = document.querySelector('a-scene');
-this.el.addEventListener("grab-start", function(evt) {
-document.querySelector("#rig").object3D.position.set(-12.5, 0, -15.5); }) 
-
-}})
+    init: function() {
+    rig = document.querySelector("#rig");
+    var warpfun = function(warpbutt, warplocx, warplocy, warplocz) {
+    document.getElementById(warpbutt).addEventListener("grab-end", function(evt) {
+      rig.object3D.position.set(warplocx, warplocy, warplocz);
+    })};
+    warpfun("centerwarpbutt", 0, 0, 1);
+    warpfun("grabwarpbutt", 9.33, 0, -0.5);
+    warpfun("primatewarpbutt", -13, 0, 1);
+    warpfun("burialwarpbutt", -14, 0, -17.7);
+    }
+    })
