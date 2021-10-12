@@ -139,15 +139,15 @@ for (let each of zone) {
 }
 var lightswitch = function() { // Light switch logic to light the right area
     var el = sceneEl.querySelectorAll(".shadowlight");
-    if (grabcheck == 1 || centercheck == 1 || scalecheck1 == 1 ) {
-    console.log("main lights");
-    document.querySelector('#shadowlight').object3D.position.set(-1, 8, 4);
+    if (scalecheck2 == 1 || scalecheck2 == 1 || scalecheck3 == 1){
+        document.querySelector('#shadowlight').object3D.position.set(-10, 4, -1.67);
+        console.log("scale lights");
+    } else if (grabcheck == 1 || centercheck == 1) {
+        console.log("main lights");
+        document.querySelector('#shadowlight').object3D.position.set(-1, 8, 4);
 } else if (burialcheck == 1) {
-    console.log("burial lights");
-    document.querySelector('#shadowlight').object3D.position.set(-12.5, 8, -14);
-} else {
-    document.querySelector('#shadowlight').object3D.position.set(-15.7, 8, -1.67);
-    console.log("scale lights");
+        console.log("burial lights");
+        document.querySelector('#shadowlight').object3D.position.set(-12.5, 8, -14);
 }
 }
 
@@ -520,13 +520,15 @@ this.dropcheck();
 AFRAME.registerComponent("warp", {
     init: function() {
     rig = document.querySelector("#rig");
-    var warpfun = function(warpbutt, warplocx, warplocy, warplocz) {
+    var warpfun = function(warpbutt, warplocx, warplocy, warplocz, warpmapx, warpmapy, warpmapz, warproty) {
     document.getElementById(warpbutt).addEventListener("grab-end", function(evt) {
       rig.object3D.position.set(warplocx, warplocy, warplocz);
+      document.getElementById("warp-map").object3D.position.set(warpmapx, warpmapy, warpmapz);
+      document.getElementById("warp-map").object3D.rotation.set(0, warproty, 0);
     })};
-    warpfun("centerwarpbutt", 0, 0, 1);
-    warpfun("grabwarpbutt", 9.33, 0, -0.5);
-    warpfun("primatewarpbutt", -13, 0, 1);
-    warpfun("burialwarpbutt", -14, 0, -17.7);
+    warpfun("centerwarpbutt", 0, 0, 1, 0, 1, 0, 0);
+    warpfun("grabwarpbutt", 9.33, 0, -0.5, 7.9, 1.4, 0, 1.5708);
+    warpfun("primatewarpbutt", -13, 0, 1, -9.8, 1.4, 1.75, -1.5708);
+    warpfun("burialwarpbutt", -14, 0, -17.7, -16.45, 1.4, -19.54, 0);
     }
     })
