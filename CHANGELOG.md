@@ -1,7 +1,12 @@
 # AnVRopomotron Changelog
 ## 1.2 (next next)
--   With the new floorplan, now is the time to work on strategically placed mini maps to telport the user to different exhibits. I now have a button that takes me from the start to the Burial Chamber. Great for developing! It's invisible in the official release. Click the tip of the p in the big AnVRopomotron title behind you at start.
+-   Targeted for late 2021 is the new Human Evolution Hall with a starter set of four scale models of prehistoric humans and hominins. 
+
+## 1.1.9 (next)
+-   With the new floorplan, now is the time to work on strategically placed mini maps to telport the user to different exhibits. To reduce draw calls, maps will sereptitiously move through exhibits to be near you. The Centerpiece map at the start is mostly static since it is viewable from a lot of angles but it will move to the Scale Model Hall if you go deep in to the exhibit. The other map flits between the the exhibits more freely, starting in the Grab Lab but going where needed. Grab a carrot to go quickly to another exhibit.
 -   Tweaks of the infrastructure to fine tune it to the new floorplan.
+    - The movement of the single dynamic light following you is more subtle. 
+    - WebXR Award trophy ground shadows fixed to match model rotation.
 
 ## 1.1.8 (08/11/2021)
 -   The aye-aye creeps its way into the Scale Model Hall! This lemur was the last primate up for voting but not the least since it has some amazing anatomy. Modeling the aye-aye turned out to be quite challenging due to a lack of good references for a black-furred nocturnal animal that lives only in Madagascar. Most online footage is based on one individual from the Duke Lemur Center who then went to the Cincinnati Zoo. The base model was just the previous slow loris model. As usual, it's not business as usual since a new technique was used: hair simulation.  Aye-ayes have almost porcupine-like white straggly strands of fur on their backs. Instead of leaving them out or painting them onto the back directly, I used Blender's hair and physics sims to give an array of procedural strands that were then converted to a mesh. It was fun using these tools, which included a comb tool to direct the fur in an intuitive way. The aye-aye is posed using its traits to hunt for grubs in wood.

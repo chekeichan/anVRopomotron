@@ -151,6 +151,15 @@ var lightswitch = function() { // Light switch logic to light the right area
 }
 }
 
+var mapwarp = function(warpmapx1, warpmapy1, warpmapz1, warprotx1, warproty1, warpmapx2, warpmapy2, warpmapz2, warprotx2, warproty2) {
+    var warp1 = document.getElementById("warp-map1");
+    var warp2 = document.getElementById("warp-map2");
+    warp1.object3D.position.set(warpmapx1, warpmapy1, warpmapz1);
+    warp1.object3D.rotation.set(warprotx1, warproty1, 0);
+    warp2.object3D.position.set(warpmapx2, warpmapy2, warpmapz2);
+    warp2.object3D.rotation.set(warprotx2, warproty2, 0);
+}
+
 
 var zonechecker = function () {
 var list = el.components['aabb-collider'].intersectedEls;
@@ -180,7 +189,7 @@ if (each.id == "just-burial") { // Turn off parts of Burial Chamber when user is
    burialcheck++;
 }
 }
-if (grabcheck == 1) {
+if (grabcheck == 1 && centercheck == 0) {
     console.log("grab on");
     visiswitch(czone, false);
     visiswitch(gzone, true);
@@ -188,10 +197,22 @@ if (grabcheck == 1) {
     visiswitch(scale1, false);
     visiswitch(scale2, false);
     lightswitch();
+    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -45, 30);
+} else if (grabcheck == 1 && centercheck == 1) {
+    console.log("grab on");
+    visiswitch(czone, true);
+    visiswitch(czoneobjs, true);
+    visiswitch(gzone, true);
+    visiswitch(gzoneobjs, true);
+    visiswitch(scale1, false);
+    visiswitch(scale2, false);
+    lightswitch();
+    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -45, 30);
 } else {
 console.log("grab off");
     visidistanceswitch(gzoneobjs, false);
 }
+
 if (centercheck == 1) {
     console.log("center on");
     visiswitch(czone, true);
@@ -201,10 +222,12 @@ if (centercheck == 1) {
     visiswitch(scale2, false);
     visiswitch(scale3, false);
     lightswitch();
+    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -45, 30);
 } else {
 console.log("center off");
-    
+visidistanceswitch(czoneobjs, false);
 }
+
 if (scalecheck1 == 1) {
     console.log("scale1 on");
     visiswitch(czone, true);
@@ -213,6 +236,7 @@ if (scalecheck1 == 1) {
     visiswitch(scale2, true);
     visiswitch(scale3, false);
     lightswitch();
+    mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -0.7, 1, 0, -45, 30);
 } else {
 console.log("scale1 off");
 }
@@ -224,6 +248,7 @@ if (scalecheck2 == 1) {
     visiswitch(scale1, true);
     visiswitch(scale2, true);
     visiswitch(scale3, true);
+    mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -18.5, 1.4, -7.5, 0, 0);
 } else {
 console.log("scale2 off");
 }
@@ -234,6 +259,7 @@ if (scalecheck3 == 1) {
     visiswitch(scale2, true);
     visiswitch(scale3, true);
     lightswitch();
+    mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -18.5, 1.4, -7.5, 0, 0);
 } else {
 console.log("scale3 off");
 }
@@ -245,10 +271,12 @@ if (burialcheck == 1) {
     visiswitch(scale2, false);
     visiswitch(scale3, true);
     lightswitch();
+    mapwarp(-16.45, 1.4, -19.54, 0, 0, -18.5, 1.4, -7.5, 0, 0);
 } else {
 console.log("burial off");
     visiswitch(bzone, false);
 }
+
 centercheck = 0;
 grabcheck = 0;
 scalecheck1 = 0;
@@ -520,15 +548,18 @@ this.dropcheck();
 AFRAME.registerComponent("warp", {
     init: function() {
     rig = document.querySelector("#rig");
-    var warpfun = function(warpbutt, warplocx, warplocy, warplocz, warpmapx, warpmapy, warpmapz, warproty) {
+    var warpfun = function(warpbutt, warplocx, warplocy, warplocz) {
     document.getElementById(warpbutt).addEventListener("grab-end", function(evt) {
       rig.object3D.position.set(warplocx, warplocy, warplocz);
-      document.getElementById("warp-map").object3D.position.set(warpmapx, warpmapy, warpmapz);
-      document.getElementById("warp-map").object3D.rotation.set(0, warproty, 0);
+      
     })};
-    warpfun("centerwarpbutt", 0, 0, 1, 0, 1, 0, 0);
-    warpfun("grabwarpbutt", 9.33, 0, -0.5, 7.9, 1.4, 0, 1.5708);
-    warpfun("primatewarpbutt", -13, 0, 1, -9.8, 1.4, 1.75, -1.5708);
-    warpfun("burialwarpbutt", -14, 0, -17.7, -16.45, 1.4, -19.54, 0);
+    warpfun("centerwarpbutt1", 0, 0, 1);
+    warpfun("grabwarpbutt1", 9.33, 0, -0.5);
+    warpfun("primatewarpbutt1", -13, 0, 1);
+    warpfun("burialwarpbutt1", -14, 0, -17.7);
+    warpfun("centerwarpbutt2", 0, 0, 1);
+    warpfun("grabwarpbutt2", 9.33, 0, -0.5);
+    warpfun("primatewarpbutt2", -13, 0, 1);
+    warpfun("burialwarpbutt2", -14, 0, -17.7);
     }
     })

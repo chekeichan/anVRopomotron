@@ -77,7 +77,7 @@
                  <a-mixin id="scale-label" geometry="primitive: plane; height: 1; width: 1; buffer: false" material="color: #dadada; shader: flat;"></a-mixin>
                  <a-mixin id="scale-text" text="color: black; width: 2; wrapCount: 45"></a-mixin>
                  <a-mixin id="credit-text" text="anchor: align; color: black; width: 2; wrapCount: 70; lineHeight: 55"></a-mixin>
-				 <a-mixin id="mapmarker" scale ="0.17 0.1 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.15; radiusTop: 0.02; segmentsRadial: 6" material="color: #ffaa00; flatShading:  true;"></a-mixin>
+				 <a-mixin id="mapmarker" scale ="0.17 0.1 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.15; radiusTop: 0.02; segmentsRadial: 6" material="color: #ffaa00; emissive: #ffaa00; emissiveIntensity: 0.5; flatShading:  true;"></a-mixin>
  </a-assets>
  
 <a-entity position="0 0 0" static-body full-gltf-model="#navmesh" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
@@ -105,13 +105,21 @@
 <a-entity class="zone" id="just-burial" full-gltf-model="models/burialzone.glb" visible="false"></a-entity> 
 
 <!-- Master Map -->
-<a-entity id="warp-map" position="0 1 0">
+<a-entity id="warp-map1" position="7.9, 1.4, 0" rotation="0, 90, 0"> <!-- Movable map 1-->
     <a-entity full-gltf-model="models/map.glb" static-body position="0 0 0" rotation="0 0 0"></a-entity>
-    <a-entity id="burialwarpbutt" mixin="mapmarker button" static-body class="clickable" position="-0.172 0.206 0.05" visible="true"></a-entity>
-    <a-entity id="grabwarpbutt" mixin="mapmarker button" static-body class="clickable" position="0.206 -0.101 0.05" visible="true"></a-entity>
-    <a-entity id="primatewarpbutt" mixin="mapmarker button" static-body  class="clickable" position="-0.206 -0.152 0.05" visible="true"></a-entity>
-    <a-entity id="centerwarpbutt" mixin="mapmarker button" static-body  class="clickable" position="0.057 -0.138 0.05" visible="true"></a-entity>
+    <a-entity id="burialwarpbutt1" mixin="mapmarker button" static-body class="clickable" position="-0.172 0.206 0.05" visible="true"></a-entity>
+    <a-entity id="grabwarpbutt1" mixin="mapmarker button" static-body class="clickable" position="0.206 -0.101 0.05" visible="true"></a-entity>
+    <a-entity id="primatewarpbutt1" mixin="mapmarker button" static-body  class="clickable" position="-0.206 -0.152 0.05" visible="true"></a-entity>
+    <a-entity id="centerwarpbutt1" mixin="mapmarker button" static-body  class="clickable" position="0.057 -0.138 0.05" visible="true"></a-entity>
 </a-entity>
+<a-entity id="warp-map2" position="-0.7 1 0" rotation="-45, 30, 0"><!-- Movalbe map 2 (Centerpiece) -->
+    <a-entity full-gltf-model="models/map.glb" static-body position="0 0 0" rotation="0 0 0"></a-entity>
+    <a-entity id="burialwarpbutt2" mixin="mapmarker button" static-body class="clickable" position="-0.172 0.206 0.05" visible="true"></a-entity>
+    <a-entity id="grabwarpbutt2" mixin="mapmarker button" static-body class="clickable" position="0.206 -0.101 0.05" visible="true"></a-entity>
+    <a-entity id="primatewarpbutt2" mixin="mapmarker button" static-body  class="clickable" position="-0.206 -0.152 0.05" visible="true"></a-entity>
+    <a-entity id="centerwarpbutt2" mixin="mapmarker button" static-body  class="clickable" position="0.057 -0.138 0.05" visible="true"></a-entity>
+</a-entity>
+<a-entity full-gltf-model="models/mapstand.glb" static-body position="-0.7 0 0" rotation="0 30 0"></a-entity>
 
 <!-- Wall Text -->
     <!-- Front wall -->
