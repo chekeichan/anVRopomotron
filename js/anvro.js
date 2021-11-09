@@ -197,7 +197,7 @@ if (grabcheck == 1 && centercheck == 0) {
     visiswitch(scale1, false);
     visiswitch(scale2, false);
     lightswitch();
-    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -45, 30);
+    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else if (grabcheck == 1 && centercheck == 1) {
     console.log("grab on");
     visiswitch(czone, true);
@@ -207,7 +207,7 @@ if (grabcheck == 1 && centercheck == 0) {
     visiswitch(scale1, false);
     visiswitch(scale2, false);
     lightswitch();
-    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -45, 30);
+    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else {
 console.log("grab off");
     visidistanceswitch(gzoneobjs, false);
@@ -222,7 +222,7 @@ if (centercheck == 1) {
     visiswitch(scale2, false);
     visiswitch(scale3, false);
     lightswitch();
-    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -45, 30);
+    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else {
 console.log("center off");
 visidistanceswitch(czoneobjs, false);
@@ -236,7 +236,7 @@ if (scalecheck1 == 1) {
     visiswitch(scale2, true);
     visiswitch(scale3, false);
     lightswitch();
-    mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -0.7, 1, 0, -45, 30);
+    mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else {
 console.log("scale1 off");
 }
@@ -548,11 +548,28 @@ this.dropcheck();
 AFRAME.registerComponent("warp", {
     init: function() {
     rig = document.querySelector("#rig");
+    transition = document.querySelector("#transition");
+ 
+    var transitionclose = function(warplocx, warplocy, warplocz) {
+        console.log(transition);
+        transition.dispatchEvent(new CustomEvent("transitionclose"));
+        setTimeout(function(){warpwarp(warplocx, warplocy, warplocz);}, 1000)
+    };
+
+    var warpwarp = function(warplocx, warplocy, warplocz) {
+        rig.object3D.position.set(warplocx, warplocy, warplocz);
+        setTimeout(function(){transitionopen();}, 100)
+    };
+    
+    var transitionopen = function() {
+        transition.dispatchEvent(new CustomEvent("transitionopen"));
+    };
+    
     var warpfun = function(warpbutt, warplocx, warplocy, warplocz) {
-    document.getElementById(warpbutt).addEventListener("grab-end", function(evt) {
-      rig.object3D.position.set(warplocx, warplocy, warplocz);
-      
-    })};
+        document.getElementById(warpbutt).addEventListener("grab-end", function(evt) {
+            transitionclose(warplocx, warplocy, warplocz);
+    }
+   )};
     warpfun("centerwarpbutt1", 0, 0, 1);
     warpfun("grabwarpbutt1", 9.33, 0, -0.5);
     warpfun("primatewarpbutt1", -13, 0, 1);
