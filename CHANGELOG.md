@@ -4,6 +4,8 @@
 
 ## 1.1.9 (next)
 -   With the new floorplan, now is the time to work on strategically placed mini maps to telport the user to different exhibits. To reduce draw calls, maps will sereptitiously move through exhibits to be near you. The Centerpiece map at the start is mostly static since it is viewable from a lot of angles but it will move to the Scale Model Hall if you go deep in to the exhibit. The other map flits between the the exhibits more freely, starting in the Grab Lab but going where needed. Grab a carrot to go quickly to another exhibit.
+-   The teleportation comes with an effect to ease VR sickness. It is a ring primtive just off camera that is timed to shrink its inner ring until everything is obscured, move the camera to the new location, and expand the ring out of view again. 
+-   Plesiadapis claws its way to the Scale Model Hall! Either the earliest known primate or the closest thing to one, the plesiadapis looks like a large squirrel. As the oldest organism in the Scale Model Hall, it takes its place at the start of the row of prehistoric life and as the attractor to that part of the museum since the gibbon was moved back into a more appropriate location with the modern primates. 
 -   Tweaks of the infrastructure to fine tune it to the new floorplan.
     - The movement of the single dynamic light following you is more subtle. 
     - WebXR Award trophy ground shadows fixed to match model rotation.
