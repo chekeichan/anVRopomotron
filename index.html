@@ -87,7 +87,7 @@
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
         <a-entity id="camera" camera look-controls raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
             <a-entity id="crosshair" visible="false" cursor="rayOrigin:mouse" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: #0055ff; shader: flat" raycaster="far: 5; objects: .clickable"></a-entity>
-            <a-entity id="transition" position="0 0 -0.7" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 1000;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 1000;"></a-entity></a-entity>
+            <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 1000;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 1000;"></a-entity></a-entity>
         <a-entity mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8"></a-entity>
         <a-entity mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff"></a-entity>
  </a-entity>
@@ -264,7 +264,7 @@
     <a-entity  mixin="scale-box" id="chimpstatue-tit" position="-1.25 1.2 -0.7" rotation="0 45 0">
         <a-entity mixin="scale-label-border" position="0 0 0"></a-entity><a-entity id="chimpstatue-info" mixin="scale-label" position="0 0 0.01" text="value: &quot;Coverversion&quot;\nLocation: Au von Tulln, Austria\nDate: 2008\nSource: Scan by Niederösterreich 3D\n\nNotes: This statue by Klaus Weber is based on the 1893 &quot;Affe mit Schädel&quot; (Monkey with Skull) by Hugo Rheinhold.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
        </a-entity></a-entity>
-<a-entity class="scale-zone-1" full-gltf-model="models/trophy.glb" static-body position="-7.16 0 5.8"></a-entity>
+<a-entity class="scale-zone-1" full-gltf-model="models/trophy.glb" static-body position="-7.2 0 5.77"></a-entity>
 <a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" full-gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
    <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" full-gltf-model="#buttonmodel" shadow></a-entity>
     
@@ -500,6 +500,11 @@
             <a-entity mixin="scale-box" id="stand13-tit"><a-entity mixin="scale-label-border" position="-0.326 0.64 -0.3" rotation="0 -50 0"></a-entity><a-entity mixin="scale-label" position="-0.327 .64 -0.3" rotation="0 -50 0" text="value: Aye-Aye\nScientific Name: Daubentonia madagascariensis\nLocation: Madagascar\nTime: Present\n\nNotes: Aye-ayes are nocturnal lemurs that have a specialized middle finger to dig wood and snare grubs.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
             <a-entity position="0.3 2.4 -1.4" rotation="0 90 0"><a-image mixin="scale-label" src="images/aye-aye-p.jpg" position="0 0 0"  width="1.67" height="2.5"></a-image><a-text text="width: 1.75; value: &quot;Aye aye Nocturnal Lemur&quot; by Rod Waddington, used under CC BY-SA 2.0; align: right; color: black; wrapCount: 45" position="-0.8 -1.4 0" rotation="0 180 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
            </a-entity></a-entity>
+
+           <a-entity class="scale-zone-1" position="-5.115 0 -4.55">
+            <a-entity full-gltf-model="models/plesiadapis.glb" position="0 1.6 0" rotation="0 180 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
+            <a-entity mixin="button" class="clickable" position="0.45 0 -0.1" id="plesiadapisbutt" full-gltf-model="#buttonmodel"></a-entity>
+            <a-entity mixin="scale-box" id="stand14-tit"><a-entity mixin="scale-label-border" position="0.15 0.6 0.58" rotation="0 90 0" geometry="height: 0.75"></a-entity><a-entity mixin="scale-label" position="0.155 0.6 0.58" rotation="0 90 0" geometry="height: 0.7" text="value: Plesiadapis\nScientific Name: Plesiadapis cookei\nLocation: Wyoming, USA\nTime: 62 to 56 million years ago\n\nNotes: Plesiadapis is a relative of primates with traits adapted to clinging to large diameter tree branches and trunks.; color: black; lineHeight: 75; wrap-count: 35"></a-entity></a-entity></a-entity>
         
          
          

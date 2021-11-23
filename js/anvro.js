@@ -323,6 +323,7 @@ grabpanel("chimpsbutt","#stand10-tit");
 grabpanel("mandrillsbutt","#stand11-tit");
 grabpanel("lorisbutt","#stand12-tit");
 grabpanel("aye-ayebutt","#stand13-tit");
+grabpanel("plesiadapisbutt","#stand14-tit");
 }
 })
 

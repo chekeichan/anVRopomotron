@@ -1,6 +1,6 @@
 # AnVRopomotron Changelog
 ## 1.2 (next next)
--   Targeted for late 2021 is the new Human Evolution Hall with a starter set of four scale models of prehistoric humans and hominins. 
+-   Now targeted for early 2022 is the new Human Evolution Hall with a starter set of four scale models of prehistoric humans and hominins. 
 
 ## 1.1.9 (next)
 -   With the new floorplan, now is the time to work on strategically placed mini maps to telport the user to different exhibits. To reduce draw calls, maps will sereptitiously move through exhibits to be near you. The Centerpiece map at the start is mostly static since it is viewable from a lot of angles but it will move to the Scale Model Hall if you go deep in to the exhibit. The other map flits between the the exhibits more freely, starting in the Grab Lab but going where needed. Grab a carrot to go quickly to another exhibit.
@@ -8,6 +8,7 @@
 -   Plesiadapis claws its way to the Scale Model Hall! Either the earliest known primate or the closest thing to one, the plesiadapis looks like a large squirrel. As the oldest organism in the Scale Model Hall, it takes its place at the start of the row of prehistoric life and as the attractor to that part of the museum since the gibbon was moved back into a more appropriate location with the modern primates. 
 -   Tweaks of the infrastructure to fine tune it to the new floorplan.
     - The movement of the single dynamic light following you is more subtle. 
+    - Occlusion tweaks to be more hidden, especially the rhesus monkey.
     - WebXR Award trophy ground shadows fixed to match model rotation.
 
 ## 1.1.8 (08/11/2021)
