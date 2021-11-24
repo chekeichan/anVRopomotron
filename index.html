@@ -46,6 +46,7 @@
                 <a-asset-item id="buttonupmodel" response-type="arraybuffer" src="models/button-up.glb"></a-asset-item>
                 <a-asset-item id="centerpiecemodel" response-type="arraybuffer" src="models/centerpiece.glb"></a-asset-item>
                 <a-asset-item id="chimpstatuemodel" response-type="arraybuffer" src="models/chimpstatue.glb"></a-asset-item>
+                <a-asset-item id="plesiadapismodel" response-type="arraybuffer" src="models/plesiadapis.glb"></a-asset-item>
                 <img id="height" src="images/height.png">
                 <a-asset-item id="acheulmodel" response-type="arraybuffer" src="models/acheul.glb"></a-asset-item>
                 <a-asset-item id="mousterianmodel" response-type="arraybuffer" src="models/mousterian.glb"></a-asset-item>
@@ -254,7 +255,7 @@
 
         </a-entity>
 
-        <a-entity full-gltf-model="models/plesiadapis.glb" static-body position="2 0 0" rotation="0 0 0"></a-entity> <!-- Demo Place -->
+        <a-entity full-gltf-model="" static-body position="2 0 0" rotation="0 0 0"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
 <a-entity class="center-zone" position="4.5 0 4" rotation="0 -135 0">
@@ -289,12 +290,13 @@
    <a-entity id="stable" position="10.5 0 -2"> <!-- This sets the relative state of the table --> 
          <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table2" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
          <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Prehistoric Homo Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-         <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone table2obj" full-gltf-model="models/habilisskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.5" mixin="obj"></a-entity>
-         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/turkanaskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.3" mixin="obj"></a-entity>
-         <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/atapuercaskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 -0.1" mixin="obj"></a-entity>
-         <a-entity id="naledi-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/nalediskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.1" mixin="obj"></a-entity>
-         <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/neanskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.3" mixin="obj"></a-entity>
-         <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/vLCA1skull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.5" mixin="obj"></a-entity>
+         <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone table2obj" full-gltf-model="models/habilisskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.55" mixin="obj"></a-entity>
+         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/turkanaskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.35" mixin="obj"></a-entity>
+         <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/atapuercaskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 -0.15" mixin="obj"></a-entity>
+         <a-entity id="naledi-leti-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/naledi-letiskull.glb"   dynamic-body="shape: box; mass: 1" position="0 1.1 0" rotation="0 90 0" mixin="obj"></a-entity>
+         <a-entity id="naledi-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/nalediskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.15" mixin="obj"></a-entity>
+         <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/neanskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.35" mixin="obj"></a-entity>
+         <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/vLCA1skull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.55" mixin="obj"></a-entity>
 </a-entity>
      
     <!-- Modern Non-Hominoid Skull table -->
@@ -339,7 +341,9 @@
         <a-entity id="habilis-tit" class="bone-text" mixin="table-label" text="value: KNM-ER 1470\nScientific Name: Homo habilis or rudolfensis\nLocation: East Turkana, Kenya\nTime: 1.9 million years ago\nItem: Cranium\nSource: Replica scan by African Fossils\n\nNotes: Early Homo is characterized by an increased cranial capacity from the australopithecines. This fossil was discovered in 1972 by Bernard Ngeneo."></a-entity>
         <a-entity id="turkana-tit" class="bone-text" mixin="table-label" text="value: Nariokotome Boy (KNM-WT 15000)\nScientific Name: Homo erectus\nLocation: Turkana, Kenya\nTime: 1.6 million years ago\nItem: Cranium\nSource: Replica scan by Museo [UV] Historia Natural\n\nNotes: This fossilized H. erectus, the most complete known skeleton of his species, was found in 1984. The estimated stature of 160 cm (5 foot 3 inches) is tall compared to the estimated juvenile age."></a-entity>
         <a-entity id="atapuerca-tit" class="bone-text" mixin="table-label" text="value: Atapuerca 5\nHuman Group: Archaic Homo sapiens (Homo heidelbergensis)\nTime: 430,000 years ago\nItem: Skull\nSource: Scan by Geoffrey Marchal\n\nNotes: The Atapuerca 5 individual is from the site of Sima de los Huesos in Atapuerca, Spain. His skeletal features indicate a 30-year-old male with numerous cranial and dental injuries."></a-entity>
-        <a-entity id="naledi-tit" class="bone-text" mixin="table-label" text="value: Neo (LES1)\nScientific Name: Homo naledi\nTime: 330,000 to 230,000 years ago\nItem: Skull\nSource: Scan by Sonia Sequeira\n\nNotes: Homo naledi fossils were found in the Rising Star cave system in South Africa and studied by a team led by Lee Berger. The species is unique for having a mixture of australopithecus smaller brain size but with Homo-like structures. Research continues to find out more about this new discovery, addressing questions such as whether their presence in the cave is the result of a funerary practice."></a-entity>
+        <a-entity id="naledi-leti-tit" class="bone-text" mixin="table-label" text="value: Letimela (U.W. 110)\nScientific Name: Homo naledi\nTime: 330,000 to 241,000 years ago\nItem: Cranium\nSource:\nReconstruction by Prof. Lee Burger\nScan by Sonia Sequeira\n\nNotes: The fragmented skull was found on ledge within a narrow fissure. The combination of adult and deciduous teeth suggest an age of 4 to 6 years."></a-entity>
+        
+        <a-entity id="naledi-tit" class="bone-text" mixin="table-label" text="value: Neo (LES1)\nScientific Name: Homo naledi\nTime: 330,000 to 241,000 years ago\nItem: Skull\nSource: Scan by Sonia Sequeira\n\nNotes: Homo naledi fossils were found in the Rising Star cave system in South Africa and studied by a team led by Lee Berger. The species is unique for having a mixture of australopithecus smaller brain size but with Homo-like structures. Research continues to find out more about this new discovery, addressing questions such as whether their presence in the cave is the result of a funerary practice."></a-entity>
         <a-entity id="nean-tit" class="bone-text" mixin="table-label" text="value: La Chapelle-aux-Saints 1\nHuman Group: Neanderthal\nLocation: France\nTime: 60,000 years ago\nItem: Cranium\nSource: Replica scan by Anatomical Museum\n\nNotes: The remains of this individual were discovered in 1908. The skeleton, including the cranium, shows heavy tooth and joint wear, showing that he survived in an extremely demanding environment. Misinterpretation of the skeleton led to the old perception of Neanderthals as ape-like."></a-entity>
         <a-entity id="vlca1-tit" class="bone-text" mixin="table-label" text="value: Virtual Last Common Ancestor, Hypothesis 1\nHuman Group: Archaic Homo sapiens\nItem: Cranium\nSource: Phylogenetic model by Mounier and Lahr (2019)\n\nNotes: This model is based on a statistical estimation of cranial landmarks from modern human crania and human fossils. The shape represents a hypothetical last common ancestor of our species."></a-entity>
     

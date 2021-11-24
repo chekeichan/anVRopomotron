@@ -463,6 +463,7 @@ grabtrig("africanus-grab","africanus-tit",".bone-text", "holobone", "holobonepro
 grabtrig("habilis-grab","habilis-tit",".bone-text", "holobone", "holoboneproj", "models/habilisskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("turkana-grab","turkana-tit",".bone-text", "holobone", "holoboneproj", "models/turkanaskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("atapuerca-grab","atapuerca-tit",".bone-text", "holobone", "holoboneproj", "models/atapuercaskull.glb", undefined, undefined, undefined);
+grabtrig("naledi-leti-grab","naledi-leti-tit",".bone-text", "holobone", "holoboneproj", "models/naledi-letiskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("naledi-grab","naledi-tit",".bone-text", "holobone", "holoboneproj", "models/nalediskull.glb", undefined, undefined, undefined);
 grabtrig("nean-grab","nean-tit",".bone-text", "holobone", "holoboneproj", "models/neanskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("vlca1-grab","vlca1-tit",".bone-text", "holobone", "holoboneproj", "models/vLCA1skull.glb", undefined, undefined, "0 1.2 0");
