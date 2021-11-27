@@ -88,7 +88,7 @@
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
         <a-entity id="camera" camera look-controls raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
             <a-entity id="crosshair" visible="false" cursor="rayOrigin:mouse" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: #0055ff; shader: flat" raycaster="far: 5; objects: .clickable"></a-entity>
-            <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 1000;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 1000;"></a-entity></a-entity>
+            <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 1500;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 1500;"></a-entity></a-entity>
         <a-entity mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8"></a-entity>
         <a-entity mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff"></a-entity>
  </a-entity>
@@ -138,7 +138,7 @@
       <a-text id="SMH-SP" visible="false" position="-6.6 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
     <!-- Behind wall -->
-       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="5.05 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.1.8" align="right" color="black" width="5"></a-text></a-entity> 
+       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="5.05 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.1.9" align="right" color="black" width="5"></a-text></a-entity> 
     <!-- Left display wall -->
         <a-entity visible="true" static-body position="-5.08 2 -0.5" rotation="0 90 0" depth="0.1" width="8" height="4.5" color="#dfe0e2" material="shader: flat">
         <a-image position="0 -0.48 0.10" src="#height" material.transparent="true" shader="flat" geometry="height: 3.048; width: 7.3152"></a-image><!-- Correct by -2.0 -->
@@ -506,7 +506,7 @@
            </a-entity></a-entity>
 
            <a-entity class="scale-zone-1" position="-5.115 0 -4.55">
-            <a-entity full-gltf-model="models/plesiadapis.glb" position="0 1.6 0" rotation="0 180 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
+            <a-entity full-gltf-model="models/plesiadapis.glb" position="0 1.26 -0.14" rotation="0 180 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
             <a-entity mixin="button" class="clickable" position="0.45 0 -0.1" id="plesiadapisbutt" full-gltf-model="#buttonmodel"></a-entity>
             <a-entity mixin="scale-box" id="stand14-tit"><a-entity mixin="scale-label-border" position="0.15 0.6 0.58" rotation="0 90 0" geometry="height: 0.75"></a-entity><a-entity mixin="scale-label" position="0.155 0.6 0.58" rotation="0 90 0" geometry="height: 0.7" text="value: Plesiadapis\nScientific Name: Plesiadapis cookei\nLocation: Wyoming, USA\nTime: 62 to 56 million years ago\n\nNotes: Plesiadapis is a relative of primates with traits adapted to clinging to large diameter tree branches and trunks.; color: black; lineHeight: 75; wrap-count: 35"></a-entity></a-entity></a-entity>
         
@@ -560,6 +560,16 @@ https://sketchfab.com/3d-models/homo-heidelbergensis-8b07fb8f41a74d589be05e7152a
 La Chapelle aux Saints 1
 Anatomical Museum (MyMiniFactory Exclusive - Credit - Remix - Noncommercial)
 https://www.myminifactory.com/object/3d-print-the-old-man-of-la-chapelle-70057
+
+Homo naledi - Leti
+Media 000394515: Letimela Reconstruction By Prof Lee Berger [Mesh] [Laser]
+Original Source: Morphosource. The University of the Witwatersrand. Collection U.W. 110. Managed by Sonia Sequeria (CC Attribution-NonCommercial 4.0 International )
+https://www.morphosource.org/concern/media/000394515
+
+Homo naledi - Neo
+Media 000054666: Les1 Homo Naledi 'Neo' Reconstruction Of Cranium [Mesh] [Laser]
+Original Source: Morphosource. The University of the Witwatersrand. Collection Homo naledi 'Neo'. Managed by Sonia Sequeria (CC Attribution-NonCommercial 4.0 International )
+https://www.morphosource.org/concern/media/000054666
 
 Proconsul
 African Fossils (CC-Attribution-NonCommercial-ShareAlike 3.0)

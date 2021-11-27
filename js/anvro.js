@@ -555,7 +555,7 @@ AFRAME.registerComponent("warp", {
     var transitionclose = function(warplocx, warplocy, warplocz) {
         console.log(transition);
         transition.dispatchEvent(new CustomEvent("transitionclose"));
-        setTimeout(function(){warpwarp(warplocx, warplocy, warplocz);}, 1000)
+        setTimeout(function(){warpwarp(warplocx, warplocy, warplocz);}, 1500)
     };
 
     var warpwarp = function(warplocx, warplocy, warplocz) {
