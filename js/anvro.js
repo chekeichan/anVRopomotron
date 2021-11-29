@@ -139,16 +139,25 @@ for (let each of zone) {
 }
 var lightswitch = function() { // Light switch logic to light the right area
     var el = sceneEl.querySelectorAll(".shadowlight");
-    if (grabcheck == 1 || centercheck == 1 || scalecheck1 == 1 ) {
-    console.log("main lights");
-    document.querySelector('#shadowlight').object3D.position.set(-1, 8, 4);
+    if (scalecheck2 == 1 || scalecheck2 == 1 || scalecheck3 == 1){
+        document.querySelector('#shadowlight').object3D.position.set(-10, 4, -1.67);
+        console.log("scale lights");
+    } else if (grabcheck == 1 || centercheck == 1) {
+        console.log("main lights");
+        document.querySelector('#shadowlight').object3D.position.set(-1, 8, 4);
 } else if (burialcheck == 1) {
-    console.log("burial lights");
-    document.querySelector('#shadowlight').object3D.position.set(-12.5, 8, -14);
-} else {
-    document.querySelector('#shadowlight').object3D.position.set(-15.7, 8, -1.67);
-    console.log("scale lights");
+        console.log("burial lights");
+        document.querySelector('#shadowlight').object3D.position.set(-12.5, 8, -14);
 }
+}
+
+var mapwarp = function(warpmapx1, warpmapy1, warpmapz1, warprotx1, warproty1, warpmapx2, warpmapy2, warpmapz2, warprotx2, warproty2) {
+    var warp1 = document.getElementById("warp-map1");
+    var warp2 = document.getElementById("warp-map2");
+    warp1.object3D.position.set(warpmapx1, warpmapy1, warpmapz1);
+    warp1.object3D.rotation.set(warprotx1, warproty1, 0);
+    warp2.object3D.position.set(warpmapx2, warpmapy2, warpmapz2);
+    warp2.object3D.rotation.set(warprotx2, warproty2, 0);
 }
 
 
@@ -180,7 +189,7 @@ if (each.id == "just-burial") { // Turn off parts of Burial Chamber when user is
    burialcheck++;
 }
 }
-if (grabcheck == 1) {
+if (grabcheck == 1 && centercheck == 0) {
     console.log("grab on");
     visiswitch(czone, false);
     visiswitch(gzone, true);
@@ -188,10 +197,22 @@ if (grabcheck == 1) {
     visiswitch(scale1, false);
     visiswitch(scale2, false);
     lightswitch();
+    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -0.785, 0.524);
+} else if (grabcheck == 1 && centercheck == 1) {
+    console.log("grab on");
+    visiswitch(czone, true);
+    visiswitch(czoneobjs, true);
+    visiswitch(gzone, true);
+    visiswitch(gzoneobjs, true);
+    visiswitch(scale1, false);
+    visiswitch(scale2, false);
+    lightswitch();
+    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else {
 console.log("grab off");
     visidistanceswitch(gzoneobjs, false);
 }
+
 if (centercheck == 1) {
     console.log("center on");
     visiswitch(czone, true);
@@ -201,10 +222,12 @@ if (centercheck == 1) {
     visiswitch(scale2, false);
     visiswitch(scale3, false);
     lightswitch();
+    mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else {
 console.log("center off");
-    
+visidistanceswitch(czoneobjs, false);
 }
+
 if (scalecheck1 == 1) {
     console.log("scale1 on");
     visiswitch(czone, true);
@@ -213,6 +236,7 @@ if (scalecheck1 == 1) {
     visiswitch(scale2, true);
     visiswitch(scale3, false);
     lightswitch();
+    mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else {
 console.log("scale1 off");
 }
@@ -224,6 +248,7 @@ if (scalecheck2 == 1) {
     visiswitch(scale1, true);
     visiswitch(scale2, true);
     visiswitch(scale3, true);
+    mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -18.5, 1.4, -7.5, 0, 0);
 } else {
 console.log("scale2 off");
 }
@@ -234,6 +259,7 @@ if (scalecheck3 == 1) {
     visiswitch(scale2, true);
     visiswitch(scale3, true);
     lightswitch();
+    mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -18.5, 1.4, -7.5, 0, 0);
 } else {
 console.log("scale3 off");
 }
@@ -245,10 +271,12 @@ if (burialcheck == 1) {
     visiswitch(scale2, false);
     visiswitch(scale3, true);
     lightswitch();
+    mapwarp(-16.45, 1.4, -19.54, 0, 0, -18.5, 1.4, -7.5, 0, 0);
 } else {
 console.log("burial off");
     visiswitch(bzone, false);
 }
+
 centercheck = 0;
 grabcheck = 0;
 scalecheck1 = 0;
@@ -295,6 +323,7 @@ grabpanel("chimpsbutt","#stand10-tit");
 grabpanel("mandrillsbutt","#stand11-tit");
 grabpanel("lorisbutt","#stand12-tit");
 grabpanel("aye-ayebutt","#stand13-tit");
+grabpanel("plesiadapisbutt","#stand14-tit");
 }
 })
 
@@ -434,6 +463,7 @@ grabtrig("africanus-grab","africanus-tit",".bone-text", "holobone", "holobonepro
 grabtrig("habilis-grab","habilis-tit",".bone-text", "holobone", "holoboneproj", "models/habilisskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("turkana-grab","turkana-tit",".bone-text", "holobone", "holoboneproj", "models/turkanaskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("atapuerca-grab","atapuerca-tit",".bone-text", "holobone", "holoboneproj", "models/atapuercaskull.glb", undefined, undefined, undefined);
+grabtrig("naledi-leti-grab","naledi-leti-tit",".bone-text", "holobone", "holoboneproj", "models/naledi-letiskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("naledi-grab","naledi-tit",".bone-text", "holobone", "holoboneproj", "models/nalediskull.glb", undefined, undefined, undefined);
 grabtrig("nean-grab","nean-tit",".bone-text", "holobone", "holoboneproj", "models/neanskull.glb", undefined, undefined, "0 1.2 0");
 grabtrig("vlca1-grab","vlca1-tit",".bone-text", "holobone", "holoboneproj", "models/vLCA1skull.glb", undefined, undefined, "0 1.2 0");
@@ -517,11 +547,38 @@ this.dropcheck();
 
 })
 
-// Warp
 AFRAME.registerComponent("warp", {
-init: function() {
-sceneEl = document.querySelector('a-scene');
-this.el.addEventListener("grab-start", function(evt) {
-document.querySelector("#rig").object3D.position.set(-12.5, 0, -15.5); }) 
+    init: function() {
+    rig = document.querySelector("#rig");
+    transition = document.querySelector("#transition");
+ 
+    var transitionclose = function(warplocx, warplocy, warplocz) {
+        console.log(transition);
+        transition.dispatchEvent(new CustomEvent("transitionclose"));
+        setTimeout(function(){warpwarp(warplocx, warplocy, warplocz);}, 1500)
+    };
 
-}})
+    var warpwarp = function(warplocx, warplocy, warplocz) {
+        rig.object3D.position.set(warplocx, warplocy, warplocz);
+        setTimeout(function(){transitionopen();}, 100)
+    };
+    
+    var transitionopen = function() {
+        transition.dispatchEvent(new CustomEvent("transitionopen"));
+    };
+    
+    var warpfun = function(warpbutt, warplocx, warplocy, warplocz) {
+        document.getElementById(warpbutt).addEventListener("grab-end", function(evt) {
+            transitionclose(warplocx, warplocy, warplocz);
+    }
+   )};
+    warpfun("centerwarpbutt1", 0, 0, 1);
+    warpfun("grabwarpbutt1", 9.33, 0, -0.5);
+    warpfun("primatewarpbutt1", -13, 0, 1);
+    warpfun("burialwarpbutt1", -14, 0, -17.7);
+    warpfun("centerwarpbutt2", 0, 0, 1);
+    warpfun("grabwarpbutt2", 9.33, 0, -0.5);
+    warpfun("primatewarpbutt2", -13, 0, 1);
+    warpfun("burialwarpbutt2", -14, 0, -17.7);
+    }
+    })

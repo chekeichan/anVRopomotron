@@ -35,7 +35,7 @@
 </head>
 
 <body>
-<a-scene look-switch anti-drop grab-panels burial-grab item-grab device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA">
+<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA">
        
 <a-assets timeout="80000"> <!-- Loads models -->
                 <a-asset-item id="tablemodel" id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
@@ -46,6 +46,7 @@
                 <a-asset-item id="buttonupmodel" response-type="arraybuffer" src="models/button-up.glb"></a-asset-item>
                 <a-asset-item id="centerpiecemodel" response-type="arraybuffer" src="models/centerpiece.glb"></a-asset-item>
                 <a-asset-item id="chimpstatuemodel" response-type="arraybuffer" src="models/chimpstatue.glb"></a-asset-item>
+                <a-asset-item id="plesiadapismodel" response-type="arraybuffer" src="models/plesiadapis.glb"></a-asset-item>
                 <img id="height" src="images/height.png">
                 <a-asset-item id="acheulmodel" response-type="arraybuffer" src="models/acheul.glb"></a-asset-item>
                 <a-asset-item id="mousterianmodel" response-type="arraybuffer" src="models/mousterian.glb"></a-asset-item>
@@ -68,7 +69,7 @@
                               colliderEndEvent: collisions;
                               colliderEndEventProperty: clearedEls;
                               grabStartButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; 
-                              grabEndButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" </a-mixin>                 
+                              grabEndButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup"></a-mixin>                 
                  <a-mixin id="table-label" position="0 0 -1" rotation="0 -90 0" visible="false"  text="width: 2; color: black; lineHeight: 60; wrap-count: 35"></a-mixin>
                  <a-mixin id="burial-label" position="0 0 -1" text="width: 2; color: black; lineHeight: 60; wrap-count: 35"></a-mixin>
                  <a-mixin id="table-caption" text="align: right; color: black; lineHeight: 55; wrap-count: 50"></a-mixin>
@@ -76,8 +77,8 @@
                  <a-mixin id="scale-label-border" geometry="primitive: plane; height: 1.05; width: 1.05; buffer: false" material="color: #375719; shader: flat;"></a-mixin>
                  <a-mixin id="scale-label" geometry="primitive: plane; height: 1; width: 1; buffer: false" material="color: #dadada; shader: flat;"></a-mixin>
                  <a-mixin id="scale-text" text="color: black; width: 2; wrapCount: 45"></a-mixin>
-                 <a-mixin id="credit-text" text="anchor: align; color: black; width: 2; wrapCount: 70; lineHeight: 55"</a-mixin>
-				 <a-mixin id="mapmarker" scale ="0.17 0.17 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.2; radiusTop: 0.01; segmentsRadial: 6" material="color: #ffaa00"</a-mixin>
+                 <a-mixin id="credit-text" text="anchor: align; color: black; width: 2; wrapCount: 70; lineHeight: 55"></a-mixin>
+				 <a-mixin id="mapmarker" scale ="0.17 0.1 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.15; radiusTop: 0.02; segmentsRadial: 6" material="color: #ffaa00; emissive: #ffaa00; emissiveIntensity: 0.5; flatShading:  true;"></a-mixin>
  </a-assets>
  
 <a-entity position="0 0 0" static-body full-gltf-model="#navmesh" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
@@ -86,7 +87,8 @@
 <a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0.01 1"> <!-- Player Character -->
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
         <a-entity id="camera" camera look-controls raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
-            <a-entity id="crosshair" visible="false" cursor="rayOrigin:mouse" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: #0055ff; shader: flat" raycaster="far: 5; objects: .clickable"></a-entity></a-entity>
+            <a-entity id="crosshair" visible="false" cursor="rayOrigin:mouse" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: #0055ff; shader: flat" raycaster="far: 5; objects: .clickable"></a-entity>
+            <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 1500;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 1500;"></a-entity></a-entity>
         <a-entity mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8"></a-entity>
         <a-entity mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff"></a-entity>
  </a-entity>
@@ -104,6 +106,23 @@
 <a-entity class="zone" id="just-scale3" full-gltf-model="models/scalezone3.glb" visible="false"></a-entity> 
 <a-entity class="zone" id="just-burial" full-gltf-model="models/burialzone.glb" visible="false"></a-entity> 
 
+<!-- Master Map -->
+<a-entity id="warp-map1" position="7.9, 1.4, 0" rotation="0, 90, 0"> <!-- Movable map 1-->
+    <a-entity full-gltf-model="models/map.glb" static-body position="0 0 0" rotation="0 0 0"></a-entity>
+    <a-entity id="burialwarpbutt1" mixin="mapmarker button" static-body class="clickable" position="-0.172 0.206 0.05" visible="true"></a-entity>
+    <a-entity id="grabwarpbutt1" mixin="mapmarker button" static-body class="clickable" position="0.206 -0.101 0.05" visible="true"></a-entity>
+    <a-entity id="primatewarpbutt1" mixin="mapmarker button" static-body  class="clickable" position="-0.206 -0.152 0.05" visible="true"></a-entity>
+    <a-entity id="centerwarpbutt1" mixin="mapmarker button" static-body  class="clickable" position="0.057 -0.138 0.05" visible="true"></a-entity>
+</a-entity>
+<a-entity id="warp-map2" position="-0.7 1 0" rotation="-45, 30, 0"><!-- Movalbe map 2 (Centerpiece) -->
+    <a-entity full-gltf-model="models/map.glb" static-body position="0 0 0" rotation="0 0 0"></a-entity>
+    <a-entity id="burialwarpbutt2" mixin="mapmarker button" static-body class="clickable" position="-0.172 0.206 0.05" visible="true"></a-entity>
+    <a-entity id="grabwarpbutt2" mixin="mapmarker button" static-body class="clickable" position="0.206 -0.101 0.05" visible="true"></a-entity>
+    <a-entity id="primatewarpbutt2" mixin="mapmarker button" static-body  class="clickable" position="-0.206 -0.152 0.05" visible="true"></a-entity>
+    <a-entity id="centerwarpbutt2" mixin="mapmarker button" static-body  class="clickable" position="0.057 -0.138 0.05" visible="true"></a-entity>
+</a-entity>
+<a-entity full-gltf-model="models/mapstand.glb" static-body position="-0.7 0 0" rotation="0 30 0"></a-entity>
+
 <!-- Wall Text -->
     <!-- Front wall -->
      <a-entity visible="true" static-body position="0 2 -7.5" rotation="0 0 0" width="40" height="4.5">
@@ -119,7 +138,7 @@
       <a-text id="SMH-SP" visible="false" position="-6.6 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
     <!-- Behind wall -->
-       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="5.05 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.1.8" align="right" color="black" width="5"></a-text></a-entity> 
+       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="5.05 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.1.9" align="right" color="black" width="5"></a-text></a-entity> 
     <!-- Left display wall -->
         <a-entity visible="true" static-body position="-5.08 2 -0.5" rotation="0 90 0" depth="0.1" width="8" height="4.5" color="#dfe0e2" material="shader: flat">
         <a-image position="0 -0.48 0.10" src="#height" material.transparent="true" shader="flat" geometry="height: 3.048; width: 7.3152"></a-image><!-- Correct by -2.0 -->
@@ -246,9 +265,7 @@
     <a-entity  mixin="scale-box" id="chimpstatue-tit" position="-1.25 1.2 -0.7" rotation="0 45 0">
         <a-entity mixin="scale-label-border" position="0 0 0"></a-entity><a-entity id="chimpstatue-info" mixin="scale-label" position="0 0 0.01" text="value: &quot;Coverversion&quot;\nLocation: Au von Tulln, Austria\nDate: 2008\nSource: Scan by Niederösterreich 3D\n\nNotes: This statue by Klaus Weber is based on the 1893 &quot;Affe mit Schädel&quot; (Monkey with Skull) by Hugo Rheinhold.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
        </a-entity></a-entity>
-<a-entity class="scale-zone-1" full-gltf-model="models/trophy.glb" static-body position="-7.16 0 5.8"></a-entity>
-<a-entity static-body warp mixin="button" class="clickable" position="0.7 0.1 6" id="burialwarpbutt" visible="false"  full-gltf-model="#buttonmodel"></a-entity> 
-
+<a-entity class="scale-zone-1" full-gltf-model="models/trophy.glb" static-body position="-7.2 0 5.77"></a-entity>
 <a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" full-gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
    <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" full-gltf-model="#buttonmodel" shadow></a-entity>
     
@@ -273,12 +290,13 @@
    <a-entity id="stable" position="10.5 0 -2"> <!-- This sets the relative state of the table --> 
          <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table2" full-gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
          <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Prehistoric Homo Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-         <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone table2obj" full-gltf-model="models/habilisskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.5" mixin="obj"></a-entity>
-         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/turkanaskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.3" mixin="obj"></a-entity>
-         <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/atapuercaskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 -0.1" mixin="obj"></a-entity>
-         <a-entity id="naledi-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/nalediskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.1" mixin="obj"></a-entity>
-         <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/neanskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.3" mixin="obj"></a-entity>
-         <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/vLCA1skull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.5" mixin="obj"></a-entity>
+         <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone table2obj" full-gltf-model="models/habilisskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.55" mixin="obj"></a-entity>
+         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/turkanaskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.35" mixin="obj"></a-entity>
+         <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/atapuercaskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 -0.15" mixin="obj"></a-entity>
+         <a-entity id="naledi-leti-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/naledi-letiskull.glb"   dynamic-body="shape: box; mass: 1" position="0 1.1 0" rotation="0 90 0" mixin="obj"></a-entity>
+         <a-entity id="naledi-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/nalediskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.15" mixin="obj"></a-entity>
+         <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/neanskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.35" mixin="obj"></a-entity>
+         <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone table2obj"  full-gltf-model="models/vLCA1skull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.1 0.55" mixin="obj"></a-entity>
 </a-entity>
      
     <!-- Modern Non-Hominoid Skull table -->
@@ -323,7 +341,9 @@
         <a-entity id="habilis-tit" class="bone-text" mixin="table-label" text="value: KNM-ER 1470\nScientific Name: Homo habilis or rudolfensis\nLocation: East Turkana, Kenya\nTime: 1.9 million years ago\nItem: Cranium\nSource: Replica scan by African Fossils\n\nNotes: Early Homo is characterized by an increased cranial capacity from the australopithecines. This fossil was discovered in 1972 by Bernard Ngeneo."></a-entity>
         <a-entity id="turkana-tit" class="bone-text" mixin="table-label" text="value: Nariokotome Boy (KNM-WT 15000)\nScientific Name: Homo erectus\nLocation: Turkana, Kenya\nTime: 1.6 million years ago\nItem: Cranium\nSource: Replica scan by Museo [UV] Historia Natural\n\nNotes: This fossilized H. erectus, the most complete known skeleton of his species, was found in 1984. The estimated stature of 160 cm (5 foot 3 inches) is tall compared to the estimated juvenile age."></a-entity>
         <a-entity id="atapuerca-tit" class="bone-text" mixin="table-label" text="value: Atapuerca 5\nHuman Group: Archaic Homo sapiens (Homo heidelbergensis)\nTime: 430,000 years ago\nItem: Skull\nSource: Scan by Geoffrey Marchal\n\nNotes: The Atapuerca 5 individual is from the site of Sima de los Huesos in Atapuerca, Spain. His skeletal features indicate a 30-year-old male with numerous cranial and dental injuries."></a-entity>
-        <a-entity id="naledi-tit" class="bone-text" mixin="table-label" text="value: Neo (LES1)\nScientific Name: Homo naledi\nTime: 330,000 to 230,000 years ago\nItem: Skull\nSource: Scan by Sonia Sequeira\n\nNotes: Homo naledi fossils were found in the Rising Star cave system in South Africa and studied by a team led by Lee Berger. The species is unique for having a mixture of australopithecus smaller brain size but with Homo-like structures. Research continues to find out more about this new discovery, addressing questions such as whether their presence in the cave is the result of a funerary practice."></a-entity>
+        <a-entity id="naledi-leti-tit" class="bone-text" mixin="table-label" text="value: Letimela (U.W. 110)\nScientific Name: Homo naledi\nTime: 330,000 to 241,000 years ago\nItem: Cranium\nSource:\nReconstruction by Prof. Lee Burger\nScan by Sonia Sequeira\n\nNotes: The fragmented skull was found on ledge within a narrow fissure. The combination of adult and deciduous teeth suggest an age of 4 to 6 years."></a-entity>
+        
+        <a-entity id="naledi-tit" class="bone-text" mixin="table-label" text="value: Neo (LES1)\nScientific Name: Homo naledi\nTime: 330,000 to 241,000 years ago\nItem: Skull\nSource: Scan by Sonia Sequeira\n\nNotes: Homo naledi fossils were found in the Rising Star cave system in South Africa and studied by a team led by Lee Berger. The species is unique for having a mixture of australopithecus smaller brain size but with Homo-like structures. Research continues to find out more about this new discovery, addressing questions such as whether their presence in the cave is the result of a funerary practice."></a-entity>
         <a-entity id="nean-tit" class="bone-text" mixin="table-label" text="value: La Chapelle-aux-Saints 1\nHuman Group: Neanderthal\nLocation: France\nTime: 60,000 years ago\nItem: Cranium\nSource: Replica scan by Anatomical Museum\n\nNotes: The remains of this individual were discovered in 1908. The skeleton, including the cranium, shows heavy tooth and joint wear, showing that he survived in an extremely demanding environment. Misinterpretation of the skeleton led to the old perception of Neanderthals as ape-like."></a-entity>
         <a-entity id="vlca1-tit" class="bone-text" mixin="table-label" text="value: Virtual Last Common Ancestor, Hypothesis 1\nHuman Group: Archaic Homo sapiens\nItem: Cranium\nSource: Phylogenetic model by Mounier and Lahr (2019)\n\nNotes: This model is based on a statistical estimation of cranial landmarks from modern human crania and human fossils. The shape represents a hypothetical last common ancestor of our species."></a-entity>
     
@@ -406,7 +426,7 @@
         <a-entity position="-1.42 2.2 1" rotation="0 90 0"><a-image mixin="scale-label" src="images/gorilla-p.jpg" position="0 0 0.01" width="3" height="2"></a-image><a-text text="width: 2; value: &quot;Imposing&quot; by Joe McKenna, used under CC BY 2.0 ; align: right; color: black" position="1.5 -1.07 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
         <a-plane mixin="scale-label-border" position="0.86 0.65 -0.7" rotation="-15 90 0" geometry="height: 0.75"></a-plane><a-entity mixin="scale-label" position="0.87 0.65 -0.7" rotation="-15 90 0" geometry="height: 0.7" text="value: Madame Berthe's Mouse Lemur\nScientific Name: Microcebus berthae \nLocation: Madagascar\nTime: Present\n\nNotes: The smallest living primate, with a weight of 1.1 ounces.; color: black; lineHeight: 75; wrap-count: 35"><a-triangle color="#375719" position="0 -0.08 -0.01" material="shader: flat" geometry="vertexC: -0.4 0.01 0; vertexA: -0.1 0.01 0; vertexB: -0.07 0.86 0" rotation="0 0 0"></a-triangle></a-entity></a-entity></a-entity>
       
-         <a-entity class="scale-zone-1" position="-8.7 0 4.9" rotation="0 90 0">
+         <a-entity class="scale-zone-1 scale-zone-2" position="-8.7 0 4.9" rotation="0 90 0">
          <a-entity full-gltf-model="models/rhesus-rh.glb"   rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false">
           <a-entity mixin="button" class="clickable" position="1.1 0 -0.4" id="rhesusbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
           
@@ -439,7 +459,7 @@
         <a-entity full-gltf-model="models/howler.glb" shadow="cast: false; receive: false"> 
         <a-entity mixin="button" class="clickable"  position="-0.06 -1.4 0.18" id="howlerbutt" full-gltf-model="#buttonmodel"></a-entity></a-entity>
         <a-entity mixin="scale-box" id="stand6-tit"><a-entity mixin="scale-label-border" position="0.88 -0.7 -0.7" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.878 -0.7 -0.7" rotation="0 -90 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
-         <a-entity position="0.9 0.5 1.2" rotation="0 -90 0"><a-image mixin="scale-label" src="images/howler-p.jpg" position="0 0 0.01" width="2" height="1.33"></a-image><a-text text="width: 2; value: &quot;Black Howler Monkey Family&quot; by Kent MacElwee, used under CC BY-NC 2.0; align: right; color: black; wrapCount: 45" position="0.95 -0.77 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
+         <a-entity position="0.9 0.9 0.8" rotation="0 -90 0"><a-image mixin="scale-label" src="images/howler-p.jpg" position="0 0 0.01" width="2" height="1.33"></a-image><a-text text="width: 2; value: &quot;Black Howler Monkey Family&quot; by Kent MacElwee, used under CC BY-NC 2.0; align: right; color: black; wrapCount: 45" position="0.95 -0.77 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
         <a-entity class="scale-zone-1" position="-8.76 0 -0.15" rotation="0 180 0">
         <a-entity full-gltf-model="models/megaladapis.glb" shadow="cast: false; receive: false"> 
@@ -484,6 +504,11 @@
             <a-entity mixin="scale-box" id="stand13-tit"><a-entity mixin="scale-label-border" position="-0.326 0.64 -0.3" rotation="0 -50 0"></a-entity><a-entity mixin="scale-label" position="-0.327 .64 -0.3" rotation="0 -50 0" text="value: Aye-Aye\nScientific Name: Daubentonia madagascariensis\nLocation: Madagascar\nTime: Present\n\nNotes: Aye-ayes are nocturnal lemurs that have a specialized middle finger to dig wood and snare grubs.; color: black; lineHeight: 75; wrap-count: 35"></a-entity><!-- Info Box -->
             <a-entity position="0.3 2.4 -1.4" rotation="0 90 0"><a-image mixin="scale-label" src="images/aye-aye-p.jpg" position="0 0 0"  width="1.67" height="2.5"></a-image><a-text text="width: 1.75; value: &quot;Aye aye Nocturnal Lemur&quot; by Rod Waddington, used under CC BY-SA 2.0; align: right; color: black; wrapCount: 45" position="-0.8 -1.4 0" rotation="0 180 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
            </a-entity></a-entity>
+
+           <a-entity class="scale-zone-1" position="-5.115 0 -4.55">
+            <a-entity full-gltf-model="models/plesiadapis.glb" position="0 1.26 -0.14" rotation="0 180 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
+            <a-entity mixin="button" class="clickable" position="0.45 0 -0.1" id="plesiadapisbutt" full-gltf-model="#buttonmodel"></a-entity>
+            <a-entity mixin="scale-box" id="stand14-tit"><a-entity mixin="scale-label-border" position="0.15 0.6 0.58" rotation="0 90 0" geometry="height: 0.75"></a-entity><a-entity mixin="scale-label" position="0.155 0.6 0.58" rotation="0 90 0" geometry="height: 0.7" text="value: Plesiadapis\nScientific Name: Plesiadapis cookei\nLocation: Wyoming, USA\nTime: 62 to 56 million years ago\n\nNotes: Plesiadapis is a relative of primates with traits adapted to clinging to large diameter tree branches and trunks.; color: black; lineHeight: 75; wrap-count: 35"></a-entity></a-entity></a-entity>
         
          
          
@@ -535,6 +560,16 @@ https://sketchfab.com/3d-models/homo-heidelbergensis-8b07fb8f41a74d589be05e7152a
 La Chapelle aux Saints 1
 Anatomical Museum (MyMiniFactory Exclusive - Credit - Remix - Noncommercial)
 https://www.myminifactory.com/object/3d-print-the-old-man-of-la-chapelle-70057
+
+Homo naledi - Leti
+Media 000394515: Letimela Reconstruction By Prof Lee Berger [Mesh] [Laser]
+Original Source: Morphosource. The University of the Witwatersrand. Collection U.W. 110. Managed by Sonia Sequeria (CC Attribution-NonCommercial 4.0 International )
+https://www.morphosource.org/concern/media/000394515
+
+Homo naledi - Neo
+Media 000054666: Les1 Homo Naledi 'Neo' Reconstruction Of Cranium [Mesh] [Laser]
+Original Source: Morphosource. The University of the Witwatersrand. Collection Homo naledi 'Neo'. Managed by Sonia Sequeria (CC Attribution-NonCommercial 4.0 International )
+https://www.morphosource.org/concern/media/000054666
 
 Proconsul
 African Fossils (CC-Attribution-NonCommercial-ShareAlike 3.0)

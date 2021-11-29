@@ -44,6 +44,16 @@ La Chapelle aux Saints 1
 Anatomical Museum (MyMiniFactory Exclusive - Credit - Remix - Noncommercial)
 https://www.myminifactory.com/object/3d-print-the-old-man-of-la-chapelle-70057
 
+Homo naledi - Leti
+Media 000394515: Letimela Reconstruction By Prof Lee Berger [Mesh] [Laser]
+Original Source: Morphosource. The University of the Witwatersrand. Collection U.W. 110. Managed by Sonia Sequeria (CC Attribution-NonCommercial 4.0 International )
+https://www.morphosource.org/concern/media/000394515
+
+Homo naledi - Neo
+Media 000054666: Les1 Homo Naledi 'Neo' Reconstruction Of Cranium [Mesh] [Laser]
+Original Source: Morphosource. The University of the Witwatersrand. Collection Homo naledi 'Neo'. Managed by Sonia Sequeria (CC Attribution-NonCommercial 4.0 International )
+https://www.morphosource.org/concern/media/000054666
+
 Proconsul
 African Fossils (CC-Attribution-NonCommercial-ShareAlike 3.0)
 https://africanfossils.org/hominids/proconsul?o=1
