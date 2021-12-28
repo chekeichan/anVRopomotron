@@ -5,11 +5,12 @@ AFRAME.registerComponent('table-wait', {
         var tablename = this.el.id;
         var tableitems = sceneEl.querySelectorAll('.'+tablename+'obj');
       this.el.addEventListener('model-loaded', () => { // Wait for model to load.
-        for (let each of tableitems) {
+        if (AFRAME.utils.device.checkHeadsetConnected() === true) {
+            for (let each of tableitems) {
             if (each.classList.contains('standup') == false) { // PC small objects have their own standup animation
                 each.removeAttribute('static-body');
                 each.setAttribute('dynamic-body', {shape: 'box', mass: 1});
-        }}
+        }}}
         });
 }});
 
@@ -53,6 +54,7 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
         var sceneEl = document.querySelector('a-scene');
         var tablestand = sceneEl.querySelectorAll('.table');
         var standup = sceneEl.querySelectorAll('.standup');
+        var grabbable = sceneEl.querySelectorAll('.grabbable');
         var rig = document.querySelector('#rig');
         var camera = document.querySelector('#camera');
         var state = "stand";
@@ -72,13 +74,21 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
                 each.dispatchEvent(new CustomEvent("standtrigger"));
             }
         } else if (AFRAME.utils.device.checkHeadsetConnected() === true) { // VR Modes
+            console.log('VR detected');
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.10); // VR movement is slower than other modes for non barfing
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
+            console.log('PC detected');
             document.querySelector('#GL-PC1').object3D.visible = true;
             document.querySelector('#SMH-PC1').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.15);
+            for (let each of grabbable) {
+                each.removeAttribute('dynamic-body');
+                each.removeAttribute('grabbable');
+                each.setAttribute('static-body');
+                each.object3D.position.y +=0.25;
+            }
             for (let each of tablestand) {
                 let poss = each.getAttribute('position');
                 each.setAttribute('animation', {property: 'position.y', to: poss.y + 0.25, dur: 5000, delay: 50});
@@ -529,7 +539,6 @@ AFRAME.registerComponent("anti-drop", {
 init: function() {
 sceneEl = document.querySelector('a-scene');
 this.grabbablelist = sceneEl.getElementsByClassName("grabbable");
-console.log(this.grabbablelist);
 this.tick = AFRAME.utils.throttleTick(this.tick, 3000, this);
 },
 dropcheck: function() {
@@ -537,7 +546,6 @@ for (let each of this.grabbablelist) {
         let poss = each.getAttribute('position');
         let area = (poss.x + 1) * (poss.z + 1);
         let absarea = Math.abs(area);
-        console.log(each.id+' '+absarea+' '+poss.y);
         if (poss.y <= 0.1) {
              console.log('antidrop engage on '+each.id);
              each.object3D.position.set(0, 1.8, 0);
