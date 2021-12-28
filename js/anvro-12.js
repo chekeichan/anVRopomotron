@@ -556,14 +556,13 @@ AFRAME.registerComponent("warp", {
     transition = document.querySelector("#transition");
  
     var transitionclose = function(warplocx, warplocy, warplocz) {
-        console.log(transition);
         transition.dispatchEvent(new CustomEvent("transitionclose"));
-        setTimeout(function(){warpwarp(warplocx, warplocy, warplocz);}, 1500)
+        setTimeout(function(){warpwarp(warplocx, warplocy, warplocz);}, 100)
     };
 
     var warpwarp = function(warplocx, warplocy, warplocz) {
         rig.object3D.position.set(warplocx, warplocy, warplocz);
-        setTimeout(function(){transitionopen();}, 100)
+        setTimeout(function(){transitionopen();}, 1000)
     };
     
     var transitionopen = function() {
