@@ -529,15 +529,18 @@ AFRAME.registerComponent("anti-drop", {
 init: function() {
 sceneEl = document.querySelector('a-scene');
 this.grabbablelist = sceneEl.getElementsByClassName("grabbable");
+console.log(this.grabbablelist);
 this.tick = AFRAME.utils.throttleTick(this.tick, 3000, this);
 },
 dropcheck: function() {
 for (let each of this.grabbablelist) {
         let poss = each.getAttribute('position');
         let area = (poss.x + 1) * (poss.z + 1);
-        let absarea = Math.abs(area)
-        if (poss.y <= 0.1 && absarea <= 5) {
-             each.object3D.position.set(0, 1.4, 0);
+        let absarea = Math.abs(area);
+        console.log(each.id+' '+absarea+' '+poss.y);
+        if (poss.y <= 0.1) {
+             console.log('antidrop engage on '+each.id);
+             each.object3D.position.set(0, 1.8, 0);
              each.components['dynamic-body'].syncToPhysics(); // This makes the position official
          }}
 },
