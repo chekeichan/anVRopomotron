@@ -32,7 +32,7 @@
 <script src="https://unpkg.com/aframe-fps-look-controls-component/dist/aframe-fps-look-controls-component.min.js"></script>
 <script src="js/msc_basis_transcoder.js"></script>
 <script src="js/full-gltf-model.js"></script>
-<script src="js/anvro-12.js"></script>
+<script src="js/anvro-12a.js"></script>
 </head>
 
 <body>
@@ -61,7 +61,7 @@
                 <a-asset-item id="baboon-bluemodel" response-type="arraybuffer" src="models/baboon-blue.glb"></a-asset-item>
 				<a-asset-item id="lomekmodel" response-type="arraybuffer" src="models/lomekwian.glb"></a-asset-item>
 
-                <a-mixin id="obj" hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" scale="1 1 1" rotation="0 0 0" animation="property: object3D.position.y; to: 1.45; startEvents: standtrigger; dur: 5000" shadow></a-mixin>
+                <a-mixin id="obj" hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" scale="1 1 1" rotation="0 0 0" shadow></a-mixin>
                 <a-mixin id="button" static-body hoverable clickable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" shadow></a-mixin>
                 <a-mixin id="holoprojector" color="#ff6a00" position="0 0.3 0" rotation="180 0 0" height="0.05" geometry="primitive: cone; segmentsRadial: 3; openEnded: true; radiusBottom: 0.5; segmentsHeight: 1" material="emissive: #ff6a00; wireframe: true" animation="property: rotation; to: 180 360 0; loop: true; easing: linear; dur: 10000"></a-mixin>
                 <a-mixin id="hand" physics-collider static-body="shape: box" collision-filter="collisionForces: false;" 
@@ -84,22 +84,21 @@
  
 <a-entity position="0 0 0" static-body full-gltf-model="#navmesh" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
 <a-entity position="0 0 0" static-body full-gltf-model="#floor" visible="false"></a-entity> <!-- Solid Floor to Block Objects -->
-<a-entity position="0 0 0" full-gltf-model="models/floorplan.glb"></a-entity> <!-- Building -->
-<a-entity position="0 0 0" full-gltf-model="models/divider.glb"></a-entity> <!-- Building -->
-<a-entity position="0 0 0" full-gltf-model="models/spiral.glb"></a-entity> <!-- Building -->
+<a-entity class="floorplan-zone" position="0 0 0" full-gltf-model="models/floorplan.glb"></a-entity> <!-- Building -->
+<a-entity class="c-h-div-zone" position="0 0 0" full-gltf-model="models/divider.glb"></a-entity> <!-- Hominin Transition Zone -->
+
 <a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0.01 1"> <!-- Player Character -->
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
         <a-entity id="camera" camera look-controls raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
             <a-entity id="crosshair" visible="false" cursor="rayOrigin:mouse" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: #0055ff; shader: flat" raycaster="far: 5; objects: .clickable"></a-entity>
-            <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 1500;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 1500;"></a-entity></a-entity>
+            <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 700;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 700;"></a-entity></a-entity>
         <a-entity mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff"></a-entity>
         <a-entity mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8"></a-entity>
  </a-entity>
  
 <a-light type="ambient" color="white" intensity="0.05"></a-light> 
 <a-light id="shadowlight" color="white" position="-1 8 4" light="type: point; intensity: 1.5; decay: 0.5; distance: 20"></a-light> <!-- Shadow Light -->
-<a-light class="buriallight" color="white" position="-12.5 4.75 -14" light="type: point; intensity: 1; decay: 0.5; distance: 7" visible="false"></a-light>
-<!-- Shadow Light for Burial Hall -->
+<a-light id="shadowlight2" color="white" position="-1 8 -16.5" light="type: point; intensity: 1.5; decay: 0.5; distance: 20"></a-light> <!-- Temp Shadow Light -->
 
 <!-- Occlusion Zones -->
 <a-entity class="zone" id="just-grab" full-gltf-model="models/grabzone.glb" visible="false"></a-entity> 
@@ -107,7 +106,11 @@
 <a-entity class="zone" id="just-scale1" full-gltf-model="models/scalezone1.glb" visible="false"></a-entity>
 <a-entity class="zone" id="just-scale2" full-gltf-model="models/scalezone2.glb" visible="false"></a-entity> 
 <a-entity class="zone" id="just-scale3" full-gltf-model="models/scalezone3.glb" visible="false"></a-entity> 
-<a-entity class="zone" id="just-burial" full-gltf-model="models/burialzone.glb" visible="false"></a-entity> 
+<a-entity class="zone" id="just-burial" full-gltf-model="models/burialzone.glb" visible="false"></a-entity>
+<a-entity class="zone" id="just-c-h-divider-1" full-gltf-model="models/chdividerzone1.glb" visible="false"></a-entity>
+<a-entity class="zone" id="just-c-h-divider-2" full-gltf-model="models/chdividerzone2.glb" visible="false"></a-entity>
+<a-entity class="zone" id="just-c-h-divider-3" full-gltf-model="models/chdividerzone3.glb" visible="false"></a-entity>
+<a-entity class="zone" id="just-hominin" full-gltf-model="models/hzone.glb" visible="false"></a-entity> 
 
 <!-- Master Map -->
 <a-entity id="warp-map1" position="7.9, 1.4, 0" rotation="0, 90, 0"> <!-- Movable map 1-->
@@ -117,14 +120,23 @@
     <a-entity id="primatewarpbutt1" mixin="mapmarker button" static-body  class="clickable" position="-0.206 -0.152 0.05" visible="true"></a-entity>
     <a-entity id="centerwarpbutt1" mixin="mapmarker button" static-body  class="clickable" position="0.057 -0.138 0.05" visible="true"></a-entity>
 </a-entity>
-<a-entity id="warp-map2" position="-0.7 1 0" rotation="-45, 30, 0"><!-- Movalbe map 2 (Centerpiece) -->
+<a-entity id="warp-map2" position="-0.7 1 0" rotation="-45, 30, 0"><!-- Movable map 2 (Centerpiece) -->
     <a-entity full-gltf-model="models/map.glb" static-body position="0 0 0" rotation="0 0 0"></a-entity>
     <a-entity id="burialwarpbutt2" mixin="mapmarker button" static-body class="clickable" position="-0.172 0.206 0.05" visible="true"></a-entity>
     <a-entity id="grabwarpbutt2" mixin="mapmarker button" static-body class="clickable" position="0.206 -0.101 0.05" visible="true"></a-entity>
     <a-entity id="primatewarpbutt2" mixin="mapmarker button" static-body  class="clickable" position="-0.206 -0.152 0.05" visible="true"></a-entity>
     <a-entity id="centerwarpbutt2" mixin="mapmarker button" static-body  class="clickable" position="0.057 -0.138 0.05" visible="true"></a-entity>
 </a-entity>
-<a-entity full-gltf-model="models/mapstand.glb" static-body position="-0.7 0 0" rotation="0 30 0"></a-entity>
+<!-- <a-entity id="mapstand" full-gltf-model="models/mapstand.glb" static-body position="-0.7 0 0" rotation="0 30 0"></a-entity> -->
+
+<!-- Human Evolution Hall -->
+<a-entity class="hominin-zone" visible="false">
+<a-entity position="0 0 0" full-gltf-model="models/spiral.glb"></a-entity> <!-- Hominin staircase -->
+<a-entity position="0 0 0" full-gltf-model="models/hominin.glb"></a-entity> <!-- Hominin structure -->
+<a-entity position="-7.432 3.73 -17.6" full-gltf-model="models/h-turkana.glb"></a-entity> 
+<a-entity position="-2.22 4.71 -20.25" full-gltf-model="models/h-neanderthal.glb"></a-entity> 
+<a-entity position="-2.04 5.09 -26.34" full-gltf-model="models/h-floresiensis.glb"></a-entity>
+</a-entity>
 
 <!-- Wall Text -->
     <!-- Front wall -->

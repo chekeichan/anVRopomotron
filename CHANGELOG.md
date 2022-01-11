@@ -1,8 +1,21 @@
 # AnVRopomotron Changelog
-## 1.2 (next next)
+## 1.2 (next)
 -   Now targeted for early 2022 is the new Human Evolution Hall with a starter set of four scale models of prehistoric humans and hominins. 
+   - The Human Evolution Hall has its own model separate from the rest of the museum. The twisty corridor is always visible and when the visitor is inside, moving down one end will reveal that part of the museum.
+   - 
+-   Raising Grab Lab tables lost their animations. It was causing problems with launching objects at light speed on load. Tables and objects now snap up into place for non-VR devices.
 
-## 1.1.9 (next)
+## 1.1.9b (12/28/2021)
+-   Oculus controls keep flip flopping. Attempts to fix this issue:  
+   -   Updated A-Frame to 1.2. I didn't do this earlier because the update broke the navmesh and grabbing. To fix that: 
+      -   Used a tip to load the deprecated BufferGeometry
+      -   Used another tip to load a fixed aframe-extras 
+      -   Now teleporting is set to right hand and movement is set to left hand
+      - Changed the wall instructions to match the new setup
+   - While I was tinkering: 
+      - Warp animation tweaked to remove the startup wait
+
+## 1.1.9 (11/28/2021)
 -   Plesiadapis claws its way to the Scale Model Hall! A relative of primates, the plesiadapis looks like a large squirrel. As the oldest organism in the Scale Model Hall, it takes its place at the start of the row of prehistoric life and as the attractor to that part of the museum since the gibbon was moved back into a more appropriate location with the modern primates. 
 -   The latest exciting discovery by Lee Berger and his team is in the VR Grab Lab. The reconstruction of Leti's cranium features an intact midbrow and adult teeth in development. The VR ready model was made in stages. The original 10 million polygon (!) model was reduced to 2 million for later normal map baking. A copy was then taken down to 42,000 for vertex coloring based on published photos of the real replica. Lastly, another copy was taken down to 6,400 polygons, which is near the limit before the object outline became distorted. Details were then baked to this smallest model for huge rendering and file size savings.
 -   With the new floorplan, now is the time to work on strategically placed mini maps to warp the user to different exhibits. To reduce draw calls, maps will surreptitiously move through exhibits to be near you. The Centerpiece map at the start is mostly static since it is viewable from a lot of angles but it will move to the Scale Model Hall if you go deep in to the exhibit. The other map flits between the the exhibits more freely, starting in the Grab Lab but going where needed. Grab a carrot to go quickly to another exhibit.
