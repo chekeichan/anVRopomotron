@@ -75,7 +75,7 @@
                  <a-mixin id="scale-box" visible="false"></a-mixin>
                  <a-mixin id="scale-label-border" geometry="primitive: plane; height: 1.05; width: 1.05; buffer: false" material="color: #375719; shader: flat;"></a-mixin>
                  <a-mixin id="scale-label" geometry="primitive: plane; height: 1; width: 1; buffer: false" material="color: #dadada; shader: flat;" text="color: black; lineHeight: 75; wrap-count: 35"></a-mixin>
-                 <a-mixin id="h-scale-label" geometry="primitive: plane; height: 1.5; width: 1; buffer: false" material="color: #dadada; shader: flat;" text="color: black; lineHeight: 75; wrapCount: 35; baseline: bottom; xOffset: 0.03"></a-entity>"></a-mixin>
+                 <a-mixin id="h-scale-label" geometry="primitive: plane; height: 1.5; width: 1; buffer: false" material="color: #dadada; shader: flat;" text="color: black; lineHeight: 75; wrapCount: 30; baseline: bottom; width: 0.9;"></a-entity>"></a-mixin>
                  <a-mixin id="scale-text" text="color: black; width: 2; wrapCount: 45"></a-mixin>
                  <a-mixin id="credit-text" text="anchor: align; color: black; width: 2; wrapCount: 70; lineHeight: 55"></a-mixin>
 				 <a-mixin id="mapmarker" scale ="0.17 0.1 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.15; radiusTop: 0.02; segmentsRadial: 6" material="color: #ffaa00; emissive: #ffaa00; emissiveIntensity: 0.5; flatShading:  true;"></a-mixin>
@@ -132,11 +132,9 @@
 <a-entity class="hominin-zone" visible="false">
 <a-entity position="0 0 0" gltf-model="models/spiral.glb"></a-entity> <!-- Hominin staircase -->
 <a-entity position="0 0 0" gltf-model="models/hominin.glb"></a-entity> <!-- Hominin structure -->
-<a-entity position="-7.432 3.73 -17.6" gltf-model="models/h-turkana.glb"></a-entity> 
-<a-entity position="-2.22 4.71 -20.25" gltf-model="models/h-neanderthal.glb"></a-entity> 
-<a-entity position="-2.04 5.09 -26.34" gltf-model="models/h-floresiensis.glb"></a-entity>
+
 </a-entity>
-<a-entity mixin="scale-box" id="hstand1-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions.; "></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions."></a-entity></a-entity><!-- Info Box -->
+<a-entity mixin="scale-box" id="hstandlucy-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Lucy\nScientific Name: Australopithecus afarensis\nLocation: Ethiopia\nTime: 3.4 million years ago\n\nDiscovery: Donald Johanson and team in 1974.;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions."></a-entity></a-entity><!-- Info Box -->
 
 <!-- Wall Text -->
     <!-- Front wall -->
