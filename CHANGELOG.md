@@ -1,17 +1,18 @@
 # AnVRopomotron Changelog
 ## 1.2 (next)
--   Now targeted for early 2022 is the new Human Evolution Hall with a starter set of four scale models of prehistoric humans and hominins. 
+-   Now targeted for early 2022 is the new Human Evolution Hall with a starter set of four scale models of prehistoric hominins. 
    -   The Human Evolution Hall has its own model separate from the rest of the museum. The twisty hallway is visible from both sides and when the visitor is inside, moving down one end will reveal that part of the museum. There are three occlusion planes inside to hide and show each end appropriately. The divider model actually incorprates walls from the adjoining Halls that would be visible from inside. This was done in Blender cutting and snapping vertices to precisely match each section.
    -   When in the Human Evolution Hall, the entire rest of the museum despawns to save resources.
    -   The exhibit hall is pretty cool! Unlike everything before it, this exhibit goes vertical on a spirally extended family tree of hominins. The staircase was made in Blender following tutorials on using the array modifier around a point. The projecting platforms are done manually following a set routine of extrusions and scales. 
    -   The flying maps make their way to the new Hall with extensions to the old code. The shadow-producing light also moves with the user as they move through the divider hallway.
    -   The stands for the maps, seen in the Centerpiece Hall and Human Evolution Hall, are now baked in to their respective floor models to reduce draw calls in A-Frame.
-   -   The four hominins have been worked on since 2020 from a base humanoid figure to each of the specific individuals. I modeled each one by one to a rigged and posed draft before wrapping them up with baking textures at the end of 2021. Some notes on their making:
+   -   The four hominins have been worked on since 2020 from a base humanoid figure to each of the specific individuals. I modeled each one by one to a rigged and posed draft before wrapping them up with baking textures at the end of 2021 and the start of 2022 for Lucy. Some notes on their making:
         -   The baking actually used a subdivided model as the source of shading and highlights, with those details painted onto a texture map that the actual model shares. There is a Youtube tutorial of this process on the Neanderthal. The process seems pretty powerful with the ability to fake detail convincingly. Some care has to be taken on especially small UV islands, such as around the eyes and nose. Separating and scaling those up ironed out the visual issues.
         -   The forms are based on an general interpretation of how much soft tissue corresponds to the thickness of bones in humans and apes. Up-to-date research was done to see what professionals with hands-on experience thought, though I did not follow every one of those interpretations.
         -   The colors are made to be artificial, in no way reflecting what they looked like in real life. The reasons are that it would be impossible to know for sure, and would involve more guesswork than I'm comfortable with. I also tried some realistic tones and the models crossed right into the uncanny valley. 
         -   For the same reasons, no hair or fur is present. 
         -   Poses for everyone but Lucy are based on photographs of modern people who live in the respective region of each fossil. 
+        -   Lucy, the last of the four models, uses a few techniques not seen in the others. The switch to Blender 3.0 resulted in a better Rigify mod that handles eyes in a more intuitive way. Baking textures also started out from a 4096px image and downscaled to 1024 to blur edges. Lucy also has a color-based Easter egg to reflect her name's origin.
 -   Raising Grab Lab tables lost their animations. It was causing problems with launching objects at light speed on load. Tables and objects now snap up into place for non-VR devices.
 -   Warp tweaked again to chain functions and wait for each animation to finish.
 -   HTML streamlined using A-Frame mixins more effectively for many text boxes.
