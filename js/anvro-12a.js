@@ -374,7 +374,7 @@ if (chdivcheck2 == 1) {
 } else {
 console.log("chdivider2 off");
 }
-if (chdivcheck3 == 3) {
+if (chdivcheck3 == 1) {
     console.log("chdivider3 on");
     visiswitch(floorplanzone, false);
     visiswitch(bzone, false);
