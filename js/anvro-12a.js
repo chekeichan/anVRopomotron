@@ -456,6 +456,10 @@ grabpanel("mandrillsbutt","#stand11-tit");
 grabpanel("lorisbutt","#stand12-tit");
 grabpanel("aye-ayebutt","#stand13-tit");
 grabpanel("plesiadapisbutt","#stand14-tit");
+grabpanel("h-lucy-butt","#h-lucy-tit");
+grabpanel("h-turkana-butt","#h-turkana-tit");
+grabpanel("h-flores-butt","#h-flores-tit");
+grabpanel("h-neanderthal-butt","#h-neanderthal-tit");
 }
 })
 
