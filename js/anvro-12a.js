@@ -171,7 +171,7 @@ var lightswitch = function() { // Light switch logic to light the right area
 } 
 }
 
-var mapwarp = function(warpmapx1, warpmapy1, warpmapz1, warprotx1, warproty1, warpmapx2, warpmapy2, warpmapz2, warprotx2, warproty2) {
+var mapwarp = function(warpmapx1, warpmapy1, warpmapz1, warprotx1, warproty1, warpmapx2, warpmapy2, warpmapz2, warprotx2, warproty2) { // This moves the maps to the right places relative to visitor
     var warp1 = document.getElementById("warp-map1");
     var warp2 = document.getElementById("warp-map2");
     warp1.object3D.position.set(warpmapx1, warpmapy1, warpmapz1);
@@ -703,7 +703,7 @@ AFRAME.registerComponent("warp", {
         transition.dispatchEvent(new CustomEvent("transitionopen"));
     };
 
-    var warpfun = function(warpbutt, warplocx, warplocy, warplocz) {
+    var warpfun = function(warpbutt, warplocx, warplocy, warplocz) { // Figures out which button was hit then sets teleportation coordinates
         document.getElementById(warpbutt).addEventListener("grab-end", function(evt) {
             transitionclose(warplocx, warplocy, warplocz);
     }
@@ -716,5 +716,9 @@ AFRAME.registerComponent("warp", {
     warpfun("grabwarpbutt2", 9.33, 0, -0.5);
     warpfun("primatewarpbutt2", -13, 0, 1);
     warpfun("burialwarpbutt2", -14, 0, -17.7);
+    warpfun("homininwarpbutta1", -14, 0, -17.7);
+    warpfun("homininwarpbuttb1", -14, 0, -17.7);
+    warpfun("homininwarpbutta2", -14, 0, -17.7);
+    warpfun("homininwarpbuttb2", -14, 0, -17.7);
     }
     })
