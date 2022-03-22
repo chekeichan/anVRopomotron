@@ -167,7 +167,7 @@ var lightswitch = function() { // Light switch logic to light the right area
         document.querySelector('#shadowlight').object3D.position.set(-12.5, 8, -14);
     } else if (hominincheck == 1) {
         console.log("hominin lights");
-        document.querySelector('#shadowlight').object3D.position.set(-1, 8, -16.5);
+        document.querySelector('#shadowlight').object3D.position.set(-1.7, 10, -20.5);
 } 
 }
 
@@ -260,7 +260,7 @@ console.log("grab off");
     visidistanceswitch(gzoneobjs, false);
 }
 
-if (centercheck == 1) {
+if (centercheck == 1 && grabcheck == 0) {
     console.log("center on");
     visiswitch(floorplanzone, true);
     visiswitch(czone, true);
@@ -716,9 +716,9 @@ AFRAME.registerComponent("warp", {
     warpfun("grabwarpbutt2", 9.33, 0, -0.5);
     warpfun("primatewarpbutt2", -13, 0, 1);
     warpfun("burialwarpbutt2", -14, 0, -17.7);
-    warpfun("homininwarpbutta1", -14, 0, -17.7);
-    warpfun("homininwarpbuttb1", -14, 0, -17.7);
-    warpfun("homininwarpbutta2", -14, 0, -17.7);
-    warpfun("homininwarpbuttb2", -14, 0, -17.7);
+    warpfun("homininwarpbutta1", -8, 0, -13.4);
+    warpfun("homininwarpbuttb1", 1.9, 5.3, -22);
+    warpfun("homininwarpbutta2", --8, 0, -13.4);
+    warpfun("homininwarpbuttb2", 1.9, 5.3, -22);
     }
     })
