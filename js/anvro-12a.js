@@ -401,7 +401,7 @@ if (hominincheck == 1) {
     visiswitch(chdivzone, true);
     visiswitch(hzone, true);
     lightswitch();
-    mapwarp(-9.65, 1.4, -12.79, 0, 1.5708, 2.248, 6.263, -22.782, -0.785, -0.40);
+    mapwarp(-9.65, 1.4, -12.79, 0, 1.5708, 2.576, 6.263, -21.7, -0.785, -1.97);
 } else {
 console.log("hominin off");
 }
@@ -460,6 +460,7 @@ grabpanel("h-lucy-butt","#h-lucy-tit");
 grabpanel("h-turkana-butt","#h-turkana-tit");
 grabpanel("h-flores-butt","#h-flores-tit");
 grabpanel("h-neanderthal-butt","#h-neanderthal-tit");
+grabpanel("h-sapiens-butt","#h-sapiens-tit");
 }
 })
 
@@ -696,6 +697,7 @@ AFRAME.registerComponent("warp", {
 
     var warpwarp = function(warplocx, warplocy, warplocz) {
         rig.object3D.position.set(warplocx, warplocy, warplocz);
+        rig.components['movement-controls'].updateNavLocation();
         setTimeout(function(){transitionopen();}, 700)
     };
     
@@ -718,7 +720,7 @@ AFRAME.registerComponent("warp", {
     warpfun("burialwarpbutt2", -14, 0, -17.7);
     warpfun("homininwarpbutta1", -8, 0, -13.4);
     warpfun("homininwarpbuttb1", 1.9, 5.3, -22);
-    warpfun("homininwarpbutta2", --8, 0, -13.4);
+    warpfun("homininwarpbutta2", -8, 0, -13.4);
     warpfun("homininwarpbuttb2", 1.9, 5.3, -22);
     }
     })
