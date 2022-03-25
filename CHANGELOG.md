@@ -17,9 +17,11 @@
         -   To reduce draw calls, the hominin statues, stairs, and surrounding building are all one model.
 -   Raising Grab Lab tables lost their animations. It was causing problems with launching objects at light speed on load. Tables and objects now snap up into place for non-VR devices.
 -   All of the walls, floors, and ceilings got a new bake. Baking goes from 4096 but to 2048, and then smoothed by AI again. Just enough of the texture comes through.
--   JPG/PNG compressed using [squoosh.app](www.squoosh.app) on some of the largest images and texture files. The highlight is the Calatrava Castle model, which dropped from 9.5MB to 3.7MB. 
--   What else is neat is that the whole file size has dropped with this new update, even though the museum gained a large new space!
+-   Updated A-Frame to 1.3.0. This version opens meshopt'd files by default, but unfortunately basis textures are still out of reach. As a trade-off to upgrading, I removed the basis images from earlier, returning to natively readable formats. The custom component to read meshoptimized and basis files was removed.
+-   JPG/PNG compressed using [squoosh.app](www.squoosh.app) on some of the largest images and texture files. The highlight is the Calatrava Castle model, which dropped from 9.5MB to 3.7MB due to the texture compression. 
+-   What else is neat is that the whole file size has dropped with this new update, even though the museum gained a large new space! We saved around 4MB.
 -   Warp tweaked again to chain functions and wait for each animation to finish.
+-   Background physics handling changed to prevent object explosion on load. Grabbable objects are naturally static objects. Being in VR switches objects on after their respective table loads to hold them. Working on this change was a harrowing few hours before the version release. A maddening explosion of objects was actually not caused by switching modes as I had thought, but was actually due to the new navmesh being multiple floors, which made it take on a much larger boundary box than intended. Removing physics properties from the navmesh was the final fix.
 -   HTML streamlined using A-Frame mixins more effectively for many text boxes.
 
 ## 1.1.9b (12/28/2021)
