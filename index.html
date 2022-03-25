@@ -30,7 +30,7 @@
 <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
 <script src="https://unpkg.com/aframe-fps-look-controls-component/dist/aframe-fps-look-controls-component.min.js"></script>
-<script src="js/anvro-12a.js"></script>
+<script src="js/anvro-12.js"></script>
 </head>
 
 <body>
@@ -81,7 +81,7 @@
 				 <a-mixin id="mapmarker" scale ="0.17 0.1 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.15; radiusTop: 0.02; segmentsRadial: 6" material="color: #ffaa00; emissive: #ffaa00; emissiveIntensity: 0.5; flatShading:  true;"></a-mixin>
  </a-assets>
  
-<a-entity position="0 0 0" static-body gltf-model="#navmesh" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
+<a-entity position="0 0 0"  gltf-model="#navmesh" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
 <a-entity position="0 0 0" static-body gltf-model="#floor" visible="false"></a-entity> <!-- Solid Floor to Block Objects -->
 <a-entity class="floorplan-zone" position="0 0 0" gltf-model="models/floorplan.glb"></a-entity> <!--  Main Building, no Human Evolution-->
 <a-entity class="c-h-div-zone" position="0 0 0" gltf-model="models/divider.glb"></a-entity> <!-- Hominin Transition Zone -->
@@ -159,7 +159,7 @@
       <a-text id="SMH-SP" visible="false" position="-6.6 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
     <!-- Behind wall -->
-       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="5.05 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.1.9" align="right" color="black" width="5"></a-text></a-entity> 
+       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="5.05 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.2" align="right" color="black" width="5"></a-text></a-entity> 
     <!-- Left display wall -->
         <a-entity visible="true" static-body position="-5.08 2 -0.5" rotation="0 90 0" depth="0.1" width="8" height="4.5" color="#dfe0e2" material="shader: flat">
         <a-image position="0 -0.48 0.10" src="#height" material.transparent="true" shader="flat" geometry="height: 3.048; width: 7.3152"></a-image><!-- Correct by -2.0 -->
@@ -296,53 +296,53 @@
        <a-entity mixin="scale-label-border" position="1.5 0.7 1.69" rotation="0 0 0"></a-entity><a-entity mixin="scale-label" position="1.5 0.7 1.7" rotation="0 0 0" text="value: Modern Human\nScientific Name: Homo sapiens\nLocation: Earth\nTime: 300,000 years ago to present\n\nNotes: The only surviving hominin, with the most advanced cultural ability.; " ></a-entity></a-entity></a-entity>
     
 <!-- Pre-Homo Fossil Skull table -->
-   <a-entity  id="phtable" position="10.5 0 -4.5"> <!-- This sets the relative state of the table --> 
-        <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table1" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
+   <a-entity id="phtable" position="10.5 0 -4.5"> <!-- This sets the relative state of the table --> 
+        <a-entity table-wait class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table1" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Early Primate Fossils; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-        <a-entity id="archicebus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/archicebus.glb"   dynamic-body="shape: box; mass: 2"  position="0 1.03 -0.5" mixin="obj"></a-entity>
-        <a-entity id="proconsul-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/proconsulskull.glb"   dynamic-body="shape: box; mass: 2" position="0 1.01 -0.4" mixin="obj"></a-entity>
-        <a-entity id="sahelanthropus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/sahelskull.glb"   dynamic-body="shape: box; mass: 2" position="0 1.01 -0.2" mixin="obj"></a-entity>
-        <a-entity id="platyops-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/platyopsskull.glb"   dynamic-body="shape: box; mass: 2" position="0 1.01 0" mixin="obj"></a-entity>
-        <a-entity id="aethiopicus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/aethiopicusskull.glb"   dynamic-body="shape: box; mass: 3" position="0 1.01 0.2" mixin="obj"></a-entity>
-        <a-entity id="africanus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/africanusskull.glb"   dynamic-body="shape: box; mass: 2" position="0 1.01 0.4" mixin="obj"></a-entity>
+        <a-entity id="archicebus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/archicebus.glb" static-body  position="0 1.03 -0.5" mixin="obj"></a-entity>
+        <a-entity id="proconsul-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/proconsulskull.glb" static-body position="0 1.01 -0.4" mixin="obj"></a-entity>
+        <a-entity id="sahelanthropus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/sahelskull.glb" static-body position="0 1.01 -0.2" mixin="obj"></a-entity>
+        <a-entity id="platyops-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/platyopsskull.glb" static-body position="0 1.01 0" mixin="obj"></a-entity>
+        <a-entity id="aethiopicus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/aethiopicusskull.glb" static-body position="0 1.01 0.2" mixin="obj"></a-entity>
+        <a-entity id="africanus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/africanusskull.glb" static-body position="0 1.01 0.4" mixin="obj"></a-entity>
 </a-entity>    
     
 <!-- Hominin Fossil Skull table -->
    <a-entity id="stable" position="10.5 0 -2"> <!-- This sets the relative state of the table --> 
-         <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table2" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
+         <a-entity table-wait class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table2" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
          <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Prehistoric Homo Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-         <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone table2obj" gltf-model="models/habilisskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.55" mixin="obj"></a-entity>
-         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/turkanaskull.glb"   dynamic-body="shape: box; mass: 4" position="0 1.01 -0.35" mixin="obj"></a-entity>
-         <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/atapuercaskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.01 -0.15" mixin="obj"></a-entity>
-         <a-entity id="naledi-leti-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/naledi-letiskull.glb"   dynamic-body="shape: box; mass: 1" position="0 1.01 0" rotation="0 90 0" mixin="obj"></a-entity>
-         <a-entity id="naledi-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/nalediskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.01 0.15" mixin="obj"></a-entity>
-         <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/neanskull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.01 0.35" mixin="obj"></a-entity>
-         <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/vLCA1skull.glb"   dynamic-body="shape: box; mass: 5" position="0 1.01 0.55" mixin="obj"></a-entity>
+         <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone table2obj" gltf-model="models/habilisskull.glb" static-body position="0 1.01 -0.55" mixin="obj"></a-entity>
+         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/turkanaskull.glb" static-body position="0 1.01 -0.35" mixin="obj"></a-entity>
+         <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/atapuercaskull.glb" static-body position="0 1.01 -0.15" mixin="obj"></a-entity>
+         <a-entity id="naledi-leti-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/naledi-letiskull.glb" static-body position="0 1.01 0" rotation="0 90 0" mixin="obj"></a-entity>
+         <a-entity id="naledi-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/nalediskull.glb" static-body position="0 1.01 0.15" mixin="obj"></a-entity>
+         <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/neanskull.glb" static-body position="0 1.01 0.35" mixin="obj"></a-entity>
+         <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/vLCA1skull.glb" static-body position="0 1.01 0.55" mixin="obj"></a-entity>
 </a-entity>
      
     <!-- Modern Non-Hominoid Skull table -->
      <a-entity id="ptable" position="10.5 0 1"> <!-- This sets the relative state of the table --> 
-         <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table3" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
+         <a-entity table-wait class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table3" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
          <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Prosimian and Monkey Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-         <a-entity id="potto-grab" class="clickable grabbable grab-obj-zone table3obj" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.6" mixin="obj" gltf-model="models/pottoskull.glb"></a-entity> 
-         <a-entity id="indri-grab" class="clickable grabbable grab-obj-zone table3obj" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.4" mixin="obj" gltf-model="models/indriskull.glb"></a-entity> 
-         <a-entity id="howler-grab" class="clickable grabbable grab-obj-zone table3obj" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.2" mixin="obj" gltf-model="models/howlerskull.glb"></a-entity> 
-		 <a-entity id="squirrelmonkey-grab" class="clickable grabbable grab-obj-zone table3obj" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.1" mixin="obj" gltf-model="models/squirrelmonkeyskull.glb"></a-entity> 
-        <a-entity  id="baboon-grab" class="clickable grabbable grab-obj-zone table3obj" dynamic-body="shape: box; mass: 3" position="0 1.01 0.1" mixin="obj" gltf-model="models/baboonskull.glb"></a-entity>
-		<a-entity  id="rhesus-grab" class="clickable grabbable grab-obj-zone table3obj" dynamic-body="shape: box; mass: 3" position="0 1.01 0.25" mixin="obj" gltf-model="models/rhesusskull.glb"></a-entity>
-		<a-entity  id="mandrill-grab" class="clickable grabbable grab-obj-zone table3obj" dynamic-body="shape: box; mass: 3" position="0 1.01 0.4" mixin="obj" gltf-model="models/mandrillskull.glb"></a-entity>
-        <a-entity id="snub-grab" class="clickable grabbable grab-obj-zone table3obj" dynamic-body="shape: box; mass: 2" position="0 1.01 0.6" mixin="obj" gltf-model="models/snubskull.glb"></a-entity> 
+         <a-entity id="potto-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.6" mixin="obj" gltf-model="models/pottoskull.glb"></a-entity> 
+         <a-entity id="indri-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.4" mixin="obj" gltf-model="models/indriskull.glb"></a-entity> 
+         <a-entity id="howler-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.2" mixin="obj" gltf-model="models/howlerskull.glb"></a-entity> 
+		 <a-entity id="squirrelmonkey-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.1" mixin="obj" gltf-model="models/squirrelmonkeyskull.glb"></a-entity> 
+        <a-entity  id="baboon-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.1" mixin="obj" gltf-model="models/baboonskull.glb"></a-entity>
+		<a-entity  id="rhesus-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.25" mixin="obj" gltf-model="models/rhesusskull.glb"></a-entity>
+		<a-entity  id="mandrill-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.4" mixin="obj" gltf-model="models/mandrillskull.glb"></a-entity>
+        <a-entity id="snub-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.6" mixin="obj" gltf-model="models/snubskull.glb"></a-entity> 
 </a-entity>
     
         <!-- Hominoid Skull table -->
      <a-entity id="ptable2" position="10.5 0 3.5"> <!-- This sets the relative state of the table --> 
-         <a-entity class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table5" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
+         <a-entity table-wait class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table5" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
          <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Hominoid Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-        <a-entity id="gibbon-grab" class="clickable grabbable grab-obj-zone table5obj" dynamic-body="shape: box; mass: 5" position="0 1.01 -0.3" mixin="obj" gltf-model="models/gibbonskull.glb"></a-entity> 
-        <a-entity id="gorilla-m-grab" class="clickable grabbable grab-obj-zone table5obj" dynamic-body="shape: box; mass: 5" position="0 1.01 -0.1" mixin="obj" gltf-model="models/gorillaskull-m.glb"></a-entity> 
-        <a-entity id="gorilla-f-grab" class="clickable grabbable grab-obj-zone table5obj" dynamic-body="shape: box; mass: 5" position="0 1.01 0.2" mixin="obj" gltf-model="models/gorillaskull-f.glb"></a-entity> 
-         <a-entity id="chimp-grab" class="clickable grabbable grab-obj-zone table5obj" dynamic-body="shape: box; mass: 4" position="0 1.01 0.4" mixin="obj" gltf-model="models/chimpskull.glb"></a-entity>
-         <a-entity id="mhs-grab" class="clickable grabbable grab-obj-zone table5obj" dynamic-body="shape: box; mass: 5" position="0 1.01 0.6" mixin="obj" gltf-model="models/mhsskull.glb"></a-entity> 
+        <a-entity id="gibbon-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 -0.3" mixin="obj" gltf-model="models/gibbonskull.glb"></a-entity> 
+        <a-entity id="gorilla-m-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 -0.1" mixin="obj" gltf-model="models/gorillaskull-m.glb"></a-entity> 
+        <a-entity id="gorilla-f-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 0.2" mixin="obj" gltf-model="models/gorillaskull-f.glb"></a-entity> 
+         <a-entity id="chimp-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 0.4" mixin="obj" gltf-model="models/chimpskull.glb"></a-entity>
+         <a-entity id="mhs-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 0.6" mixin="obj" gltf-model="models/mhsskull.glb"></a-entity> 
     </a-entity>
     
 <a-entity id="bonescreen" class="grab-zone" position="13.48 2 -4.8">
@@ -396,13 +396,13 @@
      <a-entity id="atable" position="4.94 0 -2.1"> <!-- This sets the relative state of the table --> 
         <a-entity table-wait class="table center-zone" static-body="shape: box;" scale="1 1 1" id="table4" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Artifacts; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-  		<a-entity id="lomek-grab" class="clickable grabbable center-obj-zone standup table4obj" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.6" mixin="obj" gltf-model="#lomekmodel"></a-entity>
-		<a-entity id="acheul-grab" class="clickable grabbable center-obj-zone standup table4obj" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.45" mixin="obj" gltf-model="#acheulmodel"></a-entity>
-        <a-entity id="mousterian-grab" class="clickable grabbable center-obj-zone standup table4obj" dynamic-body="shape: box; mass: 1" position="0 1.01 -0.3" mixin="obj" gltf-model="#mousterianmodel"></a-entity>
-        <a-entity id="clovis-grab" class="clickable grabbable center-obj-zone standup table4obj"dynamic-body="shape: box; mass: 1" position="0 1.01 -0.2" mixin="obj" gltf-model="#clovismodel"></a-entity>
-        <a-entity id="harpoon-grab" class="clickable grabbable center-obj-zone standup table4obj" dynamic-body="shape: box; mass: 1" position="0 1.01 0" mixin="obj" gltf-model="#harpoonmodel"></a-entity>
-        <a-entity id="moundville-grab" class="clickable grabbable center-obj-zone table4obj" dynamic-body="shape: box; mass: 2" position="0 1.01 0.3" mixin="obj" gltf-model="#moundvillemodel"></a-entity>
-        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup table4obj" dynamic-body="shape: box; mass: 1" position="0 1.1 0.5" mixin="obj" gltf-model="#daggermodel"></a-entity>
+  		<a-entity id="lomek-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.01 -0.6" mixin="obj" gltf-model="#lomekmodel"></a-entity>
+		<a-entity id="acheul-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.01 -0.45" mixin="obj" gltf-model="#acheulmodel"></a-entity>
+        <a-entity id="mousterian-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.01 -0.3" mixin="obj" gltf-model="#mousterianmodel"></a-entity>
+        <a-entity id="clovis-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.01 -0.2" mixin="obj" gltf-model="#clovismodel"></a-entity>
+        <a-entity id="harpoon-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.01 0" mixin="obj" gltf-model="#harpoonmodel"></a-entity>
+        <a-entity id="moundville-grab" class="clickable grabbable center-obj-zone table4obj"  position="0 1.01 0.3" mixin="obj" gltf-model="#moundvillemodel"></a-entity>
+        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.1 0.5" mixin="obj" gltf-model="#daggermodel" dynamic-body="shape: box; mass: 5"></a-entity>
 </a-entity>
 
      <!-- Artifact table 2-->
@@ -554,6 +554,10 @@ Crystal structure of monoclonal human anti-rhesus D Fc and IgG1 t125(yb2/0) in t
 NIH 3D Print Exchange (Public Domain)
 https://3dprint.nih.gov/discover/3dpx-007943
 
+-Human Evolution Hall-
+Neanderthal Composite reference
+Sawyer, G. J., &amp; Maley, B. (2005). Neanderthal reconstructed. The Anatomical Record Part B: The New Anatomist, 283B(1), 23–31.
+
 -VR Grab Lab-  List sorted by table
 -=Early Primate Fossils=-
 Sahelanthropus tchadensis
@@ -585,7 +589,9 @@ Homo naledi - Leti
 Media 000394515: Letimela Reconstruction By Prof Lee Berger [Mesh] [Laser]
 Original Source: Morphosource. The University of the Witwatersrand. Collection U.W. 110. Managed by Sonia Sequeria (CC Attribution-NonCommercial 4.0 International )
 https://www.morphosource.org/concern/media/000394515
+;"></a-entity>
 
+<a-entity mixin="credit-text" class="credits" id="credits-3" position="-0.7 2 -7.499" visible="false" text="value: More -VR Grab Lab-
 Homo naledi - Neo
 Media 000054666: Les1 Homo Naledi 'Neo' Reconstruction Of Cranium [Mesh] [Laser]
 Original Source: Morphosource. The University of the Witwatersrand. Collection Homo naledi 'Neo'. Managed by Sonia Sequeria (CC Attribution-NonCommercial 4.0 International )
@@ -601,9 +607,7 @@ https://sketchfab.com/3d-models/homo-ergaster-replica-0ef67e21a9ab43d483134d8edd
 
 vLCA1
 Mounier, A., & Mirazón Lahr, M. (2019). Deciphering African late middle Pleistocene hominin diversity and the origin of our species. Nat Commun, 10(1), 3406. Retrieved from https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6736881/
-(CC-Attribution 4);"></a-entity>
-
-<a-entity mixin="credit-text" class="credits" id="credits-3" position="-0.7 2 -7.499" visible="false" text="value: -=More Model Sources=-
+(CC-Attribution 4)-=More Model Sources=-
 -Modern Primates-
 Chimpanzee
 Natural History Museum Imaging (CC-Attribution-NonCommercial)
@@ -622,7 +626,9 @@ Mandible: https://3d.si.edu/object/3d/papio-hamadryas-mandible:70253f8c-ef0f-455
 Indri
 D’Arcy Thompson Zoology Museum at the University of Dundee (CC-BY-NC-SA)
 https://www.myminifactory.com/object/3d-print-indri-lemur-skull-35329
+;"></a-entity>
 
+<a-entity mixin="credit-text" class="credits" id="credits-4" position="-0.7 2 -7.499" visible="false" text="value: -More Modern Primates-
 Mandrill
 Smithsonian 3D (CC0 Public Domain)
 Cranium: https://3d.si.edu/object/3d/mandrillus-sphinx-cranium%3A83efaccc-2462-4306-a52c-14d2115976db
@@ -647,9 +653,7 @@ https://wiiboox.myminifactory.com/object/3d-print-rhinopithecus-roxellana-36244
 Squirrel Monkey
 RISD Nature Lab (CC BY 4.0)
 https://skfb.ly/6VG7H
-;"></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-4" position="-0.7 2 -7.499" visible="false" text="value: -More Modern Primates-
 Western Lowland Gorillas
 Smithsonian 3D (CC0 Public Domain)
 Male Cranium: https://3d.si.edu/object/3d/gorilla-gorilla-gorilla-cranium:c809e29b-72df-4b66-bba9-6f5b438c2b49
@@ -766,15 +770,15 @@ https://commons.wikimedia.org/wiki/File:Canopic_jar_MET_DP311708.jpg
 
 Chimpanzee: By the National Museum of Natural History. (CC BY-SA 2.0)
 https://www.si.edu/object/pan-troglodytes:nmnhvz_7594233
+; "></a-entity>
 
+<a-entity mixin="credit-text" class="credits" id="credits-8" visible="false" position="-0.7 2 -7.499" text="value: More Image Sources
 Engraved Water Bottle: &quot;Ivory-billed woodpeckers&quot; by John James Audubon, image by Houghton Library. (Public Domain)
 https://commons.wikimedia.org/wiki/File:Houghton_MS_Am_21_(31)_-_John_James_Audubon,_ivory_billed_woodpecker.jpg
 
 Femur Dagger: &quot;Dagger&quot; image by Saint Louis Art Museum. (Public Domain)
 https://www.slam.org/collection/objects/14095/
-; "></a-entity>
-
-<a-entity mixin="credit-text" class="credits" id="credits-8" visible="false" position="-0.7 2 -7.499" text="value: Hippo Ivory Harpoon: &quot;Hippo (Hippopotamus amphibius) Yawning&quot; by Bernard DUPONT. (CC BY-SA 2.0)
+Hippo Ivory Harpoon: &quot;Hippo (Hippopotamus amphibius) Yawning&quot; by Bernard DUPONT. (CC BY-SA 2.0)
 https://commons.wikimedia.org/wiki/File:Hippo_(Hippopotamus_amphibius)_yawning_..._(31187613621).jpg
 
 Howler Monkey Skull: Photo by Alex Proimos. (CC BY 2.0)
@@ -813,7 +817,9 @@ Male: https://www.si.edu/object/lowland-gorilla:nzp_NZP-20090616-393MM
 
 Woman of Willendorf: &quot;Vénus de Lespugue Gravettien Musée de l'Homme&quot; by Vassil. (CC0 1.0)
 https://commons.wikimedia.org/wiki/File:Vénus_de_Lespugue_Gravettien_Musée_de_l%27Homme_04022018_2.jpg
+; "></a-entity>
 
+<a-entity mixin="credit-text" class="credits" id="credits-9" visible="false" position="-0.7 2 -7.499" text="value: More Image Sources
 Burial Chamber
 World Map: &quot;Ecker IV projection SW&quot; Image by Strebe (CC BY-SA 3.0)
 https://commons.wikimedia.org/wiki/File:Ecker_IV_projection_SW.jpg
@@ -843,7 +849,7 @@ https://flic.kr/p/UZdDhZ
 https://www.britishmuseum.org/collection/image/166522001
 ; "></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-8" visible="false" position="-0.7 2 -7.499" text="value: VR Sources
+<a-entity mixin="credit-text" class="credits" id="credits-10" visible="false" position="-0.7 2 -7.499" text="value: VR Sources
 Diego Marcos, Don McCurdy, and Kevin Ngo
 A-Frame
 

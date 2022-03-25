@@ -1,15 +1,15 @@
-// console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
+console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
 
 AFRAME.registerComponent('table-wait', {
     init: function () {
         var tablename = this.el.id;
         var tableitems = sceneEl.querySelectorAll('.'+tablename+'obj');
-      this.el.addEventListener('model-loaded', () => { // Wait for model to load.
+      this.el.addEventListener('body-loaded', () => { // Wait for model to load.
         setTimeout(function(){
         if (AFRAME.utils.device.checkHeadsetConnected() === true) {
             for (let each of tableitems) {
                 each.removeAttribute('static-body');
-                each.setAttribute('dynamic-body', {shape: 'box', mass: 1});
+                each.setAttribute('dynamic-body', {shape: 'box', mass: 3});
         }}
     }, 200);});
 }});
@@ -241,7 +241,7 @@ if (grabcheck == 1 && centercheck == 0) {
     lightswitch();
     mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else if (grabcheck == 1 && centercheck == 1) {
-    console.log("grab on");
+    console.log("grab and center on");
     visiswitch(floorplanzone, true);
     visiswitch(bzone, false);
     visiswitch(czone, true);
@@ -266,7 +266,7 @@ if (centercheck == 1 && grabcheck == 0) {
     visiswitch(czone, true);
     visiswitch(czoneobjs, true);
     visiswitch(gzone, true);
-    visiswitch(gzoneobjs, false);
+    visiswitch(gzoneobjs, true);
     visiswitch(scale1, true);
     visiswitch(scale2, false);
     visiswitch(scale3, false);
@@ -276,7 +276,6 @@ if (centercheck == 1 && grabcheck == 0) {
     mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else {
 console.log("center off");
-visidistanceswitch(czoneobjs, false);
 }
 
 if (scalecheck1 == 1) {
@@ -284,6 +283,7 @@ if (scalecheck1 == 1) {
     visiswitch(floorplanzone, true);
     visiswitch(czone, true);
     visiswitch(czoneobjs, true);
+    visidistanceswitch(czoneobjs, false);
     visiswitch(gzone, false);
     visiswitch(gzoneobjs, false);
     visiswitch(scale1, true);
@@ -401,7 +401,7 @@ if (hominincheck == 1) {
     visiswitch(chdivzone, true);
     visiswitch(hzone, true);
     lightswitch();
-    mapwarp(-9.65, 1.4, -12.79, 0, 1.5708, 2.576, 6.263, -21.7, -0.785, -1.97);
+    mapwarp(-9.65, 1.4, -12.79, 0, 1.5708, 2.57, 6.29, -21.71, -0.785, -1.97);
 } else {
 console.log("hominin off");
 }
@@ -579,7 +579,7 @@ document.getElementById(grabitem).addEventListener("grab-start", function(evt) {
                 document.getElementById(grabproj).object3D.visible = true;   
                 document.getElementById(grabinfo).object3D.visible = true;   
                 document.getElementById(grabholo).object3D.visible = true;   
-                document.getElementById(grabholo).setAttribute("full-gltf-model", grabmodel);
+                document.getElementById(grabholo).setAttribute("gltf-model", grabmodel);
                 document.getElementById(grabholo).setAttribute("rotation", grabrotate);
                 document.getElementById(grabholo).setAttribute("scale", grabscale);
                 document.getElementById(grabholo).setAttribute("position", grabposition);

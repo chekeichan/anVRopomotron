@@ -1,5 +1,5 @@
 # AnVRopomotron Changelog
-## 1.2 (next)
+## 1.2 (3/24/2022)
 -   Welcome to a new Hall that addresses the big 'missing link' in this museum of biological anthropology. Human evolution is an especially difficult subject to portray in a way that informs but does not mislead. As with drawing, rendering the human form is a special challenge even compared to other primates. This version is the first of a growing set of exhibits as the other halls also experience.
    -   The Human Evolution Hall has its own model separate from the rest of the museum. The twisty divider hallway is visible from both sides and when the visitor is inside, moving down one end will reveal that part of the museum. There are three occlusion planes inside to hide and show each end appropriately. The divider model actually incorprates walls and ceilings from the adjoining Halls that would be visible from inside. This was done in Blender cutting and snapping vertices to precisely match each section.
    -   When in the Human Evolution Hall, the entire rest of the old museum despawns to save resources.
@@ -17,7 +17,8 @@
         -   To reduce draw calls, the hominin statues, stairs, and surrounding building are all one model.
 -   Raising Grab Lab tables lost their animations. It was causing problems with launching objects at light speed on load. Tables and objects now snap up into place for non-VR devices.
 -   All of the walls, floors, and ceilings got a new bake. Baking goes from 4096 but to 2048, and then smoothed by AI again. Just enough of the texture comes through.
--   JPG/PNG compressed using squoosh.app on some of the largest images and texture files. The highlight is the Calatrava Castle model, which dropped from 9.5MB to 3.7MB. 
+-   JPG/PNG compressed using [squoosh.app](www.squoosh.app) on some of the largest images and texture files. The highlight is the Calatrava Castle model, which dropped from 9.5MB to 3.7MB. 
+-   What else is neat is that the whole file size has dropped with this new update, even though the museum gained a large new space!
 -   Warp tweaked again to chain functions and wait for each animation to finish.
 -   HTML streamlined using A-Frame mixins more effectively for many text boxes.
 
