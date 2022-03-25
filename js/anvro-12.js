@@ -4,13 +4,14 @@ AFRAME.registerComponent('table-wait', {
     init: function () {
         var tablename = this.el.id;
         var tableitems = sceneEl.querySelectorAll('.'+tablename+'obj');
-      this.el.addEventListener('model-loaded', () => { // Wait for model to load.
-        for (let each of tableitems) {
-            if (each.classList.contains('standup') == false) { // PC small objects have their own standup animation
+      this.el.addEventListener('body-loaded', () => { // Wait for model to load.
+        setTimeout(function(){
+        if (AFRAME.utils.device.checkHeadsetConnected() === true) {
+            for (let each of tableitems) {
                 each.removeAttribute('static-body');
-                each.setAttribute('dynamic-body', {shape: 'box', mass: 1});
+                each.setAttribute('dynamic-body', {shape: 'box', mass: 3});
         }}
-        });
+    }, 200);});
 }});
 
 // PC Look Preference Switcher
@@ -53,6 +54,7 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
         var sceneEl = document.querySelector('a-scene');
         var tablestand = sceneEl.querySelectorAll('.table');
         var standup = sceneEl.querySelectorAll('.standup');
+        var grabbable = sceneEl.querySelectorAll('.grabbable');
         var rig = document.querySelector('#rig');
         var camera = document.querySelector('#camera');
         var state = "stand";
@@ -62,33 +64,41 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             document.querySelector('#GL-SP').object3D.visible = true;
             document.querySelector('#SMH-SP').object3D.visible = true;
             for (let each of tablestand) {
-                each.setAttribute('animation', {property: 'position.y', to: 0.3, dur: 5000});
+                each.object3D.position.y += 0.25;
             }
             for (let each of standup) {
                 each.removeAttribute('dynamic-body');
                 each.removeAttribute('grabbable');
                 each.setAttribute('static-body');
                 each.setAttribute('rotation', {z: 90});
-                each.dispatchEvent(new CustomEvent("standtrigger"));
+                each.object3D.position.y += 0.15;
             }
-        } else if (AFRAME.utils.device.checkHeadsetConnected() === true) { // VR Modes
+        } else if (AFRAME.utils.device.checkHeadsetConnected() === true) { // VR Mode
+            console.log('VR detected');
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.10); // VR movement is slower than other modes for non barfing
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
+            console.log('PC detected');
             document.querySelector('#GL-PC1').object3D.visible = true;
             document.querySelector('#SMH-PC1').object3D.visible = true;
             rig.setAttribute("movement-controls", "speed", 0.15);
+            for (let each of grabbable) {
+                each.removeAttribute('dynamic-body');
+                each.removeAttribute('grabbable');
+                each.setAttribute('static-body');
+                each.object3D.position.y +=0.25;
+            }
             for (let each of tablestand) {
                 let poss = each.getAttribute('position');
-                each.setAttribute('animation', {property: 'position.y', to: poss.y + 0.25, dur: 5000, delay: 50});
+                each.object3D.position.y += 0.25;
             }
             for (let each of standup) { // Stands up small objects
                 each.removeAttribute('dynamic-body');
                 each.removeAttribute('grabbable');
                 each.setAttribute('static-body');
                 each.setAttribute('rotation', {z: 90});
-                each.dispatchEvent(new CustomEvent("standtrigger"));
+                each.object3D.position.y += 0.15;
             }
             window.addEventListener("keydown", function(e){ // Crouch key for PC
                 if(e.keyCode === 67 && state == "stand") { 
@@ -107,12 +117,15 @@ AFRAME.registerComponent("plane-hit", { // Manual occlusion zones
 init: function() {
 sceneEl = document.querySelector('a-scene');
 var el = this.el;
+var floorplanzone = sceneEl.querySelectorAll(".floorplan-zone");
 var scale1 = sceneEl.querySelectorAll(".scale-zone-1");
 var scale2 = sceneEl.querySelectorAll(".scale-zone-2");
 var scale3 = sceneEl.querySelectorAll(".scale-zone-3");
 var czone = sceneEl.querySelectorAll(".center-zone");
 var gzone = sceneEl.querySelectorAll(".grab-zone");
 var bzone = sceneEl.querySelectorAll(".burial-zone");
+var chdivzone = sceneEl.querySelectorAll(".c-h-div-zone");
+var hzone = sceneEl.querySelectorAll(".hominin-zone");
 var gzoneobjs = sceneEl.querySelectorAll(".grab-obj-zone");
 var czoneobjs = sceneEl.querySelectorAll(".center-obj-zone");
 var grabcheck = 0;
@@ -121,6 +134,10 @@ var scalecheck1 = 0;
 var scalecheck2 = 0;
 var scalecheck3 = 0;
 var burialcheck = 0;
+var chdivcheck1 = 0;
+var chdivcheck2 = 0;
+var chdivcheck3 = 0;
+var hominincheck = 0;
 var visiswitch = function(zone, toggle) {
     for (let each of zone) {
        each.object3D.visible = toggle;
@@ -132,26 +149,29 @@ for (let each of zone) {
         let area = (poss.x + 1) * (poss.z + 1);
         let absarea = Math.abs(area)
          if (each.is('grabbed') == false && absarea <= 3) { // See if object has moved under 2 meters in coordinates
-            each.object3D.visible = toggle; // Hide object if close to table
+            each.object3D.visible = toggle; // Works with player position. Show ungrabbed object if it and player are close to table, hide if player is far from table
          } else {
             each.object3D.visible = true; // Keep object visible if it has been carried
 }}
 }
 var lightswitch = function() { // Light switch logic to light the right area
     var el = sceneEl.querySelectorAll(".shadowlight");
-    if (scalecheck2 == 1 || scalecheck2 == 1 || scalecheck3 == 1){
+    if (scalecheck1 == 1 || scalecheck2 == 1 || scalecheck3 == 1){
         document.querySelector('#shadowlight').object3D.position.set(-10, 4, -1.67);
         console.log("scale lights");
     } else if (grabcheck == 1 || centercheck == 1) {
         console.log("main lights");
         document.querySelector('#shadowlight').object3D.position.set(-1, 8, 4);
-} else if (burialcheck == 1) {
+    } else if (burialcheck == 1) {
         console.log("burial lights");
         document.querySelector('#shadowlight').object3D.position.set(-12.5, 8, -14);
-}
+    } else if (hominincheck == 1) {
+        console.log("hominin lights");
+        document.querySelector('#shadowlight').object3D.position.set(-1.7, 10, -20.5);
+} 
 }
 
-var mapwarp = function(warpmapx1, warpmapy1, warpmapz1, warprotx1, warproty1, warpmapx2, warpmapy2, warpmapz2, warprotx2, warproty2) {
+var mapwarp = function(warpmapx1, warpmapy1, warpmapz1, warprotx1, warproty1, warpmapx2, warpmapy2, warpmapz2, warprotx2, warproty2) { // This moves the maps to the right places relative to visitor
     var warp1 = document.getElementById("warp-map1");
     var warp2 = document.getElementById("warp-map2");
     warp1.object3D.position.set(warpmapx1, warpmapy1, warpmapz1);
@@ -180,7 +200,7 @@ if (each.id == "just-scale2") { // Turn off parts of Grab Lab when user is insid
     console.log("just-scale2 entered");
     scalecheck2++;
  }
- if (each.id == "just-scale3") { // Turn off parts of Grab Lab when user is inside Scale Model Hall area
+if (each.id == "just-scale3") { // Turn off parts of Grab Lab when user is inside Scale Model Hall area
     console.log("just-scale3 entered");
     scalecheck3++;
  }
@@ -188,24 +208,51 @@ if (each.id == "just-burial") { // Turn off parts of Burial Chamber when user is
    console.log("just-burial entered");
    burialcheck++;
 }
+if (each.id == "just-c-h-divider-1") { // Turn off Human Evolution Hall when user is inside the Centerpiece half of the divider area
+    console.log("just-c-h-divider 1 entered");
+    chdivcheck1++;
+}
+ if (each.id == "just-c-h-divider-2") { // Turn off everything but the divider area
+    console.log("just-c-h-divider 2 entered");
+    chdivcheck2++;
+}
+if (each.id == "just-c-h-divider-3") { // Turn off Centerpiece area when user is inside the Human Evolution half of the divider area
+    console.log("just-c-h-divider 3 entered");
+    chdivcheck3++;
+}
+if (each.id == "just-hominin") { // Turn off everything but the Human Evolution Hall and divider area
+    console.log("just-hominin entered");
+    hominincheck++;
+ }
 }
 if (grabcheck == 1 && centercheck == 0) {
     console.log("grab on");
+    visiswitch(floorplanzone, true);
+    visiswitch(bzone, false);
     visiswitch(czone, false);
+    visiswitch(czoneobjs, true);
     visiswitch(gzone, true);
     visiswitch(gzoneobjs, true);
     visiswitch(scale1, false);
     visiswitch(scale2, false);
+    visiswitch(scale3, false);
+    visiswitch(chdivzone, false);
+    visiswitch(hzone, false);
     lightswitch();
     mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else if (grabcheck == 1 && centercheck == 1) {
-    console.log("grab on");
+    console.log("grab and center on");
+    visiswitch(floorplanzone, true);
+    visiswitch(bzone, false);
     visiswitch(czone, true);
     visiswitch(czoneobjs, true);
     visiswitch(gzone, true);
     visiswitch(gzoneobjs, true);
     visiswitch(scale1, false);
     visiswitch(scale2, false);
+    visiswitch(scale3, false);
+    visiswitch(chdivzone, true);
+    visiswitch(hzone, false);
     lightswitch();
     mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else {
@@ -213,28 +260,37 @@ console.log("grab off");
     visidistanceswitch(gzoneobjs, false);
 }
 
-if (centercheck == 1) {
+if (centercheck == 1 && grabcheck == 0) {
     console.log("center on");
+    visiswitch(floorplanzone, true);
     visiswitch(czone, true);
     visiswitch(czoneobjs, true);
     visiswitch(gzone, true);
+    visiswitch(gzoneobjs, true);
     visiswitch(scale1, true);
     visiswitch(scale2, false);
     visiswitch(scale3, false);
+    visiswitch(chdivzone, true);
+    visiswitch(hzone, false);
     lightswitch();
     mapwarp(7.9, 1.4, 0, 0, 1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else {
 console.log("center off");
-visidistanceswitch(czoneobjs, false);
 }
 
 if (scalecheck1 == 1) {
     console.log("scale1 on");
+    visiswitch(floorplanzone, true);
     visiswitch(czone, true);
     visiswitch(czoneobjs, true);
+    visidistanceswitch(czoneobjs, false);
+    visiswitch(gzone, false);
+    visiswitch(gzoneobjs, false);
     visiswitch(scale1, true);
     visiswitch(scale2, true);
     visiswitch(scale3, false);
+    visiswitch(chdivzone, true);
+    visiswitch(hzone, false);
     lightswitch();
     mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -0.7, 1, 0, -0.785, 0.524);
 } else {
@@ -243,11 +299,14 @@ console.log("scale1 off");
 
 if (scalecheck2 == 1) {
     console.log("scale2 on");
+    visiswitch(floorplanzone, true);
     visiswitch(czone, false);
     visidistanceswitch(czoneobjs, false);
     visiswitch(scale1, true);
     visiswitch(scale2, true);
     visiswitch(scale3, true);
+    visiswitch(chdivzone, false);
+    visiswitch(hzone, false);
     mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -18.5, 1.4, -7.5, 0, 0);
 } else {
 console.log("scale2 off");
@@ -255,9 +314,16 @@ console.log("scale2 off");
 
 if (scalecheck3 == 1) {
     console.log("scale3 on");
+    visiswitch(floorplanzone, true);
+    visiswitch(czone, false);
+    visiswitch(czoneobjs, false);
+    visiswitch(gzone, false);
+    visiswitch(gzoneobjs, false);
     visiswitch(scale1, false);
     visiswitch(scale2, true);
     visiswitch(scale3, true);
+    visiswitch(chdivzone, false);
+    visiswitch(hzone, false);
     lightswitch();
     mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -18.5, 1.4, -7.5, 0, 0);
 } else {
@@ -266,10 +332,13 @@ console.log("scale3 off");
 
 if (burialcheck == 1) {
     console.log("burial on");
+    visiswitch(floorplanzone, true);
     visiswitch(bzone, true);
     visiswitch(scale1, false);
     visiswitch(scale2, false);
     visiswitch(scale3, true);
+    visiswitch(chdivzone, false);
+    visiswitch(hzone, false);
     lightswitch();
     mapwarp(-16.45, 1.4, -19.54, 0, 0, -18.5, 1.4, -7.5, 0, 0);
 } else {
@@ -277,12 +346,75 @@ console.log("burial off");
     visiswitch(bzone, false);
 }
 
+if (chdivcheck1 == 1) {
+    console.log("chdivider1 on");
+    visiswitch(floorplanzone, true);
+    visiswitch(bzone, false);
+    visiswitch(czone, true);
+    visiswitch(scale1, true);
+    visiswitch(scale2, false);
+    visiswitch(scale3, false);
+    visiswitch(chdivzone, true);
+    visiswitch(hzone, false);
+    lightswitch();
+    mapwarp(-9.65, 1.4, -12.79, 0, 1.5708, 2.248, 6.263, -22.782, -0.785, -0.40);
+} else {
+console.log("chdivider1 off");
+}
+if (chdivcheck2 == 1) {
+    console.log("chdivider2 on");
+    visiswitch(floorplanzone, false);
+    visiswitch(bzone, false);
+    visiswitch(czone, false);
+    visiswitch(scale1, false);
+    visiswitch(scale2, false);
+    visiswitch(scale3, false);
+    visiswitch(chdivzone, true);
+    visiswitch(hzone, false);
+} else {
+console.log("chdivider2 off");
+}
+if (chdivcheck3 == 1) {
+    console.log("chdivider3 on");
+    visiswitch(floorplanzone, false);
+    visiswitch(bzone, false);
+    visiswitch(czone, false);
+    visiswitch(scale1, false);
+    visiswitch(scale2, false);
+    visiswitch(scale3, false);
+    visiswitch(hzone, true);
+    lightswitch();
+} else {
+console.log("chdivider3 off");
+}
+if (hominincheck == 1) {
+    console.log("hominin on");
+    visiswitch(floorplanzone, false);
+    visiswitch(bzone, false);
+    visiswitch(czone, false);
+    visiswitch(czoneobjs, false);
+    visiswitch(gzone, false);
+    visiswitch(gzoneobjs, false);
+    visiswitch(scale1, false);
+    visiswitch(scale2, false);
+    visiswitch(scale3, false);
+    visiswitch(chdivzone, true);
+    visiswitch(hzone, true);
+    lightswitch();
+    mapwarp(-9.65, 1.4, -12.79, 0, 1.5708, 2.57, 6.29, -21.71, -0.785, -1.97);
+} else {
+console.log("hominin off");
+}
 centercheck = 0;
 grabcheck = 0;
 scalecheck1 = 0;
 scalecheck2 = 0;
 scalecheck3 = 0;
 burialcheck = 0;
+chdivcheck1 = 0;
+chdivcheck2 = 0;
+chdivcheck3 = 0;
+hominincheck = 0;
 }
 
 el.addEventListener("hitstart", function(evt) {
@@ -324,6 +456,11 @@ grabpanel("mandrillsbutt","#stand11-tit");
 grabpanel("lorisbutt","#stand12-tit");
 grabpanel("aye-ayebutt","#stand13-tit");
 grabpanel("plesiadapisbutt","#stand14-tit");
+grabpanel("h-lucy-butt","#h-lucy-tit");
+grabpanel("h-turkana-butt","#h-turkana-tit");
+grabpanel("h-flores-butt","#h-flores-tit");
+grabpanel("h-neanderthal-butt","#h-neanderthal-tit");
+grabpanel("h-sapiens-butt","#h-sapiens-tit");
 }
 })
 
@@ -442,7 +579,7 @@ document.getElementById(grabitem).addEventListener("grab-start", function(evt) {
                 document.getElementById(grabproj).object3D.visible = true;   
                 document.getElementById(grabinfo).object3D.visible = true;   
                 document.getElementById(grabholo).object3D.visible = true;   
-                document.getElementById(grabholo).setAttribute("full-gltf-model", grabmodel);
+                document.getElementById(grabholo).setAttribute("gltf-model", grabmodel);
                 document.getElementById(grabholo).setAttribute("rotation", grabrotate);
                 document.getElementById(grabholo).setAttribute("scale", grabscale);
                 document.getElementById(grabholo).setAttribute("position", grabposition);
@@ -529,7 +666,6 @@ AFRAME.registerComponent("anti-drop", {
 init: function() {
 sceneEl = document.querySelector('a-scene');
 this.grabbablelist = sceneEl.getElementsByClassName("grabbable");
-console.log(this.grabbablelist);
 this.tick = AFRAME.utils.throttleTick(this.tick, 3000, this);
 },
 dropcheck: function() {
@@ -537,8 +673,7 @@ for (let each of this.grabbablelist) {
         let poss = each.getAttribute('position');
         let area = (poss.x + 1) * (poss.z + 1);
         let absarea = Math.abs(area);
-        console.log(each.id+' '+absarea+' '+poss.y);
-        if (poss.y <= 0.1) {
+        if (poss.y <= 0.1 && absarea > 5) {
              console.log('antidrop engage on '+each.id);
              each.object3D.position.set(0, 1.8, 0);
              each.components['dynamic-body'].syncToPhysics(); // This makes the position official
@@ -556,21 +691,21 @@ AFRAME.registerComponent("warp", {
     transition = document.querySelector("#transition");
  
     var transitionclose = function(warplocx, warplocy, warplocz) {
-        console.log(transition);
         transition.dispatchEvent(new CustomEvent("transitionclose"));
-        setTimeout(function(){warpwarp(warplocx, warplocy, warplocz);}, 1500)
+        setTimeout(function(){warpwarp(warplocx, warplocy, warplocz);}, 700); // value has to match animation speed, I guess?!
     };
 
     var warpwarp = function(warplocx, warplocy, warplocz) {
         rig.object3D.position.set(warplocx, warplocy, warplocz);
-        setTimeout(function(){transitionopen();}, 100)
+        rig.components['movement-controls'].updateNavLocation();
+        setTimeout(function(){transitionopen();}, 700)
     };
     
     var transitionopen = function() {
         transition.dispatchEvent(new CustomEvent("transitionopen"));
     };
-    
-    var warpfun = function(warpbutt, warplocx, warplocy, warplocz) {
+
+    var warpfun = function(warpbutt, warplocx, warplocy, warplocz) { // Figures out which button was hit then sets teleportation coordinates
         document.getElementById(warpbutt).addEventListener("grab-end", function(evt) {
             transitionclose(warplocx, warplocy, warplocz);
     }
@@ -583,5 +718,9 @@ AFRAME.registerComponent("warp", {
     warpfun("grabwarpbutt2", 9.33, 0, -0.5);
     warpfun("primatewarpbutt2", -13, 0, 1);
     warpfun("burialwarpbutt2", -14, 0, -17.7);
+    warpfun("homininwarpbutta1", -8, 0, -13.4);
+    warpfun("homininwarpbuttb1", 1.9, 5.3, -22);
+    warpfun("homininwarpbutta2", -8, 0, -13.4);
+    warpfun("homininwarpbuttb2", 1.9, 5.3, -22);
     }
     })

@@ -1,8 +1,40 @@
 # AnVRopomotron Changelog
-## 1.2 (next next)
--   Now targeted for early 2022 is the new Human Evolution Hall with a starter set of four scale models of prehistoric humans and hominins. 
+## 1.2 (3/24/2022)
+-   Welcome to a new Hall that addresses the big 'missing link' in this museum of biological anthropology. Human evolution is an especially difficult subject to portray in a way that informs but does not mislead. As with drawing, rendering the human form is a special challenge even compared to other primates. This version is the first of a growing set of exhibits as the other halls also experience.
+   -   The Human Evolution Hall has its own model separate from the rest of the museum. The twisty divider hallway is visible from both sides and when the visitor is inside, moving down one end will reveal that part of the museum. There are three occlusion planes inside to hide and show each end appropriately. The divider model actually incorprates walls and ceilings from the adjoining Halls that would be visible from inside. This was done in Blender cutting and snapping vertices to precisely match each section.
+   -   When in the Human Evolution Hall, the entire rest of the old museum despawns to save resources.
+   -   The exhibit hall is pretty cool! Unlike everything before it, this exhibit goes vertical on a spirally extended family tree of hominins. The staircase was made in Blender following tutorials on using the array modifier around a point. The projecting platforms are done manually following a set routine of extrusions and scales. The time labels on the steps are shadow stencils like with the signage in other parts of the museum (Blender text hovering just over the surface to cast a shadow when baking).
+   -   The flying maps make their way to the new Hall with extensions to the old code. The map image includes the new hall and a note on where the Credits are found. The maps got updated with the new Hall and two new spots to teleport: ground level and at the top of the sprial staircase. A line of code from Stackoverflow fixed an issue with the height not sticking. 
+   -   The shadow-producing light also moves with the user as they move through the divider hallway.
+   -   The stands for the maps, seen in the Centerpiece Hall and Human Evolution Hall, are now baked in to their respective floor models to reduce draw calls in A-Frame.
+   -   The four hominins have been worked on since 2020 from a base humanoid figure to each of the specific individuals. I modeled each one by one to a rigged and posed draft before wrapping them up with baking textures at the end of 2021 and the start of 2022 for Lucy. Some notes on their making:
+        -   The baking actually used a subdivided model as the source of shading and highlights, with those details painted onto a texture map that the actual model shares. There is a Youtube tutorial of this process on the Neanderthal. The process seems pretty powerful with the ability to fake detail convincingly. Some care has to be taken on especially small UV islands, such as around the eyes and nose. Separating and scaling those up ironed out the visual issues.
+        -   The forms are based on an general interpretation of how much soft tissue corresponds to the thickness of bones in humans and apes. Up-to-date research was done to see what professionals with hands-on experience thought, though I did not follow every one of those interpretations.
+        -   The colors are made to be artificial, in no way reflecting what they looked like in real life. The reasons are that it would be impossible to know for sure, and would involve more guesswork than I'm comfortable with. I also tried some realistic tones and the models crossed right into the uncanny valley. 
+        -   For the same reasons, no hair or fur is present. 
+        -   Poses for everyone but Lucy are based on photographs of modern people who live in the respective region of each fossil. 
+        -   Lucy, the last of the four models, uses a few techniques not seen in the others. The switch to Blender 3.0 resulted in a better Rigify mod that handles eyes in a more intuitive way. Baking textures also started out from a 4096px image and downscaled to 1024 to blur edges. Lucy also has a color-based Easter egg to reflect her name's origin.
+        -   To reduce draw calls, the hominin statues, stairs, and surrounding building are all one model.
+-   Raising Grab Lab tables lost their animations. It was causing problems with launching objects at light speed on load. Tables and objects now snap up into place for non-VR devices.
+-   All of the walls, floors, and ceilings got a new bake. Baking goes from 4096 but to 2048, and then smoothed by AI again. Just enough of the texture comes through.
+-   Updated A-Frame to 1.3.0. This version opens meshopt'd files by default, but unfortunately basis textures are still out of reach. As a trade-off to upgrading, I removed the basis images from earlier, returning to natively readable formats. The custom component to read meshoptimized and basis files was removed.
+-   JPG/PNG compressed using [squoosh.app](www.squoosh.app) on some of the largest images and texture files. The highlight is the Calatrava Castle model, which dropped from 9.5MB to 3.7MB due to the texture compression. 
+-   What else is neat is that the whole file size has dropped with this new update, even though the museum gained a large new space! We saved around 4MB.
+-   Warp tweaked again to chain functions and wait for each animation to finish.
+-   Background physics handling changed to prevent object explosion on load. Grabbable objects are naturally static objects. Being in VR switches objects on after their respective table loads to hold them. Working on this change was a harrowing few hours before the version release. A maddening explosion of objects was actually not caused by switching modes as I had thought, but was actually due to the new navmesh being multiple floors, which made it take on a much larger boundary box than intended. Removing physics properties from the navmesh was the final fix.
+-   HTML streamlined using A-Frame mixins more effectively for many text boxes.
 
-## 1.1.9 (next)
+## 1.1.9b (12/28/2021)
+-   Oculus controls keep flip flopping. Attempts to fix this issue:  
+   -   Updated A-Frame to 1.2. I didn't do this earlier because the update broke the navmesh and grabbing. To fix that: 
+      -   Used a tip to load the deprecated BufferGeometry
+      -   Used another tip to load a fixed aframe-extras 
+      -   Now teleporting is set to right hand and movement is set to left hand
+      - Changed the wall instructions to match the new setup
+   -   While I was tinkering: 
+      -   Warp animation tweaked to remove the startup wait
+
+## 1.1.9 (11/28/2021)
 -   Plesiadapis claws its way to the Scale Model Hall! A relative of primates, the plesiadapis looks like a large squirrel. As the oldest organism in the Scale Model Hall, it takes its place at the start of the row of prehistoric life and as the attractor to that part of the museum since the gibbon was moved back into a more appropriate location with the modern primates. 
 -   The latest exciting discovery by Lee Berger and his team is in the VR Grab Lab. The reconstruction of Leti's cranium features an intact midbrow and adult teeth in development. The VR ready model was made in stages. The original 10 million polygon (!) model was reduced to 2 million for later normal map baking. A copy was then taken down to 42,000 for vertex coloring based on published photos of the real replica. Lastly, another copy was taken down to 6,400 polygons, which is near the limit before the object outline became distorted. Details were then baked to this smallest model for huge rendering and file size savings.
 -   With the new floorplan, now is the time to work on strategically placed mini maps to warp the user to different exhibits. To reduce draw calls, maps will surreptitiously move through exhibits to be near you. The Centerpiece map at the start is mostly static since it is viewable from a lot of angles but it will move to the Scale Model Hall if you go deep in to the exhibit. The other map flits between the the exhibits more freely, starting in the Grab Lab but going where needed. Grab a carrot to go quickly to another exhibit.
