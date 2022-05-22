@@ -1,4 +1,4 @@
-console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
+// console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
 
 AFRAME.registerComponent('table-wait', {
     init: function () {
@@ -66,12 +66,15 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             for (let each of tablestand) {
                 each.object3D.position.y += 0.25;
             }
-            for (let each of standup) {
+            for (let each of grabbable) {
                 each.removeAttribute('dynamic-body');
                 each.removeAttribute('grabbable');
                 each.setAttribute('static-body');
+                each.object3D.position.y += 0.245;
+            }
+            for (let each of standup) {
                 each.setAttribute('rotation', {z: 90});
-                each.object3D.position.y += 0.15;
+                each.object3D.position.y += 0.2;
             }
         } else if (AFRAME.utils.device.checkHeadsetConnected() === true) { // VR Mode
             console.log('VR detected');
