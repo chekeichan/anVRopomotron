@@ -1,4 +1,12 @@
 # AnVRopomotron Changelog
+## 1.2.1 (next)
+-   A few hotfixes and tweaks that made it to live AnVRopomotron ahead of the next update.
+-   Human Evolution Hall is brighter. This was the original concept but the hominin models used sharp lighting that implied a darker room so I adjusted the room bake to match. It didn't make sense for a dark room to have such vibrant colors so I aimed to fix the lighting across the board. I redid the lighting for each hominin model, using a 360 panorama hdri of the hall for matching lighting. The hominin and hall models were then rebaked with the new light.
+-   Rebaking also fixed the divider hallway bake that had lighting issues on the Human Evolution side.
+-   Human Evolution Hall has a new sign stating that the presentation of hominins is not complete.
+-   Tweaking of asset load priorities so the divider hallway loads in sooner since it is visible from the starting position.
+-   Teleportation movement disabled due to unpredictable interactions with Quest controllers.
+
 ## 1.2 (3/24/2022)
 -   Welcome to a new Hall that addresses the big 'missing link' in this museum of biological anthropology. Human evolution is an especially difficult subject to portray in a way that informs but does not mislead. As with drawing, rendering the human form is a special challenge even compared to other primates. After two years of working 3D modeling and WebXR, I think I can do this topic justice. This version is the first of a growing set of exhibits as the other halls also experience.
    -   The Human Evolution Hall has its own model separate from the rest of the museum. The twisty divider hallway is visible from both sides and when the visitor is inside, moving down one end will reveal that part of the museum. There are three occlusion planes inside to hide and show each end appropriately. The divider model actually incorporates walls and ceilings from the adjoining Halls that would be visible from inside. This was done in Blender cutting and snapping vertices to precisely match each section.
