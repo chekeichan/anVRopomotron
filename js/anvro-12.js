@@ -308,7 +308,7 @@ if (scalecheck2 == 1) {
     visiswitch(scale1, true);
     visiswitch(scale2, true);
     visiswitch(scale3, true);
-    visiswitch(chdivzone, false);
+    visiswitch(chdivzone, true);
     visiswitch(hzone, false);
     mapwarp(-9.8, 1.4, 1.75, 0, -1.5708, -18.5, 1.4, -7.5, 0, 0);
 } else {
