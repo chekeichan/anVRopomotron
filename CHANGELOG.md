@@ -1,9 +1,10 @@
 # AnVRopomotron Changelog
-## 1.2.1 (next)
--   A few hotfixes and tweaks that made it to live AnVRopomotron ahead of the next update.
+## 1.2.1 (5/23/2022)
+-   A few hotfixes and tweaks that made it to live AnVRopomotron ahead of the next big update.
 -   Human Evolution Hall is brighter. This was the original concept but the hominin models used sharp lighting that implied a darker room so I adjusted the room bake to match. It didn't make sense for a dark room to have such vibrant colors so I aimed to fix the lighting across the board. I redid the lighting for each hominin model, using a 360 panorama hdri of the hall for matching lighting. The hominin and hall models were then rebaked with the new light.
 -   Rebaking also fixed the divider hallway bake that had lighting issues on the Human Evolution side.
 -   Human Evolution Hall has a new sign stating that the presentation of hominins is not complete.
+-   Occlusion tweaking so the divider hallway is visible while exiting stage 2 of the Modern Primate Hall.
 -   Tweaking of asset load priorities so the divider hallway loads in sooner since it is visible from the starting position.
 -   Teleportation movement disabled due to unpredictable interactions with Quest controllers.
 
