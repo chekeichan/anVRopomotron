@@ -28,7 +28,7 @@
 <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
 <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
 <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script> -->
 <script src="https://unpkg.com/aframe-fps-look-controls-component/dist/aframe-fps-look-controls-component.min.js"></script>
 <script src="js/anvro-12.js"></script>
 </head>
@@ -44,6 +44,7 @@
                 <a-asset-item id="buttonmodel" response-type="arraybuffer" src="models/button.glb"></a-asset-item>
                 <a-asset-item id="buttonupmodel" response-type="arraybuffer" src="models/button-up.glb"></a-asset-item>
                 <a-asset-item id="centerpiecemodel" response-type="arraybuffer" src="models/centerpiece.glb"></a-asset-item>
+                <a-asset-item id="c-h-dividermodel" response-type="arraybuffer" src="models/divider.glb"></a-asset-item>
                 <a-asset-item id="chimpstatuemodel" response-type="arraybuffer" src="models/chimpstatue.glb"></a-asset-item>
                 <a-asset-item id="plesiadapismodel" response-type="arraybuffer" src="models/plesiadapis.glb"></a-asset-item>
                 <img id="height" src="images/height.png">
@@ -137,6 +138,8 @@
 </a-entity>
 
 <!-- Hominin Model Text and Buttons-->
+<a-entity mixin="scale-box" id="hominin-hall-intro" visible="true"><a-entity mixin="h-scale-label" position="-9.6 1.5 -14" rotation="0 90 0" text="value: Take a walk up the stairs to move forward through time and see some of the hominins in our varied lineage. More models and other displays will be added to this hall!" geometry="height: 0.75;"></a-entity></a-entity>
+
 <a-entity position="3.72 1.65 -22.78" rotation="0 -67 0"><a-entity mixin="scale-box" id="h-lucy-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Lucy (A.L. 288-1)\nSite: Hadar, Ethiopia\nTime: 3.2 million years ago\nDiscovered by Donald Johanson and team in 1974\n\nRoughly 40% of Lucy's fossilized skeleton was found. The remains of the knee joint showed a valgus knee, one which directs toward the centerline of the body. This type of knee is an indicator of habitual bipedalism.;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Australopithecus afarensis\nRange: Ethiopia, Kenya, and Tanzania\nSpecies Age: 3.9 to 3 mya\n\nThe traits of this species show a mixture of ape features and those of humans who evolved from this genus. While the lower limbs are geared towards two-legged movement, the strong upper limbs and broad chest also suggest that climbing was an important ability. The skull was ape-like, though with shortened canine teeth."></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-lucy-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
 <a-entity position="0.77 2.7 -14.46" rotation="0 -157 0"><a-entity mixin="scale-box" id="h-turkana-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Turkana (Nariokotome) Boy (KNM WT-15000)\nSite: Nariokotome, Kenya\nTime: 1.6 million years ago \nDiscovered by Kamoya Kimeu and team in 1984\n\nThis individual is the most complete member of its species found. Estimates of his age vary, from 8 to 12 years old based on different measures. Had he reached adulthood, his height may have been just over 6 feet (185cm).\n\nSome researchers consider Turkana Boy to be a member of the African species Homo ergaster." geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Homo erectus\nRange: East and South Africa, Europe, Middle East, East Asia, and Southeast Asia\nSpecies Age: 1.8 million to 300,000 years ago\n\nThis species is the longest lived in the human lineage,with many changes from earlier hominins. Biologically, they possess more traits for endurance running, such as proportionally longer legs and shorter arms. They are also linked with many technological developments, such as the control of fire and the Acheulian tool style." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-turkana-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
 <a-entity position="-2.3 4.65 -20.3" rotation="0 -147 0"><a-entity mixin="scale-box" id="h-flores-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Flo (LB1)\nSite: Liang Bua Cave, Flores, Indonesia\nTime: 100,000 to 60,000 years ago\nDiscovered by Peter Brown, Michael Morwood, and team in 2003\n\nThis individual is represented by a nearly complete skull, pelvis and lower limbs, and fragmentary upper limbs. Studies of the cranium found a similarity to Homo erectus as opposed to modern Homo sapiens. Skeletal traits suggest LB1 was female with an age-at-death estimate of around 30 years old." geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Homo floresiensis\nRange: Flores Island, Indonesia\nSpecies Age: 100,000 to 60,000 years ago\n\nThe existence of H. floresiensis expands our view of recent hominin diversity. As with another  hominin, Homo luzonensis, the size of this species fits the biological trend of insular dwarfing, the trend to evolve smaller in an island environment. How H. floresiensis fits in the hominin timeline is an open question." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="-0.37 -0.09 1.6" id="h-flores-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
@@ -153,7 +156,7 @@
       <a-text id="GL-SP" visible="false" position="2.6 -0.1 0.1" value="Info: Touch objects"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
 
     <!-- Scale Model Hall Title -->
-      <a-text id="SMH-VR" visible="false" position="-6.6 -0.77 0.01" value="Move: Walk with left thumbstick or forward on right thumbstick to teleport.\n\nTurn: Left or right on right thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-VR" visible="false" position="-6.6 -0.77 0.01" value="Move: Walk and strafe with thumbstick\n\nTurn: You have to turn yourself, sorry!\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
       <a-text id="SMH-PC1" visible="false" position="-6.6 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\nLook: Swipe mouse\nInfo: Click orbs\nSwitch to Mouselook: M key"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
       <a-text id="SMH-PC2" visible="false" position="-6.6 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\nInfo: Click orbs in reticle\nSwitch to Swipe-Look: M key"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
       <a-text id="SMH-SP" visible="false" position="-6.6 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
@@ -396,13 +399,13 @@
      <a-entity id="atable" position="4.94 0 -2.1"> <!-- This sets the relative state of the table --> 
         <a-entity table-wait class="table center-zone" static-body="shape: box;" scale="1 1 1" id="table4" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Artifacts; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-  		<a-entity id="lomek-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.01 -0.6" mixin="obj" gltf-model="#lomekmodel"></a-entity>
-		<a-entity id="acheul-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.01 -0.45" mixin="obj" gltf-model="#acheulmodel"></a-entity>
-        <a-entity id="mousterian-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.01 -0.3" mixin="obj" gltf-model="#mousterianmodel"></a-entity>
-        <a-entity id="clovis-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.01 -0.2" mixin="obj" gltf-model="#clovismodel"></a-entity>
-        <a-entity id="harpoon-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.01 0" mixin="obj" gltf-model="#harpoonmodel"></a-entity>
-        <a-entity id="moundville-grab" class="clickable grabbable center-obj-zone table4obj"  position="0 1.01 0.3" mixin="obj" gltf-model="#moundvillemodel"></a-entity>
-        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup table4obj"  position="0 1.1 0.5" mixin="obj" gltf-model="#daggermodel" dynamic-body="shape: box; mass: 5"></a-entity>
+  		<a-entity id="lomek-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.6" mixin="obj" gltf-model="#lomekmodel"></a-entity>
+		<a-entity id="acheul-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.45" mixin="obj" gltf-model="#acheulmodel"></a-entity>
+        <a-entity id="mousterian-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.3" mixin="obj" gltf-model="#mousterianmodel"></a-entity>
+        <a-entity id="clovis-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.2" mixin="obj" gltf-model="#clovismodel"></a-entity>
+        <a-entity id="harpoon-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 0" mixin="obj" gltf-model="#harpoonmodel"></a-entity>
+        <a-entity id="moundville-grab" class="clickable grabbable center-obj-zone table4obj" static-body position="0 1.01 0.3" mixin="obj" gltf-model="#moundvillemodel"></a-entity>
+        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.1 0.5" mixin="obj" gltf-model="#daggermodel" dynamic-body="shape: box; mass: 5"></a-entity>
 </a-entity>
 
      <!-- Artifact table 2-->
@@ -533,10 +536,10 @@
          
          
 <!-- Credits -->
-<a-text position="-0.7 3.9 -7.499" value="Credits and Info" color="black" width="2"></a-text>
+<a-text position="-0.7 3.9 -7.49" value="Credits and Info" color="black" width="2"></a-text>
 <a-entity static-body togg-cred mixin="button" class="clickable"  position="1.5 1 -8" id="credbutt" gltf-model="#buttonmodel" rotation="90 0 0" shadow ></a-entity>  
 
-<a-entity mixin="credit-text" class="credits" id="credits-1" position="-0.7 2 -7.499" text="value:  Environment, primate models, and text by Dr. Keith Chan. 
+<a-entity mixin="credit-text" class="credits" id="credits-1" position="-0.7 2 -7.49" text="value:  Environment, primate models, and text by Dr. Keith Chan. 
 
 This program is presented with the CC-Attribution-NonCommercial-ShareAlike 3.0 license. You may display this app and modify its code for your non-commericial use. Development partially funded by MiraCosta College, Oceanside, California.
   
@@ -546,7 +549,7 @@ Contact me: drkeithcchan@gmail.com
 Github: https://github.com/chekeichan/anVRopomotron
 Stay up to date: http://www.keithcchan.com/tag/anvropomotron;"></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-2" visible="false" position="-0.7 2 -7.499" text="value: -Model Sources-
+<a-entity mixin="credit-text" class="credits" id="credits-2" visible="false" position="-0.7 2 -7.49" text="value: -Model Sources-
 All models are used under Creative Commons or similar licenses. Models have been converted to low poly for VR presentation.
 
 -Scale Model Hall-
@@ -591,7 +594,7 @@ Original Source: Morphosource. The University of the Witwatersrand. Collection U
 https://www.morphosource.org/concern/media/000394515
 ;"></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-3" position="-0.7 2 -7.499" visible="false" text="value: More -VR Grab Lab-
+<a-entity mixin="credit-text" class="credits" id="credits-3" position="-0.7 2 -7.49" visible="false" text="value: More -VR Grab Lab-
 Homo naledi - Neo
 Media 000054666: Les1 Homo Naledi 'Neo' Reconstruction Of Cranium [Mesh] [Laser]
 Original Source: Morphosource. The University of the Witwatersrand. Collection Homo naledi 'Neo'. Managed by Sonia Sequeria (CC Attribution-NonCommercial 4.0 International )
@@ -628,7 +631,7 @@ D’Arcy Thompson Zoology Museum at the University of Dundee (CC-BY-NC-SA)
 https://www.myminifactory.com/object/3d-print-indri-lemur-skull-35329
 ;"></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-4" position="-0.7 2 -7.499" visible="false" text="value: -More Modern Primates-
+<a-entity mixin="credit-text" class="credits" id="credits-4" position="-0.7 2 -7.49" visible="false" text="value: -More Modern Primates-
 Mandrill
 Smithsonian 3D (CC0 Public Domain)
 Cranium: https://3d.si.edu/object/3d/mandrillus-sphinx-cranium%3A83efaccc-2462-4306-a52c-14d2115976db
@@ -662,7 +665,7 @@ Female Cranium: https://3d.si.edu/object/3d/gorilla-gorilla-gorilla-cranium:b393
 Female Mandible: https://3d.si.edu/object/3d/gorilla-gorilla-gorilla-mandible:6dd351cb-98f2-4c4e-81d1-40a4fdf1d0a9
 ;"></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-5" position="-0.7 2 -7.499" visible="false" text="value: -Artifacts-
+<a-entity mixin="credit-text" class="credits" id="credits-5" position="-0.7 2 -7.49" visible="false" text="value: -Artifacts-
 Acheulian Handaxe
 RLA Archaeology (CC-Attribution-NonCommercial-ShareAlike 3.0)
 https://sketchfab.com/3d-models/acheulean-hand-axe-518a2-06309df47b73468a8cd2500b236e80ee
@@ -708,7 +711,7 @@ Raúl Balsera Moraño (CC-BY-NC-SA)
 https://sketchfab.com/3d-models/venus-de-willendorf-ab2fb84f3e3947ef975d5feb09e1c639
 ;"></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-6" visible="false" position="-0.7 2 -7.499" text="value: Burial Chamber
+<a-entity mixin="credit-text" class="credits" id="credits-6" visible="false" position="-0.7 2 -7.49" text="value: Burial Chamber
 Captain Gabriel Archer burial
 Smithsonian 3D, National Museum of Natural History Anthropology Department, and Jamestown Rediscovery (Preservation Virginia) (Educational use)
 https://3d.si.edu/object/3d/captain-gabriel-archer-burial:f550015a-7e43-435b-90dc-e7c1367bc5fb
@@ -726,7 +729,7 @@ Benoit Rogez (CC BY-NC 4.0)
 https://skfb.ly/6UIZn
 ;"></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-7" visible="false" position="-0.7 2 -7.499" text="value: Image Sources
+<a-entity mixin="credit-text" class="credits" id="credits-7" visible="false" position="-0.7 2 -7.49" text="value: Image Sources
 Scale Model Hall
 Aye-Aye: &quot;Aye aye Nocturnal Lemur&quot; by Rod Waddington (CC BY-SA 2.0)
 https://flic.kr/p/N99ChK
@@ -772,7 +775,7 @@ Chimpanzee: By the National Museum of Natural History. (CC BY-SA 2.0)
 https://www.si.edu/object/pan-troglodytes:nmnhvz_7594233
 ; "></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-8" visible="false" position="-0.7 2 -7.499" text="value: More Image Sources
+<a-entity mixin="credit-text" class="credits" id="credits-8" visible="false" position="-0.7 2 -7.49" text="value: More Image Sources
 Engraved Water Bottle: &quot;Ivory-billed woodpeckers&quot; by John James Audubon, image by Houghton Library. (Public Domain)
 https://commons.wikimedia.org/wiki/File:Houghton_MS_Am_21_(31)_-_John_James_Audubon,_ivory_billed_woodpecker.jpg
 
@@ -819,7 +822,7 @@ Woman of Willendorf: &quot;Vénus de Lespugue Gravettien Musée de l'Homme&quot;
 https://commons.wikimedia.org/wiki/File:Vénus_de_Lespugue_Gravettien_Musée_de_l%27Homme_04022018_2.jpg
 ; "></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-9" visible="false" position="-0.7 2 -7.499" text="value: More Image Sources
+<a-entity mixin="credit-text" class="credits" id="credits-9" visible="false" position="-0.7 2 -7.49" text="value: More Image Sources
 Burial Chamber
 World Map: &quot;Ecker IV projection SW&quot; Image by Strebe (CC BY-SA 3.0)
 https://commons.wikimedia.org/wiki/File:Ecker_IV_projection_SW.jpg
@@ -849,7 +852,7 @@ https://flic.kr/p/UZdDhZ
 https://www.britishmuseum.org/collection/image/166522001
 ; "></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-10" visible="false" position="-0.7 2 -7.499" text="value: VR Sources
+<a-entity mixin="credit-text" class="credits" id="credits-10" visible="false" position="-0.7 2 -7.49" text="value: VR Sources
 Diego Marcos, Don McCurdy, and Kevin Ngo
 A-Frame
 
