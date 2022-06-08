@@ -1,4 +1,4 @@
-// console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
+console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
 
 AFRAME.registerComponent('table-wait', {
     init: function () {
@@ -57,6 +57,8 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
         var grabbable = sceneEl.querySelectorAll('.grabbable');
         var rig = document.querySelector('#rig');
         var camera = document.querySelector('#camera');
+        var handleft = document.querySelector('#lefthand');
+        var handright = document.querySelector('#righthand');
         var state = "stand";
         if (AFRAME.utils.device.isMobile() === true) { // Smartphone Mode
             sceneEl.setAttribute("vr-mode-ui", "enabled", "false");
@@ -80,7 +82,9 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             console.log('VR detected');
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
-            rig.setAttribute("movement-controls", "speed", 0.10); // VR movement is slower than other modes for non barfing
+            rig.removeAttribute('movement-controls'); // Remove non-working controls
+            handleft.setAttribute('smooth-locomotion', {target: '#rig', reference: '#camera'});
+            handright.setAttribute('snap-turn', {target: '#rig', reference: '#camera'});
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
             console.log('PC detected');
             document.querySelector('#GL-PC1').object3D.visible = true;
