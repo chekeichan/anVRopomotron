@@ -28,7 +28,7 @@
 <script src="js/aframe-physics-system.min.js"></script>
 <script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
 <script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
-<script src="https://unpkg.com/aframe-locomotion@0.2.0/dist/aframe-locomotion.umd.min.js"></script>
+<script type="module" src="js/mrxz/main.js"></script>
 <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
 <script src="https://unpkg.com/aframe-fps-look-controls-component/dist/aframe-fps-look-controls-component.min.js"></script>
@@ -36,7 +36,7 @@
 </head>
 
 <body>
-<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://unpkg.com/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: js/draco/">
+<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui nav-mesh-strategy physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://unpkg.com/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: js/draco/">
        
 <a-assets timeout="80000"> <!-- Loads models -->
                 <a-asset-item id="tablemodel" id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
@@ -84,18 +84,18 @@
 				 <a-mixin id="mapmarker" scale ="0.17 0.1 0.17" rotation="-90 0 0" geometry="primitive: cone; radiusBottom: 0.15; radiusTop: 0.02; segmentsRadial: 6" material="color: #ffaa00; emissive: #ffaa00; emissiveIntensity: 0.5; flatShading:  true;"></a-mixin>
  </a-assets>
  
-<a-entity position="0 0 0"  gltf-model="#navmesh" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
+<a-entity position="0 0 0"  gltf-model="#nav" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
 <a-entity position="0 0 0" static-body gltf-model="#floor" visible="false"></a-entity> <!-- Solid Floor to Block Objects -->
 <a-entity class="floorplan-zone" position="0 0 0" gltf-model="models/floorplan.glb"></a-entity> <!--  Main Building, no Human Evolution-->
 <a-entity class="c-h-div-zone" position="0 0 0" gltf-model="models/divider.glb"></a-entity> <!-- Hominin Transition Zone -->
 
-<a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0.01 1"> <!-- Player Character -->
-    <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
-        <a-entity id="camera" nav-mesh-constrained="offset: 0 1.6 0" camera look-controls raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
+<a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0 1"> <!-- Player Character -->
+    <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
+        <a-entity id="camera" camera look-controls raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
             <a-entity id="crosshair" visible="false" cursor="rayOrigin:mouse" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: #0055ff; shader: flat" raycaster="far: 5; objects: .clickable"></a-entity>
             <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 700;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 700;"></a-entity></a-entity>
-        <a-entity id="lefthand" mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff"></a-entity>
-        <a-entity id="righthand" mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8"></a-entity>
+        <a-entity id="lefthand" mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8"></a-entity>
+        <a-entity id="righthand" mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff"></a-entity>
  </a-entity>
  
 <a-light type="ambient" color="white" intensity="0.05"></a-light> 
@@ -158,7 +158,7 @@
       <a-text id="GL-SP" visible="false" position="2.6 -0.1 0.1" value="Info: Touch objects"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
 
     <!-- Scale Model Hall Title -->
-      <a-text id="SMH-VR" visible="false" position="-6.6 -0.77 0.01" value="Move: Walk and strafe with thumbstick\n\nTurn: You have to turn yourself, sorry!\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-VR" visible="false" position="-6.6 -0.77 0.01" value="Teleport: Press forward on left thumbstick\n\nTurn: Right thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
       <a-text id="SMH-PC1" visible="false" position="-6.6 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\nLook: Swipe mouse\nInfo: Click orbs\nSwitch to Mouselook: M key"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
       <a-text id="SMH-PC2" visible="false" position="-6.6 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\nInfo: Click orbs in reticle\nSwitch to Swipe-Look: M key"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
       <a-text id="SMH-SP" visible="false" position="-6.6 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
