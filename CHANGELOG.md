@@ -1,4 +1,9 @@
 # AnVRopomotron Changelog
+## 1.2.2 (next)
+-   Ardi the Ardipithecus ramidus makes her way down to the Human Evolution Hall! This important discovery gives a clear image of what hominin evolution was like pre-Lucy. 
+-   New version, new control scheme. I managed to cobble together working components to make the left hand teleport and the right hand turn left and right. 
+
+
 ## 1.2.1 (5/23/2022)
 -   A few hotfixes and tweaks that made it to live AnVRopomotron ahead of the next big update.
 -   Human Evolution Hall is brighter. This was the original concept but the hominin models used sharp lighting that implied a darker room so I adjusted the room bake to match. It didn't make sense for a dark room to have such vibrant colors so I aimed to fix the lighting across the board. I redid the lighting for each hominin model, using a 360 panorama hdri of the hall for matching lighting. The hominin and hall models were then rebaked with the new light.

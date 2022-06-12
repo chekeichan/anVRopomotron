@@ -83,8 +83,7 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
             rig.removeAttribute('movement-controls'); // Remove non-working controls
-            handleft.setAttribute('smooth-locomotion', {target: '#rig', reference: '#camera'});
-            handright.setAttribute('snap-turn', {target: '#rig', reference: '#camera'});
+            handleft.setAttribute('snap-turn', {target: '#rig', reference: '#camera'});
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
             console.log('PC detected');
             document.querySelector('#GL-PC1').object3D.visible = true;
