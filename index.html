@@ -138,8 +138,13 @@
 <a-entity position="0 0 0" gltf-model="models/hominin.glb"></a-entity> <!-- Human Evolution structure -->
 </a-entity>
 
+<a-entity position="-0.434 1.8 -9.8" rotation="0 -90 0"><a-image class="ch-div-zone" mixin="scale-label" src="images/d-chart-p.png" width="2.4" height="3"></a-image><a-text text="width: 2; value: By T. Michael Keesey, used under CC BY 2.0 ; align: right; color: black" position="1.2 -1.62 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity>
+
 <!-- Hominin Model Text and Buttons-->
 <a-entity mixin="scale-box" id="hominin-hall-intro" visible="true"><a-entity mixin="h-scale-label" position="-9.6 1.5 -14" rotation="0 90 0" text="value: Take a walk up the stairs to move forward through time and see some of the hominins in our varied lineage. More models and other displays will be added to this hall!" geometry="height: 0.75;"></a-entity></a-entity>
+
+<a-entity position="3.72 1.65 -22.78" rotation="0 -67 0"><a-entity mixin="scale-box" id="h-ardi-tit" visible="true"><a-entity position="-4.75 1.5 -2.1" rotation="0 43 0"><a-image mixin="scale-label" src="images/h-ardi-p.jpg" width="3" height="2"></a-image><a-text text="width: 2; value: Awash National Park\nBy Gregoire Dubois, used under CC BY-NC-SA 2.0 ; align: right; color: black" position="1.42 -1.14 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
+<a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Ardi (ARA-VP-6/1)\nSite: Middle Awash, Ethiopia\nTime: 4.4 million years ago\nDiscovered by Tim White and team in 1994\n\nUnder study for over a decade, researchers published findings on the Ardi skeleton in 2009. Throughout the body are adapations for both tree climbing and bipeal walking on falt ground. For example, the foot has a divergent big toe for grasping, but the foot structure is rigid.;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Ardipithecus ramidus\nRange: Ethiopia\nSpecies Age: 4.4 mya\n\nSmall canines in both males and females resemble those of modern species with low conflict and high male parental investment.\n\nReconstruction of the paleoenvironment showed that Ardi lived in a wooded environment within savannahs with nearby water."></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-lucy-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
 
 <a-entity position="3.72 1.65 -22.78" rotation="0 -67 0"><a-entity mixin="scale-box" id="h-lucy-tit"><a-entity position="-4.75 1.5 -2.1" rotation="0 43 0"><a-image mixin="scale-label" src="images/h-lucy-p.jpg" width="3" height="2"></a-image><a-text text="width: 2; value: False color satellite image of the Afar region\nBy European Space Agency, used under CC BY-SA 2.0 ; align: right; color: black" position="1.42 -1.14 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
 <a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Lucy (A.L. 288-1)\nSite: Hadar, Ethiopia\nTime: 3.2 million years ago\nDiscovered by Donald Johanson and team in 1974\n\nRoughly 40% of Lucy's fossilized skeleton was found. The remains of the knee joint showed a valgus knee, one which directs toward the centerline of the body. This type of knee is an indicator of habitual bipedalism.;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Australopithecus afarensis\nRange: Ethiopia, Kenya, and Tanzania\nSpecies Age: 3.9 to 3 mya\n\nThe traits of this species show a mixture of ape features and those of humans who evolved from this genus. While the lower limbs are geared towards two-legged movement, the strong upper limbs and broad chest also suggest that climbing was an important ability. The skull was ape-like, though with shortened canine teeth."></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-lucy-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
@@ -445,7 +450,8 @@
 </a-entity></a-entity>
 	
 <!-- Scale Models -->
-        <a-entity class="scale-zone-2" position="-19.33 0 2.55">
+<a-entity mixin="scale-box" id="scale-model-hall-intro" visible="true"><a-entity mixin="h-scale-label" position="-11.2 1.5 5.98" rotation="0 180 0" text="value: Continue on to see more of the modern primates that we share the planet with, grouped by region. Interact with the orange orbs to view info and photos." geometry="height: 0.75;"></a-entity></a-entity>
+    <a-entity class="scale-zone-2" position="-19.33 0 2.55">
         <a-entity gltf-model="models/gorilla-mouselemur.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> <!-- Model File -->
         <a-entity mixin="button" class="clickable" position="1.5 0 -0.4" id="gorillabutt" gltf-model="#buttonmodel"></a-entity></a-entity> <!-- Info Button -->
        
@@ -735,7 +741,7 @@ https://skfb.ly/6UIZn
 ;"></a-entity>
 
 <a-entity mixin="credit-text" class="credits" id="credits-7" visible="false" position="-0.7 2 -7.49" text="value: Image Sources
-Scale Model Hall
+-Scale Model Hall-
 Aye-Aye: &quot;Aye aye Nocturnal Lemur&quot; by Rod Waddington (CC BY-SA 2.0)
 https://flic.kr/p/N99ChK
 
@@ -766,6 +772,10 @@ https://commons.wikimedia.org/wiki/File:Chimpanzees_in_Kibaale_Forest_NP.jpg
 Mandrills: &quot;Mandrill Family Portrait&quot; by Eric Kilby (CC BY-SA 2.0)
 https://flic.kr/p/wdoZL1
 
+-Divider Hall-
+&quot;What Evolution Looks Like&quot; By T. Michael Keesey (CC BY 2.0)
+https://flic.kr/p/vEj6pg
+
 -Human Evolution Hall-
 Ardipithecus ramidus:&quot;Awash National Park, Ethiopia&quot; by Gregoire Dubois (CC BY-NC-SA 2.0)
 https://flic.kr/p/K8JM2Y
@@ -782,7 +792,7 @@ https://flic.kr/p/3jNfok
 Neanderthal Composite: &quot;International conference : Ancien Arbela. Pre-Islamic History of Erbil (Erbil, April, 7-10 2014)&quot; by Institut français du Proche-Orient (CC BY-SA 2.0)
 https://flic.kr/p/nencEz
 
-VR Grab Lab
+-VR Grab Lab-
 Acheulian Handaxe: &quot;Palaeolithic Handaxe&quot; by The Portable Antiquities Scheme/ The Trustees of the British Museum (CC BY 2.0)
 https://commons.wikimedia.org/wiki/File:Palaeolithic_handaxe_(FindID_437041-356797).tif
 

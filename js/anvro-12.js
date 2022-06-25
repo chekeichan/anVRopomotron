@@ -289,7 +289,6 @@ if (scalecheck1 == 1) {
     visiswitch(floorplanzone, true);
     visiswitch(czone, true);
     visiswitch(czoneobjs, true);
-    visidistanceswitch(czoneobjs, false);
     visiswitch(gzone, false);
     visiswitch(gzoneobjs, false);
     visiswitch(scale1, true);
@@ -357,8 +356,8 @@ if (chdivcheck1 == 1) {
     visiswitch(floorplanzone, true);
     visiswitch(bzone, false);
     visiswitch(czone, true);
+    visiswitch(scale2, false); // The order of scale 2 and scale 1 keeps the rhesus monkey visible.
     visiswitch(scale1, true);
-    visiswitch(scale2, false);
     visiswitch(scale3, false);
     visiswitch(chdivzone, true);
     visiswitch(hzone, false);
