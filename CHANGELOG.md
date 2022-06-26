@@ -1,7 +1,12 @@
 # AnVRopomotron Changelog
 ## 1.2.2 (next)
--   Ardi the Ardipithecus ramidus makes her way down to the Human Evolution Hall! This important discovery gives a clear image of what hominin evolution was like pre-Lucy. 
--   New version, new control scheme. I managed to cobble together working components to make the left hand teleport and the right hand turn left and right. 
+-   Ardi the Ardipithecus ramidus makes her way down to the Human Evolution Hall! This important discovery gives a clear image of what hominin evolution was like pre-Lucy. I've never seen Ardi and Lucy lined up so making the model was illuminating for me. I didn't know that Ardi was taller and that her arms were so long. The reduction in arm length in Lucy is very stark now, though her arms are still proportionately longer than our own.
+-   Human Evolution Hall got some flavor with images accompanying each model. The pictures are of the site or general region of each find. 
+-   It took me a year but I realized that the rhesus monkey is in the Africa section when it should be in Asia. Problem is that there are published assignments that depend on the rhesus monkey's position. My Alexander the Great solution is to keep it there and add a sign implying every other model is grouped by region but the rhesus is not.
+-   Occlusion logic tweaked so rhesus monkey is visible from the Divider Hall.
+-   Divider Hall got a some flavor with a good image showing how we view human evolution. 
+-   New version; new control scheme. I managed to cobble together working components to make the left hand teleport and the right hand turn left and right. 
+-   
 
 
 ## 1.2.1 (5/23/2022)
