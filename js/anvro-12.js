@@ -466,6 +466,7 @@ grabpanel("h-turkana-butt","#h-turkana-tit");
 grabpanel("h-flores-butt","#h-flores-tit");
 grabpanel("h-neanderthal-butt","#h-neanderthal-tit");
 grabpanel("h-sapiens-butt","#h-sapiens-tit");
+grabpanel("proboscis-butt","#proboscis-tit");
 }
 })
 

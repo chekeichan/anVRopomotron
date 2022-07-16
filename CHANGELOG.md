@@ -5,6 +5,7 @@
 -   It took me a year but I realized that the rhesus monkey is in the Africa section when it should be in Asia. Problem is that there are published assignments that depend on the rhesus monkey's position. My Alexander the Great solution is to keep it there and add a sign implying every other model is grouped by region but the rhesus is not.
 -   Occlusion logic tweaked so rhesus monkey is visible from the Divider Hall.
 -   Divider Hall got a some flavor with a good image showing how we view human evolution. 
+-   Tweaks to asset loading.
 -   New version; new control scheme. I managed to cobble together working components to make the left hand teleport and the right hand turn left and right. 
 -   
 

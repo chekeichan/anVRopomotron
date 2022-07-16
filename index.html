@@ -38,11 +38,12 @@
 <a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://unpkg.com/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: js/draco/">
        
 <a-assets timeout="80000"> <!-- Loads models -->
-                <a-asset-item id="tablemodel" id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
+                <a-asset-item id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
                 <a-asset-item id="room" response-type="arraybuffer" src="models/floorplan.glb"></a-asset-item>
                 <a-asset-item id="navmesh" response-type="arraybuffer" src="models/nav.glb"></a-asset-item>
                 <a-asset-item id="floor" response-type="arraybuffer" src="models/solidfloor.glb"></a-asset-item>
                 <a-asset-item id="buttonmodel" response-type="arraybuffer" src="models/button.glb"></a-asset-item>
+                <a-asset-item id="trophymodel" response-type="arraybuffer" src="models/trophy.glb"></a-asset-item>
                 <a-asset-item id="buttonupmodel" response-type="arraybuffer" src="models/button-up.glb"></a-asset-item>
                 <a-asset-item id="centerpiecemodel" response-type="arraybuffer" src="models/centerpiece.glb"></a-asset-item>
                 <a-asset-item id="c-h-dividermodel" response-type="arraybuffer" src="models/divider.glb"></a-asset-item>
@@ -85,8 +86,8 @@
  
 <a-entity position="0 0 0"  gltf-model="#navmesh" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
 <a-entity position="0 0 0" static-body gltf-model="#floor" visible="false"></a-entity> <!-- Solid Floor to Block Objects -->
-<a-entity class="floorplan-zone" position="0 0 0" gltf-model="models/floorplan.glb"></a-entity> <!--  Main Building, no Human Evolution-->
-<a-entity class="c-h-div-zone" position="0 0 0" gltf-model="models/divider.glb"></a-entity> <!-- Hominin Transition Zone -->
+<a-entity class="floorplan-zone" position="0 0 0" gltf-model="#room"></a-entity> <!--  Main Building, no Human Evolution-->
+<a-entity class="c-h-div-zone" position="0 0 0" gltf-model="#c-h-dividermodel"></a-entity> <!-- Hominin Transition Zone -->
 
 <a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0 1"> <!-- Player Character -->
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
@@ -289,18 +290,18 @@
 
         </a-entity>
 
-        <a-entity gltf-model="models/ardi.glb" static-body position="0 0 0" rotation="0 0 0"></a-entity> <!-- Demo Place -->
+        <a-entity gltf-model="models/prob.glb" static-body position="0 0 0" rotation="0 0 0"></a-entity> <!-- Demo Place -->
         <a-entity gltf-model="models/stairs.glb" static-body position="0 0 0" rotation="0 0 0"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
 <a-entity class="center-zone" position="4.5 0 4" rotation="0 -135 0">
     <a-entity mixin="button" class="clickable" position="-.9 0 -0.1" id="chimpstatuebutt" gltf-model="#buttonmodel"></a-entity>
-    <a-entity gltf-model="models/chimpstatue.glb" static-body rotation="0 0 0">
+    <a-entity gltf-model="#chimpstatuemodel" static-body rotation="0 0 0">
     </a-entity>
     <a-entity  mixin="scale-box" id="chimpstatue-tit" position="-1.25 1.2 -0.7" rotation="0 45 0">
         <a-entity mixin="scale-label-border" position="0 0 0"></a-entity><a-entity id="chimpstatue-info" mixin="scale-label" position="0 0 0.01" text="value: &quot;Coverversion&quot;\nLocation: Au von Tulln, Austria\nDate: 2008\nSource: Scan by Niederösterreich 3D\n\nNotes: This statue by Klaus Weber is based on the 1893 &quot;Affe mit Schädel&quot; (Monkey with Skull) by Hugo Rheinhold.; "></a-entity><!-- Info Box -->
        </a-entity></a-entity>
-<a-entity class="scale-zone-1" gltf-model="models/trophy.glb" static-body position="-7.2 0 5.77"></a-entity>
+<a-entity class="scale-zone-1" gltf-model="#trophymodel" static-body position="-7.2 0 5.77"></a-entity>
 <a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
    <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" gltf-model="#buttonmodel" shadow></a-entity>
     
@@ -416,7 +417,7 @@
         <a-entity id="clovis-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.2" mixin="obj" gltf-model="#clovismodel"></a-entity>
         <a-entity id="harpoon-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 0" mixin="obj" gltf-model="#harpoonmodel"></a-entity>
         <a-entity id="moundville-grab" class="clickable grabbable center-obj-zone table4obj" static-body position="0 1.01 0.3" mixin="obj" gltf-model="#moundvillemodel"></a-entity>
-        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.1 0.5" mixin="obj" gltf-model="#daggermodel" dynamic-body="shape: box; mass: 5"></a-entity>
+        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.1 0.5" mixin="obj" gltf-model="#daggermodel"></a-entity>
 </a-entity>
 
      <!-- Artifact table 2-->
@@ -541,9 +542,16 @@
            </a-entity></a-entity>
 
            <a-entity class="scale-zone-1" position="-5.115 0 -4.55">
-            <a-entity gltf-model="models/plesiadapis.glb" position="0 1.26 -0.14" rotation="0 180 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
+            <a-entity gltf-model="#plesiadapismodel" position="0 1.26 -0.14" rotation="0 180 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
             <a-entity mixin="button" class="clickable" position="0.45 0 -0.1" id="plesiadapisbutt" gltf-model="#buttonmodel"></a-entity>
             <a-entity mixin="scale-box" id="stand14-tit"><a-entity mixin="scale-label-border" position="0.15 0.6 0.58" rotation="0 90 0" geometry="height: 0.75"></a-entity><a-entity mixin="scale-label" position="0.155 0.6 0.58" rotation="0 90 0" geometry="height: 0.7" text="value: Plesiadapis\nScientific Name: Plesiadapis cookei\nLocation: Wyoming, USA\nTime: 62 to 56 million years ago\n\nNotes: Plesiadapis is a relative of primates with traits adapted to clinging to large diameter tree branches and trunks.; "></a-entity></a-entity></a-entity>
+
+            <a-entity class="scale-zone-3" position="-19.6 0 -4.4" rotation="0 0 0">
+                <a-entity gltf-model="models/proboscis.glb" position="0 0.05 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
+                <a-entity mixin="button" class="clickable" position="1.25 0 0.06" id="proboscisbutt" gltf-model="#buttonmodel"></a-entity>
+                <a-entity mixin="scale-box" id="stand13-tit"><a-entity mixin="scale-label-border" position="0.04 0.64 0.93" rotation="0 90 0"></a-entity><a-entity mixin="scale-label" position="0.05 0.64 0.93" rotation="0 90 0" text="value: Proboscis Monkey\nScientific Name: Nasalis larvatus\nLocation: Borneo\nTime: Present\n\nNotes: Proboscis monkey males (right) have exaggerated noses that are related to success with attracting females (left).; "></a-entity><!-- Info Box -->
+                <a-entity position="-1.13 2.8 1.7" rotation="0 90 0"><a-image mixin="scale-label" src="images/proboscis-p.jpg" position="0 0 0"  width="3" height="2"></a-image><a-text text="width: 2; value: &quot;A male and a female Proboscis Monkey&quot; by shankar s, used under CC BY 2.0; align: right; color: black; wrapCount: 45" position="1.5 -1.04 0.07" rotation="0 0 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
+               </a-entity></a-entity>
         
          
          
@@ -746,32 +754,32 @@ https://skfb.ly/6UIZn
 Aye-Aye: &quot;Aye aye Nocturnal Lemur&quot; by Rod Waddington (CC BY-SA 2.0)
 https://flic.kr/p/N99ChK
 
+Black Howler Monkey: &quot:Black Howler Monkey Family&quot; by Kent MacElwee (CC BY-NC 2.0)
+https://www.flickr.com/photos/kmacelwee/3132129839/
+
 Bornean Orangutan: &quot;Male Bornean Orangutan - Big Cheeks&quot; by Eric Kilby (CC BY-SA 2.0)
 https://upload.wikimedia.org/wikipedia/commons/9/9d/Male_Bornean_Orangutan_-_Big_Cheeks.jpg
 
-Lar Gibbon: photo by Ladislav Kral (CC BY-SA 3.0)
-https://upload.wikimedia.org/wikipedia/commons/a/aa/Hylobates-lar-04-Chiang-Mai.jpg
-
-Black Howler Monkey: &quot:Black Howler Monkey Family&quot; by Kent MacElwee (CC BY-NC 2.0)
-https://www.flickr.com/photos/kmacelwee/3132129839/
+Chimpanzees: &quot;Chimpanzees in Kibaale Forest NP&quot; by Sandra Aceng (CC BY-SA 4.0)
+https://commons.wikimedia.org/wiki/File:Chimpanzees_in_Kibaale_Forest_NP.jpg
 
 Eastern Lowland Gorilla: &quot;Imposing&quot; by Joe McKenna (CC BY 2.0)
 https://commons.wikimedia.org/wiki/File:Eastern_lowland_gorilla.jpg
 
-Hamadryas Baboon Skull: Photo by UrLunkwill. (CC BY-SA 3.0 DE)
-https://commons.wikimedia.org/wiki/File:Mantelpavian_Gruppe.JPG
+Lar Gibbon: photo by Ladislav Kral (CC BY-SA 3.0)
+https://upload.wikimedia.org/wikipedia/commons/a/aa/Hylobates-lar-04-Chiang-Mai.jpg
+
+Mandrills: &quot;Mandrill Family Portrait&quot; by Eric Kilby (CC BY-SA 2.0)
+https://flic.kr/p/wdoZL1
+
+Proboscis Monkeys: &quot;A male and a female Proboscis Monkey&quot; by shankar s (CC BY 2.0)
+https://flic.kr/p/hVXXkB
 
 Rhesus Macaque: photo by Thomas Schoch (CC BY-SA 3.0)
 https://commons.wikimedia.org/wiki/File:Macaque_India_3.jpg
 
 Tarsier: photo by Pierre Fidenci (CC BY-SA 2.5)
 https://commons.wikimedia.org/wiki/File:Tarsius_syrichta04.jpg
-
-Chimpanzees: &quot;Chimpanzees in Kibaale Forest NP&quot; by Sandra Aceng (CC BY-SA 4.0)
-https://commons.wikimedia.org/wiki/File:Chimpanzees_in_Kibaale_Forest_NP.jpg
-
-Mandrills: &quot;Mandrill Family Portrait&quot; by Eric Kilby (CC BY-SA 2.0)
-https://flic.kr/p/wdoZL1
 
 -Divider Hall-
 &quot;What Evolution Looks Like&quot; By T. Michael Keesey (CC BY 2.0)
@@ -815,6 +823,9 @@ Femur Dagger: &quot;Dagger&quot; image by Saint Louis Art Museum. (Public Domain
 https://www.slam.org/collection/objects/14095/
 Hippo Ivory Harpoon: &quot;Hippo (Hippopotamus amphibius) Yawning&quot; by Bernard DUPONT. (CC BY-SA 2.0)
 https://commons.wikimedia.org/wiki/File:Hippo_(Hippopotamus_amphibius)_yawning_..._(31187613621).jpg
+
+Hamadryas Baboon Skull: Photo by UrLunkwill. (CC BY-SA 3.0 DE)
+https://commons.wikimedia.org/wiki/File:Mantelpavian_Gruppe.JPG
 
 Howler Monkey Skull: Photo by Alex Proimos. (CC BY 2.0)
 https://commons.wikimedia.org/wiki/File:Coiba_National_Park,_Panama_(View_from_Isla_Coiba)_(8371374375).jpg
