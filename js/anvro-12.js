@@ -161,19 +161,27 @@ for (let each of zone) {
 }}
 }
 var lightswitch = function() { // Light switch logic to light the right area
-    var el = sceneEl.querySelectorAll(".shadowlight");
-    if (scalecheck1 == 1 || scalecheck2 == 1 || scalecheck3 == 1){
-        document.querySelector('#shadowlight').object3D.position.set(-10, 4, -1.67);
+    var el1 = document.getElementById("shadowlight1");
+    var el2 = document.getElementById("shadowlight2");
+    if (scalecheck2 == 1 || scalecheck3 == 1){
+        el1.object3D.position.set(-13, 4, -2.5);
         console.log("scale lights");
+    } else if (scalecheck1 == 1) {
+        console.log("main/scale lights");
+        el1.object3D.position.set(-13, 4, -2.5);
+        el2.object3D.position.set(-1, 4, 4);
     } else if (grabcheck == 1 || centercheck == 1) {
         console.log("main lights");
-        document.querySelector('#shadowlight').object3D.position.set(-1, 8, 4);
+        el1.object3D.position.set(-13, 4, -2.5);
+        el2.object3D.position.set(-1, 4, 4);
     } else if (burialcheck == 1) {
         console.log("burial lights");
-        document.querySelector('#shadowlight').object3D.position.set(-12.5, 8, -14);
+        el1.object3D.position.set(-13, 4, -2.5);
+        el2.object3D.position.set(-12.5, 4, -14);
     } else if (hominincheck == 1) {
         console.log("hominin lights");
-        document.querySelector('#shadowlight').object3D.position.set(-1.7, 10, -20.5);
+        el1.object3D.position.set(-1.7, 10, -20.5);
+        el2.object3D.position.set(-1, 4, 4);
 } 
 }
 
@@ -466,7 +474,8 @@ grabpanel("h-turkana-butt","#h-turkana-tit");
 grabpanel("h-flores-butt","#h-flores-tit");
 grabpanel("h-neanderthal-butt","#h-neanderthal-tit");
 grabpanel("h-sapiens-butt","#h-sapiens-tit");
-grabpanel("proboscisbutt","#proboscis-tit");
+grabpanel("proboscisbutt","#stand15-tit");
+grabpanel("galagobutt","#stand16-tit");
 }
 })
 

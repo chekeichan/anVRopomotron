@@ -99,8 +99,8 @@
  </a-entity>
  
 <a-light type="ambient" color="white" intensity="0.05"></a-light> 
-<a-light id="shadowlight" color="white" position="-1 8 4" light="type: point; intensity: 1.5; decay: 0.5; distance: 20"></a-light> <!-- Shadow Light -->
-<!-- <a-light id="shadowlight2" color="white" position="-1 8 -16.5" light="type: point; intensity: 1.5; decay: 0.5; distance: 20"></a-light>  Temp Shadow Light -->
+<a-light id="shadowlight1" color="white" position="-13, 4, -2.5" light="type: point; intensity: 1; decay: 0.5; distance: 10"></a-light> <!-- Shadow Light 1-->
+<a-light id="shadowlight2" color="white" position="-1, 4, 4" light="type: point; intensity: 1; decay: 0.5; distance: 20"></a-light> <!-- Shadow Light 1-->
 
 <!-- Occlusion Zones -->
 <a-entity class="zone" id="just-grab" gltf-model="models/grabzone.glb" visible="false"></a-entity> 
@@ -290,7 +290,7 @@
 
         </a-entity>
 
-        <a-entity gltf-model="models/galago.glb" static-body position="0 0 0" rotation="0 0 0"></a-entity> <!-- Demo Place -->
+        <a-entity gltf-model="" static-body position="0 0 0" rotation="0 0 0"></a-entity> <!-- Demo Place -->
           
 <!-- Centerpiece --> 
 <a-entity class="center-zone" position="4.5 0 4" rotation="0 -135 0">
@@ -548,15 +548,15 @@
             <a-entity class="scale-zone-3" position="-19.6 0 -4.4" rotation="0 0 0">
                 <a-entity gltf-model="models/proboscis.glb" position="0 0.05 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
                 <a-entity mixin="button" class="clickable" position="1.25 0 0.06" id="proboscisbutt" gltf-model="#buttonmodel"></a-entity>
-                <a-entity mixin="scale-box" id="stand13-tit"><a-entity mixin="scale-label-border" position="0.04 0.64 0.93" rotation="0 90 0"></a-entity><a-entity mixin="scale-label" position="0.05 0.64 0.93" rotation="0 90 0" text="value: Proboscis Monkey\nScientific Name: Nasalis larvatus\nLocation: Borneo\nTime: Present\n\nNotes: Proboscis monkey males (right) have exaggerated noses that are related to success with attracting females (left).; "></a-entity><!-- Info Box -->
-                <a-entity position="-1.13 2.8 1.7" rotation="0 90 0"><a-image mixin="scale-label" src="images/proboscis-p.jpg" position="0 0 0"  width="3" height="2"></a-image><a-text text="width: 2; value: &quot;A male and a female Proboscis Monkey&quot; by shankar s, used under CC BY 2.0; align: right; color: black; wrapCount: 45" position="1.5 -1.04 0.07" rotation="0 0 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
+                <a-entity mixin="scale-box" id="stand15-tit"><a-entity mixin="scale-label-border" position="0.04 0.64 0.93" rotation="0 90 0"></a-entity><a-entity mixin="scale-label" position="0.05 0.64 0.93" rotation="0 90 0" text="value: Proboscis Monkey\nScientific Name: Nasalis larvatus\nLocation: Borneo\nTime: Present\n\nNotes: Proboscis monkey males (right) have exaggerated noses that are related to success with attracting females (left).; "></a-entity><!-- Info Box -->
+                <a-entity position="-1.13 2.8 1.7" rotation="0 90 0"><a-image mixin="scale-label" src="images/proboscis-p.jpg" position="0 0 0"  width="3" height="2"></a-image><a-text text="width: 2; value: &quot;A male and a female Proboscis Monkey&quot; by shankar s, used under CC BY 2.0; align: right; color: black; wrapCount: 45" position="1.5 -1.1 0.07" rotation="0 0 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
                </a-entity></a-entity>
 
             <a-entity class="scale-zone-2" position="-15.4 0 5.93" rotation="0 180 0">
                 <a-entity gltf-model="models/galago.glb" position="0 1.5 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
                 <a-entity mixin="button" class="clickable" position="-0.48 0 0.33" id="galagobutt" gltf-model="#buttonmodel"></a-entity>
-                <a-entity mixin="scale-box" id="stand13-tit"><a-entity mixin="scale-label-border" position="-0.8 1 -0.04" rotation="0 0 0"></a-entity><a-entity mixin="scale-label" position="-0.8 1 -0.025" rotation="0 0 0" text="value: Senegal Galago or Bushbaby\nScientific Name: Galago senegalensis\nLocation: Borneo\nTime: Present\n\nNotes: Galago are adapted to be nocturnal leapers. In the daytime they sleep and hide from predators like the common chimpanzee.; "></a-entity><!-- Info Box -->
-                <a-entity position="-1.13 2.8 1.7" rotation="0 0 0"><a-image mixin="scale-label" src="images/proboscis-p.jpg" position="0 0 0"  width="3" height="2"></a-image><a-text text="width: 2; value: &quot;A male and a female Proboscis Monkey&quot; by shankar s, used under CC BY 2.0; align: right; color: black; wrapCount: 45" position="1.5 -1.04 0.07" rotation="0 0 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
+                <a-entity mixin="scale-box" id="stand16-tit"><a-entity mixin="scale-label-border" position="-0.8 1 -0.04" rotation="0 0 0"></a-entity><a-entity mixin="scale-label" position="-0.8 1 -0.025" rotation="0 0 0" text="value: Senegal Galago or Bushbaby\nScientific Name: Galago senegalensis\nLocation: Across Central Africa\nTime: Present\n\nNotes: Galago are adapted to be nocturnal leapers. In the daytime they sleep and hide from predators like the common chimpanzee.; "></a-entity><!-- Info Box -->
+                <a-entity position="-0.24 2.5 -0.05" rotation="0 0 0"><a-image mixin="scale-label" src="images/galago-p.jpg" position="0 0 0"  width="1.5" height="1"></a-image><a-text text="width: 1.5; value: &quot;Senegal Galago, Sopa Lodge, Serengeti NP, Tanzania, 24th May 2014 02 (2)&quot; by Wildlife Travel, used under CC BY-NC 2.0; align: right; color: black; wrapCount: 40" position="0.75 -0.65 0.07" rotation="0 0 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
                </a-entity></a-entity>
         
          
@@ -783,6 +783,9 @@ https://flic.kr/p/hVXXkB
 
 Rhesus Macaque: photo by Thomas Schoch (CC BY-SA 3.0)
 https://commons.wikimedia.org/wiki/File:Macaque_India_3.jpg
+
+Senegal Galago: &quot;Senegal Galago, Sopa Lodge, Serengeti NP, Tanzania, 24th May 2014 02 (2)&quot; by Wildlife Travel (CC BY-NC 2.0)
+https://flic.kr/p/nLcggT 
 
 Tarsier: photo by Pierre Fidenci (CC BY-SA 2.5)
 https://commons.wikimedia.org/wiki/File:Tarsius_syrichta04.jpg
