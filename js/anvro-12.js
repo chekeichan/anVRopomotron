@@ -490,7 +490,7 @@ AFRAME.registerComponent("togg-cred", {
                     each.setAttribute("visible", false);     
             }
             counter++;
-            if (counter > 8) { // Value is total panels minus one
+            if (counter > 10) { // Value is total panels minus one
                 counter = 0;
              }
             creditslist[counter].setAttribute("visible", true);
