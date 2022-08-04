@@ -476,6 +476,7 @@ grabpanel("h-neanderthal-butt","#h-neanderthal-tit");
 grabpanel("h-sapiens-butt","#h-sapiens-tit");
 grabpanel("proboscisbutt","#stand15-tit");
 grabpanel("galagobutt","#stand16-tit");
+grabpanel("capuchinbutt","#stand17-tit");
 }
 })
 
@@ -490,7 +491,7 @@ AFRAME.registerComponent("togg-cred", {
                     each.setAttribute("visible", false);     
             }
             counter++;
-            if (counter > 10) { // Value is total panels minus one
+            if (counter > 11) { // Value is total panels minus one
                 counter = 0;
              }
             creditslist[counter].setAttribute("visible", true);

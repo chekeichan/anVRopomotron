@@ -23,19 +23,19 @@
 <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r134/examples/js/deprecated/Geometry.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/zach-capalbo/aframe-extras/dist/aframe-extras.min.js"></script>
-<script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
 <script src="js/aframe-physics-system.min.js"></script>
-<script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
-<script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/super-hands@^3.0.1/dist/super-hands.min.js"></script>
 <script type="module" src="js/mrxz/main.js"></script>
-<script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
-<script src="https://unpkg.com/aframe-fps-look-controls-component/dist/aframe-fps-look-controls-component.min.js"></script>
-<script src="js/anvro-12.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-fps-look-controls-component/dist/aframe-fps-look-controls-component.min.js"></script>
+<script src="js/anvro-122.js"></script>
 </head>
 
 <body>
-<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://unpkg.com/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: js/draco/">
+<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://cdn.jsdelivr.net/npm/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: js/draco/">
        
 <a-assets timeout="80000"> <!-- Loads models -->
                 <a-asset-item id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
@@ -157,7 +157,6 @@
 <a-entity position="-2.1 5.05 -26.4" rotation="0 0 0"><a-entity mixin="scale-box" id="h-neanderthal-tit"><a-entity position="-5.1 1.5 -0.65" rotation="0 47 0"><a-image mixin="scale-label" src="images/h-neanderthal-p.jpg" width="6" height="2.5"></a-image><a-text text="width: 2; value: View inside Shanidar Cave, a Neanderthal site in Iraq\nBy Institut français du Proche-Orient, used under CC BY-SA 2.0; align: right; color: black" position="1.9 -1.4 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Neanderthal composite\n\nThis model is based on a composite Neanderthal published by Sawyer and Maley (2005) that combines elements of separate individuals. La Ferrassie 1 contributed most of the skull and limbs while Kebara 2 formed most of the torso. As a result the model represents an adult male.\n\nThe spear is not part of the original composite but reflect a purported Neanderthal technology of a thrusting spear tipped with a Mousterian point that is wrapped in fibers and sealed in place with burnt tar." geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Human Group: Neanderthal\nRange: Europe, Middle East, West Asia\nSpecies Age: 130,000 to 40,000 years ago\n\nNeanderthals were cold-adapted humans who contributed to the genetics of modern people, especially Europeans and Asians. Their cold adaptation is seen in their widened features across the body, including the torso and nose. Studies have Neanderthal culture have found evidence of complex stone tool construction, artistic designs, and the ability to produce leather for clothing." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-neanderthal-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
 <a-entity position="1.9 5.3 -22" rotation="0 -113 0"><a-entity mixin="scale-box" id="h-sapiens-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: You\n\nYou are the result of over a million years of cultural inheritance and billions of years of biological evolution, each winding a path through innumerable possibilities to be who you are today.\n\n" geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Homo sapiens\nRange:Earth\nSpecies Age: 300,000 years ago to present\n\nModern Homo sapiens are the only surviving members of the hominin lineage, originating in Africa. Biological adaptation to various parts of the planet have produced a wide variety of external appearances and internal physiology. Still, the average difference in DNA between any two individuals is around 0.01%. Culturally, the species has developed tools and ideas far beyond any other." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-sapiens-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
 
-
 <!-- Wall Text -->
     <!-- Front wall -->
      <a-entity visible="true" static-body position="0 2 -7.5" rotation="0 0 0" width="40" height="4.5">
@@ -173,7 +172,9 @@
       <a-text id="SMH-SP" visible="false" position="-6.6 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
     <!-- Behind wall -->
-       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="5.05 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.2" align="right" color="black" width="5"></a-text></a-entity> 
+       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5">
+        <a-text id="updatetext" visible="true" position="-5 -1 0.01" value="New: Ardipithecus ramidus in Human Evolution Hall\n  Galago, capuchin, and proboscis monkeys in Modern Primate exhibit"  color="black" width="5.5" line-height="50" text="wrapCount: 55"></a-text>
+        <a-text position="5 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.2.2" align="right" color="black" width="5" text="wrapCount: 50"></a-text></a-entity> 
     <!-- Left display wall -->
         <a-entity visible="true" static-body position="-5.08 2 -0.5" rotation="0 90 0" depth="0.1" width="8" height="4.5" color="#dfe0e2" material="shader: flat">
         <a-image position="0 -0.48 0.10" src="#height" material.transparent="true" shader="flat" geometry="height: 3.048; width: 7.3152"></a-image><!-- Correct by -2.0 -->
@@ -859,7 +860,9 @@ https://www.si.edu/object/hylobates-lar:nmnhvz_7047655
 
 Mandrill: Photo by William Warby. (CC BY 2.0)
 https://commons.wikimedia.org/wiki/File:Indri_indri_0006.jpg
+; "></a-entity>
 
+<a-entity mixin="credit-text" class="credits" id="credits-10" visible="false" position="-0.7 2 -7.49" text="value:
 Mousterian Scraper: &quot;Mousterian Points and Scrapers&quot; by Wellcome Images. (CC BY 4.0). Image cropped from original.
 https://commons.wikimedia.org/wiki/File:Mousterian_points_and_scrapers_Wellcome_M0015182.jpg
 
@@ -886,7 +889,7 @@ Woman of Willendorf: &quot;Vénus de Lespugue Gravettien Musée de l'Homme&quot;
 https://commons.wikimedia.org/wiki/File:Vénus_de_Lespugue_Gravettien_Musée_de_l%27Homme_04022018_2.jpg
 ; "></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-10" visible="false" position="-0.7 2 -7.49" text="value: 
+<a-entity mixin="credit-text" class="credits" id="credits-11" visible="false" position="-0.7 2 -7.49" text="value: 
 More Image Sources
 Burial Chamber
 World Map: &quot;Ecker IV projection SW&quot; Image by Strebe (CC BY-SA 3.0)
@@ -917,7 +920,7 @@ https://flic.kr/p/UZdDhZ
 https://www.britishmuseum.org/collection/image/166522001
 ; "></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-11" visible="false" position="-0.7 2 -7.49" text="value: VR Sources
+<a-entity mixin="credit-text" class="credits" id="credits-12" visible="false" position="-0.7 2 -7.49" text="value: VR Sources
 Diego Marcos, Don McCurdy, and Kevin Ngo
 A-Frame
 
