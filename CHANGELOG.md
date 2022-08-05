@@ -11,6 +11,7 @@ It's summer so it's time to make models non-stop.
 -   Human Evolution Hall got some flavor with images accompanying each model. The pictures are of the site or general region of each find. 
 -   Divider Hall got a some flavor with a good Creative Commons image showing how experts view human evolution. 
 -   Tweaks to asset loading.
+-   Loading from unpkg is getting real slow so I switched to jsDelivr.
 -   Behind the visitor at the start is a little text highlighting the newest additions.
 -   New version; new control scheme. I managed to cobble together working components to make the left hand teleport and the right hand turn left and right. Sorry smooth-movers, I just couldn't make it work with what is out there to use. 
 -   Shadow-producing lights now follow the principle of the maps in the previous update: there are two that will (hopefully) seamlessly light where the viewer is by moving around based on the occlusion planes being touched.
