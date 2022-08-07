@@ -57,8 +57,6 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
         var grabbable = sceneEl.querySelectorAll('.grabbable');
         var rig = document.querySelector('#rig');
         var camera = document.querySelector('#camera');
-        var handleft = document.querySelector('#lefthand');
-        var handright = document.querySelector('#righthand');
         var state = "stand";
         if (AFRAME.utils.device.isMobile() === true) { // Smartphone Mode
             sceneEl.setAttribute("vr-mode-ui", "enabled", "false");
@@ -83,7 +81,6 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
             rig.removeAttribute('movement-controls'); // Remove non-working controls
-            handleft.setAttribute('snap-turn', {target: '#rig', reference: '#camera'});
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
             console.log('PC detected');
             document.querySelector('#GL-PC1').object3D.visible = true;
@@ -474,6 +471,7 @@ grabpanel("h-turkana-butt","#h-turkana-tit");
 grabpanel("h-flores-butt","#h-flores-tit");
 grabpanel("h-neanderthal-butt","#h-neanderthal-tit");
 grabpanel("h-sapiens-butt","#h-sapiens-tit");
+grabpanel("h-ardi-butt","#h-ardi-tit");
 grabpanel("proboscisbutt","#stand15-tit");
 grabpanel("galagobutt","#stand16-tit");
 grabpanel("capuchinbutt","#stand17-tit");
@@ -713,7 +711,9 @@ AFRAME.registerComponent("warp", {
 
     var warpwarp = function(warplocx, warplocy, warplocz) {
         rig.object3D.position.set(warplocx, warplocy, warplocz);
-        rig.components['movement-controls'].updateNavLocation();
+        if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC and mobile mode
+            rig.components['movement-controls'].updateNavLocation();
+        }
         setTimeout(function(){transitionopen();}, 700)
     };
     

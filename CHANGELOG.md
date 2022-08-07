@@ -13,7 +13,7 @@ It's summer so it's time to make models non-stop.
 -   Tweaks to asset loading.
 -   Loading from unpkg is getting real slow so I switched to jsDelivr.
 -   Behind the visitor at the start is a little text highlighting the newest additions.
--   New version; new control scheme. I managed to cobble together working components to make the left hand teleport and the right hand turn left and right. Sorry smooth-movers, I just couldn't make it work with what is out there to use. 
+-   New version; new control scheme. jure's blink-controls is now the sole movement method. Both thumbsticks share the same control scheme: left and right to turn and press up/forward to start teleporting with the option to turn. It's the only movement scheme that has no issues across desktop, phone, and VR.
 -   Shadow-producing lights now follow the principle of the maps in the previous update: there are two that will (hopefully) seamlessly light where the viewer is by moving around based on the occlusion planes being touched.
 
 
