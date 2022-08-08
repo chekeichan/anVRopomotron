@@ -687,7 +687,7 @@ for (let each of this.grabbablelist) {
         let poss = each.getAttribute('position');
         let area = (poss.x + 1) * (poss.z + 1);
         let absarea = Math.abs(area);
-        if (poss.y <= 0.1 && absarea > 5) {
+        if (poss.y <= 0.1 && absarea < 5) {
              console.log('antidrop engage on '+each.id);
              each.object3D.position.set(0, 1.8, 0);
              each.components['dynamic-body'].syncToPhysics(); // This makes the position official
