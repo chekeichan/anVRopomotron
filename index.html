@@ -22,26 +22,27 @@
 <meta name="description" content="VR Anthropology Museum">
 <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r134/examples/js/deprecated/Geometry.js"></script>
-<script src="js/aframe-extras.js"></script>
-<script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/zach-capalbo/aframe-extras/dist/aframe-extras.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
 <script src="js/aframe-physics-system.min.js"></script>
-<script src="https://unpkg.com/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
-<script src="https://unpkg.com/super-hands@^3.0.1/dist/super-hands.min.js"></script>
-<script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script> -->
-<script src="https://unpkg.com/aframe-fps-look-controls-component/dist/aframe-fps-look-controls-component.min.js"></script>
-<script src="js/anvro-12.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/super-hands@^3.0.1/dist/super-hands.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-fps-look-controls-component/dist/aframe-fps-look-controls-component.min.js"></script>
+<script src="js/anvro-122.js"></script>
 </head>
 
 <body>
-<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://unpkg.com/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: js/draco/">
+<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://cdn.jsdelivr.net/npm/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: js/draco/">
        
 <a-assets timeout="80000"> <!-- Loads models -->
-                <a-asset-item id="tablemodel" id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
+                <a-asset-item id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
                 <a-asset-item id="room" response-type="arraybuffer" src="models/floorplan.glb"></a-asset-item>
                 <a-asset-item id="navmesh" response-type="arraybuffer" src="models/nav.glb"></a-asset-item>
                 <a-asset-item id="floor" response-type="arraybuffer" src="models/solidfloor.glb"></a-asset-item>
                 <a-asset-item id="buttonmodel" response-type="arraybuffer" src="models/button.glb"></a-asset-item>
+                <a-asset-item id="trophymodel" response-type="arraybuffer" src="models/trophy.glb"></a-asset-item>
                 <a-asset-item id="buttonupmodel" response-type="arraybuffer" src="models/button-up.glb"></a-asset-item>
                 <a-asset-item id="centerpiecemodel" response-type="arraybuffer" src="models/centerpiece.glb"></a-asset-item>
                 <a-asset-item id="c-h-dividermodel" response-type="arraybuffer" src="models/divider.glb"></a-asset-item>
@@ -84,21 +85,21 @@
  
 <a-entity position="0 0 0"  gltf-model="#navmesh" id="nav" nav-mesh visible="false"></a-entity> <!-- Nav Mesh -->
 <a-entity position="0 0 0" static-body gltf-model="#floor" visible="false"></a-entity> <!-- Solid Floor to Block Objects -->
-<a-entity class="floorplan-zone" position="0 0 0" gltf-model="models/floorplan.glb"></a-entity> <!--  Main Building, no Human Evolution-->
-<a-entity class="c-h-div-zone" position="0 0 0" gltf-model="models/divider.glb"></a-entity> <!-- Hominin Transition Zone -->
+<a-entity class="floorplan-zone" position="0 0 0" gltf-model="#room"></a-entity> <!--  Main Building, no Human Evolution-->
+<a-entity class="c-h-div-zone" position="0 0 0" gltf-model="#c-h-dividermodel"></a-entity> <!-- Hominin Transition Zone -->
 
-<a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0.01 1"> <!-- Player Character -->
-    <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0.05 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
+<a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0 1"> <!-- Player Character -->
+    <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
         <a-entity id="camera" camera look-controls raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
             <a-entity id="crosshair" visible="false" cursor="rayOrigin:mouse" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: #0055ff; shader: flat" raycaster="far: 5; objects: .clickable"></a-entity>
             <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 700;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 700;"></a-entity></a-entity>
-        <a-entity mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff"></a-entity>
-        <a-entity mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8"></a-entity>
+        <a-entity id="lefthand" mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8;"></a-entity>
+        <a-entity id="righthand" mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8;"></a-entity>
  </a-entity>
  
 <a-light type="ambient" color="white" intensity="0.05"></a-light> 
-<a-light id="shadowlight" color="white" position="-1 8 4" light="type: point; intensity: 1.5; decay: 0.5; distance: 20"></a-light> <!-- Shadow Light -->
-<!-- <a-light id="shadowlight2" color="white" position="-1 8 -16.5" light="type: point; intensity: 1.5; decay: 0.5; distance: 20"></a-light>  Temp Shadow Light -->
+<a-light id="shadowlight1" color="white" position="-13, 4, -2.5" light="type: point; intensity: 1; decay: 0.5; distance: 10"></a-light> <!-- Shadow Light 1-->
+<a-light id="shadowlight2" color="white" position="-1, 4, 4" light="type: point; intensity: 1; decay: 0.5; distance: 20"></a-light> <!-- Shadow Light 1-->
 
 <!-- Occlusion Zones -->
 <a-entity class="zone" id="just-grab" gltf-model="models/grabzone.glb" visible="false"></a-entity> 
@@ -137,15 +138,23 @@
 <a-entity position="0 0 0" gltf-model="models/hominin.glb"></a-entity> <!-- Human Evolution structure -->
 </a-entity>
 
+<a-entity position="-0.434 1.8 -9.8" rotation="0 -90 0"><a-image class="ch-div-zone" mixin="scale-label" src="images/d-chart-p.png" width="2.4" height="3"></a-image><a-text text="width: 2; value: By T. Michael Keesey, used under CC BY 2.0 ; align: right; color: black" position="1.2 -1.62 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity>
+
 <!-- Hominin Model Text and Buttons-->
 <a-entity mixin="scale-box" id="hominin-hall-intro" visible="true"><a-entity mixin="h-scale-label" position="-9.6 1.5 -14" rotation="0 90 0" text="value: Take a walk up the stairs to move forward through time and see some of the hominins in our varied lineage. More models and other displays will be added to this hall!" geometry="height: 0.75;"></a-entity></a-entity>
 
-<a-entity position="3.72 1.65 -22.78" rotation="0 -67 0"><a-entity mixin="scale-box" id="h-lucy-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Lucy (A.L. 288-1)\nSite: Hadar, Ethiopia\nTime: 3.2 million years ago\nDiscovered by Donald Johanson and team in 1974\n\nRoughly 40% of Lucy's fossilized skeleton was found. The remains of the knee joint showed a valgus knee, one which directs toward the centerline of the body. This type of knee is an indicator of habitual bipedalism.;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Australopithecus afarensis\nRange: Ethiopia, Kenya, and Tanzania\nSpecies Age: 3.9 to 3 mya\n\nThe traits of this species show a mixture of ape features and those of humans who evolved from this genus. While the lower limbs are geared towards two-legged movement, the strong upper limbs and broad chest also suggest that climbing was an important ability. The skull was ape-like, though with shortened canine teeth."></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-lucy-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
-<a-entity position="0.77 2.7 -14.46" rotation="0 -157 0"><a-entity mixin="scale-box" id="h-turkana-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Turkana (Nariokotome) Boy (KNM WT-15000)\nSite: Nariokotome, Kenya\nTime: 1.6 million years ago \nDiscovered by Kamoya Kimeu and team in 1984\n\nThis individual is the most complete member of its species found. Estimates of his age vary, from 8 to 12 years old based on different measures. Had he reached adulthood, his height may have been just over 6 feet (185cm).\n\nSome researchers consider Turkana Boy to be a member of the African species Homo ergaster." geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Homo erectus\nRange: East and South Africa, Europe, Middle East, East Asia, and Southeast Asia\nSpecies Age: 1.8 million to 300,000 years ago\n\nThis species is the longest lived in the human lineage,with many changes from earlier hominins. Biologically, they possess more traits for endurance running, such as proportionally longer legs and shorter arms. They are also linked with many technological developments, such as the control of fire and the Acheulian tool style." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-turkana-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
-<a-entity position="-2.3 4.65 -20.3" rotation="0 -147 0"><a-entity mixin="scale-box" id="h-flores-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Flo (LB1)\nSite: Liang Bua Cave, Flores, Indonesia\nTime: 100,000 to 60,000 years ago\nDiscovered by Peter Brown, Michael Morwood, and team in 2003\n\nThis individual is represented by a nearly complete skull, pelvis and lower limbs, and fragmentary upper limbs. Studies of the cranium found a similarity to Homo erectus as opposed to modern Homo sapiens. Skeletal traits suggest LB1 was female with an age-at-death estimate of around 30 years old." geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Homo floresiensis\nRange: Flores Island, Indonesia\nSpecies Age: 100,000 to 60,000 years ago\n\nThe existence of H. floresiensis expands our view of recent hominin diversity. As with another  hominin, Homo luzonensis, the size of this species fits the biological trend of insular dwarfing, the trend to evolve smaller in an island environment. How H. floresiensis fits in the hominin timeline is an open question." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="-0.37 -0.09 1.6" id="h-flores-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
-<a-entity position="-2.1 5.05 -26.4" rotation="0 0 0"><a-entity mixin="scale-box" id="h-neanderthal-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Neanderthal composite\n\nThis model is based on a composite Neanderthal published by Sawyer and Maley (2005) that combines elements of separate individuals. La Ferrassie 1 contributed most of the skull and limbs while Kebara 2 formed most of the torso. As a result the model represents an adult male.\n\nThe spear is not part of the original composite but reflect a purported Neanderthal technology of a thrusting spear tipped with a Mousterian point that is wrapped in fibers and sealed in place with burnt tar." geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Human Group: Neanderthal\nRange: Europe, Middle East, West Asia\nSpecies Age: 130,000 to 40,000 years ago\n\nNeanderthals were cold-adapted humans who contributed to the genetics of modern people, especially Europeans and Asians. Their cold adaptation is seen in their widened features across the body, including the torso and nose. Studies have Neanderthal culture have found evidence of complex stone tool construction, artistic designs, and the ability to produce leather for clothing." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-neanderthal-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
-<a-entity position="1.9 5.3 -22" rotation="0 -113 0"><a-entity mixin="scale-box" id="h-sapiens-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: You\n\nYou are the result of over a million years of cultural inheritance and billions of years of biological evolution, each winding a path through innumerable possibilities to be who you are today.\n\n" geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Homo sapiens\nRange:Earth\nSpecies Age: 300,000 years ago to present\n\nModern Homo sapiens are the only surviving members of the hominin lineage, originating in Africa. Biological adaptation to various parts of the planet have produced a wide variety of external appearances and internal physiology. Still, the average difference in DNA between any two individuals is around 0.01%. Culturally, the species has developed tools and ideas far beyond any other." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-sapiens-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
+<a-entity position="-2.07 0.86 -20.28" rotation="0 -177 0"><a-entity mixin="scale-box" id="h-ardi-tit" visible="false"><a-entity position="-0.72 0.78 -8.3" rotation="0 -3.2 0"><a-image mixin="scale-label" src="images/h-ardi-p.jpg" width="3" height="2"></a-image><a-text text="width: 2; value: Awash National Park\nBy Gregoire Dubois, used under CC BY-NC-SA 2.0; align: right; color: black" position="1.42 -1.14 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
+<a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Ardi (ARA-VP-6/1)\nSite: Middle Awash, Ethiopia\nTime: 4.4 million years ago\nDiscovered by Tim White and team in 1994\n\nUnder study for over a decade, researchers published findings on the Ardi skeleton in 2009. Throughout the body are adaptations for both tree climbing and bipeal walking on falt ground. For example, the foot has a divergent big toe for grasping, but the foot structure is rigid.;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Ardipithecus ramidus\nRange: Ethiopia\nSpecies Age: 4.4 mya\n\nSmall canines in both males and females resemble those of modern species with low conflict and high male parental investment.\n\nReconstruction of the paleoenvironment showed that Ardi lived in a wooded environment within savannahs with nearby water."></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-ardi-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
 
+<a-entity position="3.72 1.65 -22.78" rotation="0 -67 0"><a-entity mixin="scale-box" id="h-lucy-tit"><a-entity position="-4.75 1.5 -2.1" rotation="0 43 0"><a-image mixin="scale-label" src="images/h-lucy-p.jpg" width="3" height="2"></a-image><a-text text="width: 2; value: False color satellite image of the Afar region\nBy European Space Agency, used under CC BY-SA 2.0; align: right; color: black" position="1.42 -1.14 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
+<a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Lucy (A.L. 288-1)\nSite: Hadar, Ethiopia\nTime: 3.2 million years ago\nDiscovered by Donald Johanson and team in 1974\n\nRoughly 40% of Lucy's fossilized skeleton was found. The remains of the knee joint showed a valgus knee, one which directs toward the centerline of the body. This type of knee is an indicator of habitual bipedalism.;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Australopithecus afarensis\nRange: Ethiopia, Kenya, and Tanzania\nSpecies Age: 3.9 to 3 mya\n\nThe traits of this species show a mixture of ape features and those of humans who evolved from this genus. While the lower limbs are geared towards two-legged movement, the strong upper limbs and broad chest also suggest that climbing was an important ability. The skull was ape-like, though with shortened canine teeth."></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-lucy-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
+
+<a-entity position="0.77 2.7 -14.46" rotation="0 -157 0"><a-entity mixin="scale-box" id="h-turkana-tit"><a-entity position="4.1 1.5 -0.9" rotation="0 -23 0"><a-image mixin="scale-label" src="images/h-turkana-p.jpg" width="4" height="2"></a-image><a-text text="width: 2; value: Lake Turkana, Kenya\nBy Luciano Rizzello, used under CC BY-NC-SA 2.0; align: right; color: black" position="2 -1.1 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Turkana (Nariokotome) Boy (KNM WT-15000)\nSite: Nariokotome, Kenya\nTime: 1.6 million years ago \nDiscovered by Kamoya Kimeu and team in 1984\n\nThis individual is the most complete member of its species found. Estimates of his age vary, from 8 to 12 years old based on different measures. Had he reached adulthood, his height may have been just over 6 feet (185cm).\n\nSome researchers consider Turkana Boy to be a member of the African species Homo ergaster." geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Homo erectus\nRange: East and South Africa, Europe, Middle East, East Asia, and Southeast Asia\nSpecies Age: 1.8 million to 300,000 years ago\n\nThis species is the longest lived in the human lineage,with many changes from earlier hominins. Biologically, they possess more traits for endurance running, such as proportionally longer legs and shorter arms. They are also linked with many technological developments, such as the control of fire and the Acheulian tool style." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-turkana-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
+
+<a-entity position="-2.3 4.65 -20.3" rotation="0 -147 0"><a-entity mixin="scale-box" id="h-flores-tit"><a-entity position="-2.5 1.4 -8.85" rotation="0 2.7 0"><a-image mixin="scale-label" src="images/h-floresiensis-p.jpg" width="5" height="3.333"></a-image><a-text text="width: 2; value: Liang Bua Cave, Flores, Indonesia\nBy Rosino, used under CC BY-SA 2.0; align: right; color: black" position="2.43 -1.75 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Flo (LB1)\nSite: Liang Bua Cave, Flores, Indonesia\nTime: 100,000 to 60,000 years ago\nDiscovered by Peter Brown, Michael Morwood, and team in 2003\n\nThis individual is represented by a nearly complete skull, pelvis and lower limbs, and fragmentary upper limbs. Studies of the cranium found a similarity to Homo erectus as opposed to modern Homo sapiens. Skeletal traits suggest LB1 was female with an age-at-death estimate of around 30 years old." geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Homo floresiensis\nRange: Flores Island, Indonesia\nSpecies Age: 100,000 to 60,000 years ago\n\nThe existence of H. floresiensis expands our view of recent hominin diversity. As with another hominin, Homo luzonensis, the size of this species fits the biological trend of insular dwarfing, the trend to evolve smaller in an island environment. How H. floresiensis fits in the hominin timeline is an open question." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="-0.37 -0.09 1.6" id="h-flores-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
+
+<a-entity position="-2.1 5.05 -26.4" rotation="0 0 0"><a-entity mixin="scale-box" id="h-neanderthal-tit"><a-entity position="-5.1 1.5 -0.65" rotation="0 47 0"><a-image mixin="scale-label" src="images/h-neanderthal-p.jpg" width="6" height="2.5"></a-image><a-text text="width: 2; value: View inside Shanidar Cave, a Neanderthal site in Iraq\nBy Institut français du Proche-Orient, used under CC BY-SA 2.0; align: right; color: black" position="1.9 -1.4 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: Neanderthal composite\n\nThis model is based on a composite Neanderthal published by Sawyer and Maley (2005) that combines elements of separate individuals. La Ferrassie 1 contributed most of the skull and limbs while Kebara 2 formed most of the torso. As a result the model represents an adult male.\n\nThe spear is not part of the original composite but reflect a purported Neanderthal technology of a thrusting spear tipped with a Mousterian point that is wrapped in fibers and sealed in place with burnt tar." geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Human Group: Neanderthal\nRange: Europe, Middle East, West Asia\nSpecies Age: 130,000 to 40,000 years ago\n\nNeanderthals were cold-adapted humans who contributed to the genetics of modern people, especially Europeans and Asians. Their cold adaptation is seen in their widened features across the body, including the torso and nose. Studies have Neanderthal culture have found evidence of complex stone tool construction, artistic designs, and the ability to produce leather for clothing." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-neanderthal-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
+<a-entity position="1.9 5.3 -22" rotation="0 -113 0"><a-entity mixin="scale-box" id="h-sapiens-tit"><a-entity mixin="h-scale-label" position="-1.25 1 -1.25" rotation="0 45 0" text="value: Name: You\n\nYou are the result of over a million years of cultural inheritance and billions of years of biological evolution, each winding a path through innumerable possibilities to be who you are today.\n\n" geometry="height: 1.75;"></a-entity><a-entity mixin="h-scale-label" position="1.25 1 -1.25" rotation="0 -45 0" text="value: Species: Homo sapiens\nRange:Earth\nSpecies Age: 300,000 years ago to present\n\nModern Homo sapiens are the only surviving members of the hominin lineage, originating in Africa. Biological adaptation to various parts of the planet have produced a wide variety of external appearances and internal physiology. Still, the average difference in DNA between any two individuals is around 0.01%. Culturally, the species has developed tools and ideas far beyond any other." geometry="height: 1.75;"></a-entity></a-entity><a-entity mixin="button" class="clickable" position="0.26 -0.09 1.8" id="h-sapiens-butt" gltf-model="#buttonmodel"></a-entity></a-entity><!-- Info Box -->
 
 <!-- Wall Text -->
     <!-- Front wall -->
@@ -156,13 +165,15 @@
       <a-text id="GL-SP" visible="false" position="2.6 -0.1 0.1" value="Info: Touch objects"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
 
     <!-- Scale Model Hall Title -->
-      <a-text id="SMH-VR" visible="false" position="-6.6 -0.77 0.01" value="Move: Walk and strafe with thumbstick\n\nTurn: You have to turn yourself, sorry!\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-VR" visible="false" position="-6.6 -0.77 0.01" value="Teleport: Press forward on thumbstick\n\nTurn: Left and right on thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
       <a-text id="SMH-PC1" visible="false" position="-6.6 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\nLook: Swipe mouse\nInfo: Click orbs\nSwitch to Mouselook: M key"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
       <a-text id="SMH-PC2" visible="false" position="-6.6 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\nInfo: Click orbs in reticle\nSwitch to Swipe-Look: M key"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
-      <a-text id="SMH-SP" visible="false" position="-6.6 -0.6 0.01" value="Move: Touch screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
+      <a-text id="SMH-SP" visible="false" position="-6.6 -0.6 0.01" value="Move: Touch the screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
     <!-- Behind wall -->
-       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5"><a-text position="5.05 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.2" align="right" color="black" width="5"></a-text></a-entity> 
+       <a-entity visible="true" static-body position="0 2 6" rotation="0 180 0" width="40" height="4.5">
+        <a-text id="updatetext" visible="true" position="-5 -1 0.01" value="New: Ardipithecus ramidus in Human Evolution Hall\n  Galago, capuchin, and proboscis monkeys in Modern Primate exhibit"  color="black" width="5.5" line-height="50" text="wrapCount: 55"></a-text>
+        <a-text position="5 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.2.2" align="right" color="black" width="5" text="wrapCount: 50"></a-text></a-entity> 
     <!-- Left display wall -->
         <a-entity visible="true" static-body position="-5.08 2 -0.5" rotation="0 90 0" depth="0.1" width="8" height="4.5" color="#dfe0e2" material="shader: flat">
         <a-image position="0 -0.48 0.10" src="#height" material.transparent="true" shader="flat" geometry="height: 3.048; width: 7.3152"></a-image><!-- Correct by -2.0 -->
@@ -284,12 +295,12 @@
 <!-- Centerpiece --> 
 <a-entity class="center-zone" position="4.5 0 4" rotation="0 -135 0">
     <a-entity mixin="button" class="clickable" position="-.9 0 -0.1" id="chimpstatuebutt" gltf-model="#buttonmodel"></a-entity>
-    <a-entity gltf-model="models/chimpstatue.glb" static-body rotation="0 0 0">
+    <a-entity gltf-model="#chimpstatuemodel" static-body rotation="0 0 0">
     </a-entity>
     <a-entity  mixin="scale-box" id="chimpstatue-tit" position="-1.25 1.2 -0.7" rotation="0 45 0">
         <a-entity mixin="scale-label-border" position="0 0 0"></a-entity><a-entity id="chimpstatue-info" mixin="scale-label" position="0 0 0.01" text="value: &quot;Coverversion&quot;\nLocation: Au von Tulln, Austria\nDate: 2008\nSource: Scan by Niederösterreich 3D\n\nNotes: This statue by Klaus Weber is based on the 1893 &quot;Affe mit Schädel&quot; (Monkey with Skull) by Hugo Rheinhold.; "></a-entity><!-- Info Box -->
        </a-entity></a-entity>
-<a-entity class="scale-zone-1" gltf-model="models/trophy.glb" static-body position="-7.2 0 5.77"></a-entity>
+<a-entity class="scale-zone-1" gltf-model="#trophymodel" static-body position="-7.2 0 5.77"></a-entity>
 <a-entity class="center-zone" position="0.12 0 -4.01"> <a-entity rotation="0 -90 0" gltf-model="#centerpiecemodel" shadow="cast: false; receive: false"></a-entity>
    <a-entity static-body mixin="button" class="clickable" position="0.1 0 2.7" id="centerbutt" gltf-model="#buttonmodel" shadow></a-entity>
     
@@ -405,7 +416,7 @@
         <a-entity id="clovis-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.2" mixin="obj" gltf-model="#clovismodel"></a-entity>
         <a-entity id="harpoon-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 0" mixin="obj" gltf-model="#harpoonmodel"></a-entity>
         <a-entity id="moundville-grab" class="clickable grabbable center-obj-zone table4obj" static-body position="0 1.01 0.3" mixin="obj" gltf-model="#moundvillemodel"></a-entity>
-        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.1 0.5" mixin="obj" gltf-model="#daggermodel" dynamic-body="shape: box; mass: 5"></a-entity>
+        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.1 0.5" mixin="obj" gltf-model="#daggermodel"></a-entity>
 </a-entity>
 
      <!-- Artifact table 2-->
@@ -440,7 +451,8 @@
 </a-entity></a-entity>
 	
 <!-- Scale Models -->
-        <a-entity class="scale-zone-2" position="-19.33 0 2.55">
+<a-entity mixin="scale-box" id="scale-model-hall-intro" visible="true"><a-entity mixin="h-scale-label" position="-11.2 1.5 5.98" rotation="0 180 0" text="value: Continue on to see more of the modern primates that we share the planet with, grouped by region. Interact with the orange orbs to view info and photos." geometry="height: 0.75;"></a-entity></a-entity>
+    <a-entity class="scale-zone-2" position="-19.33 0 2.55">
         <a-entity gltf-model="models/gorilla-mouselemur.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> <!-- Model File -->
         <a-entity mixin="button" class="clickable" position="1.5 0 -0.4" id="gorillabutt" gltf-model="#buttonmodel"></a-entity></a-entity> <!-- Info Button -->
        
@@ -479,27 +491,27 @@
          <a-entity mixin="scale-box" id="stand5-tit"><a-entity mixin="scale-label-border" position="0.43 -0.8 -0.49" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.429 -0.8 -0.49" rotation="0 -90 0" text="value: Notharctus\nScientific Name: Notharctus tenebrosus\nLocation: Wyoming, USA\nTime: 46 million years ago\n\nNotes: This early primate resembles a lemur, with core primate traits such as grasping limbs.; "></a-entity></a-entity></a-entity>
 
         <a-entity class="scale-zone-2" position="-10.73 1.4 -0.566">
-        <a-entity gltf-model="models/howler.glb" shadow="cast: false; receive: false"> 
-        <a-entity mixin="button" class="clickable"  position="-0.06 -1.4 0.18" id="howlerbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
-        <a-entity mixin="scale-box" id="stand6-tit"><a-entity mixin="scale-label-border" position="0.88 -0.7 -0.7" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.878 -0.7 -0.7" rotation="0 -90 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions.; "></a-entity><!-- Info Box -->
-         <a-entity position="0.9 0.9 0.8" rotation="0 -90 0"><a-image mixin="scale-label" src="images/howler-p.jpg" position="0 0 0.01" width="2" height="1.33"></a-image><a-text text="width: 2; value: &quot;Black Howler Monkey Family&quot; by Kent MacElwee, used under CC BY-NC 2.0; align: right; color: black; wrapCount: 45" position="0.95 -0.77 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
+            <a-entity gltf-model="models/howler.glb" shadow="cast: false; receive: false"> 
+            <a-entity mixin="button" class="clickable"  position="-0.06 -1.4 0.18" id="howlerbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
+            <a-entity mixin="scale-box" id="stand6-tit"><a-entity mixin="scale-label-border" position="0.88 -0.7 1" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.878 -0.7 1" rotation="0 -90 0" text="value: Black-and-Gold Howler Monkey\nScientific Name: Alouatta caraya\nLocation: Center of South America\nTime: Present\n\nNotes: The loudest land animal, with calls that can be heard 3 miles (5 kilometers) away in ideal conditions.; "></a-entity><!-- Info Box -->
+            <a-entity position="0.97 0.9 0.8" rotation="0 -90 0"><a-image mixin="scale-label" src="images/howler-p.jpg" position="0 0 0.01" width="2" height="1.33"></a-image><a-text text="width: 2; value: &quot;Black Howler Monkey Family&quot; by Kent MacElwee, used under CC BY-NC 2.0; align: right; color: black; wrapCount: 45" position="0.95 -0.77 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
         <a-entity class="scale-zone-1" position="-8.76 0 -0.15" rotation="0 180 0">
-        <a-entity gltf-model="models/megaladapis.glb" shadow="cast: false; receive: false"> 
-        <a-entity mixin="button" class="clickable"  position="-1.1 -0 -0.35" id="megaladapisbutt" gltf-model="#buttonmodel"></a-entity></a-entity> 
-        <a-entity mixin="scale-box" id="stand7-tit"><a-entity mixin="scale-label-border" position="0 1 1" rotation="0 -120 0"></a-entity><a-entity mixin="scale-label" position="-0.01 1 1" rotation="0 -120 0" text="value: Megaladapis\nScientific Name: Megaladapis edwardsi\nLocation: Madagascar\nTime: From unknown to around the year 1500\n\nNotes: One of the extinct 'koala lemurs,' adapted for slow vertical climbing and leaf-eating.; "></a-entity></a-entity></a-entity>
+            <a-entity gltf-model="models/megaladapis.glb" shadow="cast: false; receive: false"> 
+            <a-entity mixin="button" class="clickable"  position="-1.1 -0 -0.35" id="megaladapisbutt" gltf-model="#buttonmodel"></a-entity></a-entity> 
+            <a-entity mixin="scale-box" id="stand7-tit"><a-entity mixin="scale-label-border" position="0 1 1" rotation="0 -120 0"></a-entity><a-entity mixin="scale-label" position="-0.01 1 1" rotation="0 -120 0" text="value: Megaladapis\nScientific Name: Megaladapis edwardsi\nLocation: Madagascar\nTime: From unknown to around the year 1500\n\nNotes: One of the extinct 'koala lemurs,' adapted for slow vertical climbing and leaf-eating.; "></a-entity></a-entity></a-entity>
          
         <a-entity class="scale-zone-3" rotation="0 -90 0" position="-14.46 0 -1.58">
-        <a-entity gltf-model="models/tarsiers.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
-        <a-entity mixin="button" class="clickable"  position="-0.6 0 2" id="tarsierbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
-        <a-entity mixin="scale-box" id="stand8-tit" position="-0.14 0 0"><a-entity mixin="scale-label-border" position="0.65 0.9 1.1" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.64 0.9 1.1" rotation="0 -90 0" text="value: Philippine tarsier\nScientific Name: Carlito syrichta\nLocation: Southeastern Philippine archipelago\nTime: Present\n\nNotes: Members of the family Tarsiidae are nocturnal ambush predators with the ability to communicate ultrasonically.; "></a-entity><!-- Info Box -->
-         <a-entity mixin="scale-label-border" position="0.323 2 4.75" rotation="0 -120 0" geometry="height: 0.55"></a-entity><a-entity mixin="scale-label" position="0.314 2 4.75" rotation="0 -120 0" geometry="height: 0.5" text="value: The distance from branch to branch, 16 feet (4.9 m), can be leaped by a tarsier!.; "></a-entity><!-- Info Box -->
-         <a-entity position="0.65 2 3" rotation="0 -90 0"><a-image mixin="scale-label" src="images/tarsier-p.jpg" position="0 0 0.01" width="2" height="3"></a-image><a-text text="width: 3; value: Photo by Pierre Fidenci, used under CC BY-SA 2.5; align: right; color: black; wrapCount: 70" position="0.94 -1.57 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
+            <a-entity gltf-model="models/tarsiers.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
+            <a-entity mixin="button" class="clickable"  position="-0.6 0 2" id="tarsierbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
+            <a-entity mixin="scale-box" id="stand8-tit" position="-0.14 0 0"><a-entity mixin="scale-label-border" position="0.65 0.9 1.1" rotation="0 -90 0"></a-entity><a-entity mixin="scale-label" position="0.64 0.9 1.1" rotation="0 -90 0" text="value: Philippine tarsier\nScientific Name: Carlito syrichta\nLocation: Southeastern Philippine archipelago\nTime: Present\n\nNotes: Members of the family Tarsiidae are nocturnal ambush predators with the ability to communicate ultrasonically.; "></a-entity><!-- Info Box -->
+            <a-entity mixin="scale-label-border" position="0.323 2 4.75" rotation="0 -120 0" geometry="height: 0.55"></a-entity><a-entity mixin="scale-label" position="0.314 2 4.75" rotation="0 -120 0" geometry="height: 0.5" text="value: The distance from branch to branch, 16 feet (4.9 m), can be leaped by a tarsier!.; "></a-entity><!-- Info Box -->
+            <a-entity position="0.65 2 3" rotation="0 -90 0"><a-image mixin="scale-label" src="images/tarsier-p.jpg" position="0 0 0.01" width="2" height="3"></a-image><a-text text="width: 3; value: Photo by Pierre Fidenci, used under CC BY-SA 2.5; align: right; color: black; wrapCount: 70" position="0.94 -1.57 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
          
         <a-entity class="scale-zone-1" position="-9.114 0 -3.3">
-        <a-entity gltf-model="models/proconsul.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> 
-        <a-entity mixin="button" class="clickable" position="1 0 -0.54" id="proconsulbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
-        <a-entity mixin="scale-box" id="stand9-tit"><a-entity mixin="scale-label-border" position="-0.136 0.8 -0.637" rotation="0 120 0"></a-entity><a-entity mixin="scale-label" position="-0.136 0.8 -0.638" rotation="0 120 0" text="value: Proconsul\nScientific Name: Proconsul nyanzae\nLocation: Lake Victoria region, Kenya\nTime: 18 million years ago\n\nNotes: Proconsul nyanzae is the largest of the proconsulids, whose traits were adapted to movement on large tree limbs in dense forests.; "></a-entity></a-entity></a-entity>
+            <a-entity gltf-model="models/proconsul.glb" rotation="0 0 0" scale="1 1 1" shadow="cast: false; receive: false"> 
+            <a-entity mixin="button" class="clickable" position="1 0 -0.54" id="proconsulbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
+            <a-entity mixin="scale-box" id="stand9-tit"><a-entity mixin="scale-label-border" position="-0.136 0.8 -0.637" rotation="0 120 0"></a-entity><a-entity mixin="scale-label" position="-0.136 0.8 -0.638" rotation="0 120 0" text="value: Proconsul\nScientific Name: Proconsul nyanzae\nLocation: Lake Victoria region, Kenya\nTime: 18 million years ago\n\nNotes: Proconsul nyanzae is the largest of the proconsulids, whose traits were adapted to movement on large tree limbs in dense forests.; "></a-entity></a-entity></a-entity>
 
         <a-entity class="scale-zone-2" rotation="0 90 0" position="-16.88 0 5.02">
             <a-entity gltf-model="models/chimps.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
@@ -516,23 +528,43 @@
            <a-entity position="-4.7 2.1 -3.7" rotation="0 0 0"><a-image mixin="scale-label" src="images/mandrills-p.jpg" position="0 0 0.01"  width="2.5" height="1.67"></a-image><a-text text="width: 3; value: &quot;Mandrill Family Portrait&quot; by Eric Kilby, used under CC BY-SA 2.0; align: right; color: black; wrapCount: 75" position="1.27 -0.905 0.01"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-entity></a-entity>
 
         <a-entity class="scale-zone-3" position="-20.13 0 -6.9" rotation="0 45 0">
-            <a-entity gltf-model="models/loris.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
-            <a-entity mixin="button" class="clickable" position="0 0 0.3" id="lorisbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
-            <a-entity mixin="scale-box" id="stand12-tit"><a-entity mixin="scale-label-border" position="-0.523 0.64 -0.3" rotation="0 45 0"></a-entity><a-entity mixin="scale-label" position="-0.52 .64 -0.3" rotation="0 45 0" text="value: Kayan River Slow Loris\nScientific Name: Nycticebus kayan\nLocation: Borneo\nTime: Present\n\nNotes: This species of loris was recently found to be distinct from other species, especially in their facial markings.; "></a-entity><a-entity mixin="scale-label-border" position="0.55 1.2 -0.25" rotation="0 -45 0" geometry="height: 0.55"></a-entity><a-entity mixin="scale-label" position="0.545 1.2 -0.245" rotation="0 -45 0" geometry="height: 0.5" text="value: Lorises are threatened by habitat loss and the exotic pet trade.; "></a-entity><!-- Info Box -->
-           </a-entity></a-entity>
+             <a-entity gltf-model="models/loris.glb" scale="1 1 1" shadow="cast: false; receive: false"> 
+             <a-entity mixin="button" class="clickable" position="0 0 0.3" id="lorisbutt" gltf-model="#buttonmodel"></a-entity></a-entity>
+             <a-entity mixin="scale-box" id="stand12-tit"><a-entity mixin="scale-label-border" position="-0.523 0.64 -0.3" rotation="0 45 0"></a-entity><a-entity mixin="scale-label" position="-0.52 .64 -0.3" rotation="0 45 0" text="value: Kayan River Slow Loris\nScientific Name: Nycticebus kayan\nLocation: Borneo\nTime: Present\n\nNotes: This species of loris was recently found to be distinct from other species, especially in their facial markings.; "></a-entity><a-entity mixin="scale-label-border" position="0.55 1.2 -0.25" rotation="0 -45 0" geometry="height: 0.55"></a-entity><a-entity mixin="scale-label" position="0.545 1.2 -0.245" rotation="0 -45 0" geometry="height: 0.5" text="value: Lorises are threatened by habitat loss and the exotic pet trade.; "></a-entity><!-- Info Box -->
+            </a-entity></a-entity>
 
-           <a-entity class="scale-zone-2" position="-14 0 -0.6" rotation="0 90 0">
-            <a-entity gltf-model="models/aye-aye.glb" position="0.03 2.74 0.17" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
+        <a-entity class="scale-zone-2" position="-14 0 -0.6" rotation="0 90 0">
+            <a-entity gltf-model="models/aye-aye.glb" position="0.013 1.66 -0.028" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
             <a-entity mixin="button" class="clickable" position="-0.37 0 -0.1" id="aye-ayebutt" gltf-model="#buttonmodel"></a-entity>
             <a-entity mixin="scale-box" id="stand13-tit"><a-entity mixin="scale-label-border" position="-0.326 0.64 -0.3" rotation="0 -50 0"></a-entity><a-entity mixin="scale-label" position="-0.327 .64 -0.3" rotation="0 -50 0" text="value: Aye-Aye\nScientific Name: Daubentonia madagascariensis\nLocation: Madagascar\nTime: Present\n\nNotes: Aye-ayes are nocturnal lemurs that have a specialized middle finger to dig wood and snare grubs.; "></a-entity><!-- Info Box -->
             <a-entity position="0.3 2.4 -1.4" rotation="0 90 0"><a-image mixin="scale-label" src="images/aye-aye-p.jpg" position="0 0 0"  width="1.67" height="2.5"></a-image><a-text text="width: 1.75; value: &quot;Aye aye Nocturnal Lemur&quot; by Rod Waddington, used under CC BY-SA 2.0; align: right; color: black; wrapCount: 45" position="-0.8 -1.4 0" rotation="0 180 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
-           </a-entity></a-entity>
+            </a-entity></a-entity>
 
-           <a-entity class="scale-zone-1" position="-5.115 0 -4.55">
-            <a-entity gltf-model="models/plesiadapis.glb" position="0 1.26 -0.14" rotation="0 180 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
+        <a-entity class="scale-zone-1" position="-5.115 0 -4.55">
+            <a-entity gltf-model="#plesiadapismodel" position="0 1.26 -0.14" rotation="0 180 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
             <a-entity mixin="button" class="clickable" position="0.45 0 -0.1" id="plesiadapisbutt" gltf-model="#buttonmodel"></a-entity>
             <a-entity mixin="scale-box" id="stand14-tit"><a-entity mixin="scale-label-border" position="0.15 0.6 0.58" rotation="0 90 0" geometry="height: 0.75"></a-entity><a-entity mixin="scale-label" position="0.155 0.6 0.58" rotation="0 90 0" geometry="height: 0.7" text="value: Plesiadapis\nScientific Name: Plesiadapis cookei\nLocation: Wyoming, USA\nTime: 62 to 56 million years ago\n\nNotes: Plesiadapis is a relative of primates with traits adapted to clinging to large diameter tree branches and trunks.; "></a-entity></a-entity></a-entity>
-        
+
+        <a-entity class="scale-zone-3" position="-19.6 0 -4.4" rotation="0 0 0">
+            <a-entity gltf-model="models/proboscis.glb" position="0 0.05 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
+            <a-entity mixin="button" class="clickable" position="1.25 0 0.06" id="proboscisbutt" gltf-model="#buttonmodel"></a-entity>
+            <a-entity mixin="scale-box" id="stand15-tit"><a-entity mixin="scale-label-border" position="0.04 0.64 0.93" rotation="0 90 0"></a-entity><a-entity mixin="scale-label" position="0.05 0.64 0.93" rotation="0 90 0" text="value: Proboscis Monkey\nScientific Name: Nasalis larvatus\nLocation: Borneo\nTime: Present\n\nNotes: Proboscis monkey males (right) have exaggerated noses that are related to success with attracting females (left).; "></a-entity><!-- Info Box -->
+            <a-entity position="-1.13 2.8 1.7" rotation="0 90 0"><a-image mixin="scale-label" src="images/proboscis-p.jpg" position="0 0 0"  width="2.25" height="1.5"></a-image><a-text text="width: 2; value: &quot;A male and a female Proboscis Monkey&quot; by shankar s, used under CC BY 2.0; align: right; color: black; wrapCount: 45" position="1.16 -0.89 0.07" rotation="0 0 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
+               </a-entity></a-entity>
+
+        <a-entity class="scale-zone-2" position="-15.4 0 5.93" rotation="0 180 0">
+            <a-entity gltf-model="models/galago.glb" position="-0.032 1.507 0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
+            <a-entity mixin="button" class="clickable" position="-0.48 0 0.33" id="galagobutt" gltf-model="#buttonmodel"></a-entity>
+            <a-entity mixin="scale-box" id="stand16-tit"><a-entity mixin="scale-label-border" position="-0.8 1 -0.04" rotation="0 0 0"></a-entity><a-entity mixin="scale-label" position="-0.8 1 -0.025" rotation="0 0 0" text="value: Senegal Galago or Bushbaby\nScientific Name: Galago senegalensis\nLocation: Across Central Africa\nTime: Present\n\nNotes: Galagos are adapted to be nocturnal leapers. In the daytime they sleep and hide from predators like the common chimpanzee.; "></a-entity><!-- Info Box -->
+            <a-entity position="-0.24 2.5 -0.05" rotation="0 0 0"><a-image mixin="scale-label" src="images/galago-p.jpg" position="0 0 0"  width="1.5" height="1"></a-image><a-text text="width: 1.5; value: &quot;Senegal Galago, Sopa Lodge, Serengeti NP, Tanzania, 24th May 2014 02 (2)&quot; by Wildlife Travel, used under CC BY-NC 2.0; align: right; color: black; wrapCount: 40" position="0.75 -0.65 0.07" rotation="0 0 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
+            </a-entity></a-entity>
+
+        <a-entity class="scale-zone-2" position="-10.6 0 -2" rotation="0 -90 0">
+            <a-entity gltf-model="models/capuchin.glb" position="-0.114 1.05 -0" scale="1 1 1" shadow="cast: false; receive: false"></a-entity>
+            <a-entity mixin="button" class="clickable" position="-0.48 0 0.18" id="capuchinbutt" gltf-model="#buttonmodel"></a-entity>
+            <a-entity mixin="scale-box" id="stand17-tit"><a-entity mixin="scale-label-border" position="-0.8 1 -0.74" rotation="0 0 0"></a-entity><a-entity mixin="scale-label" position="-0.8 1 -0.73" rotation="0 0 0" text="value: Panamanian White-Faced Capuchin\nScientific Name: Cebus imitator\nLocation: Across Central America\nTime: Present\n\nNotes: Capuchin monkeys are highly intelligent in the use of tools in the wild. They have also been trained for entertainment media and to be assistive animals.; "></a-entity><!-- Info Box -->
+            <a-entity position="-0.24 2.5 -0.78" rotation="0 0 0"><a-image mixin="scale-label" src="images/capuchin-p.jpg" position="0 0 0" width="1.875" height="1.25"></a-image><a-text text="width: 1.8; value: &quot;Panamanian white-faced capuchin / Cebus imitator &quot; by Jonas Juodišius, used under CC BY-NC-SA 2.0; align: right; color: black; wrapCount: 45" position="0.95 0.76 0" rotation="0 0 0"></a-text></a-entity><!-- Photo Caption --><!-- Image Panels -->
+            </a-entity></a-entity>
          
          
 <!-- Credits -->
@@ -730,38 +762,65 @@ https://skfb.ly/6UIZn
 ;"></a-entity>
 
 <a-entity mixin="credit-text" class="credits" id="credits-7" visible="false" position="-0.7 2 -7.49" text="value: Image Sources
-Scale Model Hall
+-Scale Model Hall-
 Aye-Aye: &quot;Aye aye Nocturnal Lemur&quot; by Rod Waddington (CC BY-SA 2.0)
 https://flic.kr/p/N99ChK
-
-Bornean Orangutan: &quot;Male Bornean Orangutan - Big Cheeks&quot; by Eric Kilby (CC BY-SA 2.0)
-https://upload.wikimedia.org/wikipedia/commons/9/9d/Male_Bornean_Orangutan_-_Big_Cheeks.jpg
-
-Lar Gibbon: photo by Ladislav Kral (CC BY-SA 3.0)
-https://upload.wikimedia.org/wikipedia/commons/a/aa/Hylobates-lar-04-Chiang-Mai.jpg
 
 Black Howler Monkey: &quot:Black Howler Monkey Family&quot; by Kent MacElwee (CC BY-NC 2.0)
 https://www.flickr.com/photos/kmacelwee/3132129839/
 
-Eastern Lowland Gorilla: &quot;Imposing&quot; by Joe McKenna (CC BY 2.0)
-https://commons.wikimedia.org/wiki/File:Eastern_lowland_gorilla.jpg
-
-Hamadryas Baboon Skull: Photo by UrLunkwill. (CC BY-SA 3.0 DE)
-https://commons.wikimedia.org/wiki/File:Mantelpavian_Gruppe.JPG
-
-Rhesus Macaque: photo by Thomas Schoch (CC BY-SA 3.0)
-https://commons.wikimedia.org/wiki/File:Macaque_India_3.jpg
-
-Tarsier: photo by Pierre Fidenci (CC BY-SA 2.5)
-https://commons.wikimedia.org/wiki/File:Tarsius_syrichta04.jpg
+Bornean Orangutan: &quot;Male Bornean Orangutan - Big Cheeks&quot; by Eric Kilby (CC BY-SA 2.0)
+https://upload.wikimedia.org/wikipedia/commons/9/9d/Male_Bornean_Orangutan_-_Big_Cheeks.jpg
 
 Chimpanzees: &quot;Chimpanzees in Kibaale Forest NP&quot; by Sandra Aceng (CC BY-SA 4.0)
 https://commons.wikimedia.org/wiki/File:Chimpanzees_in_Kibaale_Forest_NP.jpg
 
+Eastern Lowland Gorilla: &quot;Imposing&quot; by Joe McKenna (CC BY 2.0)
+https://commons.wikimedia.org/wiki/File:Eastern_lowland_gorilla.jpg
+
+Lar Gibbon: photo by Ladislav Kral (CC BY-SA 3.0)
+https://upload.wikimedia.org/wikipedia/commons/a/aa/Hylobates-lar-04-Chiang-Mai.jpg
+
 Mandrills: &quot;Mandrill Family Portrait&quot; by Eric Kilby (CC BY-SA 2.0)
 https://flic.kr/p/wdoZL1
 
-VR Grab Lab
+Panamanian White-Faced Capuchin: &quot;Panamanian white-faced capuchin / Cebus imitator&quot; by Jonas Juodisius (CC BY-NC-SA 2.0)
+https://flic.kr/p/2i2zC2u
+
+Proboscis Monkeys: &quot;A male and a female Proboscis Monkey&quot; by shankar s (CC BY 2.0)
+https://flic.kr/p/hVXXkB
+
+Rhesus Macaque: photo by Thomas Schoch (CC BY-SA 3.0)
+https://commons.wikimedia.org/wiki/File:Macaque_India_3.jpg
+
+Senegal Galago: &quot;Senegal Galago, Sopa Lodge, Serengeti NP, Tanzania, 24th May 2014 02 (2)&quot; by Wildlife Travel (CC BY-NC 2.0)
+https://flic.kr/p/nLcggT 
+
+Tarsier: photo by Pierre Fidenci (CC BY-SA 2.5)
+https://commons.wikimedia.org/wiki/File:Tarsius_syrichta04.jpg
+; "></a-entity>
+
+<a-entity mixin="credit-text" class="credits" id="credits-8" visible="false" position="-0.7 2 -7.49" text="value: -Divider Hall-
+&quot;What Evolution Looks Like&quot; By T. Michael Keesey (CC BY 2.0)
+https://flic.kr/p/vEj6pg
+
+-Human Evolution Hall-
+Ardipithecus ramidus:&quot;Awash National Park, Ethiopia&quot; by Gregoire Dubois (CC BY-NC-SA 2.0)
+https://flic.kr/p/K8JM2Y
+
+Australopithecus afarensis: &quot;Northeast Ethiopia&quot; by European Space Agency (CC BY-SA 2.0)
+https://flic.kr/p/28ixhL1
+
+Homo erectus: &quot;Lago Turkana - Lake Turkana&quot; By Luciano Rizzello (CC BY-NC-SA 2.0)
+https://flic.kr/p/64isCX
+
+Homo floresiensis: &quot;Cave where the remainings of Homo Floresiensis where discovered in 2003, Liang Bua, Flores, Indonesia [2007]&quot; by Rosino (CC BY-SA 2.0)
+https://flic.kr/p/3jNfok
+
+Neanderthal Composite: &quot;International conference : Ancien Arbela. Pre-Islamic History of Erbil (Erbil, April, 7-10 2014)&quot; by Institut français du Proche-Orient (CC BY-SA 2.0)
+https://flic.kr/p/nencEz
+
+-VR Grab Lab-
 Acheulian Handaxe: &quot;Palaeolithic Handaxe&quot; by The Portable Antiquities Scheme/ The Trustees of the British Museum (CC BY 2.0)
 https://commons.wikimedia.org/wiki/File:Palaeolithic_handaxe_(FindID_437041-356797).tif
 
@@ -775,7 +834,7 @@ Chimpanzee: By the National Museum of Natural History. (CC BY-SA 2.0)
 https://www.si.edu/object/pan-troglodytes:nmnhvz_7594233
 ; "></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-8" visible="false" position="-0.7 2 -7.49" text="value: More Image Sources
+<a-entity mixin="credit-text" class="credits" id="credits-9" visible="false" position="-0.7 2 -7.49" text="value: More Image Sources
 Engraved Water Bottle: &quot;Ivory-billed woodpeckers&quot; by John James Audubon, image by Houghton Library. (Public Domain)
 https://commons.wikimedia.org/wiki/File:Houghton_MS_Am_21_(31)_-_John_James_Audubon,_ivory_billed_woodpecker.jpg
 
@@ -783,6 +842,9 @@ Femur Dagger: &quot;Dagger&quot; image by Saint Louis Art Museum. (Public Domain
 https://www.slam.org/collection/objects/14095/
 Hippo Ivory Harpoon: &quot;Hippo (Hippopotamus amphibius) Yawning&quot; by Bernard DUPONT. (CC BY-SA 2.0)
 https://commons.wikimedia.org/wiki/File:Hippo_(Hippopotamus_amphibius)_yawning_..._(31187613621).jpg
+
+Hamadryas Baboon Skull: Photo by UrLunkwill. (CC BY-SA 3.0 DE)
+https://commons.wikimedia.org/wiki/File:Mantelpavian_Gruppe.JPG
 
 Howler Monkey Skull: Photo by Alex Proimos. (CC BY 2.0)
 https://commons.wikimedia.org/wiki/File:Coiba_National_Park,_Panama_(View_from_Isla_Coiba)_(8371374375).jpg
@@ -795,7 +857,9 @@ https://www.si.edu/object/hylobates-lar:nmnhvz_7047655
 
 Mandrill: Photo by William Warby. (CC BY 2.0)
 https://commons.wikimedia.org/wiki/File:Indri_indri_0006.jpg
+; "></a-entity>
 
+<a-entity mixin="credit-text" class="credits" id="credits-10" visible="false" position="-0.7 2 -7.49" text="value:
 Mousterian Scraper: &quot;Mousterian Points and Scrapers&quot; by Wellcome Images. (CC BY 4.0). Image cropped from original.
 https://commons.wikimedia.org/wiki/File:Mousterian_points_and_scrapers_Wellcome_M0015182.jpg
 
@@ -822,7 +886,8 @@ Woman of Willendorf: &quot;Vénus de Lespugue Gravettien Musée de l'Homme&quot;
 https://commons.wikimedia.org/wiki/File:Vénus_de_Lespugue_Gravettien_Musée_de_l%27Homme_04022018_2.jpg
 ; "></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-9" visible="false" position="-0.7 2 -7.49" text="value: More Image Sources
+<a-entity mixin="credit-text" class="credits" id="credits-11" visible="false" position="-0.7 2 -7.49" text="value: 
+More Image Sources
 Burial Chamber
 World Map: &quot;Ecker IV projection SW&quot; Image by Strebe (CC BY-SA 3.0)
 https://commons.wikimedia.org/wiki/File:Ecker_IV_projection_SW.jpg
@@ -852,7 +917,7 @@ https://flic.kr/p/UZdDhZ
 https://www.britishmuseum.org/collection/image/166522001
 ; "></a-entity>
 
-<a-entity mixin="credit-text" class="credits" id="credits-10" visible="false" position="-0.7 2 -7.49" text="value: VR Sources
+<a-entity mixin="credit-text" class="credits" id="credits-12" visible="false" position="-0.7 2 -7.49" text="value: VR Sources
 Diego Marcos, Don McCurdy, and Kevin Ngo
 A-Frame
 
