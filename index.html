@@ -22,20 +22,20 @@
 <meta name="description" content="VR Anthropology Museum">
 <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r134/examples/js/deprecated/Geometry.js"></script> -->
-<script src="js/aframe-extras.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@8c9b13a/dist/aframe-extras.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.1.0/dist/aframe-physics-system.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/super-hands@^3.0.1/dist/super-hands.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script> Not needed? -->
-<script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
-<script src="js/aframe-fps-look-controls-component.min.js"></script> <!-- Custome Three.MathUtils fix -->
+<script src="https://cdn.jsdelivr.net/npm/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script> -->
+<script src="js/aframe-fps-look-controls-component.min.js"></script> <!-- Custom Three.MathUtils fix -->
 <script src="js/anvro-122.js"></script>
 
 </head>
 
 <body>
-<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://cdn.jsdelivr.net/npm/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: js/draco/">
+<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://cdn.jsdelivr.net/npm/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/; basisTranscoderPath: https://cdn.jsdelivr.net/npm/super-three@0.141.0/examples/js/libs/basis/">
        
 <a-assets timeout="80000"> <!-- Loads models -->
                 <a-asset-item id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
@@ -94,8 +94,9 @@
         <a-entity id="camera" camera look-controls raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
             <a-entity id="crosshair" visible="false" cursor="rayOrigin:mouse" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: #0055ff; shader: flat" raycaster="far: 5; objects: .clickable"></a-entity>
             <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 700;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 700;"></a-entity></a-entity>
-        <a-entity id="lefthand" mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8;"></a-entity>
-        <a-entity id="righthand" mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8;"></a-entity>
+        <a-entity id="lefthand" mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff" ></a-entity>
+        <!-- blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8;" -->
+        <a-entity id="righthand" mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff"></a-entity>
  </a-entity>
  
 <a-light type="ambient" color="white" intensity="0.05"></a-light> 
