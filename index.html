@@ -23,19 +23,20 @@
 <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
 <!-- <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r134/examples/js/deprecated/Geometry.js"></script> -->
 <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@8c9b13a/dist/aframe-extras.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.1.0/dist/aframe-physics-system.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/super-hands@^3.0.3/dist/super-hands.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
 <script src="js/aframe-fps-look-controls-component.min.js"></script> <!-- Custom Three.MathUtils fix -->
 <script src="js/anvro-122.js"></script>
 
 </head>
 
 <body>
-<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://cdn.jsdelivr.net/npm/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/; basisTranscoderPath: https://cdn.jsdelivr.net/npm/super-three@0.141.0/examples/js/libs/basis/">
+<a-scene look-switch anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui nav-mesh-strategy physics="debug: true; iterations: 30;" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://cdn.jsdelivr.net/npm/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/; basisTranscoderPath: https://cdn.jsdelivr.net/npm/super-three@0.141.0/examples/js/libs/basis/">
        
 <a-assets timeout="80000"> <!-- Loads models -->
                 <a-asset-item id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
@@ -63,9 +64,14 @@
 				<a-asset-item id="lomekmodel" response-type="arraybuffer" src="models/lomekwian.glb"></a-asset-item>
 
                 <a-mixin id="obj" hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" scale="1 1 1" rotation="0 0 0" shadow></a-mixin>
+                <a-mixin id="grab-move"
+                 hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" draggable
+                 event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
+                 event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
+        ></a-mixin>
                 <a-mixin id="button" static-body hoverable clickable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" shadow></a-mixin>
                 <a-mixin id="holoprojector" color="#ff6a00" position="0 0.3 0" rotation="180 0 0" height="0.05" geometry="primitive: cone; segmentsRadial: 3; openEnded: true; radiusBottom: 0.5; segmentsHeight: 1" material="emissive: #ff6a00; wireframe: true" animation="property: rotation; to: 180 360 0; loop: true; easing: linear; dur: 10000"></a-mixin>
-                <a-mixin id="hand" physics-collider static-body="shape: box" collision-filter="collisionForces: false;" 
+                <a-mixin id="hand" physics-collider phase-shift static-body="shape: box" collision-filter="collisionForces: false;" 
 				 super-hands="colliderEvent: collisions; 
                               colliderEventProperty: els;
                               colliderEndEvent: collisions;
@@ -89,13 +95,13 @@
 <a-entity class="floorplan-zone" position="0 0 0" gltf-model="#room"></a-entity> <!--  Main Building, no Human Evolution-->
 <a-entity class="c-h-div-zone" position="0 0 0" gltf-model="#c-h-dividermodel"></a-entity> <!-- Hominin Transition Zone -->
 
-<a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0 1"> <!-- Player Character -->
+<a-entity id="rig" rotation-reader movement-controls="speed: 0.1;" position="0 0 1"> <!-- Player Character -->
     <a-box id="body" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
         <a-entity id="camera" camera look-controls raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
             <a-entity id="crosshair" visible="false" cursor="rayOrigin:mouse" position="0 0 -0.2" geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: #0055ff; shader: flat" raycaster="far: 5; objects: .clickable"></a-entity>
             <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 700;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 700;"></a-entity></a-entity>
-        <a-entity id="lefthand" mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff" ></a-entity>
-        <!-- blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8;" -->
+        <a-entity id="lefthand" mixin="hand" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8;"></a-entity>
+
         <a-entity id="righthand" mixin="hand" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff"></a-entity>
  </a-entity>
  
@@ -315,50 +321,50 @@
    <a-entity id="phtable" position="10.5 0 -4.5"> <!-- This sets the relative state of the table --> 
         <a-entity table-wait class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table1" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Early Primate Fossils; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-        <a-entity id="archicebus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/archicebus.glb" static-body  position="0 1.03 -0.5" mixin="obj"></a-entity>
-        <a-entity id="proconsul-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/proconsulskull.glb" static-body position="0 1.01 -0.4" mixin="obj"></a-entity>
-        <a-entity id="sahelanthropus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/sahelskull.glb" static-body position="0 1.01 -0.2" mixin="obj"></a-entity>
-        <a-entity id="platyops-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/platyopsskull.glb" static-body position="0 1.01 0" mixin="obj"></a-entity>
-        <a-entity id="aethiopicus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/aethiopicusskull.glb" static-body position="0 1.01 0.2" mixin="obj"></a-entity>
-        <a-entity id="africanus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/africanusskull.glb" static-body position="0 1.01 0.4" mixin="obj"></a-entity>
+        <a-entity id="archicebus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/archicebus.glb" static-body  position="0 1.03 -0.5" mixin="grab-move"></a-entity>
+        <a-entity id="proconsul-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/proconsulskull.glb" static-body position="0 1.01 -0.4" mixin="grab-move"></a-entity>
+        <a-entity id="sahelanthropus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/sahelskull.glb" static-body position="0 1.01 -0.2" mixin="grab-move"></a-entity>
+        <a-entity id="platyops-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/platyopsskull.glb" static-body position="0 1.01 0" mixin="grab-move"></a-entity>
+        <a-entity id="aethiopicus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/aethiopicusskull.glb" static-body position="0 1.01 0.2" mixin="grab-move"></a-entity>
+        <a-entity id="africanus-grab" class="clickable grabbable grab-obj-zone table1obj" gltf-model="models/africanusskull.glb" static-body position="0 1.01 0.4" mixin="grab-move"></a-entity>
 </a-entity>    
     
 <!-- Hominin Fossil Skull table -->
    <a-entity id="stable" position="10.5 0 -2"> <!-- This sets the relative state of the table --> 
          <a-entity table-wait class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table2" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
          <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Prehistoric Homo Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-         <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone table2obj" gltf-model="models/habilisskull.glb" static-body position="0 1.01 -0.55" mixin="obj"></a-entity>
-         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/turkanaskull.glb" static-body position="0 1.01 -0.35" mixin="obj"></a-entity>
-         <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/atapuercaskull.glb" static-body position="0 1.01 -0.15" mixin="obj"></a-entity>
-         <a-entity id="naledi-leti-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/naledi-letiskull.glb" static-body position="0 1.01 0" rotation="0 90 0" mixin="obj"></a-entity>
-         <a-entity id="naledi-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/nalediskull.glb" static-body position="0 1.01 0.15" mixin="obj"></a-entity>
-         <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/neanskull.glb" static-body position="0 1.01 0.35" mixin="obj"></a-entity>
-         <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/vLCA1skull.glb" static-body position="0 1.01 0.55" mixin="obj"></a-entity>
+         <a-entity id="habilis-grab" class="clickable grabbable grab-obj-zone table2obj" gltf-model="models/habilisskull.glb" static-body position="0 1.01 -0.55" mixin="grab-move"></a-entity>
+         <a-entity id="turkana-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/turkanaskull.glb" static-body position="0 1.01 -0.35" mixin="grab-move"></a-entity>
+         <a-entity id="atapuerca-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/atapuercaskull.glb" static-body position="0 1.01 -0.15" mixin="grab-move"></a-entity>
+         <a-entity id="naledi-leti-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/naledi-letiskull.glb" static-body position="0 1.01 0" rotation="0 90 0" mixin="grab-move"></a-entity>
+         <a-entity id="naledi-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/nalediskull.glb" static-body position="0 1.01 0.15" mixin="grab-move"></a-entity>
+         <a-entity id="nean-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/neanskull.glb" static-body position="0 1.01 0.35" mixin="grab-move"></a-entity>
+         <a-entity id="vlca1-grab" class="clickable grabbable grab-obj-zone table2obj"  gltf-model="models/vLCA1skull.glb" static-body position="0 1.01 0.55" mixin="grab-move"></a-entity>
 </a-entity>
      
     <!-- Modern Non-Hominoid Skull table -->
      <a-entity id="ptable" position="10.5 0 1"> <!-- This sets the relative state of the table --> 
          <a-entity table-wait class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table3" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
          <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Prosimian and Monkey Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-         <a-entity id="potto-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.6" mixin="obj" gltf-model="models/pottoskull.glb"></a-entity> 
-         <a-entity id="indri-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.4" mixin="obj" gltf-model="models/indriskull.glb"></a-entity> 
-         <a-entity id="howler-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.2" mixin="obj" gltf-model="models/howlerskull.glb"></a-entity> 
-		 <a-entity id="squirrelmonkey-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.1" mixin="obj" gltf-model="models/squirrelmonkeyskull.glb"></a-entity> 
-        <a-entity  id="baboon-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.1" mixin="obj" gltf-model="models/baboonskull.glb"></a-entity>
-		<a-entity  id="rhesus-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.25" mixin="obj" gltf-model="models/rhesusskull.glb"></a-entity>
-		<a-entity  id="mandrill-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.4" mixin="obj" gltf-model="models/mandrillskull.glb"></a-entity>
-        <a-entity id="snub-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.6" mixin="obj" gltf-model="models/snubskull.glb"></a-entity> 
+         <a-entity id="potto-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.6" mixin="grab-move" gltf-model="models/pottoskull.glb"></a-entity> 
+         <a-entity id="indri-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.4" mixin="grab-move" gltf-model="models/indriskull.glb"></a-entity> 
+         <a-entity id="howler-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.2" mixin="grab-move" gltf-model="models/howlerskull.glb"></a-entity> 
+		 <a-entity id="squirrelmonkey-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 -0.1" mixin="grab-move" gltf-model="models/squirrelmonkeyskull.glb"></a-entity> 
+        <a-entity  id="baboon-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.1" mixin="grab-move" gltf-model="models/baboonskull.glb"></a-entity>
+		<a-entity  id="rhesus-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.25" mixin="grab-move" gltf-model="models/rhesusskull.glb"></a-entity>
+		<a-entity  id="mandrill-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.4" mixin="grab-move" gltf-model="models/mandrillskull.glb"></a-entity>
+        <a-entity id="snub-grab" class="clickable grabbable grab-obj-zone table3obj" static-body position="0 1.01 0.6" mixin="grab-move" gltf-model="models/snubskull.glb"></a-entity> 
 </a-entity>
     
         <!-- Hominoid Skull table -->
      <a-entity id="ptable2" position="10.5 0 3.5"> <!-- This sets the relative state of the table --> 
          <a-entity table-wait class="table grab-zone" static-body="shape: box;" scale="1 1 1" id="table5" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
          <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Modern Hominoid Skulls; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-        <a-entity id="gibbon-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 -0.3" mixin="obj" gltf-model="models/gibbonskull.glb"></a-entity> 
-        <a-entity id="gorilla-m-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 -0.1" mixin="obj" gltf-model="models/gorillaskull-m.glb"></a-entity> 
-        <a-entity id="gorilla-f-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 0.2" mixin="obj" gltf-model="models/gorillaskull-f.glb"></a-entity> 
-         <a-entity id="chimp-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 0.4" mixin="obj" gltf-model="models/chimpskull.glb"></a-entity>
-         <a-entity id="mhs-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 0.6" mixin="obj" gltf-model="models/mhsskull.glb"></a-entity> 
+        <a-entity id="gibbon-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 -0.3" mixin="grab-move" gltf-model="models/gibbonskull.glb"></a-entity> 
+        <a-entity id="gorilla-m-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 -0.1" mixin="grab-move" gltf-model="models/gorillaskull-m.glb"></a-entity> 
+        <a-entity id="gorilla-f-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 0.2" mixin="grab-move" gltf-model="models/gorillaskull-f.glb"></a-entity> 
+         <a-entity id="chimp-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 0.4" mixin="grab-move" gltf-model="models/chimpskull.glb"></a-entity>
+         <a-entity id="mhs-grab" class="clickable grabbable grab-obj-zone table5obj" static-body position="0 1.01 0.6" mixin="grab-move" gltf-model="models/mhsskull.glb"></a-entity> 
     </a-entity>
     
 <a-entity id="bonescreen" class="grab-zone" position="13.48 2 -4.8">
@@ -412,23 +418,23 @@
      <a-entity id="atable" position="4.94 0 -2.1"> <!-- This sets the relative state of the table --> 
         <a-entity table-wait class="table center-zone" static-body="shape: box;" scale="1 1 1" id="table4" gltf-model="#tablemodel"   shadow="cast: false; receive: false"></a-entity>
         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Artifacts; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-  		<a-entity id="lomek-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.6" mixin="obj" gltf-model="#lomekmodel"></a-entity>
-		<a-entity id="acheul-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.45" mixin="obj" gltf-model="#acheulmodel"></a-entity>
-        <a-entity id="mousterian-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.3" mixin="obj" gltf-model="#mousterianmodel"></a-entity>
-        <a-entity id="clovis-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.2" mixin="obj" gltf-model="#clovismodel"></a-entity>
-        <a-entity id="harpoon-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 0" mixin="obj" gltf-model="#harpoonmodel"></a-entity>
-        <a-entity id="moundville-grab" class="clickable grabbable center-obj-zone table4obj" static-body position="0 1.01 0.3" mixin="obj" gltf-model="#moundvillemodel"></a-entity>
-        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.1 0.5" mixin="obj" gltf-model="#daggermodel"></a-entity>
+  		<a-entity id="lomek-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.6" mixin="grab-move" gltf-model="#lomekmodel"></a-entity>
+		<a-entity id="acheul-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.45" mixin="grab-move" gltf-model="#acheulmodel"></a-entity>
+        <a-entity id="mousterian-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.3" mixin="grab-move" gltf-model="#mousterianmodel"></a-entity>
+        <a-entity id="clovis-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 -0.2" mixin="grab-move" gltf-model="#clovismodel"></a-entity>
+        <a-entity id="harpoon-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.01 0" mixin="grab-move" gltf-model="#harpoonmodel"></a-entity>
+        <a-entity id="moundville-grab" class="clickable grabbable center-obj-zone table4obj" static-body position="0 1.01 0.3" mixin="grab-move" gltf-model="#moundvillemodel"></a-entity>
+        <a-entity id="dagger-grab" class="clickable grabbable center-obj-zone standup table4obj" static-body position="0 1.1 0.5" mixin="grab-move" gltf-model="#daggermodel"></a-entity>
 </a-entity>
 
      <!-- Artifact table 2-->
      <a-entity id="atable2" position="4.94 0 1"> <!-- This sets the relative state of the table --> 
         <a-entity table-wait class="table center-zone" static-body="shape: box;" scale="1 1 1" id="table6" gltf-model="#tablemodel" shadow="cast: false; receive: false"></a-entity>
         <a-entity class="table" rotation="0 270 0" position="0 0 0"><a-plane position="0 0.837 0.21" height="0.3" width="0.75" color="#7a7a7a" text="value:Primate Figures; color:#dadada; align:center; wrapCount:15;" side="double"></a-plane></a-entity>
-        <a-entity id="venus-grab" class="clickable grabbable center-obj-zone table6obj" static-body position="0 1.01 -0.5" mixin="obj" gltf-model="#venusmodel"></a-entity>
-        <a-entity id="nasca-grab" class="clickable grabbable center-obj-zone table6obj" static-body position="0 1.01 0.3" mixin="obj" gltf-model="#nascamodel"></a-entity>
-        <a-entity id="canopic-grab" class="clickable grabbable center-obj-zone table6obj" static-body position="0 1.01 -0.2" mixin="obj" gltf-model="#canopicmodel"></a-entity>
-        <a-entity id="baboon-blue-grab" class="clickable grabbable center-obj-zone table6obj" static-body position="0 1.01 0.5" mixin="obj" gltf-model="#baboon-bluemodel"></a-entity>
+        <a-entity id="venus-grab" class="clickable grabbable center-obj-zone table6obj" static-body position="0 1.01 -0.5" mixin="grab-move" gltf-model="#venusmodel"></a-entity>
+        <a-entity id="nasca-grab" class="clickable grabbable center-obj-zone table6obj" static-body position="0 1.01 0.3" mixin="grab-move" gltf-model="#nascamodel"></a-entity>
+        <a-entity id="canopic-grab" class="clickable grabbable center-obj-zone table6obj" static-body position="0 1.01 -0.2" mixin="grab-move" gltf-model="#canopicmodel"></a-entity>
+        <a-entity id="baboon-blue-grab" class="clickable grabbable center-obj-zone table6obj" static-body position="0 1.01 0.5" mixin="grab-move" gltf-model="#baboon-bluemodel"></a-entity>
 </a-entity>
 
 <a-entity id="artifactscreen" class="center-zone" position="7.77 2 -2.0">

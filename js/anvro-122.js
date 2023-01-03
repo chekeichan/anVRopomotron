@@ -1,4 +1,5 @@
-console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
+// console.warn = console.error = () => {}; 
+// Suppresses Three.js warnings. Remove to debug
 
 AFRAME.registerComponent('table-wait', {
     init: function () {
@@ -80,8 +81,8 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             console.log('VR detected');
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
-            // rig.removeAttribute('movement-controls'); 
-            // Remove non-working controls
+            rig.removeAttribute('movement-controls'); 
+            
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
             console.log('PC detected');
             document.querySelector('#GL-PC1').object3D.visible = true;
@@ -712,9 +713,6 @@ AFRAME.registerComponent("warp", {
 
     var warpwarp = function(warplocx, warplocy, warplocz) {
         rig.object3D.position.set(warplocx, warplocy, warplocz);
-        if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC and mobile mode
-            rig.components['movement-controls'].updateNavLocation();
-        }
         setTimeout(function(){transitionopen();}, 700)
     };
     
@@ -741,3 +739,15 @@ AFRAME.registerComponent("warp", {
     warpfun("homininwarpbuttb2", 1.9, 5.3, -22);
     }
     })
+
+AFRAME.registerComponent('phase-shift', {
+    init: function () {
+        var el = this.el
+        el.addEventListener('gripdown', function () {
+        el.setAttribute('collision-filter', {collisionForces: true})
+        })
+        el.addEventListener('gripup', function () {
+        el.setAttribute('collision-filter', {collisionForces: false})
+        })
+    }
+});
