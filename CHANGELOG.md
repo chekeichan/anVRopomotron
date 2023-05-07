@@ -1,4 +1,8 @@
 # AnVRopomotron Changelog
+## 1.2.3 (???)
+Three.JS bonked A-Frame components and my house of cards collapsed.
+-   Updated A-Frame to 1.4.2 and c-frame managed components to latest versions.
+-   Removed aframe-fps-component link and code that allowed switching to mouselook and back in PC mode. It no longer works with the latest A-Frame. 
 ## 1.2.2 (8/08/2022)
 It's summer so it's time to make models non-stop.
 -   Ardi the Ardipithecus ramidus makes her way down to the Human Evolution Hall! This important discovery gives a clear image of what hominin evolution was like pre-Lucy. I've never seen Ardi and Lucy lined up so making the model was illuminating for me. I didn't know that Ardi was taller and that her arms were so long. The reduction in arm length in Lucy is very stark now, though her arms are still proportionately longer than our own.

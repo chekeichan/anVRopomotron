@@ -15,40 +15,6 @@ AFRAME.registerComponent('table-wait', {
     }, 200);});
 }});
 
-// PC Look Preference Switcher
-AFRAME.registerComponent("look-switch", {
-    init: function() {
-        var sceneEl = this.el.sceneEl;
-        var canvasEl = sceneEl.canvas;
-        var camera = document.querySelector('#camera');
-        var PCmode = 0;
-        window.addEventListener("keydown", function(e){ // Mouselook toggle
-            if(e.keyCode === 77 && PCmode == 0) { // Swipe to FPS
-                camera.setAttribute('look-controls', {enabled: false});
-                camera.setAttribute('fps-look-controls', 'userHeight', 0);
-                document.querySelector('#SMH-PC1').object3D.visible = false;
-                document.querySelector('#SMH-PC2').object3D.visible = true;
-                document.querySelector('#GL-PC1').object3D.visible = false;
-                document.querySelector('#GL-PC2').object3D.visible = true;
-                document.querySelector('#crosshair').object3D.visible = true;
-                PCmode = 1;
-            } else if (e.keyCode === 77 && PCmode == 1) { // FPS to swipe
-                camera.removeAttribute('fps-look-controls');
-                camera.setAttribute('look-controls', {enabled: true});
-                canvasEl.onclick = null; // Removes FPS components taking mouse on click
-                document.exitPointerLock();
-                document.querySelector('#SMH-PC1').object3D.visible = true;
-                document.querySelector('#SMH-PC2').object3D.visible = false;
-                document.querySelector('#GL-PC1').object3D.visible = true;
-                document.querySelector('#GL-PC2').object3D.visible = false;
-
-                document.querySelector('#crosshair').object3D.visible = false;
-                PCmode = 0;
-    
-            }
-        });
-    }
-    })
 
 AFRAME.registerComponent('device-set', { // Device-specific settings
     init: function() {
@@ -94,7 +60,6 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
                 each.object3D.position.y +=0.25;
             }
             for (let each of tablestand) {
-                let poss = each.getAttribute('position');
                 each.object3D.position.y += 0.25;
             }
             for (let each of standup) { // Stands up small objects
