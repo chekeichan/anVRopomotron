@@ -47,7 +47,7 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             console.log('VR detected');
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
-            rig.removeAttribute('movement-controls'); 
+            // rig.removeAttribute('movement-controls'); 
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
             console.log('PC detected');
             document.querySelector('#GL-PC1').object3D.visible = true;
