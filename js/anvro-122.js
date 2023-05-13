@@ -36,7 +36,7 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             for (let each of grabbable) {
                 each.removeAttribute('dynamic-body');
                 each.removeAttribute('grabbable');
-                each.setAttribute('static-body');
+                each.setAttribute('static-body', {shape: 'box'});
                 each.object3D.position.y += 0.245;
             }
             for (let each of standup) {
@@ -56,7 +56,7 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             for (let each of grabbable) {
                 each.removeAttribute('dynamic-body');
                 each.removeAttribute('grabbable');
-                each.setAttribute('static-body');
+                each.setAttribute('static-body', {shape: 'box'});
                 each.object3D.position.y +=0.25;
             }
             for (let each of tablestand) {
