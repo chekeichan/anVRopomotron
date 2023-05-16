@@ -1,8 +1,12 @@
 # AnVRopomotron Changelog
 ## 1.2.3 (???)
-Three.JS bonked A-Frame components and my house of cards collapsed.
--   Updated A-Frame to 1.4.2 and c-frame managed components to latest versions.
+A Three.JS update bonked A-Frame components and my museum of cards collapsed.
+-   Updated A-Frame to 1.4.2 and c-frame-managed components to latest versions.
 -   Removed aframe-fps-component link and code that allowed switching to mouselook and back in PC mode. It no longer works with the latest A-Frame. 
+-   A-Frame 1.4.2 and the physics component now loads in a order that does not produce working physics bodies from gltf models. A new component, static-wait, now adds an event listener that waits for gltf models to load before trying to apply a physics body to it. 
+-   Ada Rose Cannon's simple-navmesh-constraint component is now driving the navmesh. The A-Frame Extras version functions oddly as if everything was shifted despite where the model appeared to be. 
+-   Typos spotted and fixed
+
 ## 1.2.2 (8/08/2022)
 It's summer so it's time to make models non-stop.
 -   Ardi the Ardipithecus ramidus makes her way down to the Human Evolution Hall! This important discovery gives a clear image of what hominin evolution was like pre-Lucy. I've never seen Ardi and Lucy lined up so making the model was illuminating for me. I didn't know that Ardi was taller and that her arms were so long. The reduction in arm length in Lucy is very stark now, though her arms are still proportionately longer than our own.

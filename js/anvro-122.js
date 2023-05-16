@@ -10,9 +10,30 @@ AFRAME.registerComponent('table-wait', {
         if (AFRAME.utils.device.checkHeadsetConnected() === true) {
             for (let each of tableitems) {
                 each.removeAttribute('static-body');
-                each.setAttribute('dynamic-body', {shape: 'box', mass: 3});
+                each.setAttribute('dynamic-body', {shape: 'box', mass: 3, linearDamping: -100});
+                
         }}
-    }, 200);});
+    }, 2000);});
+}});
+
+AFRAME.registerComponent('all-wait', { // Waits for static physics objects to load then applies physics setting
+    init: function () {
+        var static = sceneEl.querySelectorAll('.static');
+        var grabbable = sceneEl.querySelectorAll('.grabbable');
+        console.log(static);
+      for (let each of static) {
+        each.addEventListener('model-loaded', () => { // Wait for model to load.
+            setTimeout(function(){
+            if (AFRAME.utils.device.checkHeadsetConnected() === true) {
+                each.removeAttribute('static-body');
+                each.setAttribute('static-body', {shape: 'box'});
+                    console.log(each);
+            }
+        }, 1000);});
+        }
+       
+        
+    
 }});
 
 
@@ -47,7 +68,6 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             console.log('VR detected');
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
-            // rig.removeAttribute('movement-controls'); 
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
             console.log('PC detected');
             document.querySelector('#GL-PC1').object3D.visible = true;
