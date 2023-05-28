@@ -5,22 +5,22 @@ AFRAME.registerComponent('table-wait', {
     init: function () {
         var tablename = this.el.id;
         var tableitems = sceneEl.querySelectorAll('.'+tablename+'obj');
-      this.el.addEventListener('body-loaded', () => { // Wait for model to load.
+      this.el.addEventListener('body-loaded', () => { // Wait for table model to load.
         setTimeout(function(){
         if (AFRAME.utils.device.checkHeadsetConnected() === true) {
             for (let each of tableitems) {
                 each.removeAttribute('static-body');
-                each.setAttribute('dynamic-body', {shape: 'box', mass: 3, linearDamping: -100});
+                each.setAttribute('dynamic-body', {shape: 'box', mass: 2});
+                console.log(each + " is dynamic");
                 
         }}
-    }, 2000);});
+    }, 5000);});
 }});
 
 AFRAME.registerComponent('all-wait', { // Waits for static physics objects to load then applies physics setting
     init: function () {
         var static = sceneEl.querySelectorAll('.static');
         var grabbable = sceneEl.querySelectorAll('.grabbable');
-        console.log(static);
       for (let each of static) {
         each.addEventListener('model-loaded', () => { // Wait for model to load.
             setTimeout(function(){
