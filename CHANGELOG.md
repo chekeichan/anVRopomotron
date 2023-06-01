@@ -1,12 +1,14 @@
 # AnVRopomotron Changelog
-## 1.2.3 (???)
-A Three.JS update bonked A-Frame components and my museum of cards collapsed.
+## 1.2.3 (6/01/2023)
+A Three.JS update bonked A-Frame components in version 1.4.2, needed for Quest Pro compatibility, and my museum of cards collapsed.
 -   Updated A-Frame to 1.4.2 and c-frame-managed components to latest versions.
 -   Removed aframe-fps-component link and code that allowed switching to mouselook and back in PC mode. It no longer works with the latest A-Frame. 
 -   A-Frame 1.4.2 and the physics component now loads in a order that does not produce working physics bodies from gltf models. A new component, static-wait, now adds an event listener that waits for gltf models to load before trying to apply a physics body to it. A previously existing component, table-wait, dynamically adds dynamic bodies for grabbable objects in VR.
+-   New version, new movement scheme in VR. Smooth movement is back and blink controls are now activated by the left thumbstick. Right stick smooth turns. 
 -   Ada Rose Cannon's simple-navmesh-constraint component is now driving the navmesh. The A-Frame Extras version functions oddly as if everything was shifted despite where the model appeared to be. 
 -   Two flipped normals in the navmesh fixed to be in line with the rest of the navmesh. This was not an issue with the old navmesh but simple-navmesh-constraint did not like it. 
--   Typos spotted and fixed
+-   Typos spotted and fixed.
+-   My name is under the museum name on the back wall now.
 
 ## 1.2.2 (8/08/2022)
 It's summer so it's time to make models non-stop.

@@ -21,7 +21,6 @@
   <meta http-equiv="pragma" content="no-cache" />
 <meta name="description" content="VR Anthropology Museum">
 <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-<!-- <script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r134/examples/js/deprecated/Geometry.js"></script> -->
 <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
@@ -30,11 +29,11 @@
 <script src="https://cdn.jsdelivr.net/npm/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls/dist/aframe-blink-controls.min.js"></script>
 <script src="js/simple-navmesh-constraint.js"></script>
-<script src="js/anvro-122.js"></script>
+<script src="js/anvro-123.js"></script>
 </head>
 
 <body>
-<a-scene all-wait anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30; debug: true" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://cdn.jsdelivr.net/npm/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/; basisTranscoderPath: https://cdn.jsdelivr.net/npm/super-three@0.141.0/examples/js/libs/basis/">
+<a-scene all-wait anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://cdn.jsdelivr.net/npm/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/; basisTranscoderPath: https://cdn.jsdelivr.net/npm/super-three@0.141.0/examples/js/libs/basis/">
        
 <a-assets timeout="80000"> <!-- Loads models -->
                 <a-asset-item id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
@@ -90,10 +89,10 @@
 
 <a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0 1" simple-navmesh-constraint="navmesh:.navmesh;fall:0.5;height:0;exclude:.navmesh-hole;"> <!-- Player Character -->
     <a-box id="body" class="static" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
-        <a-entity id="camera" camera look-controls raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
-            <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 700;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 700;"></a-entity></a-entity>
-        <a-entity id="lefthand" mixin="hand" physics-collider static-body="shape: sphere; sphereRadius: 0.05" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; button: thumbstick; teleportOrigin: #camera; collisionEntities: #nav; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8; snapTurn: false; rotateOnTeleport: false"></a-entity>
-        
+        <a-entity id="camera" camera look-controls cursor="rayOrigin:mouse" raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
+            <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 700;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 700;"></a-entity>
+            </a-entity>
+        <a-entity id="lefthand" mixin="hand" physics-collider static-body="shape: sphere; sphereRadius: 0.05" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff" blink-controls="cameraRig: #rig; button: thumbstick; teleportOrigin: #camera; collisionEntities: #navmesh; hitCylinderColor: #e9974c; interval: 10; curveHitColor: #e9974c; curveNumberPoints: 40; curveShootingSpeed: 8; snapTurn: false; rotateOnTeleport: false"></a-entity>
         <a-entity id="righthand" mixin="hand" physics-collider static-body="shape: sphere; sphereRadius: 0.05" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff"></a-entity>
  </a-entity>
  
@@ -161,18 +160,16 @@
      <a-entity visible="true" static-body="shape: box;" position="0 2 -7.5" rotation="0 0 0" width="40" height="4.5">
      <a-text id="GL-VR" visible="false" position="2.6 -0.1 0.01" value="Grab: Use trigger or grip buttons. Use one button."  color="black" width="3" line-height="50" text="wrapCount: 20"></a-text>
       <a-text id="GL-PC1" visible="false" position="2.6 -0.1 0.1" value="Info: Click on objects"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
-      <a-text id="GL-PC2" visible="false" position="2.6 -0.1 0.1" value="Info: Click on objects in\nreticle"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
       <a-text id="GL-SP" visible="false" position="2.6 -0.1 0.1" value="Info: Touch objects"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
 
     <!-- Scale Model Hall Title -->
-      <a-text id="SMH-VR" visible="false" position="-6.6 -0.77 0.01" value="Teleport: Press forward on thumbstick\n\nTurn: Left and right on thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
-      <a-text id="SMH-PC1" visible="false" position="-6.6 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\nLook: Swipe mouse\nInfo: Click orbs\nSwitch to Mouselook: M key"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
-      <a-text id="SMH-PC2" visible="false" position="-6.6 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\nInfo: Click orbs in reticle\nSwitch to Swipe-Look: M key"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-VR" visible="false" position="-6.6 -0.77 0.01" value="Move: left thumbstick\nTeleport: Press in left thumbstick\n\nTurn: Left and right on right thumbstick\nInfo: Trigger orbs"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
+      <a-text id="SMH-PC1" visible="false" position="-6.6 -0.75 0.01" value="Move: WASD keys\nCrouch: C key\nLook: Swipe mouse\nInfo: Click orbs"  color="black" width="5" line-height="60" text="wrapCount: 30"></a-text>
       <a-text id="SMH-SP" visible="false" position="-6.6 -0.6 0.01" value="Move: Touch the screen. Double-touch to reverse.\n\nInfo: Touch orb"  color="black" width="5" line-height="50" text="wrapCount: 25"></a-text>
       </a-entity>
     <!-- Behind wall -->
        <a-entity visible="true" static-body="shape: box;" position="0 2 6" rotation="0 180 0" width="40" height="4.5">
-        <a-text id="updatetext" visible="true" position="-5 -1 0.01" value="New: Ardipithecus ramidus in Human Evolution Hall\n  Galago, capuchin, and proboscis monkeys in Modern Primate exhibit"  color="black" width="5.5" line-height="50" text="wrapCount: 55"></a-text>
+        <a-text id="updatetext" visible="true" position="-5 -1 0.01" value="By Keith Chan"  color="black" width="5.5" line-height="50" text="wrapCount: 55"></a-text>
         <a-text position="5 -1 0.01" value="Transcript: tinyurl.com/anvrotext\n1.2.2" align="right" color="black" width="5" text="wrapCount: 50"></a-text></a-entity> 
     <!-- Left display wall -->
         <a-entity visible="true" static-body="shape: box;" position="-5.08 2 -0.5" rotation="0 90 0" depth="0.1" width="8" height="4.5" color="#dfe0e2" material="shader: flat">
@@ -270,7 +267,7 @@
        <a-entity id="burialscreenback" class="burial-zone" visible="true" position="-10.1 2 -11.06">
         <a-text id="Generic-Artifacts" class="generichide" visible="false" position="0 1.0 0" rotation="0 180 0" value="Artifacts"  color="black" width="5" line-height="50" text="wrapCount: 30"></a-text>
         <a-text id="james3-tit" class="burial burial-text-1 jamestown" mixin="burial-label" visible="false" position="0 0 0" rotation="0 180 0" text="wrapCount: 45; width:3; value: Captain Archer was buried in a wooden coffin, which has since rotted but left the nails in place. Outside the coffin in the grave were a piece of a ceremonial staff and a small silver reliquary container. Micro CT analysis of the box revealed that it contained human bone fragments and a lead ampulla (flask with fluid of religious significance).">
-<!--         <a-entity position="4.2 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2.25"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Caption;" position="1.5 1.26 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Caption.;" position="1.5 -1.64 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
+<!--         <a-entity position="4.2 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/jameschurch-p.jpg" position="0 0 0.01" width="3" height="2.25"></a-image><a-text mixin="table-caption" text="width: 2.5; value: Caption;" position="1.5 1.26 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Caption.;" position="1.5 -1.64 0.01" ></a-text></a-entity>--><!-- Photo Caption --><!-- Image Panels --></a-text>
 		<a-text id="calatrava3-tit" class="burial burial-text-1 calatrava" mixin="burial-label" visible="false" position="0 0 0" rotation="0 180 0" text="value: The knight was buried in a wooden box placed in the grave as evidenced by nails and the wood remnants. The decomposed remains of leather shoes were found at the feet. These were better preserved in some of the other burials.\n\nPaintings decorated the walls of the chapter house, including one of a knight and Almohad warrior fighting on horseback. ">
         <a-entity position="6 0 0"  rotation="0 0 0"><a-image mixin="scale-label" src="images/calatravashoes-p.jpg" position="0 0 0.01" width="2.25" height="1.725"></a-image><a-text mixin="table-caption" text="width: 2; value: Photo by Curious Expeditions, used under CC BY-NC-SA 2.0;" position="1.15 1 0.01" ></a-text><a-text mixin="table-caption" text="width: 2.5; value: Shoes of a style similar to the degraded remains found in the grave.;" position="1.15 -1 0.01" ></a-text></a-entity><!-- Photo Caption --><!-- Image Panels --></a-text>
 

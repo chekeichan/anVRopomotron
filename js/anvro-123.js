@@ -1,4 +1,4 @@
-// console.warn = console.error = () => {}; 
+console.warn = console.error = () => {}; 
 // Suppresses Three.js warnings. Remove to debug
 
 AFRAME.registerComponent('table-wait', {
@@ -20,8 +20,7 @@ AFRAME.registerComponent('table-wait', {
 AFRAME.registerComponent('all-wait', { // Waits for static physics objects to load then applies physics setting
     init: function () {
         var static = sceneEl.querySelectorAll('.static');
-        var grabbable = sceneEl.querySelectorAll('.grabbable');
-      for (let each of static) {
+        for (let each of static) {
         each.addEventListener('model-loaded', () => { // Wait for model to load.
             setTimeout(function(){
             if (AFRAME.utils.device.checkHeadsetConnected() === true) {
@@ -31,9 +30,6 @@ AFRAME.registerComponent('all-wait', { // Waits for static physics objects to lo
             }
         }, 1000);});
         }
-       
-        
-    
 }});
 
 
