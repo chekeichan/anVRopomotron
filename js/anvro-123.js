@@ -1,53 +1,37 @@
-console.warn = console.error = () => {}; // Suppresses Three.js warnings. Remove to debug
+console.warn = console.error = () => {}; 
+// Suppresses Three.js warnings. Remove to debug
 
 AFRAME.registerComponent('table-wait', {
     init: function () {
         var tablename = this.el.id;
         var tableitems = sceneEl.querySelectorAll('.'+tablename+'obj');
-      this.el.addEventListener('body-loaded', () => { // Wait for model to load.
+      this.el.addEventListener('body-loaded', () => { // Wait for table model to load.
         setTimeout(function(){
         if (AFRAME.utils.device.checkHeadsetConnected() === true) {
             for (let each of tableitems) {
                 each.removeAttribute('static-body');
-                each.setAttribute('dynamic-body', {shape: 'box', mass: 3});
+                each.setAttribute('dynamic-body', {shape: 'box', mass: 2});
+                console.log(each + " is dynamic");
+                
         }}
-    }, 200);});
+    }, 5000);});
 }});
 
-// PC Look Preference Switcher
-AFRAME.registerComponent("look-switch", {
-    init: function() {
-        var sceneEl = this.el.sceneEl;
-        var canvasEl = sceneEl.canvas;
-        var camera = document.querySelector('#camera');
-        var PCmode = 0;
-        window.addEventListener("keydown", function(e){ // Mouselook toggle
-            if(e.keyCode === 77 && PCmode == 0) { // Swipe to FPS
-                camera.setAttribute('look-controls', {enabled: false});
-                camera.setAttribute('fps-look-controls', 'userHeight', 0);
-                document.querySelector('#SMH-PC1').object3D.visible = false;
-                document.querySelector('#SMH-PC2').object3D.visible = true;
-                document.querySelector('#GL-PC1').object3D.visible = false;
-                document.querySelector('#GL-PC2').object3D.visible = true;
-                document.querySelector('#crosshair').object3D.visible = true;
-                PCmode = 1;
-            } else if (e.keyCode === 77 && PCmode == 1) { // FPS to swipe
-                camera.removeAttribute('fps-look-controls');
-                camera.setAttribute('look-controls', {enabled: true});
-                canvasEl.onclick = null; // Removes FPS components taking mouse on click
-                document.exitPointerLock();
-                document.querySelector('#SMH-PC1').object3D.visible = true;
-                document.querySelector('#SMH-PC2').object3D.visible = false;
-                document.querySelector('#GL-PC1').object3D.visible = true;
-                document.querySelector('#GL-PC2').object3D.visible = false;
-
-                document.querySelector('#crosshair').object3D.visible = false;
-                PCmode = 0;
-    
+AFRAME.registerComponent('all-wait', { // Waits for static physics objects to load then applies physics setting
+    init: function () {
+        var static = sceneEl.querySelectorAll('.static');
+        for (let each of static) {
+        each.addEventListener('model-loaded', () => { // Wait for model to load.
+            setTimeout(function(){
+            if (AFRAME.utils.device.checkHeadsetConnected() === true) {
+                each.removeAttribute('static-body');
+                each.setAttribute('static-body', {shape: 'box'});
+                    console.log(each);
             }
-        });
-    }
-    })
+        }, 1000);});
+        }
+}});
+
 
 AFRAME.registerComponent('device-set', { // Device-specific settings
     init: function() {
@@ -69,7 +53,7 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             for (let each of grabbable) {
                 each.removeAttribute('dynamic-body');
                 each.removeAttribute('grabbable');
-                each.setAttribute('static-body');
+                each.setAttribute('static-body', {shape: 'box'});
                 each.object3D.position.y += 0.245;
             }
             for (let each of standup) {
@@ -80,7 +64,6 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             console.log('VR detected');
             document.querySelector('#GL-VR').object3D.visible = true;
             document.querySelector('#SMH-VR').object3D.visible = true;
-            rig.removeAttribute('movement-controls'); // Remove non-working controls
         } else if (AFRAME.utils.device.checkHeadsetConnected() === false) { // PC Mode
             console.log('PC detected');
             document.querySelector('#GL-PC1').object3D.visible = true;
@@ -89,11 +72,10 @@ AFRAME.registerComponent('device-set', { // Device-specific settings
             for (let each of grabbable) {
                 each.removeAttribute('dynamic-body');
                 each.removeAttribute('grabbable');
-                each.setAttribute('static-body');
+                each.setAttribute('static-body', {shape: 'box'});
                 each.object3D.position.y +=0.25;
             }
             for (let each of tablestand) {
-                let poss = each.getAttribute('position');
                 each.object3D.position.y += 0.25;
             }
             for (let each of standup) { // Stands up small objects
