@@ -27,12 +27,15 @@
 <script src="https://cdn.jsdelivr.net/npm/aframe-aabb-collider-component@3.1.0/dist/aframe-aabb-collider-component.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/super-hands@^3.0.3/dist/super-hands.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aframe-blink-controls@0.4.3/dist/aframe-blink-controls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/handy-work/build/handy-controls.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/kylebakerio/a-console@1.0.2/a-console.js"></script>
 <script src="js/simple-navmesh-constraint.js"></script>
 <script src="js/anvro-123.js"></script>
 </head>
 
 <body>
-<a-scene all-wait anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://cdn.jsdelivr.net/npm/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/; basisTranscoderPath: https://cdn.jsdelivr.net/npm/super-three@0.141.0/examples/js/libs/basis/">
+<a-scene all-wait anti-drop grab-panels burial-grab item-grab warp device-set device-orientation-permission-ui physics="iterations: 30; debug: true" inspector="https://cdn.jsdelivr.net/gh/aframevr/aframe-inspector@master/dist/aframe-inspector.min.js" loading-screen="backgroundColor: green" renderer="colorManagement: true; foveationLevel: 2;" background="color: #FAFAFA" gltf-model="meshoptDecoderPath: https://cdn.jsdelivr.net/npm/meshoptimizer@0.16.0/meshopt_decoder.js; dracoDecoderPath: https://www.gstatic.com/draco/v1/decoders/; basisTranscoderPath: https://cdn.jsdelivr.net/npm/super-three@0.141.0/examples/js/libs/basis/">
        
 <a-assets timeout="80000"> <!-- Loads models -->
                 <a-asset-item id="tablemodel" response-type="arraybuffer" src="models/table.glb"></a-asset-item>
@@ -59,15 +62,17 @@
                 <a-asset-item id="baboon-bluemodel" response-type="arraybuffer" src="models/baboon-blue.glb"></a-asset-item>
 				<a-asset-item id="lomekmodel" response-type="arraybuffer" src="models/lomekwian.glb"></a-asset-item>
 
+                <a-mixin id="blink" blink-controls="rotateOnTeleport:false; cameraRig: #rig; teleportOrigin: #body; collisionEntities:.navmesh; snapTurn: false"></a-mixin>
+                <a-mixin id="handle-visual" geometry="width:0.05;height:0.05;depth:0.2"></a-mixin>
                 <a-mixin id="obj" hoverable grabbable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, abuttondown, bbuttondown, xbuttondown, ybuttondown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, abuttonup, bbuttonup, xbuttonup, ybuttonup, thumbstickup, mouseup" scale="1 1 1" rotation="0 0 0" shadow></a-mixin>
                 <a-mixin id="button" static-body="shape: box;" hoverable clickable="startButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; endButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup" shadow></a-mixin>
                 <a-mixin id="holoprojector" color="#ff6a00" position="0 0.3 0" rotation="180 0 0" height="0.05" geometry="primitive: cone; segmentsRadial: 3; openEnded: true; radiusBottom: 0.5; segmentsHeight: 1" material="emissive: #ff6a00; wireframe: true" animation="property: rotation; to: 180 360 0; loop: true; easing: linear; dur: 10000"></a-mixin>
-                <a-mixin id="hand" super-hands="colliderEvent: collisions; 
+                <a-mixin id="hand" physics-collider static-body="shape: sphere; sphereRadius: 0.05" super-hands="colliderEvent: collisions; 
                 colliderEventProperty: els;
                 colliderEndEvent: collisions;
                 colliderEndEventProperty: clearedEls;
-                grabStartButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown; 
-                grabEndButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup"
+                grabStartButtons: trackpaddown, triggerdown, gripclose, gripdown, thumbstickdown, mousedown, squeezestart; 
+                grabEndButtons: trackpadup, triggerup, gripopen, gripup, thumbstickup, mouseup, squeezeend"
 				 ></a-mixin>                 
                  <a-mixin id="table-label" position="0 0 -1" rotation="0 -90 0" visible="false"  text="width: 2; color: black; lineHeight: 60; wrap-count: 35"></a-mixin>
                  <a-mixin id="burial-label" position="0 0 -1" text="width: 2; color: black; lineHeight: 60; wrap-count: 35"></a-mixin>
@@ -85,14 +90,56 @@
 <a-entity position="0 0 0" class="static" static-body="shape: box;" gltf-model="#floor" visible="false"></a-entity> <!-- Solid Floor to Block Objects -->
 <a-entity class="floorplan-zone" position="0 0 0" gltf-model="#room"></a-entity> <!--  Main Building, no Human Evolution-->
 <a-entity class="c-h-div-zone" position="0 0 0" gltf-model="#c-h-dividermodel"></a-entity> <!-- Hominin Transition Zone -->
-
+<a-console position="0 1.5 -2"></a-console>
 <a-entity id="rig" rotation-reader movement-controls="speed: 0.1; constrainToNavMesh: true" position="0 0 1" simple-navmesh-constraint="navmesh:.navmesh;fall:0.5;height:0;exclude:.navmesh-hole;"> <!-- Player Character -->
+    <a-entity handy-controls mixin="hand">
+
+        <!-- Screen space inputs like mobile AR -->
+        <a-torus radius="0.008" radius-tubular="0.001" material="shader:flat;color:blue" data-none="screen-0"></a-torus>
+        <a-torus radius="0.008" radius-tubular="0.001" material="shader:flat;color:green" data-none="screen-1"></a-torus>
+        <a-torus radius="0.008" radius-tubular="0.001" material="shader:flat;color:red" data-none="screen-2"></a-torus>
+        
+        <!-- Objects attached to tracked hand joints -->
+        <a-entity data-left="ring-finger-phalanx-proximal">
+          <a-torus position="0 0 -0.03" radius="0.008" radius-tubular="0.001" scale="1 1 1.5" material="color:gold;metalness:1;roughness:0;"></a-torus>
+        </a-entity>
+        
+        <a-entity data-right="index-finger-tip" mixin="blink" blink-controls="rotateOnTeleport:false;startEvents:pose_point_fuseShort;endEvents:pose_point_fuseLong;"></a-entity>
+        <a-entity data-left="index-finger-tip"  mixin="blink" blink-controls="rotateOnTeleport:false;startEvents:pose_point_fuseShort;endEvents:pose_point_fuseLong;"></a-entity>
+        
+        <!-- Ray and Grip are Available on Hands or Tracked Inputs -->
+        <a-entity data-right="ray" mixin="blink" blink-controls>
+        </a-entity>
+        <a-entity data-left="ray" mixin="blink" blink-controls>
+        </a-entity>
+      
+        <!-- These act like anchors pulling both hands and controllers towards grabable objects, moving the whole hand and the attached elements-->
+       <!--  <a-entity id="right-magnet" data-right="grip" data-magnet=".magnet-right:not([data-no-magnet]),.magnet:not([data-no-magnet])" grab-magnet-target="startEvents:squeezestart,pose_fist;stopEvents:pose_flat_fuseShort,squeezeend;"></a-entity>
+        <a-entity id="left-magnet" data-left="grip"  data-magnet=".magnet-left:not([data-no-magnet]),.magnet:not([data-no-magnet])"  grab-magnet-target="startEvents:squeezestart,pose_fist;stopEvents:pose_flat_fuseShort,squeezeend;"></a-entity> -->
+      
+        <!-- Markers to let us know the real location of the hands -->
+        <!-- <a-sphere id="right-no-magnet" data-right="grip" data-no-magnet radius="0.01" color="red"></a-sphere>
+        <a-sphere id="left-no-magnet" data-left="grip" data-no-magnet radius="0.01" color="red"></a-sphere> -->
+        
+        <!-- Invisible objects at the tips of each finger for physics or intersections -->
+        <a-sphere data-right="index-finger-tip" radius="0.01" visible="false"></a-sphere>
+        <a-sphere data-right="middle-finger-tip" radius="0.01" visible="false"></a-sphere>
+        <a-sphere data-right="ring-finger-tip" radius="0.01" visible="false"></a-sphere>
+        <a-sphere data-right="pinky-finger-tip" radius="0.01" visible="false"></a-sphere>
+        <a-sphere data-right="thumb-tip" radius="0.01" visible="false"></a-sphere>
+        <a-sphere data-left="index-finger-tip" radius="0.01" visible="false"></a-sphere>
+        <a-sphere data-left="middle-finger-tip" radius="0.01" visible="false"></a-sphere>
+        <a-sphere data-left="ring-finger-tip" radius="0.01" visible="false"></a-sphere>
+        <a-sphere data-left="pinky-finger-tip" radius="0.01" visible="false"></a-sphere>
+        <a-sphere data-left="thumb-tip" radius="0.01" visible="false"></a-sphere>
+      </a-entity>
+
     <a-box id="body" class="static" plane-hit aabb-collider="collideNonVisible: true; objects: .zone" static-body="shape: box" position="0 0 0" width="0.25" height="0.25" depth="0.25" visible="false"></a-box>
         <a-entity id="camera" camera look-controls cursor="rayOrigin:mouse" raycaster="far: 5; objects: .clickable" super-hands="colliderEvent: raycaster-intersection; colliderEventProperty: els; colliderEndEvent:raycaster-intersection-cleared; colliderEndEventProperty: clearedEls;" position="0 1.6 0">
             <a-entity id="transition" position="0 0 -0.3" geometry="primitive: ring; radiusInner: 2; radiusOuter: 2" material="color: #ccc; side: front; shader: flat" animation__close="autoplay: false; property: geometry.radiusInner; from: 2; to: 0; startEvents: transitionclose; dur: 700;" animation__open="autoplay: false; property: geometry.radiusInner; from: 0; to: 2; startEvents: transitionopen; dur: 700;"></a-entity>
             </a-entity>
-        <a-entity id="lefthand" mixin="hand" physics-collider static-body="shape: sphere; sphereRadius: 0.05" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff"></a-entity>
-        <a-entity id="righthand" mixin="hand" physics-collider static-body="shape: sphere; sphereRadius: 0.05" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff"></a-entity>
+        <!-- <a-entity id="lefthand" mixin="hand" physics-collider static-body="shape: sphere; sphereRadius: 0.05" hand-controls="hand: left; handModelStyle: lowPoly; color: #0055ff"></a-entity>
+        <a-entity id="righthand" mixin="hand" physics-collider static-body="shape: sphere; sphereRadius: 0.05" hand-controls="hand: right; handModelStyle: lowPoly; color: #0055ff"></a-entity> -->
  </a-entity>
  
 <a-light type="ambient" color="white" intensity="0.05"></a-light> 
